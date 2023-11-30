@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
+import Header from '@/components/common/Header';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="relative flex flex-col h-screen">
             <main className="w-full h-full flex items-center justify-center">
               <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[360px] sm:h-[788px]">
+                <Header />
                 {children}
               </section>
             </main>
