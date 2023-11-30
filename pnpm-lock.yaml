@@ -41,6 +41,9 @@ dependencies:
   '@react-aria/visually-hidden':
     specifier: ^3.8.6
     version: 3.8.7(react@18.2.0)
+  '@tanstack/react-query':
+    specifier: ^5.10.0
+    version: 5.10.0(react@18.2.0)
   '@types/node':
     specifier: 20.5.7
     version: 20.5.7
@@ -1218,6 +1221,19 @@ packages:
     resolution: {integrity: sha512-FaruWX6KdudYloq1AHD/4nU+UsMTdNE8CKyrseXWEcgjDAbvkwJg2QGPAnfIJLIWsjZOSPLOAykK6fuYp4vp4A==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@tanstack/query-core@5.10.0:
+    resolution: {integrity: sha512-wlw/l2E+U70iABaJnOtZIJN/5VMhuj4RPViafwUYiIGoqw1VqqqaxBnBL90qLhWswoOaK8RAj3+NiG0duk+cRg==}
+    dev: false
+
+  /@tanstack/react-query@5.10.0(react@18.2.0):
+    resolution: {integrity: sha512-LeJsyXUvhq1TBsEbt3SSEaxP2Att1sv/qW588GL/bvjxPxsLUBWKGuFJ5Z1YP+/nJqVmcXJE8AtvZaaxE9rsKQ==}
+    peerDependencies:
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-core': 5.10.0
+      react: 18.2.0
     dev: false
 
   /@types/json-schema@7.0.15:

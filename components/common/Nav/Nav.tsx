@@ -13,7 +13,7 @@ function Nav() {
       <NavbarContent className="basis-1/5 p-0">
         <ul className="w-full flex gap-4 justify-between">
           {NAV_ICONS.map(({ path, icon }) => {
-            const color = pathname.endsWith(path) ? '#11181C' : '#A1A1AA';
+            const color = pathname?.endsWith(path) ? '#11181C' : '#A1A1AA';
             return (
               <NavbarItem key={path}>
                 <NextLink
