@@ -9,9 +9,9 @@ function Nav() {
   const pathname = headers().get('referer')!;
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" className="p-0">
+    <NextUINavbar maxWidth="xl" position="sticky" className="p-0 border-t-2 ">
       <NavbarContent className="basis-1/5 p-0">
-        <ul className="w-full flex gap-4 justify-between">
+        <ul className="w-full flex gap-4 justify-between ">
           {NAV_ICONS.map(({ path, icon }) => {
             const color = pathname?.endsWith(path) ? '#11181C' : '#A1A1AA';
             return (
