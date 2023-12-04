@@ -25,6 +25,12 @@ export const siteConfig = {
       href: '/mypage',
     },
   ],
+  billNavs: [
+    { title: '전체 보기', href: '#' },
+    { title: '발의된 의안 보기', href: '#' },
+    { title: '가결된 의안 보기', href: '#' },
+    { title: '공포된 의안 보기', href: '#' },
+  ],
   links: {
     github: 'https://github.com/LawDigest',
   },
