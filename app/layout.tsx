@@ -29,9 +29,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang="ko" suppressHydrationWarning>
       <head />
       <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+        <Providers themeProps={{ attribute: 'class', defaultTheme: 'light' }}>
           <div className="relative flex flex-col h-screen">
-            <main className="w-full h-full flex items-center justify-center">
+            <main className="flex items-center justify-center w-full h-full">
               <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[360px] sm:h-[788px]">
                 <Header />
                 {children}
