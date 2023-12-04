@@ -1,7 +1,8 @@
 export default function Statistics() {
   return (
-    <div>
-      <div>통계 페이지</div>
+    <div className="w-full">
+      <h1 className="m-5 text-3xl font-bold ">통계</h1>
+      <div />
     </div>
   );
 }

@@ -34,7 +34,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
             <main className="flex items-center justify-center w-full h-full">
               <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[360px] sm:h-[788px]">
                 <Header />
-                <div className="min-h-content">{children}</div>
+                <div className="w-full min-h-content">{children}</div>
                 <Nav />
               </section>
             </main>
