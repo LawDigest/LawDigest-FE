@@ -1,6 +1,7 @@
 import CardItem from './components/CardItem';
 import PartyContainer from './components/party/PartyContainer';
 import Seat from './components/seat/Seat';
+import MemberList from './components/member/MemberList';
 
 export default function Statistics() {
   return (
@@ -13,6 +14,10 @@ export default function Statistics() {
 
       <CardItem title="21대 국회 의석수 현황">
         <Seat />
+      </CardItem>
+
+      <CardItem title="최근 법안 발의한 의원">
+        <MemberList />
       </CardItem>
     </div>
   );
