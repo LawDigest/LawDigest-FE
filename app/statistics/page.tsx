@@ -2,6 +2,7 @@ import CardItem from './components/CardItem';
 import PartyContainer from './components/party/PartyContainer';
 import Seat from './components/seat/Seat';
 import MemberList from './components/member/MemberList';
+import Keyword from './components/keyword/Keyword';
 
 export default function Statistics() {
   return (
@@ -18,6 +19,10 @@ export default function Statistics() {
 
       <CardItem title="최근 법안 발의한 의원">
         <MemberList />
+      </CardItem>
+
+      <CardItem title="6월 국회 주요 키워드">
+        <Keyword />
       </CardItem>
     </div>
   );
