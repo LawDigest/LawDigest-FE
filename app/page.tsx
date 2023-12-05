@@ -7,9 +7,7 @@ function Home() {
     <>
       <SearchBar />
       <BillNav />
-      <section className="flex-col w-full h-full overflow-scroll">
-        <Feed />
-      </section>
+      <Feed />
     </>
   );
 }
