@@ -8,7 +8,7 @@ import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/componen
 
 export default function Feed() {
   return (
-    <Card className="w-full mr-0 shadow-none">
+    <Card className="w-full mr-0 shadow-none rounded-none">
       <CardHeader className="justify-between">
         <div className="flex gap-2">
           <Avatar radius="full" size="sm" src="/avatars/avatar-1.png" />
@@ -38,13 +38,6 @@ export default function Feed() {
               </DropdownItem>
               <DropdownItem key="settings">My Settings</DropdownItem>
               <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-              <DropdownItem key="logout" color="danger">
-                Log Out
-              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
           {/*  */}
@@ -91,6 +84,7 @@ export default function Feed() {
           </div>
         </div>
       </CardFooter>
+      <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />
     </Card>
   );
 }
