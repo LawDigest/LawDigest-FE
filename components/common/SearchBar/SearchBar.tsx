@@ -5,7 +5,7 @@ import SearchIcon from './SearchIcon';
 
 export default function SearchBar() {
   return (
-    <div className="w-full md:w-[340px] px-[10px] rounded-2xl flex justify-center items-center gap-[10px] ">
+    <div className="w-full px-[10px] rounded-2xl flex justify-center items-center gap-[10px]">
       <Link href="/">
         <Image src="/images/logo.png" width={57} height={48} alt="logo" />
       </Link>
