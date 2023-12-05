@@ -9,9 +9,6 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    minHeight: {
-      content: 'calc(100vh - 117px)',
-    },
     extend: {},
   },
   darkMode: 'class',

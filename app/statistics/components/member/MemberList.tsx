@@ -108,22 +108,12 @@ export default function MemberList() {
       <div className="grid grid-cols-5 gap-2  border-b-2 pt-2 border-[#E2E8F0] pb-3">
         {!toggle
           ? list
-              .map((member) => (
-                <MemberItem
-                  name={member.name}
-                  profileImg={member.profileImg}
-                  partyImg={member.partyImg}
-                  key={member.number}
-                />
+              .map(({ name, profileImg, partyImg, number }) => (
+                <MemberItem name={name} profileImg={profileImg} partyImg={partyImg} key={number} />
               ))
               .slice(0, 10)
-          : list.map((member) => (
-              <MemberItem
-                name={member.name}
-                profileImg={member.profileImg}
-                partyImg={member.partyImg}
-                key={member.number}
-              />
+          : list.map(({ name, profileImg, partyImg, number }) => (
+              <MemberItem name={name} profileImg={profileImg} partyImg={partyImg} key={number} />
             ))}
       </div>
       <button type="button" className=" text-[#7E8A99] font-medium mt-2 mx-auto w-15" onClick={onClick}>

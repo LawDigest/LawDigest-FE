@@ -25,9 +25,9 @@ const list = [
 
 export default function PartyContainer() {
   return (
-    <div className="flex gap-5">
-      {list.map((party) => (
-        <Party name={party.name} src={party.src} members={party.members} key={party.name} />
+    <div className="flex gap-4">
+      {list.map(({ name, src, members }) => (
+        <Party name={name} src={src} members={members} key={name} />
       ))}
     </div>
   );

@@ -1,6 +1,16 @@
+'use client';
+
+import SearchBar from '@/components/common/SearchBar';
+import Feed from '@/components/Bill/Feed';
+import BillNav from './components';
+
 function Home() {
   return (
-    <section className="w-full h-full flex flex-col items-center justify-center gap-4 py-8 md:py-10 ">valu</section>
+    <>
+      <SearchBar />
+      <BillNav />
+      <Feed />
+    </>
   );
 }
 
