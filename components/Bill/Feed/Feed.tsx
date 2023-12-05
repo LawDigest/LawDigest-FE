@@ -8,16 +8,16 @@ import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/componen
 
 export default function Feed() {
   return (
-    <Card className="w-full mr-0 shadow-none rounded-none">
+    <Card className="w-full mr-0 rounded-none shadow-none">
       <CardHeader className="justify-between">
         <div className="flex gap-2">
           <Avatar radius="full" size="sm" src="/avatars/avatar-1.png" />
           <div className="flex flex-col items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600">홍길동 의원</h4>
+            <h4 className="font-semibold leading-none text-small text-default-600">홍길동 의원</h4>
             <h5 className="text-xs tracking-tight text-default-400">홍길동 의원 외 16인</h5>
           </div>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <h5 className="text-xs tracking-tight text-default-400">1일 전</h5>
           <AvatarGroup size="sm" max={3}>
             <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
@@ -32,7 +32,7 @@ export default function Feed() {
               </button>
             </DropdownTrigger>
             <DropdownMenu aria-label="More Actions">
-              <DropdownItem key="profile" className="h-14 gap-2">
+              <DropdownItem key="profile" className="gap-2 h-14">
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
               </DropdownItem>
@@ -43,7 +43,7 @@ export default function Feed() {
           {/*  */}
         </div>
       </CardHeader>
-      <CardBody className="px-3 py-0 text-small leading-6">
+      <CardBody className="px-3 py-0 leading-6 text-small">
         <p>
           도로교통법 일부개정법률안(이소영 의원 등 11인)은 어린이통학버스와 관련하여 몇 가지 변경을 제안하는 법안입니다.
           이 법률안에는 다음과 같은 주요 변경 사항이 포함되어 있습니다: 1.어린이통학버스의 이용 범위 확대: 현행법은
@@ -62,7 +62,7 @@ export default function Feed() {
         </Button>
       </CardBody>
       <CardFooter className="flex justify-between">
-        <div className="flex gap-0 justify-center">
+        <div className="flex justify-center gap-0">
           <Button className="bg-transparent" isIconOnly aria-label="Like">
             <LikeIcon color="black" />
           </Button>

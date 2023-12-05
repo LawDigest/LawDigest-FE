@@ -4,13 +4,13 @@ import BillNav from './components';
 
 function Home() {
   return (
-    <section className="overflow-scroll  w-full h-full flex flex-col items-center justify-center gap-2 py-[10px] ">
+    <>
       <SearchBar />
       <BillNav />
-      <section className="overflow-scroll w-full h-full flex-col">
+      <section className="flex-col w-full h-full overflow-scroll">
         <Feed />
       </section>
-    </section>
+    </>
   );
 }
 
