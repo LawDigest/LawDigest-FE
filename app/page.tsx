@@ -1,6 +1,6 @@
 import SearchBar from '@/components/common/SearchBar';
-import Feed from '@/components/Bill/Feed';
-import BillNav from './components';
+import Feed from './components/Feed';
+import BillNav from './components/BillNav';
 
 function Home() {
   return (
