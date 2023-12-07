@@ -4,6 +4,7 @@ import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
 import { Button } from '@nextui-org/button';
+import { Spinner } from '@nextui-org/spinner';
 import { useMemo } from 'react';
 import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/components/icons';
 import { useFetchBills, useIntersect } from './hooks';
@@ -92,8 +93,11 @@ export default function Feed() {
           <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />
         </Card>
       ))}
-      {/* TODO: 로딩 스피너 */}
-      {isFetching && '로딩중'}
+      {isFetching && (
+        <div className="flex justify-center w-full my-4">
+          <Spinner color="default" />
+        </div>
+      )}
       <div ref={ref} />
     </div>
   );

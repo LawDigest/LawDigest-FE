@@ -5,7 +5,7 @@ import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import Header from '@/components/common/Header';
 import Nav from '@/components/common/Nav';
-import { Providers } from './providers';
+import { Providers } from './lib/providers';
 
 export const metadata: Metadata = {
   title: {
