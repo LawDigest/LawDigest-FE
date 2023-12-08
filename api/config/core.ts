@@ -8,6 +8,7 @@ import axios, {
 } from 'axios';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN, HTTP_METHODS } from '@/constants';
+import { BaseResponse } from '@/types';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_URL,
@@ -48,7 +49,7 @@ axiosInstance.interceptors.response.use(
 
 const createApiMethod =
   (instance: AxiosInstance, method: Method) =>
-  (config: AxiosRequestConfig): Promise<AxiosResponse> =>
+  <T>(config: AxiosRequestConfig): Promise<BaseResponse<T>> =>
     instance({ ...config, method });
 
 // eslint-disable-next-line
