@@ -2,7 +2,7 @@ import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
 import { Button } from '@nextui-org/button';
-import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/components/icons';
+import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/components/common/icons';
 import { BillProps } from './type';
 
 export default function Bill({ id, name, people, content, date, like, view }: BillProps) {
