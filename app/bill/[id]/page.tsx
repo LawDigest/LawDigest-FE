@@ -1,12 +1,17 @@
 import Bill from '@/components/Bill';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import getQueryClient from '@/app/getQueryClient';
 import { useBillDetail } from './apis';
 
-export default function BillDetail({ params: { id } }: { params: { id: string } }) {
-  const { data } = useBillDetail({ id: Number(id) })!;
+export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
+  const queryClient = getQueryClient();
+  const bill = await useBillDetail({ id: Number(id), queryClient });
 
   return (
-    <section>
-      <Bill {...data} />
-    </section>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <section>
+        <Bill {...bill} />
+      </section>
+    </HydrationBoundary>
   );
 }

@@ -1,5 +1,10 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 import { getBillDetail } from './api';
 
-export const useBillDetail = ({ id }: { id: number }) =>
-  useSuspenseQuery({ queryKey: ['/bill', id], queryFn: () => getBillDetail({ id }), select: ({ result }) => result });
+export const useBillDetail = ({ id, queryClient }: { id: number; queryClient: QueryClient }) =>
+  queryClient
+    .fetchQuery({
+      queryKey: ['/bill', id],
+      queryFn: () => getBillDetail({ id }),
+    })
+    .then(({ result }) => result);
