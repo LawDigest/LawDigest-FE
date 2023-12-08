@@ -97,7 +97,7 @@ export function LikeIcon({ color }: { color: string }) {
       <path
         d="M25.9525 7.31261C22.2069 4.31619 18.377 7.3126 16.9996 8.68996C15.6223 7.3126 11.7923 4.31619 8.04682 7.31261C4.30131 10.309 3.48727 16.5266 8.7355 21.7748C13.9837 27.023 16.9996 27.9729 16.9996 27.9729C16.9996 27.9729 20.0155 27.023 25.2638 21.7748C30.512 16.5266 29.698 10.309 25.9525 7.31261Z"
         stroke={color}
-        stroke-width="2"
+        strokeWidth="2"
       />
     </svg>
   );
@@ -109,16 +109,16 @@ export function AlarmIcon({ color }: { color: string }) {
       <path
         d="M20.6604 23.415H12.3962V24.7924C12.3962 27.0745 14.2462 28.9245 16.5283 28.9245C18.8104 28.9245 20.6604 27.0745 20.6604 24.7924V23.415Z"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M6.88688 23.4151H26.1699C26.9306 23.4151 27.5473 22.7985 27.5473 22.0378V21.2309C27.5473 20.8656 27.4021 20.5153 27.1439 20.257L26.4402 19.5533C26.2671 19.3802 26.1699 19.1455 26.1699 18.9007V13.7736C26.1699 8.44872 21.8532 4.13207 16.5284 4.13208C11.2035 4.13209 6.88688 8.44874 6.88688 13.7736V18.9007C6.88688 19.1455 6.78963 19.3803 6.61653 19.5534L5.91294 20.257C5.65464 20.5153 5.50952 20.8656 5.50952 21.2309V22.0378C5.50952 22.7985 6.12619 23.4151 6.88688 23.4151Z"
         stroke={color}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
@@ -131,17 +131,17 @@ export function ShareIcon({ color }: { color: string }) {
       <path
         d="M14.1333 6H8.95758C7.32415 6 6 7.32415 6 8.95758V25.2242C6 26.8577 7.32415 28.1818 8.95758 28.1818H25.2242C26.8577 28.1818 28.1818 26.8577 28.1818 25.2242V19.3091"
         stroke={color}
-        stroke-width="1.91373"
-        stroke-linecap="round"
+        strokeWidth="1.91373"
+        strokeLinecap="round"
       />
       <path
         d="M19.3091 6H28.1818V14.8727"
         stroke={color}
-        stroke-width="1.91373"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.91373"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <path d="M12.6548 21.5274L27.4427 6.7395" stroke={color} stroke-width="1.91373" stroke-linecap="round" />
+      <path d="M12.6548 21.5274L27.4427 6.7395" stroke={color} strokeWidth="1.91373" strokeLinecap="round" />
     </svg>
   );
 }
