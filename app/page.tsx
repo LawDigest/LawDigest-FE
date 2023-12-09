@@ -1,3 +1,5 @@
+'use client';
+
 import SearchBar from '@/components/common/SearchBar';
 import Feed from './components/Feed';
 import BillNav from './components/BillNav';
