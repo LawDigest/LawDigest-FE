@@ -3,6 +3,8 @@
 import { Spinner } from '@nextui-org/spinner';
 import { useMemo } from 'react';
 import Bill from '@/components/Bill';
+import { Button } from '@nextui-org/button';
+import { DetailIcon } from '@/components/common/icons';
 import { useFetchBills, useIntersect } from './hooks';
 
 export default function Feed() {
@@ -19,7 +21,16 @@ export default function Feed() {
   return (
     <div>
       {bills.map((bill) => (
-        <Bill key={bill.id} {...bill} />
+        <Bill key={bill.id} {...bill}>
+          <Button
+            className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
+            color="primary"
+            size="sm"
+            variant="flat">
+            자세히보기
+            <DetailIcon color="#006FEE" />
+          </Button>
+        </Bill>
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">
