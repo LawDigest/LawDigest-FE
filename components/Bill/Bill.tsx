@@ -1,11 +1,10 @@
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
+import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
-import { Button } from '@nextui-org/button';
-import { AlarmIcon, DetailIcon, LikeIcon, MoreIcon, ShareIcon } from '@/components/common/icons';
+import { MoreIcon } from '@/components/common/icons';
 import { BillProps } from './type';
 
-export default function Bill({ id, name, people, content, date, like, view }: BillProps) {
+export default function Bill({ id, name, people, content, date, children }: BillProps) {
   return (
     <Card key={id} className="w-full mr-0 rounded-none shadow-none">
       <CardHeader className="justify-between">
@@ -43,38 +42,8 @@ export default function Bill({ id, name, people, content, date, like, view }: Bi
       </CardHeader>
       <CardBody className="px-3 py-0 leading-6 text-small">
         <p>{content}</p>
-        <Button
-          className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
-          color="primary"
-          size="sm"
-          variant="flat">
-          자세히보기
-          <DetailIcon color="#006FEE" />
-        </Button>
+        {children}
       </CardBody>
-      <CardFooter className="flex justify-between">
-        <div className="flex justify-center gap-0">
-          <Button className="bg-transparent" isIconOnly aria-label="Like">
-            <LikeIcon color="black" />
-          </Button>
-          <Button className="bg-transparent" isIconOnly aria-label="Like">
-            <AlarmIcon color="black" />
-          </Button>
-          <Button className="bg-transparent" isIconOnly aria-label="Like">
-            <ShareIcon color="black" />
-          </Button>
-        </div>
-        <div className="flex gap-3">
-          <div className="flex gap-1">
-            <p className="font-semibold text-default-400 text-small">좋아요</p>
-            <p className=" text-default-400 text-small">{like}</p>
-          </div>
-          <div className="flex gap-1">
-            <p className="font-semibold text-default-400 text-small">조회수</p>
-            <p className="text-default-400 text-small">{view}</p>
-          </div>
-        </div>
-      </CardFooter>
       <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />
     </Card>
   );
