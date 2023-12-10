@@ -1,3 +1,6 @@
+'use client';
+
+import Slider from 'react-slick';
 import Party from './Party';
 
 const list = [
@@ -23,12 +26,14 @@ const list = [
   },
 ];
 
+const settings = {};
+
 export default function PartyContainer() {
   return (
-    <div className="flex gap-4">
+    <Slider {...settings}>
       {list.map(({ name, src, members }) => (
         <Party name={name} src={src} members={members} key={name} />
       ))}
-    </div>
+    </Slider>
   );
 }
