@@ -1,10 +1,12 @@
+'use client';
+
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
 import { MoreIcon } from '@/components/common/icons';
 import { BillProps } from './type';
 
-export default function Bill({ id, name, people, content, date, children }: BillProps) {
+export default function Bill({ id, name, people, content, date, children, divide }: BillProps) {
   return (
     <Card key={id} className="w-full mr-0 rounded-none shadow-none">
       <CardHeader className="justify-between">
@@ -40,11 +42,11 @@ export default function Bill({ id, name, people, content, date, children }: Bill
           </Dropdown>
         </div>
       </CardHeader>
-      <CardBody className="px-3 py-0 leading-6 text-small">
+      <CardBody className="px-3 py-0 leading-normal whitespace-pre-wrap text-small">
         <p>{content}</p>
         {children}
       </CardBody>
-      <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />
+      {divide && <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />}
     </Card>
   );
 }

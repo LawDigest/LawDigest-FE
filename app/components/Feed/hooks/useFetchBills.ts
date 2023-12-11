@@ -2,7 +2,8 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { PaginationResponse, Bill } from '../types';
+import { BillProps as Bill } from '@/components/Bill/type';
+import { PaginationResponse } from '../types';
 
 const billKeys = {
   all: ['bills'] as const,

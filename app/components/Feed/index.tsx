@@ -21,7 +21,7 @@ export default function Feed() {
   return (
     <div>
       {bills.map((bill) => (
-        <Bill key={bill.id} {...bill}>
+        <Bill key={bill.id} {...bill} divide>
           <Button
             className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
             color="primary"
