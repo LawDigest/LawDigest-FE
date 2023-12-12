@@ -9,7 +9,7 @@ import { useFetchBills, useIntersect } from './hooks';
 
 export default function Feed() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useFetchBills();
-  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { contents } }) => contents) : []), [data]);
+  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []), [data]);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -21,12 +21,13 @@ export default function Feed() {
   return (
     <div>
       {bills.map((bill) => (
-        <Bill key={bill.id} {...bill} divide>
+        <Bill key={bill.bill_id} {...bill} divide>
           <Button
             className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
             color="primary"
             size="sm"
-            variant="flat">
+            variant="flat"
+            href={String(bill.bill_id)}>
             자세히보기
             <DetailIcon color="#006FEE" />
           </Button>

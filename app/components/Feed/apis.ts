@@ -1,9 +1,8 @@
 import http from '@/api/config/core';
+import { FeedResponse } from './types';
 
-export const getBill = async (page: number) => {
-  await http.get({
-    // FIXME: API 나오면 주소 수정
-    url: '/bills',
-    data: { page },
+export const getBill = async (page: number) =>
+  http.get<FeedResponse>({
+    url: '/bill/mainfeed',
+    params: { page, size: 3 },
   });
-};
