@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import getQueryClient from '@/app/getQueryClient';
 import GPTSummary from '@/components/GPTSummary';
 import { Button } from '@nextui-org/button';
-import { DetailLinkIcon } from '@/components/common/icons';
+import { DetailLinkIcon } from '@/components/common/Icons';
 import Link from 'next/link';
 import CardFooter from '@/components/CardFooter';
 import { useBillDetail } from './apis';

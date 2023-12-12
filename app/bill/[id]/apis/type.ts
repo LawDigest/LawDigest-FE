@@ -1,5 +1,5 @@
-import { BillProps } from '@/components/Bill/type';
 import { BILL_STAGE } from '@/constants';
+import { BillProps } from '@/types';
 
 export interface BillDetailResponse extends BillProps {
   readonly url: string;

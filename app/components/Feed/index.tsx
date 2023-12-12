@@ -4,12 +4,15 @@ import { Spinner } from '@nextui-org/spinner';
 import { useMemo } from 'react';
 import Bill from '@/components/Bill';
 import { Button } from '@nextui-org/button';
-import { DetailIcon } from '@/components/common/icons';
-import { useFetchBills, useIntersect } from './hooks';
+import { DetailIcon } from '@/components/common/Icons';
+import { useFetchBills, useIntersect } from '@/hooks';
 
 export default function Feed() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useFetchBills();
-  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { contents } }) => contents) : []), [data]);
+  const bills = useMemo(
+    () => (data ? data.pages.flatMap(({ result: { bills: responses } }) => responses) : []),
+    [data],
+  );
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -21,7 +24,7 @@ export default function Feed() {
   return (
     <div>
       {bills.map((bill) => (
-        <Bill key={bill.id} {...bill}>
+        <Bill key={bill.bill_id} {...bill}>
           <Button
             className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
             color="primary"

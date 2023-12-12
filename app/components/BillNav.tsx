@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function BillNav() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex flex-col w-full">
       <Tabs
         aria-label="Options"
         variant="underlined"
@@ -16,12 +16,12 @@ export default function BillNav() {
           tab: 'max-w-fit px-0 h-10',
           tabContent: 'mx-2 group-data-[selected=true]:text-black',
         }}>
-        {siteConfig.billNavs.map(({ title, href }) => (
+        {siteConfig.billNavs.map(({ label, href }) => (
           <Tab
-            key={title}
+            key={label}
             title={
               <Link href={href}>
-                <span>{title}</span>
+                <span>{label}</span>
               </Link>
             }
           />
