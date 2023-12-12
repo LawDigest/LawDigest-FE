@@ -42,6 +42,7 @@
     "next": "14.0.2",
     "next-themes": "^0.2.1",
     "postcss": "8.4.31",
+    "qs": "^6.11.2",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
@@ -50,6 +51,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/qs": "^6.9.10",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "eslint": "8.48.0",
