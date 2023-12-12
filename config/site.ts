@@ -26,10 +26,14 @@ export const siteConfig = {
     },
   ],
   billNavs: [
-    { title: '전체 보기', href: '#' },
-    { title: '발의된 의안 보기', href: '#' },
-    { title: '가결된 의안 보기', href: '#' },
-    { title: '공포된 의안 보기', href: '#' },
+    { label: '전체 보기', href: '#' },
+    { label: '발의된 의안 보기', href: '#' },
+    { label: '가결된 의안 보기', href: '#' },
+    { label: '공포된 의안 보기', href: '#' },
+  ],
+  billTabs: [
+    { label: '대표발의한 법안', value: 'representProposer' },
+    { label: '공동발의한 법안', value: 'publicProposer' },
   ],
   links: {
     github: 'https://github.com/LawDigest',

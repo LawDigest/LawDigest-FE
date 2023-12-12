@@ -15,3 +15,13 @@ export const BILL_STAGE_KO = {
   transfer: '정부 이송',
   promulgation: '공포',
 } as const;
+
+export const BILL_TAB = {
+  representProposer: 'representProposer',
+  publicProposer: 'publicProposer',
+} as const;
+
+export const BILL_TAB_KO = {
+  representProposer: '대표발의한 법안',
+  publicProposer: '공동발의한 법안',
+} as const;
