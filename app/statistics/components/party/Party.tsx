@@ -9,7 +9,7 @@ interface PartyProps {
 
 export default function Party({ name, src, members }: PartyProps) {
   return (
-    <div className="overflow-hidden border rounded-2xl min-w-[140px] ">
+    <div className="overflow-hidden border rounded-2xl min-w-[140px] mr-4">
       <Card shadow="sm" key={name}>
         <CardBody className="p-0 overflow-visible ">
           <Image src={src} alt={name} width={140} height={140} />

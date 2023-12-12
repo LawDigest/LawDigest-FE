@@ -26,11 +26,17 @@ const list = [
   },
 ];
 
-const settings = {};
+const settings = {
+  infinite: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  variableWidth: true,
+};
 
 export default function PartyContainer() {
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className="flex">
       {list.map(({ name, src, members }) => (
         <Party name={name} src={src} members={members} key={name} />
       ))}
