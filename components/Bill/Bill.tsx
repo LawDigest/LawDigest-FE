@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
-import { MoreIcon } from '@/components/common/icons';
+import { MoreIcon } from '@/components/common/Icons';
 import { BillProps } from './type';
 
 export default function Bill({ id, name, people, content, date, children }: BillProps) {
