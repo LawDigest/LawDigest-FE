@@ -1,10 +1,14 @@
-export const BILL_STAGE = {
+export const FEED_TAB = {
   reception: 'reception',
   committeeJudge: 'committeeJudge',
-  districtJudge: 'districtJudge',
   review: 'review',
-  transfer: 'transfer',
   promulgation: 'promulgation',
+} as const;
+
+export const BILL_STAGE = {
+  ...FEED_TAB,
+  districtJudge: 'districtJudge',
+  transfer: 'transfer',
 } as const;
 
 export const FEED_TAB_KO = {
