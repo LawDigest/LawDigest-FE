@@ -6,5 +6,6 @@ export interface BillProps {
   people: string;
   content: string;
   date: string;
+  is_represent: boolean;
   children?: ReactNode;
 }
