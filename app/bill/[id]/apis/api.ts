@@ -3,5 +3,5 @@ import { BillDetailResponse } from './type';
 
 export const getBillDetail = ({ id }: { id: number }) =>
   http.get<BillDetailResponse>({
-    url: `/bill/${id}`,
+    url: `/bill/mainfeed/${id}`,
   });
