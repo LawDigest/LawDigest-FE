@@ -4,8 +4,8 @@ export function DpkLogo() {
       <circle cx="38" cy="35" r="27" fill="white" />
       <g filter="url(#filter0_d_338_25536)">
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M38 62C52.9117 62 65 49.9117 65 35C65 20.0883 52.9117 8 38 8C23.0883 8 11 20.0883 11 35C11 49.9117 23.0883 62 38 62ZM38 60C51.8071 60 63 48.8071 63 35C63 21.1929 51.8071 10 38 10C24.1929 10 13 21.1929 13 35C13 48.8071 24.1929 60 38 60Z"
           fill="#0B68B3"
         />
