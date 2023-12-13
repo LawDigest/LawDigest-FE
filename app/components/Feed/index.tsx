@@ -5,12 +5,16 @@ import { useMemo } from 'react';
 import Bill from '@/components/Bill';
 import { Button } from '@nextui-org/button';
 import { DetailIcon } from '@/components/common/Icons';
-import { useGetBills, useIntersect } from '@/hooks';
+import { useGetBills, useIntersect, useTabType } from '@/hooks';
 import Link from 'next/link';
+import { FEED_TAB } from '@/constants';
+import BillTab from '@/components/BillTab';
 
 export default function Feed() {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills();
+  const { billType, setBillType } = useTabType<typeof FEED_TAB>('reception');
+  const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills(billType);
   const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []), [data]);
+  // const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -19,8 +23,20 @@ export default function Feed() {
     }
   });
 
+  // useEffect(() => {
+  //   // if (billType) {
+  //   //   setBills(() => []);
+  //   // }
+  //   // if (data) {
+  //   //   setBills(data.pages.flatMap(({ data: { bills: responses } }) => responses));
+  //   // }
+  //   console.log(billType);
+  //   // refetch();
+  // }, [billType]);
+
   return (
     <div>
+      <BillTab type={billType} clickHandler={setBillType as any} category="feed" />
       {bills.map((bill) => (
         <Bill key={bill.bill_id} {...bill}>
           <Link href={`/${bill.bill_id}`}>

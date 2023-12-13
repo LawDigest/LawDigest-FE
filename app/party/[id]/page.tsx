@@ -20,10 +20,7 @@ export default function Congressman({ params: { id } }: { params: { id: string }
 
   // // TODO: 대표발의, 공동발의 클릭에 따라 다른 api 요청 작업
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillByParty(id);
-  const bills = useMemo(
-    () => (data ? data.pages.flatMap(({ result: { bills: responses } }) => responses) : []),
-    [data],
-  );
+  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []), [data]);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
