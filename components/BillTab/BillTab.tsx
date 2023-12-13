@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@nextui-org/Tabs';
+import { Tabs, Tab } from '@nextui-org/tabs';
 import { siteConfig } from '@/config/site';
 import { BILL_TAB, BILL_TAB_KO, FEED_TAB_KO } from '@/constants';
 import { Key } from 'react';
