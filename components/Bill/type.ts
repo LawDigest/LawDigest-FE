@@ -4,7 +4,13 @@ export interface BillResponse {
   bill_id: number;
   bill_name: string;
   represent_proposer: string;
-  public_proposer: string[];
+  represent_proposer_id: string;
+  represent_proposer_party: string;
+  represent_proposer_party_id: number;
+  represent_proposer_img_url: string;
+  proposers: string;
+  party_list: string[];
+  party_id_list: number[];
   summary: string;
   propose_date: string;
 }
