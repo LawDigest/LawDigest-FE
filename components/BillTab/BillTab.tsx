@@ -12,11 +12,12 @@ const BILL_KEY = {
 export default function BillTab({
   type,
   clickHandler,
-  category,
+  category = '',
 }: {
   type: ValueOf<typeof BILL_KEY>;
   clickHandler: (key: Key) => any;
-  category: string;
+  // eslint-disable-next-line
+  category?: string;
 }) {
   const values = category === 'feed' ? siteConfig.billNavs : siteConfig.billTabs;
 

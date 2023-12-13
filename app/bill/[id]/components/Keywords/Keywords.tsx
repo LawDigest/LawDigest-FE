@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function Keywords({ keywords, image }: { keywords: string[]; image: string }) {
+export default function Keywords({ keywords }: { keywords: string[] }) {
   return (
     <section className="w-[92%]">
       <h1 className="text-2xl font-bold">주요 키워드 보기</h1>
@@ -12,7 +12,7 @@ export default function Keywords({ keywords, image }: { keywords: string[]; imag
             </div>
           ))}
         </div>
-        {/* <Image src={image} width={200} height={120} alt="keyword" /> */}
+        <Image src="/images/keyword.png" width={200} height={120} alt="keyword" />
       </div>
     </section>
   );

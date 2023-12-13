@@ -13,7 +13,7 @@ export default function Bill({
   represent_proposer_id,
   represent_proposer,
   party_list,
-  summary,
+  gpt_summary,
   propose_date,
   children,
   divide,
@@ -53,7 +53,7 @@ export default function Bill({
         </div>
       </CardHeader>
       <CardBody className="px-3 py-0 leading-normal whitespace-pre-wrap text-small">
-        <p>{summary}</p>
+        <p>{gpt_summary}</p>
         {children}
       </CardBody>
       {divide && <div className="w-full h-[8px] my-5 bg-[#E2E8F0]" />}

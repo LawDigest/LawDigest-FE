@@ -8,14 +8,14 @@ import { useState, useMemo } from 'react';
 import { Badge } from '@nextui-org/badge';
 import { DpkLogo, DetailIcon } from '@/components/common/Icons';
 import BillTab from '@/components/BillTab';
-import { BILL_TAB } from '@/constants';
+import { BILL_TAB_KO } from '@/constants';
 import Bill from '@/components/Bill';
 import { useIntersect, useTabType } from '@/hooks';
 import { useGetBillByCongressman } from './apis';
 
 export default function Congressman({ params: { id } }: { params: { id: string } }) {
   const [isFollow, setIsFollow] = useState<boolean>(false);
-  const { billType, setBillType } = useTabType<typeof BILL_TAB>('representProposer');
+  const { billType, setBillType } = useTabType<typeof BILL_TAB_KO>('대표발의한 법안');
 
   // TODO: 대표발의, 공동발의 클릭에 따라 다른 api 요청 작업
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillByCongressman(id);

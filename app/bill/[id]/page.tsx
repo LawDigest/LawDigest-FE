@@ -6,11 +6,23 @@ import { Button } from '@nextui-org/button';
 import { DetailLinkIcon } from '@/components/common/Icons';
 import Link from 'next/link';
 import CardFooter from '@/components/CardFooter';
+import { BG } from '@/constants';
 import { useBillDetail } from './apis';
 import Chart from './components/Chart';
 import Steps from './components/Steps';
 import Keywords from './components/Keywords';
 import Similars from './components/Similars/Similars';
+
+const datas = [10, 10, 10];
+const partyNames = ['ppp', 'dpk', 'jp'] as (keyof typeof BG)[];
+const keywords = ['하이브리드카', '입법법인', '정부법안'];
+// const image = 'https://images';
+const similars = [
+  { title: '의료법일부개정안의료법일부개정안', path: 'www.naver.com' },
+  { title: '의료법일부개정안의료법일부개정안', path: 'www.google.com' },
+  { title: '의료법일부개정안의료법일부개정안', path: 'www.leets.land' },
+];
+const [like, view] = [10, 110];
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
@@ -22,8 +34,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
         <Bill {...bill} />
         <GPTSummary />
         <Button size="lg" variant="flat" color="primary">
-          {/* TODO: 원문 링크 연결 =>bill.link */}
-          <Link href={`/bill/${id}`}>
+          <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
             <div className="display">
               <div className="flex items-center justify-center gap-1 text-base font-semibold">
                 원문 보기
@@ -35,7 +46,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
         </Button>
         <Chart datas={datas} partyNames={partyNames} />
         <Steps step="review" />
-        <Keywords keywords={keywords} image={image} />
+        <Keywords keywords={keywords} />
         <Similars similars={similars} />
         <CardFooter like={like} view={view} />
       </section>

@@ -8,7 +8,7 @@ import { useState, useMemo } from 'react';
 import { Badge } from '@nextui-org/badge';
 import { DpkLogo, DetailIcon } from '@/components/common/Icons';
 import BillTab from '@/components/BillTab';
-import { BILL_TAB } from '@/constants';
+import { BILL_TAB_KO } from '@/constants';
 import Bill from '@/components/Bill';
 import { useIntersect, useTabType } from '@/hooks';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ import { useGetBillByParty } from './apis';
 
 export default function Congressman({ params: { id } }: { params: { id: string } }) {
   const [isFollow, setIsFollow] = useState<boolean>(false);
-  const { billType, setBillType } = useTabType<typeof BILL_TAB>('representProposer');
+  const { billType, setBillType } = useTabType<typeof BILL_TAB_KO>('대표발의한 법안');
 
   // // TODO: 대표발의, 공동발의 클릭에 따라 다른 api 요청 작업
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillByParty(id);
@@ -63,21 +63,25 @@ export default function Congressman({ params: { id } }: { params: { id: string }
         <hr className="mx-3 h-[1px] bg-[#A1A1AA]" />
         <CardBody className="px-3 py-0 leading-6 text-small mt-[14px]">
           <div className="flex justify-center gap-2">
+            {/* eslint-disable-next-line */}
             <Link href="#" className="w-[76px] h-[112px] flex flex-col gap-2 items-center">
               <p className="font-regular">당대표</p>
               <Avatar size="md" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
               <p className="font-medium">이재명</p>
             </Link>
+            {/* eslint-disable-next-line */}
             <Link href="#" className="w-[76px] h-[112px] flex flex-col gap-2 items-center">
               <p className="font-regular">원내대표</p>
               <Avatar size="md" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
               <p className="font-medium">홍익표</p>
             </Link>
+            {/* eslint-disable-next-line */}
             <Link href="#" className="w-[76px] h-[112px] flex flex-col gap-2 items-center">
               <p className="font-regular">사무대표</p>
               <Avatar size="md" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
               <p className="font-medium">조정식</p>
             </Link>
+            {/* eslint-disable-next-line */}
             <Link href="#" className="w-[76px] h-[112px] flex flex-col gap-2 items-center">
               <p className="font-regular">정책위의장</p>
               <Avatar size="md" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />

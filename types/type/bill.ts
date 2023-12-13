@@ -10,11 +10,11 @@ export interface BillResponse {
   party_list: string[];
   party_id_list: string;
   proposers: string;
-  summary: string;
+  gpt_summary: string;
   propose_date: string;
 }
 
 export interface BillProps extends BillResponse {
-  divide: boolean;
+  divide?: boolean;
   children?: ReactNode;
 }
