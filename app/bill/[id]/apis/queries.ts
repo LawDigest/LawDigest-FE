@@ -7,4 +7,4 @@ export const useBillDetail = ({ id, queryClient }: { id: number; queryClient: Qu
       queryKey: ['/bill/mainfeed', id],
       queryFn: () => getBillDetail({ id }),
     })
-    .then(({ result }) => result);
+    .then(({ data }) => data);
