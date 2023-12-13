@@ -6,15 +6,19 @@ import { Key } from 'react';
 const BILL_KEY = {
   ...BILL_TAB_KO,
   ...FEED_TAB_KO,
-};
+} as const;
 
 export default function BillTab({
   type,
   clickHandler,
+  category,
 }: {
   type: keyof typeof BILL_KEY;
   clickHandler: (key: Key) => any;
+  category: string;
 }) {
+  const values = category === 'feed' ? siteConfig.billNavs : siteConfig.billTabs;
+
   return (
     <section className="w-full">
       <Tabs
@@ -30,7 +34,7 @@ export default function BillTab({
         selectedKey={BILL_KEY[type]}
         onSelectionChange={clickHandler}
         className="w-full">
-        {siteConfig.billTabs.map(({ label, value }) => (
+        {values.map(({ label, value }) => (
           <Tab key={label} title={BILL_KEY[value as keyof typeof BILL_TAB]} />
         ))}
       </Tabs>
