@@ -56,7 +56,7 @@ export default function Bill({
         <p>{summary}</p>
         {children}
       </CardBody>
-      {divide && <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />}
+      {divide && <div className="w-full h-[8px] my-5 bg-[#E2E8F0]" />}
     </Card>
   );
 }
