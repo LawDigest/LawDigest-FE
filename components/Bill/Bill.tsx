@@ -8,7 +8,7 @@ import { BillProps } from './type';
 
 export default function Bill({
   bill_id,
-  bill_name,
+  // bill_name,
   represent_proposer,
   public_proposer,
   summary,
@@ -24,7 +24,7 @@ export default function Bill({
           <div className="flex flex-col items-start justify-center">
             <h4 className="font-semibold leading-none text-small text-default-600">{represent_proposer} 의원</h4>
             <h5 className="text-xs tracking-tight text-default-400">
-              {bill_name} 의원 외 {public_proposer.length}인
+              {represent_proposer} 의원 외 {public_proposer.length}인
             </h5>
           </div>
         </div>

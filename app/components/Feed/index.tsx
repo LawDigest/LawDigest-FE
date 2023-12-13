@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import Bill from '@/components/Bill';
 import { Button } from '@nextui-org/button';
 import { DetailIcon } from '@/components/common/icons';
+import Link from 'next/link';
 import { useFetchBills, useIntersect } from './hooks';
 
 export default function Feed() {
@@ -22,15 +23,16 @@ export default function Feed() {
     <div>
       {bills.map((bill) => (
         <Bill key={bill.bill_id} {...bill} divide>
-          <Button
-            className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
-            color="primary"
-            size="sm"
-            variant="flat"
-            href={String(bill.bill_id)}>
-            자세히보기
-            <DetailIcon color="#006FEE" />
-          </Button>
+          <Link href={`/bill/${bill.bill_id}`}>
+            <Button
+              className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
+              color="primary"
+              size="sm"
+              variant="flat">
+              자세히보기
+              <DetailIcon color="#006FEE" />
+            </Button>
+          </Link>
         </Bill>
       ))}
       {isFetching && (

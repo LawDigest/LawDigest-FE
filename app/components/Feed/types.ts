@@ -6,7 +6,7 @@ export interface Pagination {
 }
 export interface FeedResponse {
   bills: BillProps;
-  pagination_reponse: Pagination;
+  pagination_response: Pagination;
 }
 
 export type IntersectHandler = (entry: IntersectionObserverEntry, observer: IntersectionObserver) => void;
