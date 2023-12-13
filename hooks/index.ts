@@ -1,2 +1,2 @@
-export * from './useFetchBills';
+export * from './useGetBills';
 export * from './useIntersect';

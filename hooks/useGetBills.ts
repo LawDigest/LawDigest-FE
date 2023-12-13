@@ -3,14 +3,9 @@
 import { getBill } from '@/app/components/Feed/apis';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-const billKeys = {
-  all: ['bills'] as const,
-  lists: () => [...billKeys.all, 'list'] as const,
-};
-
-export const useFetchBills = () =>
+export const useGetBills = () =>
   useInfiniteQuery({
-    queryKey: billKeys.lists(),
+    queryKey: ['/bill/mainfeed'],
     queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam),
     initialPageParam: 0,
     getNextPageParam: ({
