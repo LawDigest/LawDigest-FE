@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import Header from '@/components/common/Header';
 import Nav from '@/components/common/Nav';
 import { Providers } from './lib/providers';
+import QueryProvider from './lib/query';
 
 export const metadata: Metadata = {
   title: {
@@ -13,10 +14,6 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
@@ -30,15 +27,17 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head />
       <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'white' }}>
-          <div className="relative flex flex-col h-screen">
-            <main className="flex items-center justify-center w-full h-full">
-              <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[430px] md:h-[788px]">
-                <Header />
-                <section className="w-full h-full overflow-scroll gap-2 py-[10px]">{children}</section>
-                <Nav />
-              </section>
-            </main>
-          </div>
+          <QueryProvider>
+            <div className="relative flex flex-col h-screen">
+              <main className="flex items-center justify-center w-full h-full">
+                <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[430px] md:h-[788px]">
+                  <Header />
+                  <section className="w-full h-full overflow-scroll gap-2 py-[10px]">{children}</section>
+                  <Nav />
+                </section>
+              </main>
+            </div>
+          </QueryProvider>
         </Providers>
       </body>
     </html>
