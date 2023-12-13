@@ -10,10 +10,7 @@ import Link from 'next/link';
 
 export default function Feed() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills();
-  const bills = useMemo(
-    () => (data ? data.pages.flatMap(({ result: { bills: responses } }) => responses) : []),
-    [data],
-  );
+  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []), [data]);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);

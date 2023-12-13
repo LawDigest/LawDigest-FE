@@ -1,27 +1,39 @@
+'use client';
+
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
 import { MoreIcon } from '@/components/common/Icons';
-import { BillProps } from './type';
+import Link from 'next/link';
+import { BillProps } from '@/types';
 
-export default function Bill({ id, name, people, content, date, children }: BillProps) {
+export default function Bill({
+  bill_id,
+  proposers,
+  represent_proposer_id,
+  represent_proposer,
+  party_list,
+  summary,
+  propose_date,
+  children,
+  divide,
+}: BillProps) {
   return (
-    <Card key={id} className="w-full mr-0 rounded-none shadow-none">
+    <Card key={bill_id} className="w-full mr-0 rounded-none shadow-none">
       <CardHeader className="justify-between">
         <div className="flex gap-2">
           <Avatar radius="full" size="sm" src="/avatars/avatar-1.png" />
           <div className="flex flex-col items-start justify-center">
-            <h4 className="font-semibold leading-none text-small text-default-600">{name} 의원</h4>
-            <h5 className="text-xs tracking-tight text-default-400">{people}</h5>
+            <Link href={`/congressman/${represent_proposer_id}`}>
+              <h4 className="font-semibold leading-none text-small text-default-600">{represent_proposer} 의원</h4>
+            </Link>
+            <h5 className="text-xs tracking-tight text-default-400">{proposers}</h5>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <h5 className="text-xs tracking-tight text-default-400">{date}</h5>
+          <h5 className="text-xs tracking-tight text-default-400">{propose_date}</h5>
           <AvatarGroup size="sm" max={3}>
-            {/* TODO: 발의 정당 추가 */}
-            <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
-            <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
+            {party_list?.map((party) => <Avatar key={party} src={`/images/${party}`} />)}
           </AvatarGroup>
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
@@ -40,11 +52,11 @@ export default function Bill({ id, name, people, content, date, children }: Bill
           </Dropdown>
         </div>
       </CardHeader>
-      <CardBody className="px-3 py-0 leading-6 text-small">
-        <p>{content}</p>
+      <CardBody className="px-3 py-0 leading-normal whitespace-pre-wrap text-small">
+        <p>{summary}</p>
         {children}
       </CardBody>
-      <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />
+      {divide && <div className="w-full h-[8px] my-3 bg-[#E2E8F0] " />}
     </Card>
   );
 }
