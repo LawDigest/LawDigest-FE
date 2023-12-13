@@ -3,14 +3,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getBillByCongressmanId } from './api';
 
-const billKeys = {
-  all: ['bills'] as const,
-  lists: () => [...billKeys.all, 'list'] as const,
-};
-
 export const useGetBillByCongressman = (id: string) =>
   useInfiniteQuery({
-    queryKey: billKeys.lists(),
+    queryKey: ['/bill/mainfeed', id],
     queryFn: ({ pageParam }: { pageParam: number }) => getBillByCongressmanId(pageParam, id),
     initialPageParam: 0,
     getNextPageParam: ({

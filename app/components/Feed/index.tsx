@@ -5,10 +5,11 @@ import { useMemo } from 'react';
 import Bill from '@/components/Bill';
 import { Button } from '@nextui-org/button';
 import { DetailIcon } from '@/components/common/Icons';
-import { useFetchBills, useIntersect } from '@/hooks';
+import { useGetBills, useIntersect } from '@/hooks';
+import Link from 'next/link';
 
 export default function Feed() {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchBills();
+  const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills();
   const bills = useMemo(
     () => (data ? data.pages.flatMap(({ result: { bills: responses } }) => responses) : []),
     [data],
@@ -25,14 +26,16 @@ export default function Feed() {
     <div>
       {bills.map((bill) => (
         <Bill key={bill.bill_id} {...bill}>
-          <Button
-            className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
-            color="primary"
-            size="sm"
-            variant="flat">
-            자세히보기
-            <DetailIcon color="#006FEE" />
-          </Button>
+          <Link href={`/${bill.bill_id}`}>
+            <Button
+              className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
+              color="primary"
+              size="sm"
+              variant="flat">
+              자세히보기
+              <DetailIcon color="#006FEE" />
+            </Button>
+          </Link>
         </Bill>
       ))}
       {isFetching && (
