@@ -1,6 +1,6 @@
 import axios, {
-  AxiosError,
   type AxiosInstance,
+  AxiosError,
   InternalAxiosRequestConfig,
   AxiosResponse,
   Method,
@@ -9,12 +9,17 @@ import axios, {
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN, HTTP_METHODS } from '@/constants';
 import { BaseResponse } from '@/types';
+import qs from 'qs';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_URL,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true,
 });
+
+axios.defaults.paramsSerializer = (params) => {
+  return qs.stringify(params);
+};
 
 axiosInstance.interceptors.request.use(
   async (config: InternalAxiosRequestConfig) => {

@@ -1,3 +1,5 @@
+// bill/[id].ts
+
 import Bill from '@/components/Bill';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import getQueryClient from '@/app/getQueryClient';
@@ -19,7 +21,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section className="flex flex-col items-center w-full">
-        <Bill {...bill} />
+        <Bill {...bill} divide={false} />
         <GPTSummary />
         <Button size="lg" variant="flat" color="primary">
           <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
