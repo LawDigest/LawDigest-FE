@@ -1,7 +1,7 @@
 import http from '@/api/config/core';
 import { BillDetailResponse } from './type';
 
-export const getBillDetail = ({ id }: { id: number }) =>
+export const getBillDetail = ({ id }: { id: string }) =>
   http.get<BillDetailResponse>({
-    url: `/bill/mainfeed/${id}`,
+    url: `/bill/detail/${id}`,
   });

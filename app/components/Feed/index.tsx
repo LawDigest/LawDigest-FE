@@ -38,7 +38,7 @@ export default function Feed() {
       <BillTab type={billType} clickHandler={setBillType as any} category="feed" />
       {bills.map((bill) => (
         <Bill key={bill.bill_id} {...bill} divide>
-          <Link href={`/${bill.bill_id}`}>
+          <Link href={`/bill/${bill.bill_id}`}>
             <Button
               className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
               color="primary"

@@ -11,6 +11,7 @@ export interface BillResponse {
   party_id_list: string;
   proposers: string;
   gpt_summary: string;
+  summary: string;
   propose_date: string;
 }
 
