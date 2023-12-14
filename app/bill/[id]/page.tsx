@@ -5,7 +5,7 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import getQueryClient from '@/app/getQueryClient';
 import GPTSummary from '@/components/GPTSummary';
 import { Button } from '@nextui-org/button';
-import { DetailLinkIcon } from '@/components/common/icons';
+import { DetailLinkIcon } from '@/components/common/Icons';
 import Link from 'next/link';
 import CardFooter from '@/components/CardFooter';
 import { useBillDetail } from './apis';
@@ -16,7 +16,7 @@ import Similars from './components/Similars/Similars';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
-  const bill = await useBillDetail({ id: Number(id), queryClient });
+  const { data: bill } = await useBillDetail({ id, queryClient });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -24,8 +24,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
         <Bill {...bill} divide={false} />
         <GPTSummary />
         <Button size="lg" variant="flat" color="primary">
-          {/* TODO: 원문 링크 연결 =>bill.link */}
-          <Link href={`/bill/${id}`}>
+          <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
             <div className="display">
               <div className="flex items-center justify-center gap-1 text-base font-semibold">
                 원문 보기
@@ -36,8 +35,9 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           </Link>
         </Button>
         <Chart datas={datas} partyNames={partyNames} />
+        <div className="my-5" />
         <Steps step="review" />
-        <Keywords keywords={keywords} image={image} />
+        <Keywords keywords={keywords} />
         <Similars similars={similars} />
         <CardFooter like={like} view={view} />
       </section>

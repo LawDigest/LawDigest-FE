@@ -1,12 +1,14 @@
 'use client';
 
+import { getBill } from '@/app/components/Feed/apis';
+import { FEED_TAB_KO } from '@/constants';
+import { ValueOf } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getBill } from '../apis';
 
-export const useFetchBills = () =>
+export const useGetBills = (stage: ValueOf<typeof FEED_TAB_KO>) =>
   useInfiniteQuery({
     queryKey: ['/bill/mainfeed'],
-    queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam),
+    queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam, stage),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       // eslint-disable-next-line

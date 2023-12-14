@@ -1,16 +1,19 @@
 'use client';
 
 import { Spinner } from '@nextui-org/spinner';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import Bill from '@/components/Bill';
 import { Button } from '@nextui-org/button';
-import { DetailIcon } from '@/components/common/icons';
+import { DetailIcon } from '@/components/common/Icons';
+import { useGetBills, useIntersect, useTabType } from '@/hooks';
 import Link from 'next/link';
-import { useFetchBills, useIntersect } from './hooks';
+import { FEED_TAB_KO } from '@/constants';
+import BillTab from '@/components/BillTab';
 
 export default function Feed() {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchBills();
-  const bills = useMemo(() => (data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []), [data]);
+  const { billType, setBillType } = useTabType<typeof FEED_TAB_KO>('접수');
+  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBills(billType);
+  const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []);
 
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -19,8 +22,20 @@ export default function Feed() {
     }
   });
 
+  useEffect(() => {
+    if (data) {
+      setBills((prevBills) => [...prevBills, ...data.pages.flatMap(({ data: { bills: responses } }) => responses)]);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setBills([]);
+    refetch();
+  }, [billType]);
+
   return (
     <div>
+      <BillTab type={billType} clickHandler={setBillType as any} category="feed" />
       {bills.map((bill) => (
         <Bill key={bill.bill_id} {...bill} divide>
           <Link href={`/bill/${bill.bill_id}`}>
