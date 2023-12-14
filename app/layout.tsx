@@ -7,7 +7,6 @@ import Header from '@/components/common/Header';
 import Nav from '@/components/common/Nav';
 import QueryProvider from './lib/query';
 import { Providers } from './lib/providers';
-import QueryProvider from './lib/query';
 
 export const metadata: Metadata = {
   title: {
@@ -31,11 +30,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <QueryProvider>
             <div className="relative flex flex-col h-screen">
               <main className="flex items-center justify-center w-full h-full">
-<<<<<<< HEAD
                 <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  sm:w-[430px] md:h-[788px]">
-=======
-                <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-solid border-2 sm:w-[430px] md:h-[788px]">
->>>>>>> main
                   <Header />
                   <section className="w-full h-full overflow-scroll gap-2 py-[10px]">{children}</section>
                   <Nav />
