@@ -13,18 +13,19 @@ export default function Bill({
   represent_proposer_id,
   represent_proposer,
   party_id_list,
-  party_list,
   gpt_summary,
   summary,
   propose_date,
   children,
   divide,
+  party_image_urls,
+  represent_proposer_img_url,
 }: BillProps) {
   return (
     <Card key={bill_id} className="w-full mr-0 rounded-none shadow-none">
       <CardHeader className="justify-between">
         <div className="flex gap-2">
-          <Avatar radius="full" size="sm" src="/avatars/avatar-1.png" />
+          <Avatar radius="full" size="sm" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${represent_proposer_img_url}`} />
           <div className="flex flex-col items-start justify-center">
             <Link href={`/congressman/${represent_proposer_id}`}>
               <h4 className="font-semibold leading-none text-small text-default-600">{represent_proposer} 의원</h4>
@@ -34,13 +35,19 @@ export default function Bill({
         </div>
         <div className="flex items-center gap-2">
           <h5 className="text-xs tracking-tight text-default-400">{propose_date}</h5>
-          {party_list?.length <= 1 ? (
-            <Avatar size="sm" src={`${process.env.NEXT_PUBLIC_URL}/${party_list.at(0)}`} />
+          {party_image_urls?.length <= 1 ? (
+            <Link href={`/party/${party_id_list.at(0)}`}>
+              <Avatar
+                size="sm"
+                className="bg-white"
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${party_image_urls.at(0)}`}
+              />
+            </Link>
           ) : (
             <AvatarGroup size="sm" max={3}>
-              {party_list?.map((party, index) => (
-                <Link key={party} href={`/party/${party_id_list[index]}`}>
-                  <Avatar src={`${process.env.NEXT_PUBLIC_URL}/${party}`} />
+              {party_image_urls?.map((partyImageUrl, index) => (
+                <Link key={partyImageUrl} href={`/party/${party_id_list[index]}`}>
+                  <Avatar className="bg-white" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${partyImageUrl}`} />
                 </Link>
               ))}
             </AvatarGroup>
