@@ -21,8 +21,6 @@ export default function BillTab({
 }) {
   const values = category === 'feed' ? siteConfig.billNavs : siteConfig.billTabs;
 
-  // console.log(type);
-
   return (
     <section className="w-full">
       <Tabs

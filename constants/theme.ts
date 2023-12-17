@@ -6,8 +6,8 @@ export const COLOR = {
 } as const;
 
 export const BG = {
-  더불어민주당: '#FEE7EF',
-  국민의힘: '#E6F1FE',
+  더불어민주당: '#E6F1FE',
+  국민의힘: '#FEE7EF',
   정의당: '#FEFCE8',
   진보당: 'skyblue',
   기본소득당: '#E8FAF0',

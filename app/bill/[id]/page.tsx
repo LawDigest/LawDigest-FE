@@ -10,13 +10,12 @@ import Proposers from '@/components/Proposers';
 import { useBillDetail } from './apis';
 import Chart from './components/Chart';
 import Stages from './components/Stages';
-import Keywords from './components/Keywords';
-import Similars from './components/Similars/Similars';
+// import Keywords from './components/Keywords';
+// import Similars from './components/Similars/Similars';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
   const { data: bill } = await useBillDetail({ id, queryClient });
-
   const {
     like,
     view,
