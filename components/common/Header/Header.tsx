@@ -11,7 +11,7 @@ function Header() {
   return (
     <header className={`w-full text-center text-2xl pt-[20px] font-bold `}>
       <Link href="/" className={DO_HYUN.className}>
-        모두의 입법
+        모두의입법
         <hr />
       </Link>
     </header>
