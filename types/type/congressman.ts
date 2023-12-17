@@ -10,4 +10,5 @@ export interface Congressman {
   homepage: URL;
   represent_count: number;
   public_count: number;
+  congressman_image_url: string;
 }
