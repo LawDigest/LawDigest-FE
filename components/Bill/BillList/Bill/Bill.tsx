@@ -12,8 +12,8 @@ export default function Bill({
   proposers,
   represent_proposer_id,
   represent_proposer,
+  party_id_list,
   party_list,
-  // eslint-disable-next-line
   gpt_summary,
   summary,
   propose_date,
@@ -34,9 +34,17 @@ export default function Bill({
         </div>
         <div className="flex items-center gap-2">
           <h5 className="text-xs tracking-tight text-default-400">{propose_date}</h5>
-          <AvatarGroup size="sm" max={3}>
-            {party_list?.map((party) => <Avatar key={party} src={`/images/${party}`} />)}
-          </AvatarGroup>
+          {party_list?.length <= 1 ? (
+            <Avatar size="sm" src={`${process.env.NEXT_PUBLIC_URL}/${party_list.at(0)}`} />
+          ) : (
+            <AvatarGroup size="sm" max={3}>
+              {party_list?.map((party, index) => (
+                <Link key={party} href={`/party/${party_id_list[index]}`}>
+                  <Avatar src={`${process.env.NEXT_PUBLIC_URL}/${party}`} />
+                </Link>
+              ))}
+            </AvatarGroup>
+          )}
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <button type="button" aria-label="Dropdown Trigger">
@@ -56,8 +64,8 @@ export default function Bill({
       </CardHeader>
       <CardBody className="px-3 py-0 leading-normal whitespace-pre-wrap text-small">
         <p>
-          {summary}
-          {gpt_summary}
+          {gpt_summary && gpt_summary}
+          {!gpt_summary && summary}
         </p>
         {children}
       </CardBody>
