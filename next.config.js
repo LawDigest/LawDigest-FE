@@ -7,10 +7,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: process.env.NEXT_PUBLIC_URL,
+        hostname: '15.164.152.208',
         port: '',
+        pathname: '/**',
       },
     ],
+    domains: ['15.164.152.208'],
   },
 };
 
