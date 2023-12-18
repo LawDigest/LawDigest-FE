@@ -10,7 +10,7 @@ import Proposers from '@/components/Proposers';
 import { useBillDetail } from './apis';
 import Chart from './components/Chart';
 import Stages from './components/Stages';
-// import Keywords from './components/Keywords';
+import Keywords from './components/Keywords';
 // import Similars from './components/Similars/Similars';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
@@ -25,6 +25,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
     represent_proposer,
     public_proposer_list,
     public_proposer_id_list,
+    keywords,
   } = bill;
   const datas = proposer_party_count_list.map(({ count }) => count);
   const partyNames = proposer_party_count_list.map(({ name }) => name);
@@ -56,8 +57,8 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           public_proposer_list={public_proposer_list}
           public_proposer_id_list={public_proposer_id_list}
         />
-        {/* <Keywords keywords={keywords} />
-        <Similars similars={similars} /> */}
+        <Keywords keywords={keywords} />
+        {/* <Similars similars={similars} /> */}
         <CardFooter like={like} view={view} />
       </section>
     </HydrationBoundary>
