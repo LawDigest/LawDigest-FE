@@ -1,7 +1,7 @@
 import SearchBar from '@/components/common/SearchBar';
-import CardItem from './components/CardItem';
-import Keyword from './components/keyword/Keyword';
-import LawList from './components/LawList/LawList';
+import CardItem from './components/Card';
+import Keyword from './components/Keyword';
+import LawList from './components/LawList';
 
 export default function Search() {
   return (

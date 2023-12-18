@@ -1,7 +1,7 @@
 import { RxAvatar } from 'react-icons/rx';
 import { Card, CardBody, CardHeader, CardFooter } from '@nextui-org/card';
 import { Button } from '@nextui-org/button';
-import FollowItem from './components/Card';
+import FollowItem from './components/Follow';
 
 const followList = [
   {
