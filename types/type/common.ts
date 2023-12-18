@@ -1,4 +1,4 @@
-import { BillProps } from '@/components/Bill/type';
+import { BillProps } from './bill';
 
 export interface Pagination {
   readonly last_page: boolean;

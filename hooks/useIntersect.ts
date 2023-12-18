@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useCallback, useEffect } from 'react';
-import type { IntersectHandler } from '../types';
+import type { IntersectHandler } from '@/types/type/common';
 
 export const useIntersect = (onIntersect: IntersectHandler, options?: IntersectionObserverInit) => {
   const ref = useRef<HTMLDivElement>(null);

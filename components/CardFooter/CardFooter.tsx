@@ -1,4 +1,4 @@
-import { AlarmIcon, LikeIcon, ShareIcon } from '@/components/common/icons';
+import { AlarmIcon, LikeIcon, ShareIcon } from '@/components/common/Icons';
 import { Button } from '@nextui-org/button';
 
 export default function CardFooter({ like, view }: { like: number; view: number }) {
