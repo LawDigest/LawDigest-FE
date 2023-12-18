@@ -58,8 +58,8 @@ export function DpkLogo() {
           width="76"
           height="76"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB">
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          colorInterpolationFilters="sRGB">
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -80,10 +80,10 @@ export function DpkLogo() {
           x2="36.9329"
           y2="36.0294"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8BC452" />
-          <stop offset="0.34" stop-color="#00AA7D" />
-          <stop offset="0.69" stop-color="#008CCD" />
-          <stop offset="1" stop-color="#004EA2" />
+          <stop stopColor="#8BC452" />
+          <stop offset="0.34" stopColor="#00AA7D" />
+          <stop offset="0.69" stopColor="#008CCD" />
+          <stop offset="1" stopColor="#004EA2" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_338_25536"
@@ -92,10 +92,10 @@ export function DpkLogo() {
           x2="36.936"
           y2="35.939"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8BC452" />
-          <stop offset="0.34" stop-color="#00AA7D" />
-          <stop offset="0.69" stop-color="#008CCD" />
-          <stop offset="1" stop-color="#004EA2" />
+          <stop stopColor="#8BC452" />
+          <stop offset="0.34" stopColor="#00AA7D" />
+          <stop offset="0.69" stopColor="#008CCD" />
+          <stop offset="1" stopColor="#004EA2" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_338_25536"
@@ -104,10 +104,10 @@ export function DpkLogo() {
           x2="36.9985"
           y2="33.5453"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8BC452" />
-          <stop offset="0.34" stop-color="#00AA7D" />
-          <stop offset="0.69" stop-color="#008CCD" />
-          <stop offset="1" stop-color="#004EA2" />
+          <stop stopColor="#8BC452" />
+          <stop offset="0.34" stopColor="#00AA7D" />
+          <stop offset="0.69" stopColor="#008CCD" />
+          <stop offset="1" stopColor="#004EA2" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_338_25536"
@@ -116,10 +116,10 @@ export function DpkLogo() {
           x2="36.9012"
           y2="37.28"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8BC452" />
-          <stop offset="0.34" stop-color="#00AA7D" />
-          <stop offset="0.69" stop-color="#008CCD" />
-          <stop offset="1" stop-color="#004EA2" />
+          <stop stopColor="#8BC452" />
+          <stop offset="0.34" stopColor="#00AA7D" />
+          <stop offset="0.69" stopColor="#008CCD" />
+          <stop offset="1" stopColor="#004EA2" />
         </linearGradient>
         <linearGradient
           id="paint4_linear_338_25536"
@@ -128,10 +128,10 @@ export function DpkLogo() {
           x2="36.9452"
           y2="35.603"
           gradientUnits="userSpaceOnUse">
-          <stop stop-color="#8BC452" />
-          <stop offset="0.34" stop-color="#00AA7D" />
-          <stop offset="0.69" stop-color="#008CCD" />
-          <stop offset="1" stop-color="#004EA2" />
+          <stop stopColor="#8BC452" />
+          <stop offset="0.34" stopColor="#00AA7D" />
+          <stop offset="0.69" stopColor="#008CCD" />
+          <stop offset="1" stopColor="#004EA2" />
         </linearGradient>
       </defs>
     </svg>

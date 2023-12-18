@@ -26,9 +26,9 @@ const options = {
   },
 };
 
-export default function Chart({ partyNames, datas }: { partyNames: (keyof typeof BG)[]; datas: number[] }) {
-  const backgroundColor = partyNames.map((name) => BG[name]);
-  const labels = partyNames.map((name) => PARTY_NAME_MAP[name]);
+export default function Chart({ partyNames, datas }: { partyNames: string[]; datas: number[] }) {
+  const backgroundColor = partyNames.map((name) => BG[name as keyof typeof BG] || 'gray');
+  const labels = partyNames.map((name) => PARTY_NAME_MAP[name as keyof typeof BG] || '무소속');
 
   const data = {
     labels,

@@ -5,6 +5,7 @@ import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import Header from '@/components/common/Header';
 import Nav from '@/components/common/Nav';
+import { Suspense } from 'react';
 import QueryProvider from './lib/query';
 import { Providers } from './lib/providers';
 
@@ -32,7 +33,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
               <main className="flex items-center justify-center w-full h-full">
                 <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  sm:w-[430px] md:h-[788px]">
                   <Header />
-                  <section className="w-full h-full overflow-scroll gap-2 py-[10px]">{children}</section>
+                  <section className="w-full h-full overflow-scroll gap-2 py-[10px]">
+                    <Suspense fallback={<div>로딩...</div>}>{children}</Suspense>
+                  </section>
                   <Nav />
                 </section>
               </main>
