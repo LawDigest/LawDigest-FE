@@ -7,15 +7,13 @@ const DO_HYUN = Do_Hyeon({
   display: 'swap',
 });
 
-function Header() {
+export default function Header({ hasDivider = true }: { hasDivider?: boolean }) {
   return (
     <header className="w-full text-center text-2xl pt-[20px] font-bold">
       <Link href="/" className={DO_HYUN.className}>
         모두의입법
-        <hr />
+        {hasDivider && <hr />}
       </Link>
     </header>
   );
 }
-
-export default Header;
