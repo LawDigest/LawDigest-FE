@@ -9,7 +9,7 @@ const DO_HYUN = Do_Hyeon({
 
 function Header() {
   return (
-    <header className={`w-full text-center text-2xl pt-[20px] font-bold `}>
+    <header className="w-full text-center text-2xl pt-[20px] font-bold">
       <Link href="/" className={DO_HYUN.className}>
         모두의입법
         <hr />

@@ -1,3 +1,4 @@
+import Layout from '@/components/common/Layout';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function BillLayout({ children }: { children: React.ReactNode }) {
-  return <section>{children}</section>;
+  return <Layout>{children}</Layout>;
 }
