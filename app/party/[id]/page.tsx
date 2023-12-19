@@ -54,7 +54,8 @@ export default function Party({ params: { id } }: { params: { id: string } }) {
               <h1 className="text-[28px] font-medium">{party_name}</h1>
               <div className="mt-[18px]">
                 <p>
-                  의석수 : {seatCount} / 298석 <span className="text-[#A1A1AA]">{(seatCount / 298).toFixed(2)}%</span>
+                  의석수 : {seatCount} / 298석{' '}
+                  <span className="text-[#A1A1AA]">{((seatCount / 298) * 100).toFixed(2)}%</span>
                 </p>
                 <p>
                   지역구 {district_representative_count}석, 비례대표 {propotional_representative_count}석
