@@ -97,5 +97,5 @@ export const NAV_ICONS = [
   { path: '/statistics', icon: (color: string) => StatisticsIcon(color) },
   { path: '/search', icon: (color: string) => SearchIcon(color) },
   { path: '/notification', icon: (color: string) => NotificationIcon(color) },
-  { path: '/mypage', icon: (color: string) => MypageIcon(color) },
+  { path: '/login', icon: (color: string) => MypageIcon(color) },
 ];

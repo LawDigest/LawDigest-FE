@@ -1,13 +1,12 @@
 import SearchBar from '@/components/common/SearchBar';
+import Layout from '@/components/common/Layout';
 import Feed from './components/Feed';
 
-function Home() {
+export default function Home() {
   return (
-    <>
+    <Layout>
       <SearchBar />
       <Feed />
-    </>
+    </Layout>
   );
 }
-
-export default Home;
