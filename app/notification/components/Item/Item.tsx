@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import timeRemaining from '@/lib/timeRemaining';
+import getTimeRemaining from '@/utils/getTimeRemaining';
 
 interface ItemProps {
   logo: string;
@@ -18,7 +18,7 @@ export default function Item({ logo, name, law, members_number, date }: ItemProp
         <p className="text-[#A1A1AA] text-xs">
           {name} 외 {members_number}인이 &apos;{law}&apos; 을 발의했어요
         </p>
-        <p className="text-[#A1A1AA] text-xs">{timeRemaining(date)}</p>
+        <p className="text-[#A1A1AA] text-xs">{getTimeRemaining(date)}</p>
       </div>
       <button type="button">
         <Image src="images/arrow_right.svg" width={24} height={24} alt="들어가기 이미지" />

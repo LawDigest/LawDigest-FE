@@ -1,4 +1,4 @@
-export default function timeRemaining(time: string) {
+export default function getTimeRemaining(time: string) {
   const timeDiff = new Date().getTime() - new Date(time).getTime();
   const hours = Math.floor(timeDiff / 1000 / 60 / 60);
   // eslint-disable-next-line no-nested-ternary

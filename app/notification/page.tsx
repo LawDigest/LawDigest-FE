@@ -1,5 +1,4 @@
-import ItemList from './conponents/ItemList';
-import Item from './conponents/Item';
+import { Item, ItemList } from './components/Item';
 
 const weekList = [
   {

@@ -1,8 +1,7 @@
-import CardItem from './components/CardItem';
-import PartyContainer from './components/party/PartyContainer';
-import Seat from './components/seat/Seat';
-import MemberList from './components/member/MemberList';
-import Keyword from './components/keyword/Keyword';
+import Image from 'next/image';
+import CardItem from './components/Card';
+import { PartyContainer } from './components/Party';
+import { MemberList } from './components/Member';
 
 export default function Statistics() {
   return (
@@ -14,7 +13,12 @@ export default function Statistics() {
       </CardItem>
 
       <CardItem title="21대 국회 의석수 현황">
-        <Seat />
+        <div className="mb-2 ml-4">
+          정당별 의석수 <span className="text-[#8F8F8F]">총 300 석</span>
+        </div>
+        <div className="flex justify-center">
+          <Image src="/mock/국회_의석수_현황.svg" alt="국회 의석수 현황 그래프" width={330} height={215} />
+        </div>
       </CardItem>
 
       <CardItem title="최근 법안 발의한 의원">
@@ -22,7 +26,9 @@ export default function Statistics() {
       </CardItem>
 
       <CardItem title="6월 국회 주요 키워드">
-        <Keyword />
+        <div className="flex justify-center">
+          <Image src="/mock/주요_키워드_이미지.svg" alt="국회 주요 키워드 이미지" width={349} height={271} />
+        </div>
       </CardItem>
     </div>
   );

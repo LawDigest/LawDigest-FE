@@ -22,6 +22,20 @@ module.exports = {
         bDpk: '#E6F1FE',
         bJp: '#FEFCE8',
         bBip: '#E8FAF0',
+        // Gray color
+        gray: {
+          0.5: '#EBEBEB',
+          1: '#E0E0E0',
+          2: '#999999',
+          3: '#555555',
+          4: '#262626',
+        },
+        // Primary color
+        primary: {
+          1: '#F5F7FD',
+          2: '#96BCFA',
+          3: '#191919',
+        },
       },
     },
   },
