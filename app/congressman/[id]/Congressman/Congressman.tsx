@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar } from '@nextui-org/avatar';
 import { Button } from '@nextui-org/button';
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
@@ -5,9 +7,10 @@ import { Badge } from '@nextui-org/badge';
 import { Congressman } from '@/types';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function CongressmanComponent({ congressman }: { congressman: Congressman }) {
-  // const [isFollow, setIsFollow] = useState<boolean>(false);
+  const [isFollow, setIsFollow] = useState<boolean>(false);
   const { name, party_name, party_image_url, congressman_image_url, elect_sort, district, commits, elected, homepage } =
     congressman;
 
@@ -64,13 +67,8 @@ export default function CongressmanComponent({ congressman }: { congressman: Con
           <div className="text-[#B8B8B8]">26 followers</div>
         </div> */}
         <div className="flex justify-between w-full gap-4">
-          <Button
-            color="primary"
-            variant="flat"
-            className="w-full" /** onClick={() => setIsFollow(() => !isFollow)}  */
-          >
-            {/* {isFollow ? '팔로우' : '팔로잉'} */}
-            팔로우
+          <Button color="primary" variant="flat" className="w-full" onClick={() => setIsFollow(() => !isFollow)}>
+            {isFollow ? '팔로우' : '팔로잉'}
           </Button>
           <Link href={homepage} className="w-full" target="_blank">
             <Button variant="flat" className="w-full bg-[#F4F4F4]">
