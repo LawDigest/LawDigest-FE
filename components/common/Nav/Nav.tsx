@@ -1,36 +1,57 @@
-import { Navbar as NextUINavbar, NavbarContent, NavbarItem } from '@nextui-org/navbar';
-import { link as linkStyles } from '@nextui-org/theme';
-import NextLink from 'next/link';
-import clsx from 'clsx';
-import { headers } from 'next/headers';
-import { NAV_ICONS } from './NavIcons';
+'use client';
+
+import { usePathname } from 'next/navigation';
+import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/navbar';
+import Link from 'next/link';
+import { IconHome, IconElection, IconStatistics, IconUserAvatar } from '@/public/svgs';
+
+const Nav_Items = [
+  {
+    label: '타임라인',
+    path: '/',
+    IconComponent: IconHome,
+  },
+  {
+    label: '선거',
+    path: '/election',
+    IconComponent: IconElection,
+  },
+  {
+    label: '통계',
+    path: '/statistics',
+    IconComponent: IconStatistics,
+  },
+  {
+    label: '마이페이지',
+    path: '/mypage',
+    IconComponent: IconUserAvatar,
+  },
+];
 
 function Nav() {
-  const pathname = headers().get('referer')!;
+  const pathname = usePathname();
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky" className="p-0 border-t-2 ">
-      <NavbarContent className="basis-1/5 p-0">
-        <ul className="w-full flex gap-4 justify-between ">
-          {NAV_ICONS.map(({ path, icon }) => {
-            const color = pathname?.endsWith(path) ? '#11181C' : '#A1A1AA';
+    <Navbar position="sticky" className="h-16 bg-primary-3">
+      <NavbarContent>
+        <ul className="flex justify-between w-full gap-2 px-10 ">
+          {Nav_Items.map(({ label, path, IconComponent }) => {
+            const isActive = pathname?.endsWith(path);
+
             return (
-              <NavbarItem key={path}>
-                <NextLink
-                  className={clsx(
-                    linkStyles({ color: 'foreground' }),
-                    'data-[active=true]:text-primary data-[active=true]:font-medium',
-                  )}
-                  color="foreground"
+              <NavbarItem key={label}>
+                <Link
+                  className={`${isActive ? 'text-white' : 'text-gray-2'} flex flex-col items-center text-xs font-bold`}
                   href={path}>
-                  {icon(color)}
-                </NextLink>
+                  <IconComponent isActive={isActive} />
+                  <p>{label}</p>
+                </Link>
               </NavbarItem>
             );
           })}
         </ul>
       </NavbarContent>
-    </NextUINavbar>
+    </Navbar>
   );
 }
 
