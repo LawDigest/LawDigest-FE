@@ -24,8 +24,8 @@ function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <head />
-      <body className={clsx('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-        <Providers themeProps={{ attribute: 'class', defaultTheme: 'white' }}>
+      <body className={clsx('min-h-screen bg-white text-black font-sans antialiased', fontSans.variable)}>
+        <Providers>
           <QueryProvider>
             <div className="relative flex flex-col h-screen">
               <main className="flex items-center justify-center w-full h-full">

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import CardItem from './components/Card';
-import { PartyContainer } from './components/Party';
-import { MemberList } from './components/Member';
+import { PartyContainer } from './components/party';
+import { MemberList } from './components/member';
 
 export default function Statistics() {
   return (
