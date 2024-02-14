@@ -1,19 +1,29 @@
 import Link from 'next/link';
-import { Do_Hyeon } from 'next/font/google';
+import Image from 'next/image';
+import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
+import { IconNotification, IconSearch } from '@/public/svgs';
 
-const DO_HYUN = Do_Hyeon({
-  weight: ['400'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-export default function Header({ hasDivider = true }: { hasDivider?: boolean }) {
+export default function Header() {
   return (
-    <header className="w-full text-center text-2xl pt-[20px] font-bold">
-      <Link href="/" className={DO_HYUN.className}>
-        모두의입법
-        {hasDivider && <hr />}
-      </Link>
-    </header>
+    <Navbar>
+      <NavbarBrand>
+        <Link href="/">
+          <Image src="/images/logo.png" width={106} height={64} alt="로고이미지" />
+        </Link>
+      </NavbarBrand>
+
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Link href="#">
+            <IconSearch />
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link href="#">
+            <IconNotification />
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+    </Navbar>
   );
 }
