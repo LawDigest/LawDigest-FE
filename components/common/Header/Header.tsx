@@ -1,19 +1,52 @@
 import Link from 'next/link';
-import { Do_Hyeon } from 'next/font/google';
+import Image from 'next/image';
+import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
+import { IconNotification, IconSearch } from '@/public/svgs';
+import GoBackButton from './GoBackButton';
+import SettingButton from './SettingButton';
 
-const DO_HYUN = Do_Hyeon({
-  weight: ['400'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+interface HeaderProps {
+  logo: boolean;
+  setting: boolean;
+}
 
-export default function Header({ hasDivider = true }: { hasDivider?: boolean }) {
+export default function Header({ logo, setting }: HeaderProps) {
   return (
-    <header className="w-full text-center text-2xl pt-[20px] font-bold">
-      <Link href="/" className={DO_HYUN.className}>
-        모두의입법
-        {hasDivider && <hr />}
-      </Link>
-    </header>
+    <Navbar>
+      {logo ? (
+        <NavbarBrand>
+          <Link href="/">
+            <Image src="/images/logo.png" width={106} height={64} alt="로고이미지" />
+          </Link>
+        </NavbarBrand>
+      ) : (
+        <NavbarContent justify="start">
+          <NavbarItem>
+            <GoBackButton />
+          </NavbarItem>
+        </NavbarContent>
+      )}
+
+      {setting ? (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <SettingButton />
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <Link href="#">
+              <IconSearch />
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="#">
+              <IconNotification />
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      )}
+    </Navbar>
   );
 }
