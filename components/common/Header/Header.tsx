@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
-import { IconNotification, IconSearch } from '@/public/svgs';
 import GoBackButton from './GoBackButton';
 import SettingButton from './SettingButton';
+import SearchButton from './SearchButton';
+import NotificationButton from './NotifcationButton';
 
 interface HeaderProps {
   logo: boolean;
@@ -36,14 +37,10 @@ export default function Header({ logo, setting }: HeaderProps) {
       ) : (
         <NavbarContent justify="end">
           <NavbarItem>
-            <Link href="#">
-              <IconSearch />
-            </Link>
+            <SearchButton />
           </NavbarItem>
           <NavbarItem>
-            <Link href="#">
-              <IconNotification />
-            </Link>
+            <NotificationButton />
           </NavbarItem>
         </NavbarContent>
       )}

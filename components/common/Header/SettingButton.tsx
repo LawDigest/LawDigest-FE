@@ -3,7 +3,7 @@ import { IconSetting } from '@/public/svgs';
 
 export default function SettingButton() {
   return (
-    <Link href="#">
+    <Link href="/setting">
       <IconSetting />
     </Link>
   );
