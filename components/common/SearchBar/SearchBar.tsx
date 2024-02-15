@@ -1,14 +1,9 @@
 import { Input } from '@nextui-org/input';
-import Image from 'next/image';
-import Link from 'next/link';
 import SearchIcon from './SearchIcon';
 
 export default function SearchBar() {
   return (
     <div className="w-full px-[10px] rounded-2xl flex justify-center items-center gap-[10px]">
-      <Link href="/">
-        <Image src="/images/logo.png" width={57} height={48} alt="logo" />
-      </Link>
       <Input
         radius="lg"
         classNames={{
@@ -24,7 +19,7 @@ export default function SearchBar() {
             'pt-2.5',
           ],
         }}
-        placeholder="정당, 의원명, 키워드로 검색"
+        placeholder="궁금한 입법현황을 검색해 보세요."
         startContent={<SearchIcon />}
       />
     </div>
