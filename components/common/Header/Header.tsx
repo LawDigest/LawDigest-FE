@@ -3,12 +3,14 @@ import Image from 'next/image';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import { IconNotification, IconSearch } from '@/public/svgs';
 import GoBackButton from './GoBackButton';
+import SettingButton from './SettingButton';
 
 interface HeaderProps {
   logo: boolean;
+  setting: boolean;
 }
 
-export default function Header({ logo }: HeaderProps) {
+export default function Header({ logo, setting }: HeaderProps) {
   return (
     <Navbar>
       {logo ? (
@@ -25,18 +27,26 @@ export default function Header({ logo }: HeaderProps) {
         </NavbarContent>
       )}
 
-      <NavbarContent justify="end">
-        <NavbarItem>
-          <Link href="#">
-            <IconSearch />
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link href="#">
-            <IconNotification />
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
+      {setting ? (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <SettingButton />
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
+        <NavbarContent justify="end">
+          <NavbarItem>
+            <Link href="#">
+              <IconSearch />
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link href="#">
+              <IconNotification />
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      )}
     </Navbar>
   );
 }

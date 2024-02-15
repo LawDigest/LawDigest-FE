@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function BillLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout logo setting={false}>
+      {children}
+    </Layout>
+  );
 }
