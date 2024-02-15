@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import CardItem from './components/Card';
-import { PartyContainer } from './components/party';
-import { MemberList } from './components/member';
+// import Image from 'next/image';
+// import CardItem from './components/Card';
+// import { PartyContainer } from './components/party';
+// import { MemberList } from './components/member';
 
 export default function Statistics() {
   return (
     <div className="w-full">
       <h1 className="m-5 text-3xl font-bold ">통계</h1>
 
-      <CardItem title="최근 법안 발의한 정당">
+      {/* <CardItem title="최근 법안 발의한 정당">
         <PartyContainer />
       </CardItem>
 
@@ -29,7 +29,7 @@ export default function Statistics() {
         <div className="flex justify-center">
           <Image src="/mock/주요_키워드_이미지.svg" alt="국회 주요 키워드 이미지" width={349} height={271} />
         </div>
-      </CardItem>
+      </CardItem> */}
     </div>
   );
 }

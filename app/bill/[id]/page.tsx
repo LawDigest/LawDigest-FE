@@ -39,7 +39,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           <Button size="lg" variant="flat" color="primary" className="w-full">
             <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
               <div className="display">
-                <div className="flex items-center justify-center gap-1 text-base font-semibold">
+                <div className="flex items-center justify-center text-base font-semibold gap-1">
                   원문 보기
                   <DetailLinkIcon color="#006FEE" />
                 </div>
