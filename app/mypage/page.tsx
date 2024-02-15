@@ -1,42 +1,50 @@
-import { RxAvatar } from 'react-icons/rx';
-import { Card, CardBody, CardHeader, CardFooter } from '@nextui-org/card';
 import { Button } from '@nextui-org/button';
-import FollowItem from './components/Follow';
-
-const followList = [
-  {
-    title: '팔로우한 의원',
-    followCount: 12,
-  },
-  {
-    title: '팔로우한 정당',
-    followCount: 3,
-  },
-  {
-    title: '팔로우한 의안',
-    followCount: 16,
-  },
-];
+import { Avatar } from '@nextui-org/avatar';
+import AddButon from '@/components/common/Button/AddButton';
 
 export default function MyPage() {
   return (
-    <div>
-      <Card className="text-white bg-gray-4 w-[394px] h-[270px] rounded-xl mx-auto p-5 mt-5">
-        <CardHeader className="flex justify-between p-0">
-          <h1 className="text-2xl font-bold">내 피드</h1>
-          <Button className="w-20 h-6 text-sm text-white rounded-full bg-primary-3">로그아웃</Button>
-        </CardHeader>
+    <div className="flex flex-col gap-8 bg-[#F1F1F1] h-full">
+      <section className="flex items-center px-[30px] justify-between h-[200px] shadow-md rounded-xl bg-white">
+        <div className="flex items-center">
+          <Avatar src="/images/basicAvatar.png" className="w-[100px] h-[100px] mr-4" />
 
-        <CardBody className="p-0">
-          <RxAvatar className="mx-auto text-black rounded-full bg-gray-1 h-28 w-28" />
-        </CardBody>
+          <div className="flex flex-col gap-3">
+            <p className="text-3xl font-semibold">홍길동</p>
+            <p className="text-[#999999] text-xs">abcd123@gmail.com</p>
+          </div>
+        </div>
 
-        <CardFooter className="flex justify-center gap-4">
-          {followList.map(({ title, followCount }) => (
-            <FollowItem key={title} title={title} followCount={followCount} />
-          ))}
-        </CardFooter>
-      </Card>
+        <Button
+          radius="full"
+          size="sm"
+          variant="bordered"
+          className="h-8 bg-transparent border-1 border-[#E0E0E0] text-[#999999] ">
+          로그아웃
+        </Button>
+      </section>
+
+      <section className="px-[30px]">
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-semibold">
+            팔로우한 정당 &middot;<span className="text-[#555555]"> 3</span>
+          </p>
+
+          <AddButon />
+        </div>
+      </section>
+
+      <hr className="mx-[30px]" />
+
+      <section className="px-[30px]">
+        <div className="flex items-center justify-between">
+          <p className="text-xl font-semibold">
+            팔로우한 의원 &middot;<span className="text-[#555555]"> 13</span>
+          </p>
+
+          <AddButon />
+        </div>
+      </section>
     </div>
   );
 }
