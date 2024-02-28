@@ -1,6 +1,6 @@
 import IconHome from './Home';
 import IconElection from './Election';
-import IconStatistics from './Statistics';
 import IconUserAvatar from './UserAvatar';
+import IconScrab from './Scrab';
 
-export { IconHome, IconElection, IconStatistics, IconUserAvatar };
+export { IconHome, IconElection, IconScrab, IconUserAvatar };

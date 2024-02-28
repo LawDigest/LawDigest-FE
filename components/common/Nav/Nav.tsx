@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import Link from 'next/link';
-import { IconHome, IconElection, IconStatistics, IconUserAvatar } from '@/public/svgs';
+import { IconHome, IconElection, IconScrab, IconUserAvatar } from '@/public/svgs';
 
 const Nav_Items = [
   {
@@ -17,9 +17,9 @@ const Nav_Items = [
     IconComponent: IconElection,
   },
   {
-    label: '통계',
-    path: '/statistics',
-    IconComponent: IconStatistics,
+    label: '스크랩',
+    path: '/scrab',
+    IconComponent: IconScrab,
   },
   {
     label: '마이페이지',
@@ -34,7 +34,7 @@ function Nav() {
   return (
     <Navbar position="sticky" className="h-16 bg-primary-3">
       <NavbarContent>
-        <ul className="flex justify-between w-full px-10 gap-2 ">
+        <ul className="flex justify-between w-full gap-2 px-10 ">
           {Nav_Items.map(({ label, path, IconComponent }) => {
             const isActive = pathname?.endsWith(path);
 
