@@ -5,7 +5,7 @@ import { Avatar } from '@nextui-org/avatar';
 import AddButon from '@/components/common/Button/AddButton';
 import Slider from 'react-slick';
 import PartyItem from './components/Party';
-import CongressmanItem from './components/Congressman';
+import CongressmanList from './components/Congressman';
 
 const partyList = [
   {
@@ -154,20 +154,16 @@ export default function MyPage() {
 
       <hr className="mx-[30px] bg-[#E0E0E0]" />
 
-      <section className="px-[30px] flex flex-col gap-6">
+      <section className="px-[30px] flex flex-col gap-6 pb-10">
         <div className="flex items-center justify-between">
           <p className="text-xl font-semibold">
-            팔로우한 의원 &middot;<span className="text-[#555555]"> 13</span>
+            팔로우한 의원 &middot;<span className="text-[#555555]"> 16</span>
           </p>
 
           <AddButon />
         </div>
 
-        <div className="grid grid-cols-5  gap-y-[18px]">
-          {congressmanList.map((congressman) => (
-            <CongressmanItem key={congressman.name} {...congressman} />
-          ))}
-        </div>
+        <CongressmanList congressmanList={congressmanList} />
       </section>
     </div>
   );
