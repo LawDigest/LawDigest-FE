@@ -136,7 +136,7 @@ export default function MyPage() {
         </Button>
       </section>
 
-      <section className="pl-[30px]">
+      <section className="pl-[30px] flex flex-col gap-6">
         <div className="flex items-center justify-between pr-[30px]">
           <p className="text-xl font-semibold">
             팔로우한 정당 &middot;<span className="text-[#555555]"> 3</span>

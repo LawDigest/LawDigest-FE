@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import GoBackButton from './GoBackButton';
 import SettingButton from './SettingButton';
 import SearchButton from './SearchButton';
 import NotificationButton from './NotifcationButton';
+import Logo from './Logo';
 
 interface HeaderProps {
   logo: boolean;
@@ -17,7 +17,7 @@ export default function Header({ logo, setting }: HeaderProps) {
       {logo ? (
         <NavbarBrand>
           <Link href="/">
-            <Image src="/images/logo.png" width={106} height={64} alt="로고이미지" />
+            <Logo width={106} height={18} />
           </Link>
         </NavbarBrand>
       ) : (

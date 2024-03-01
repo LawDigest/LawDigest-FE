@@ -1,4 +1,4 @@
-import Header from '@/components/common/Header';
+import { Logo } from '@/components/common/Header';
 import { Button } from '@nextui-org/button';
 import { Input } from '@nextui-org/input';
 import Link from 'next/link';
@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Login() {
   return (
     <section className="w-[95%] h-full flex flex-col justify-center items-center">
-      <Header hasDivider={false} />
+      <Logo width={222} height={37} />
       <form className="w-full h-[300px] mt-[50px]">
         <Input className="full" type="email" variant="underlined" label="이메일" placeholder="이메일 입력" />
         <Input className="full" type="password" variant="underlined" label="비밀번호" placeholder="비밀번호 입력" />
