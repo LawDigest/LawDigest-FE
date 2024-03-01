@@ -7,20 +7,25 @@ import NotificationButton from './NotifcationButton';
 import Logo from './Logo';
 
 interface HeaderProps {
-  logo: boolean;
-  setting: boolean;
+  logo?: boolean;
+  goBack?: boolean;
+  title?: string;
+  setting?: boolean;
+  search?: boolean;
 }
 
-export default function Header({ logo, setting }: HeaderProps) {
+export default function Header({ logo, goBack, title, setting, search }: HeaderProps) {
   return (
     <Navbar>
-      {logo ? (
+      {logo && (
         <NavbarBrand>
           <Link href="/">
             <Logo width={106} height={18} />
           </Link>
         </NavbarBrand>
-      ) : (
+      )}
+
+      {goBack && (
         <NavbarContent justify="start">
           <NavbarItem>
             <GoBackButton />
@@ -28,13 +33,21 @@ export default function Header({ logo, setting }: HeaderProps) {
         </NavbarContent>
       )}
 
-      {setting ? (
+      {title && (
+        <NavbarContent justify="center" className="absolute left-[45%]">
+          <NavbarItem className="font-medium">{title}</NavbarItem>
+        </NavbarContent>
+      )}
+
+      {setting && (
         <NavbarContent justify="end">
           <NavbarItem>
             <SettingButton />
           </NavbarItem>
         </NavbarContent>
-      ) : (
+      )}
+
+      {search && (
         <NavbarContent justify="end">
           <NavbarItem>
             <SearchButton />
