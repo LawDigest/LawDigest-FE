@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function NotificationLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
+  return <Layout goBack>{children}</Layout>;
 }
