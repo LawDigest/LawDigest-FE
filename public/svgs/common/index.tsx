@@ -1,3 +1,5 @@
 import IconPlus from './Plus';
+import IconEmail from './Email';
+import IconPassword from './Password';
 
-export default IconPlus;
+export { IconEmail, IconPlus, IconPassword };
