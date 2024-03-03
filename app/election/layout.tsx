@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function ElectionLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout nav logo>
+      {children}
+    </Layout>
+  );
 }

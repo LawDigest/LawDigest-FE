@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function StatisticsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout logo setting={false}>
+    <Layout nav logo>
       {children}
     </Layout>
   );
