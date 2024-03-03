@@ -1,4 +1,5 @@
 import Layout from '@/components/common/Layout';
+import SearchBar from '@/components/common/SearchBar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,5 +8,10 @@ export const metadata: Metadata = {
 };
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout goBack>
+      <SearchBar />
+      {children}
+    </Layout>
+  );
 }

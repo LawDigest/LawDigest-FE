@@ -11,18 +11,18 @@ interface ItemProps {
 
 export default function Item({ logo, name, law, members_number, date }: ItemProps) {
   return (
-    <div className="flex justify-between">
+    <div className="flex items-center gap-4">
       <Image src={logo} width={50} height={50} alt="정당 로고 이미지" />
-      <div>
-        <p className="text-sm font-medium">{name} 의원님이 새로운 법률안을 발의했어요 !</p>
-        <p className="text-[#A1A1AA] text-xs">
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <p className="font-medium">{name} 의원</p>
+          <p className="text-gray-2">&#183;</p>
+          <p className="text-sm text-gray-2"> {getTimeRemaining(date)}</p>
+        </div>
+        <p className="text-[#A1A1AA] text-sm">
           {name} 외 {members_number}인이 &apos;{law}&apos; 을 발의했어요
         </p>
-        <p className="text-[#A1A1AA] text-xs">{getTimeRemaining(date)}</p>
       </div>
-      <button type="button">
-        <Image src="images/arrow_right.svg" width={24} height={24} alt="들어가기 이미지" />
-      </button>
     </div>
   );
 }

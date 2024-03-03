@@ -1,3 +1,6 @@
 import IconPlus from './Plus';
+import IconEmail from './Email';
+import IconPassword from './Password';
+import IconUnchecked from './Unchecked';
 
-export default IconPlus;
+export { IconEmail, IconPlus, IconPassword, IconUnchecked };

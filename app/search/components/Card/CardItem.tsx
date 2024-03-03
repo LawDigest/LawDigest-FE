@@ -5,9 +5,9 @@ interface CardItemProps {
 
 export default function CardItem({ title, children }: CardItemProps) {
   return (
-    <div className="mt-5 border-b-8 border-[#E2E8F0]">
-      <h1 className="mx-6 text-xl font-semibold">{title}</h1>
-      <div className="mx-6 my-3">{children}</div>
+    <div className="flex flex-col gap-6 my-8">
+      <h1 className="text-xl font-semibold">{title}</h1>
+      <div className="relative">{children}</div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import SearchIcon from './SearchIcon';
 
 export default function SearchBar() {
   return (
-    <div className="w-full px-[10px] rounded-2xl flex justify-center items-center gap-[10px]">
+    <div className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px]">
       <Input
         radius="lg"
         classNames={{
