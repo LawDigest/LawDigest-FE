@@ -1,25 +1,36 @@
 'use client';
 
 import { Card, CardHeader, CardBody } from '@nextui-org/card';
-import { Avatar, AvatarGroup } from '@nextui-org/avatar';
+import { Avatar } from '@nextui-org/avatar';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
 import { MoreIcon } from '@/components/common/Icons';
 import Link from 'next/link';
 import { BillProps } from '@/types';
 
 export default function Bill({
-  bill_id,
-  proposers,
-  represent_proposer_id,
-  represent_proposer,
-  party_id_list,
-  gpt_summary,
-  summary,
-  propose_date,
-  children,
+  // bill_id,
+  // proposers,
+  // represent_proposer_id,
+  // represent_proposer,
+  // party_id_list,
+  // gpt_summary,
+  // summary,
+  // propose_date,
+  // children,
+  // divide,
+  // party_image_urls,
+  // represent_proposer_img_url,
+  bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary },
+  representative_proposer_dto: {
+    representative_proposer_id,
+    representative_proposer_name,
+    represent_proposer_img_url,
+    party_image_url,
+    party_name,
+  },
+  public_proposer_dto_list,
   divide,
-  party_image_urls,
-  represent_proposer_img_url,
+  children,
 }: BillProps) {
   return (
     <Card key={bill_id} className="w-full mr-0 rounded-none shadow-none">
@@ -27,31 +38,21 @@ export default function Bill({
         <div className="flex gap-2">
           <Avatar radius="full" size="sm" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${represent_proposer_img_url}`} />
           <div className="flex flex-col items-start justify-center">
-            <Link href={`/congressman/${represent_proposer_id}`}>
-              <h4 className="font-semibold leading-none text-small text-default-600">{represent_proposer} 의원</h4>
+            <Link href={`/congressman/${representative_proposer_id}`}>
+              <h4 className="font-semibold leading-none text-small text-default-600">
+                {representative_proposer_name} 의원
+              </h4>
             </Link>
-            <h5 className="text-xs tracking-tight text-default-400">{proposers}</h5>
+            <h5 className="text-xs tracking-tight text-default-400">{representative_proposer_name}</h5>
           </div>
         </div>
         <div className="flex items-center gap-2">
           <h5 className="text-xs tracking-tight text-default-400">{propose_date}</h5>
-          {party_image_urls?.length <= 1 ? (
-            <Link href={`/party/${party_id_list.at(0)}`}>
-              <Avatar
-                size="sm"
-                className="bg-white"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${party_image_urls.at(0)}`}
-              />
-            </Link>
-          ) : (
-            <AvatarGroup size="sm" max={3}>
-              {party_image_urls?.map((partyImageUrl, index) => (
-                <Link key={partyImageUrl} href={`/party/${party_id_list[index]}`}>
-                  <Avatar className="bg-white" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${partyImageUrl}`} />
-                </Link>
-              ))}
-            </AvatarGroup>
-          )}
+
+          <Link href={`/party/${party_name}`}>
+            <Avatar size="sm" className="bg-white" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/${party_image_url}`} />
+          </Link>
+
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <button type="button" aria-label="Dropdown Trigger">

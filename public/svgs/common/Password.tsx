@@ -5,8 +5,8 @@ export default function IconPassword() {
       <path
         d="M15 17V13C15 10.2386 17.2386 8 20 8V8C22.7614 8 25 10.2386 25 13V17"
         stroke="#999999"
-        stroke-width="2"
-        stroke-linecap="round"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
     </svg>
   );

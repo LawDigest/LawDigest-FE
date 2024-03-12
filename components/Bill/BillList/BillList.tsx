@@ -18,8 +18,8 @@ export default function BillList({
   return (
     <>
       {bills.map((bill, index) => (
-        <Bill key={`${bill.bill_id + index}`} {...bill} divide>
-          <Link href={`/bill/${bill.bill_id}`}>
+        <Bill key={`${bill.bill_info_dto.bill_id + index.toString()}`} {...bill} divide>
+          <Link href={`/bill/${bill.bill_info_dto.bill_id}`}>
             <Button
               className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
               color="primary"
