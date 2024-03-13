@@ -14,8 +14,8 @@ export default function BillList({
 }) {
   return (
     <>
-      {bills.map((bill) => (
-        <Bill key={`${bill.bill_info_dto.bill_id}`} {...bill} />
+      {bills.map((bill, index) => (
+        <Bill key={`${bill.bill_info_dto.bill_id + index}`} {...bill} />
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">

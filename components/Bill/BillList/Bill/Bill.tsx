@@ -7,7 +7,7 @@ import { Button, Divider } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
-import { IconExport, IconKebab, IconScrab } from '@/public/svgs/common';
+import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
 import getTimeRemaining from '@/utils/getTimeRemaining';
 
 export default function Bill({
@@ -20,73 +20,137 @@ export default function Bill({
     party_name,
   },
   public_proposer_dto_list,
+  detail,
+  children,
 }: BillProps) {
+  const getPartyColor = (partyName: string) => {
+    if (partyName === '국민의힘') {
+      return 'ppp';
+    }
+    if (partyName === '더불어민주당') {
+      return 'dpk';
+    }
+    if (partyName === '정의당') {
+      return 'jp';
+    }
+    if (partyName === '기본소득당') {
+      return 'bip';
+    }
+    if (partyName === '시대전환') {
+      return 'tk';
+    }
+    if (partyName === '진보당') {
+      return 'tpp';
+    }
+    if (partyName === '한국의희망') {
+      return 'hk';
+    }
+    return 'na';
+  };
+
   return (
     <section className="flex flex-col gap-5 my-6">
       <Card key={bill_id} className="flex flex-col gap-5 mx-5 " radius="none" shadow="none">
         <CardHeader className="flex flex-col items-start gap-2 p-0">
-          <div className="flex items-center justify-between w-full">
-            <h2 className="text-xl font-semibold">{bill_name}</h2>
-
-            <div className="flex">
-              <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
-                <IconExport />
-              </Button>
-
-              <Dropdown placement="bottom-end">
-                <DropdownTrigger>
-                  <Button isIconOnly size="sm" className="bg-transparent" aria-label="Dropdown Trigger">
-                    <IconKebab />
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="More Actions">
-                  <DropdownItem key="profile" className="gap-2 h-14">
-                    <p className="font-semibold">Signed in as</p>
-                    <p className="font-semibold">zoey@example.com</p>
-                  </DropdownItem>
-                  <DropdownItem key="settings">My Settings</DropdownItem>
-                  <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
+          {detail && (
+            <div className="flex items-center gap-1">
+              <IconClock />
+              <h5 className="text-sm tracking-tight text-gray-2">{getTimeRemaining(propose_date)}</h5>
             </div>
+          )}
+          <div className="flex items-center justify-between w-full">
+            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
+
+            {detail && (
+              <Button isIconOnly className="bg-transparent">
+                <IconScrabSmall />
+              </Button>
+            )}
+
+            {!detail && (
+              <div className="flex">
+                <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
+                  <IconExport />
+                </Button>
+
+                <Dropdown placement="bottom-end">
+                  <DropdownTrigger>
+                    <Button isIconOnly size="sm" className="bg-transparent" aria-label="Dropdown Trigger">
+                      <IconKebab />
+                    </Button>
+                  </DropdownTrigger>
+                  <DropdownMenu aria-label="More Actions">
+                    <DropdownItem key="profile" className="gap-2 h-14">
+                      <p className="font-semibold">Signed in as</p>
+                      <p className="font-semibold">zoey@example.com</p>
+                    </DropdownItem>
+                    <DropdownItem key="settings">My Settings</DropdownItem>
+                    <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </div>
+            )}
           </div>
 
-          <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
+          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>}
         </CardHeader>
 
         <CardBody className="p-0 leading-normal whitespace-pre-wrap">
-          <p>
+          <p className={detail ? '' : 'line-clamp-[8]'}>
             {gpt_summary && gpt_summary}
             {!gpt_summary && summary}
           </p>
         </CardBody>
 
-        <CardFooter className="flex items-center justify-between p-0 -ml-1">
-          <div className="flex gap-4">
-            <div className="flex items-center text-sm text-gray-3">
-              <Button isIconOnly size="sm" className="p-0 bg-transparent">
-                <IconScrab />
-              </Button>
-              <h4 className="mr-2">스크랩</h4>
-              <h4>112</h4>
+        {!detail && (
+          <CardFooter className="flex items-center justify-between p-0 -ml-1">
+            <div className="flex gap-4">
+              <div className="flex items-center text-sm text-gray-3">
+                <Button isIconOnly size="sm" className="p-0 bg-transparent">
+                  <IconScrabSmall />
+                </Button>
+                <h4 className="mr-2">스크랩</h4>
+                <h4>112</h4>
+              </div>
+              <div className="flex items-center text-sm text-gray-3">
+                <h4 className="mr-2">조회수</h4>
+                <h4>851</h4>
+              </div>
             </div>
-            <div className="flex items-center text-sm text-gray-3">
-              <h4 className="mr-2">조회수</h4>
-              <h4>851</h4>
-            </div>
-          </div>
 
-          <Link href={`/bill/${bill_id}`}>
-            <Button className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8" size="sm" variant="flat">
-              자세히 보기
+            <Link href={`/bill/${bill_id}`}>
+              <Button className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8" size="sm" variant="flat">
+                자세히 보기
+              </Button>
+            </Link>
+          </CardFooter>
+        )}
+
+        {detail && (
+          <CardFooter className="flex items-center justify-between p-0">
+            <div className="flex gap-4">
+              <div className="flex items-center text-sm text-gray-2">
+                <h4 className="mr-2">조회수</h4>
+                <h4>851</h4>
+              </div>
+              <div className="flex items-center text-sm text-gray-2">
+                <h4 className="mr-2">스크랩</h4>
+                <h4>112</h4>
+              </div>
+            </div>
+
+            <Button isIconOnly size="sm" className="bg-transparent">
+              <IconExport />
             </Button>
-          </Link>
-        </CardFooter>
+          </CardFooter>
+        )}
       </Card>
+
+      <section className="mx-5">{children}</section>
 
       <Link href={`/congressman/${representative_proposer_id}`}>
         <Card
-          className="flex flex-row h-[78px] mx-5 border-1 items-center justify-between px-[18px]"
+          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-party-${getPartyColor(party_name)} `}
           radius="sm"
           shadow="sm">
           <div className="flex items-center gap-2">
@@ -106,7 +170,7 @@ export default function Bill({
         </Card>
       </Link>
 
-      <Divider className="h-[10px] bg-gray-0.5" />
+      {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
     </section>
   );
 }

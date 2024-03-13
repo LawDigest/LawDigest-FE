@@ -35,7 +35,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
       )}
 
       {title && (
-        <NavbarContent justify="center" className="absolute left-[45%]">
+        <NavbarContent justify="center">
           <NavbarItem className="font-medium">{title}</NavbarItem>
         </NavbarContent>
       )}

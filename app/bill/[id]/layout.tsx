@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function BillLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout logo setting={false}>
+    <Layout goBack title="의안 자세히 보기" search>
       {children}
     </Layout>
   );
