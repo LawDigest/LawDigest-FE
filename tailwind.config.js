@@ -19,7 +19,7 @@ module.exports = {
         tk: '#5B157F', // 시대전환
         tpp: '#D6001C', // 진보당
         hk: '#004B83', // 한국의희망
-        none: '#797C85', // 무소속
+        na: '#797C85', // 무소속
         // Gray color
         gray: {
           0.5: '#EBEBEB',

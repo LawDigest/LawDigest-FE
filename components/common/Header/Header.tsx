@@ -12,9 +12,10 @@ interface HeaderProps {
   title?: string;
   setting?: boolean;
   search?: boolean;
+  notification?: boolean;
 }
 
-export default function Header({ logo, goBack, title, setting, search }: HeaderProps) {
+export default function Header({ logo, goBack, title, setting, search, notification }: HeaderProps) {
   return (
     <Navbar>
       {logo && (
@@ -52,6 +53,14 @@ export default function Header({ logo, goBack, title, setting, search }: HeaderP
           <NavbarItem>
             <SearchButton />
           </NavbarItem>
+          <NavbarItem>
+            <NotificationButton />
+          </NavbarItem>
+        </NavbarContent>
+      )}
+
+      {notification && (
+        <NavbarContent justify="end">
           <NavbarItem>
             <NotificationButton />
           </NavbarItem>

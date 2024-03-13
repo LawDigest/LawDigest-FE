@@ -17,19 +17,8 @@ export default function BillList({
 }) {
   return (
     <>
-      {bills.map((bill, index) => (
-        <Bill key={`${bill.bill_info_dto.bill_id + index.toString()}`} {...bill} divide>
-          <Link href={`/bill/${bill.bill_info_dto.bill_id}`}>
-            <Button
-              className="mt-[20px] w-full h-[28px] font-semibold flex justify-center gap-[10px]"
-              color="primary"
-              size="sm"
-              variant="flat">
-              자세히보기
-              <DetailIcon color="#006FEE" />
-            </Button>
-          </Link>
-        </Bill>
+      {bills.map((bill) => (
+        <Bill key={`${bill.bill_info_dto.bill_id}`} {...bill} />
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">

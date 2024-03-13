@@ -27,6 +27,5 @@ export interface BillResponse {
 }
 
 export interface BillProps extends BillResponse {
-  divide?: boolean;
   children?: ReactNode;
 }
