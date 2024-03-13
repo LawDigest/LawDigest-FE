@@ -1,11 +1,8 @@
 'use client';
 
 import { getBill } from '@/app/components/Feed/apis';
-// import { FEED_TAB_KO } from '@/constants';
-// import { ValueOf } from '@/types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-// stage: ValueOf<typeof FEED_TAB_KO>
 export const useGetBills = () =>
   useInfiniteQuery({
     queryKey: ['/bill/mainfeed'],

@@ -20,9 +20,9 @@ export interface BillResponse {
     public_proposer_id: string;
     public_proposer_name: string;
     public_proposer_img_url: string;
-    party_id: number;
-    party_name: string;
-    party_image_url: string;
+    public_party_id: number;
+    public_party_name: string;
+    public_party_image_url: string;
   }[];
 }
 

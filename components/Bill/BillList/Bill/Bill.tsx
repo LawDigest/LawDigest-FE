@@ -8,18 +8,6 @@ import Link from 'next/link';
 import { BillProps } from '@/types';
 
 export default function Bill({
-  // bill_id,
-  // proposers,
-  // represent_proposer_id,
-  // represent_proposer,
-  // party_id_list,
-  // gpt_summary,
-  // summary,
-  // propose_date,
-  // children,
-  // divide,
-  // party_image_urls,
-  // represent_proposer_img_url,
   bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary },
   representative_proposer_dto: {
     representative_proposer_id,
