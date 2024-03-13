@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { IconExport, IconKebab, IconScrab } from '@/public/svgs/common';
+import getTimeRemaining from '@/utils/getTimeRemaining';
 
 export default function Bill({
   bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary },
@@ -50,7 +51,7 @@ export default function Bill({
             </div>
           </div>
 
-          <h5 className="text-xs tracking-tight text-gray-3">{propose_date}</h5>
+          <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
         </CardHeader>
 
         <CardBody className="p-0 leading-normal whitespace-pre-wrap">
@@ -83,25 +84,27 @@ export default function Bill({
         </CardFooter>
       </Card>
 
-      <Card
-        className="flex flex-row h-[78px] mx-5 border-1 items-center justify-between px-[18px]"
-        radius="sm"
-        shadow="sm">
-        <div className="flex items-center gap-2">
-          <Avatar radius="full" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`} />
-          <div className="flex flex-col gap-1">
-            <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-            <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+      <Link href={`/congressman/${representative_proposer_id}`}>
+        <Card
+          className="flex flex-row h-[78px] mx-5 border-1 items-center justify-between px-[18px]"
+          radius="sm"
+          shadow="sm">
+          <div className="flex items-center gap-2">
+            <Avatar radius="full" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`} />
+            <div className="flex flex-col gap-0.5">
+              <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
+              <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+            </div>
           </div>
-        </div>
 
-        <Image
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-          width={120}
-          height={120}
-          alt={`${party_name} 이미지`}
-        />
-      </Card>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+            width={120}
+            height={120}
+            alt={`${party_name} 이미지`}
+          />
+        </Card>
+      </Link>
 
       <Divider className="h-[10px] bg-gray-0.5" />
     </section>

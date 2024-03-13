@@ -1,8 +1,5 @@
 import { BillProps } from '@/types';
 import { RefObject } from 'react';
-import { Button } from '@nextui-org/button';
-import Link from 'next/link';
-import { DetailIcon } from '@/components/common/Icons';
 import { Spinner } from '@nextui-org/spinner';
 import Bill from './Bill';
 
