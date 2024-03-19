@@ -29,4 +29,5 @@ export interface BillResponse {
 export interface BillProps extends BillResponse {
   children?: ReactNode;
   detail?: boolean;
+  congressman?: boolean;
 }

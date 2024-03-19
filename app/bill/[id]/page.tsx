@@ -1,34 +1,20 @@
 import { Bill } from '@/components/Bill';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import getQueryClient from '@/app/getQueryClient';
+import getQueryClient from '@/lib/getQueryClient';
 import GPTSummary from '@/components/GPTSummary';
 import { Button } from '@nextui-org/button';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
-import Proposers from '@/components/Proposers';
 import { useBillDetail } from './apis';
-import Chart from './components/Chart';
-import Stages from './components/Stages';
-import Keywords from './components/Keywords';
 import SectionContainer from './components/SectionContainer';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
   const { data: bill } = await useBillDetail({ id, queryClient });
-  const {
-    bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary },
-    representative_proposer_dto: {
-      representative_proposer_id,
-      representative_proposer_name,
-      represent_proposer_img_url,
-      party_image_url,
-      party_name,
-    },
-    public_proposer_dto_list,
-  } = bill;
+  // const { public_proposer_dto_list } = bill;
 
-  const datas = public_proposer_dto_list.map(({ public_proposer_id }) => public_proposer_id);
-  const partyNames = public_proposer_dto_list.map(({ public_party_name }) => public_party_name);
+  // const datas = public_proposer_dto_list.map(({ public_proposer_id }) => public_proposer_id);
+  // const partyNames = public_proposer_dto_list.map(({ public_party_name }) => public_party_name);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -61,17 +47,6 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           <SectionContainer title="심사 진행 단계">심사 진행 단계</SectionContainer>
 
           <SectionContainer title="다른 개정안 보기">다른 개정안 보기</SectionContainer>
-
-          {/* <Chart datas={datas} partyNames={partyNames} /> */}
-          {/* <Stages stage={stage} />
-        <Proposers
-          represent_proposer={represent_proposer}
-          represent_proposer_id={represent_proposer_id}
-          public_proposer_list={public_proposer_list}
-          public_proposer_id_list={public_proposer_id_list}
-        /> */}
-          {/* <Keywords keywords={keywords} /> */}
-          {/* <Similars similars={similars} /> */}
         </Bill>
       </section>
     </HydrationBoundary>

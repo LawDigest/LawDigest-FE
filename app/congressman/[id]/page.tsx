@@ -1,41 +1,18 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { BillList, BillTab } from '@/components/Bill';
-import { BILL_TAB_KO } from '@/constants';
-import { useIntersect, useTabType } from '@/hooks';
-import { useGetBillByCongressman } from './apis';
-import CongressmanComponent from './Congressman/Congressman';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+// import getQueryClient from '@/lib/getQueryClient';
+// import { useGetCongressmanDetail } from './apis';
+import { CongressmanComponent, BillContainer } from './components';
 
 export default function Congressman({ params: { id } }: { params: { id: string } }) {
-  const { billType, setBillType } = useTabType<typeof BILL_TAB_KO>('대표발의한 법안');
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByCongressman(id, billType);
-  const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []);
-  const { congressman } = data.pages[0].data;
-
-  const ref = useIntersect(async (entry, observer) => {
-    observer.unobserve(entry.target);
-    if (hasNextPage && !isFetching) {
-      fetchNextPage();
-    }
-  });
-
-  useEffect(() => {
-    if (data) {
-      setBills((prevBills) => [...prevBills, ...data.pages.flatMap(({ data: { bills: responses } }) => responses)]);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    setBills([]);
-    refetch();
-  }, [billType]);
+  const queryClient = new QueryClient();
+  // const { data: congressman } = await useGetCongressmanDetail({ id, queryClient });
 
   return (
-    <>
-      <CongressmanComponent congressman={congressman} />
-      <BillTab type={billType} clickHandler={setBillType as any} />
-      <BillList bills={bills} isFetching={isFetching} fetchRef={ref} />
-    </>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CongressmanComponent id={id} queryClient={queryClient} />
+      <BillContainer id={id} />
+    </HydrationBoundary>
   );
 }

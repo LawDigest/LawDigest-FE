@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
-import getTimeRemaining from '@/utils/getTimeRemaining';
+import { getPartyColor, getTimeRemaining } from '@/utils';
 
 export default function Bill({
   bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary },
@@ -21,33 +21,9 @@ export default function Bill({
   },
   public_proposer_dto_list,
   detail,
+  congressman,
   children,
 }: BillProps) {
-  const getPartyColor = (partyName: string) => {
-    if (partyName === '국민의힘') {
-      return 'ppp';
-    }
-    if (partyName === '더불어민주당') {
-      return 'dpk';
-    }
-    if (partyName === '정의당') {
-      return 'jp';
-    }
-    if (partyName === '기본소득당') {
-      return 'bip';
-    }
-    if (partyName === '시대전환') {
-      return 'tk';
-    }
-    if (partyName === '진보당') {
-      return 'tpp';
-    }
-    if (partyName === '한국의희망') {
-      return 'hk';
-    }
-    return 'na';
-  };
-
   return (
     <section className="flex flex-col gap-5 my-6">
       <Card key={bill_id} className="flex flex-col gap-5 mx-5 " radius="none" shadow="none">
@@ -58,7 +34,7 @@ export default function Bill({
               <h5 className="text-sm tracking-tight text-gray-2">{getTimeRemaining(propose_date)}</h5>
             </div>
           )}
-          <div className="flex items-center justify-between w-full">
+          <div className="flex items-start justify-between w-full">
             <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
 
             {detail && (
@@ -148,27 +124,29 @@ export default function Bill({
 
       <section className="mx-5">{children}</section>
 
-      <Link href={`/congressman/${representative_proposer_id}`}>
-        <Card
-          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-party-${getPartyColor(party_name)} `}
-          radius="sm"
-          shadow="sm">
-          <div className="flex items-center gap-2">
-            <Avatar radius="full" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`} />
-            <div className="flex flex-col gap-0.5">
-              <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-              <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+      {!congressman && (
+        <Link href={`/congressman/${representative_proposer_id}`}>
+          <Card
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-party-${getPartyColor(party_name)} `}
+            radius="sm"
+            shadow="sm">
+            <div className="flex items-center gap-2">
+              <Avatar radius="full" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`} />
+              <div className="flex flex-col gap-0.5">
+                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
+                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+              </div>
             </div>
-          </div>
 
-          <Image
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-            width={120}
-            height={120}
-            alt={`${party_name} 이미지`}
-          />
-        </Card>
-      </Link>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+              width={120}
+              height={120}
+              alt={`${party_name} 이미지`}
+            />
+          </Card>
+        </Link>
+      )}
 
       {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
     </section>

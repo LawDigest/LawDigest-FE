@@ -7,15 +7,19 @@ export default function BillList({
   bills,
   isFetching,
   fetchRef,
+  detail,
+  congressman,
 }: {
   bills: BillProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
+  detail?: boolean;
+  congressman?: boolean;
 }) {
   return (
     <>
       {bills.map((bill, index) => (
-        <Bill key={`${bill.bill_info_dto.bill_id + index}`} {...bill} />
+        <Bill key={`${bill.bill_info_dto.bill_id + index}`} {...bill} detail={detail} congressman={congressman} />
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">
