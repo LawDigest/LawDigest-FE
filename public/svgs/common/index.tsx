@@ -6,5 +6,6 @@ import IconExport from './Export';
 import IconKebab from './Kebab';
 import IconScrabSmall from './ScrabSmall';
 import IconClock from './Clock';
+import IconWeb from './Web';
 
-export { IconEmail, IconPlus, IconPassword, IconUnchecked, IconExport, IconKebab, IconScrabSmall, IconClock };
+export { IconEmail, IconPlus, IconPassword, IconUnchecked, IconExport, IconKebab, IconScrabSmall, IconClock, IconWeb };

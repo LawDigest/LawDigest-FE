@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function PartyLayout({ children }: { children: React.ReactNode }) {
-  return <Layout>{children}</Layout>;
+  return (
+    <Layout nav goBack search title="정당 프로필">
+      {children}
+    </Layout>
+  );
 }

@@ -1,9 +1,14 @@
 import http from '@/api/config/core';
-import { FeedResponse, ValueOf, PartyDetail } from '@/types';
-import { BILL_TAB_KO } from '@/constants';
+import { FeedResponse, PartyDetailResponse } from '@/types';
 
-export const getBillByParty = async (page: number, id: string, stage: ValueOf<typeof BILL_TAB_KO>) =>
-  http.get<FeedResponse & { party_detail: PartyDetail }>({
-    url: `/party/detail/${id}`,
-    params: { page, size: 3, stage: stage === '대표발의한 법안' ? 'represent' : 'public' },
+export const getBillByParty = async (partyId: number, isRepresent: boolean, page: number) =>
+  http.get<FeedResponse>({
+    url: `/party/bill`,
+    params: { party_id: partyId, is_represent: isRepresent, page, size: 3 },
+  });
+
+export const getPartyDetail = (partyId: number) =>
+  http.get<PartyDetailResponse>({
+    url: `/party/detail`,
+    params: { party_id: partyId },
   });

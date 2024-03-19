@@ -1,6 +1,5 @@
 import http from '@/api/config/core';
-import { FeedResponse } from '@/types';
-import { CongressmanResponse } from '../types';
+import { FeedResponse, CongressmanDetailResponse } from '@/types';
 
 export const getBillByCongressmanId = async (page: number, congressmanId: string, isRepresent: boolean) =>
   http.get<FeedResponse>({
@@ -9,7 +8,7 @@ export const getBillByCongressmanId = async (page: number, congressmanId: string
   });
 
 export const getCongressmanDetail = (congressmanId: string) =>
-  http.get<CongressmanResponse>({
+  http.get<CongressmanDetailResponse>({
     url: `/congressman/detail`,
     params: { congressman_id: congressmanId },
   });

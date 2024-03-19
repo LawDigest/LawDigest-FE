@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function CongressmanLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout goBack search title="의원 프로필">
+    <Layout nav goBack search title="의원 프로필">
       {children}
     </Layout>
   );

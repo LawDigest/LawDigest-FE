@@ -39,7 +39,7 @@ export default async function CongressmanComponent({ id, queryClient }: { id: st
         />
 
         <div className="flex flex-col justify-between w-[65%]">
-          <Link href={`/party/${party_id}`}>
+          <Link href={`/party/${party_id.toString()}`}>
             <Image
               src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
               width={80}

@@ -1,4 +1,4 @@
-export interface Congressman {
+export interface CongressmanDetailResponse {
   congressman_id: string;
   congressman_name: string;
   party_id: number;
