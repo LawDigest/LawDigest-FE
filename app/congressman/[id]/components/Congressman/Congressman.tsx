@@ -9,21 +9,8 @@ import { useGetCongressmanDetail } from '../../apis';
 
 export default async function CongressmanComponent({ id, queryClient }: { id: string; queryClient: QueryClient }) {
   const { data: congressman } = await useGetCongressmanDetail({ id, queryClient });
-  const {
-    congressman_id,
-    congressman_name,
-    party_id,
-    party_name,
-    party_image_url,
-    elect_sort,
-    district,
-    commits,
-    elected,
-    homepage,
-    represent_count,
-    public_count,
-    congressman_image_url,
-  } = congressman;
+  const { congressman_name, party_id, party_name, party_image_url, district, commits, elected, congressman_image_url } =
+    congressman;
   const partyColor = getPartyColor(party_name);
 
   return (
