@@ -1,4 +1,5 @@
 import { Button } from '@nextui-org/button';
+import Link from 'next/link';
 import { Link as NextUILink } from '@nextui-org/link';
 import { Card } from '@nextui-org/card';
 import { Avatar } from '@nextui-org/avatar';
@@ -8,7 +9,7 @@ import { QueryClient } from '@tanstack/react-query';
 import { IconWeb } from '@/public/svgs';
 import { useGetPartyDetail } from '../../apis';
 
-export default async function PartyDetail({ id, queryClient }: { id: string; queryClient: QueryClient }) {
+export default async function PartyDetail({ id, queryClient }: { id: number; queryClient: QueryClient }) {
   const { data: party } = await useGetPartyDetail({ id, queryClient });
   const {
     party_id,
@@ -50,17 +51,21 @@ export default async function PartyDetail({ id, queryClient }: { id: string; que
 
       <Divider />
 
-      <section className="flex justify-between gap-10">
-        <div className="flex flex-col items-center">
-          <p className="text-2xl font-semibold">{followed}</p>
+      <section className="grid grid-cols-3 gap-10">
+        <div className="flex flex-col items-center gap-[10px]">
+          <p className="text-2xl font-semibold">{followed || '임시'}</p>
           <p className="text-sm font-medium text-gray-2">팔로워</p>
         </div>
-        <div>
-          <p className="text-2xl font-semibold" />
+        <div className="flex flex-col items-center gap-[10px]">
+          <Link href={`/party/bill/${party_id}`} className="text-2xl font-semibold">
+            임시
+          </Link>
           <p className="text-sm font-medium text-gray-2">대표발의법안</p>
         </div>
-        <div>
-          <p className="text-2xl font-semibold" />
+        <div className="flex flex-col items-center gap-[10px]">
+          <Link href={`/party/bill/${party_id}`} className="text-2xl font-semibold">
+            <p className="text-2xl font-semibold">임시</p>
+          </Link>
           <p className="text-sm font-medium text-gray-2">공동발의법안</p>
         </div>
       </section>

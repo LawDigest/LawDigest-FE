@@ -17,7 +17,7 @@ export const useGetBillByParty = (id: number, isRepresent: boolean) =>
     },
   });
 
-export const useGetPartyDetail = ({ id, queryClient }: { id: string; queryClient: QueryClient }) =>
+export const useGetPartyDetail = ({ id, queryClient }: { id: number; queryClient: QueryClient }) =>
   queryClient.fetchQuery({
     queryKey: ['/party/detail', id],
     queryFn: () => getPartyDetail(Number(id)),

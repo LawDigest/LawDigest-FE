@@ -1,20 +1,15 @@
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { siteConfig } from '@/config/site';
-import { BILL_TAB, BILL_TAB_KO, FEED_TAB_KO } from '@/constants';
+import { BILL_TAB, BILL_TAB_KO } from '@/constants';
 import { Key } from 'react';
 import { ValueOf } from '@/types';
-
-const BILL_KEY = {
-  ...BILL_TAB_KO,
-  ...FEED_TAB_KO,
-} as const;
 
 export default function BillTab({
   type,
   clickHandler,
   category = '',
 }: {
-  type: ValueOf<typeof BILL_KEY>;
+  type: ValueOf<typeof BILL_TAB_KO>;
   clickHandler: (key: Key) => any;
   // eslint-disable-next-line
   category?: string;
@@ -37,7 +32,7 @@ export default function BillTab({
         onSelectionChange={clickHandler}
         className="w-full">
         {values.map(({ label, value }) => (
-          <Tab key={label} title={BILL_KEY[value as keyof typeof BILL_TAB]} />
+          <Tab key={label} title={BILL_TAB_KO[value as keyof typeof BILL_TAB]} />
         ))}
       </Tabs>
     </section>
