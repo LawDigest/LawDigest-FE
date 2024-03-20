@@ -4,8 +4,8 @@ import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
-import QueryProvider from './lib/query';
-import { Providers } from './lib/providers';
+import QueryProvider from '../lib/query';
+import { Providers } from '../lib/providers';
 
 export const metadata: Metadata = {
   title: {

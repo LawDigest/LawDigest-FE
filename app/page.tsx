@@ -4,7 +4,7 @@ import Feed from './components/Feed';
 
 export default function Home() {
   return (
-    <Layout nav logo search>
+    <Layout nav logo notification>
       <SearchBar />
       <Feed />
     </Layout>

@@ -5,7 +5,7 @@ export interface Pagination {
   readonly page_number: number;
 }
 export interface FeedResponse {
-  bills: BillProps;
+  bill_list: BillProps;
   pagination_response: Pagination;
 }
 

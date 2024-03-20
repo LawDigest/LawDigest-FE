@@ -22,11 +22,13 @@ export default function CongressmanList({ congressmanList }: CongressmanListProp
   return (
     <div className="flex flex-col gap-6">
       <div className="grid grid-cols-5 gap-y-[18px]">
-        {congressmanList.slice(0, 10).map((congressman) => (
-          <CongressmanItem key={congressman.name} {...congressman} />
+        {congressmanList.slice(0, 10).map((congressman, index) => (
+          <CongressmanItem key={`${congressman.name + index}`} {...congressman} />
         ))}
         {toggle &&
-          congressmanList.slice(10).map((congressman) => <CongressmanItem key={congressman.name} {...congressman} />)}
+          congressmanList
+            .slice(10)
+            .map((congressman, index) => <CongressmanItem key={`${congressman.name + index}`} {...congressman} />)}
       </div>
 
       <Button size="sm" className="text-gray-3 bg-gray-1 w-[73px] h-8 mx-auto " onClick={onToggle}>

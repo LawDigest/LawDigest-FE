@@ -1,14 +1,12 @@
 'use client';
 
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import { BILL_TAB_KO } from '@/constants';
-import { ValueOf } from '@/types';
-import { getBillByCongressmanId } from './api';
+import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { getBillByCongressmanId, getCongressmanDetail } from './api';
 
-export const useGetBillByCongressman = (id: string, stage: ValueOf<typeof BILL_TAB_KO>) =>
+export const useGetBillByCongressman = (id: string, isRepresent: boolean) =>
   useSuspenseInfiniteQuery({
-    queryKey: ['/congressman/detail', id],
-    queryFn: ({ pageParam }: { pageParam: number }) => getBillByCongressmanId(pageParam, id, stage),
+    queryKey: ['/congressman/bill_info', id],
+    queryFn: ({ pageParam }: { pageParam: number }) => getBillByCongressmanId(pageParam, id, isRepresent),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       // eslint-disable-next-line
@@ -17,4 +15,10 @@ export const useGetBillByCongressman = (id: string, stage: ValueOf<typeof BILL_T
       const { last_page, page_number } = pagination_response || {};
       return last_page ? undefined : page_number + 1;
     },
+  });
+
+export const useGetCongressmanDetail = ({ id, queryClient }: { id: string; queryClient: QueryClient }) =>
+  queryClient.fetchQuery({
+    queryKey: ['/congressman/detail', id],
+    queryFn: () => getCongressmanDetail(id),
   });

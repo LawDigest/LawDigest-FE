@@ -1,14 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useGetBills, useIntersect, useTabType } from '@/hooks';
-import { FEED_TAB_KO } from '@/constants';
-import { BillList, BillTab } from '@/components/Bill';
+import { useGetBills, useIntersect } from '@/hooks';
+import { BillList } from '@/components/Bill';
 
 export default function Feed() {
-  const { billType, setBillType } = useTabType<typeof FEED_TAB_KO>('접수');
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBills(billType);
-  const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bills: responses } }) => responses) : []);
+  const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills();
+  const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 
   const fetchRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -19,19 +17,12 @@ export default function Feed() {
 
   useEffect(() => {
     if (data) {
-      setBills((prevBills) => [...prevBills, ...data.pages.flatMap(({ data: { bills: responses } }) => responses)]);
+      const curBills = data.pages.flatMap(({ data: { bill_list: responses } }) => responses);
+
+      setBills((prevBills) => [...prevBills, ...curBills]);
     }
+    // refetch();
   }, [data]);
 
-  useEffect(() => {
-    setBills([]);
-    refetch();
-  }, [billType]);
-
-  return (
-    <>
-      <BillTab type={billType} clickHandler={setBillType as any} category="feed" />
-      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
-    </>
-  );
+  return <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />;
 }
