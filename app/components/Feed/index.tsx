@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useGetBills, useIntersect } from '@/hooks';
-import { BillList } from '@/components/Bill';
+import { BillList, StageTab } from '@/components/Bill';
+import { IconControl } from '@/public/svgs';
+import { Button } from '@nextui-org/react';
 
 export default function Feed() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBills();
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   const fetchRef = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
@@ -14,6 +17,10 @@ export default function Feed() {
       fetchNextPage();
     }
   });
+
+  const onClickFilter = useCallback(() => {
+    setToggleFilter(!toggleFilter);
+  }, [toggleFilter]);
 
   useEffect(() => {
     if (data) {
@@ -24,5 +31,15 @@ export default function Feed() {
     // refetch();
   }, [data]);
 
-  return <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />;
+  return (
+    <section>
+      <section className="flex justify-end mx-5 my-5">
+        <Button endContent={<IconControl />} className="text-sm font-medium bg-transparent " onClick={onClickFilter}>
+          필터
+        </Button>
+      </section>
+      {toggleFilter && <StageTab />}
+      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
+    </section>
+  );
 }
