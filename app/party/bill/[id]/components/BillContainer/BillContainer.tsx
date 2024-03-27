@@ -3,13 +3,12 @@
 import { useState, useEffect } from 'react';
 import { BillList, BillTab } from '@/components/Bill';
 import { useIntersect, useTabType } from '@/hooks';
-import { BILL_TAB_KO } from '@/constants';
+import { BILL_TAB } from '@/constants';
 import { useGetBillByParty } from '@/app/party/[id]/apis';
 
 export default function BillContainer({ id }: { id: number }) {
-  const [billType, setBillType] = useTabType<typeof BILL_TAB_KO>('대표발의한 법안');
-  const isRepresent = billType === '대표발의한 법안';
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByParty(id, isRepresent);
+  const [billType, setBillType] = useTabType<typeof BILL_TAB>('representProposer');
+  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByParty(id, billType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 
   const fetchRef = useIntersect(async (entry, observer) => {

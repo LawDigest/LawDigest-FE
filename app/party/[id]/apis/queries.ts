@@ -1,12 +1,18 @@
 'use client';
 
 import { useSuspenseInfiniteQuery, QueryClient } from '@tanstack/react-query';
+import { Dispatch, SetStateAction } from 'react';
+import { BILL_TAB } from '@/constants';
+import { ValueOf } from '@/types';
 import { getBillByParty, getPartyDetail } from './api';
 
-export const useGetBillByParty = (id: number, isRepresent: boolean) =>
+export const useGetBillByParty = (
+  id: number,
+  type: ValueOf<typeof BILL_TAB> | Dispatch<SetStateAction<ValueOf<typeof BILL_TAB>>>,
+) =>
   useSuspenseInfiniteQuery({
     queryKey: ['/party/bill', id],
-    queryFn: ({ pageParam }: { pageParam: number }) => getBillByParty(id, isRepresent, pageParam),
+    queryFn: ({ pageParam }: { pageParam: number }) => getBillByParty(id, type, pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       // eslint-disable-next-line
@@ -20,5 +26,5 @@ export const useGetBillByParty = (id: number, isRepresent: boolean) =>
 export const useGetPartyDetail = ({ id, queryClient }: { id: number; queryClient: QueryClient }) =>
   queryClient.fetchQuery({
     queryKey: ['/party/detail', id],
-    queryFn: () => getPartyDetail(Number(id)),
+    queryFn: () => getPartyDetail(id),
   });
