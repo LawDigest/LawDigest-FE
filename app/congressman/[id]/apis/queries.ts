@@ -3,9 +3,13 @@
 import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { BILL_TAB } from '@/constants';
 import { ValueOf } from '@/types';
+import { Dispatch, SetStateAction } from 'react';
 import { getBillByCongressmanId, getCongressmanDetail } from './api';
 
-export const useGetBillByCongressman = (id: string, type: ValueOf<typeof BILL_TAB>) =>
+export const useGetBillByCongressman = (
+  id: string,
+  type: ValueOf<typeof BILL_TAB> | Dispatch<SetStateAction<ValueOf<typeof BILL_TAB>>>,
+) =>
   useSuspenseInfiniteQuery({
     queryKey: ['/congressman/bill_info', id],
     queryFn: ({ pageParam }: { pageParam: number }) => getBillByCongressmanId(pageParam, id, type),
