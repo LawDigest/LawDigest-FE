@@ -5,5 +5,5 @@ export interface PartyDetailResponse {
   propotional_representative_count: number;
   district_representative_count: number;
   website_url: string;
-  followed: true;
+  followed: boolean;
 }
