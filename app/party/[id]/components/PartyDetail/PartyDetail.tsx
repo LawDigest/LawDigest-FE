@@ -7,6 +7,14 @@ import { Divider } from '@nextui-org/react';
 import { getPartyColor } from '@/utils';
 import { QueryClient } from '@tanstack/react-query';
 import { IconWeb } from '@/public/svgs';
+import {
+  PARTY_NAME_KO,
+  PARTY_POSITION,
+  PARTY_LEADER,
+  PARTY_FLOOR_LEADER,
+  PARTY_SECRETARY_GENERAL,
+  PARTY_POLISY_COMMITTEE_CHAIRMAN,
+} from '@/constants/party';
 import { useGetPartyDetail } from '../../apis';
 
 export default async function PartyDetail({ id, queryClient }: { id: number; queryClient: QueryClient }) {
@@ -33,14 +41,17 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
           className={`w-[130px] h-[130px] shadow-lg bg-white border-party-${partyColor}`}
         />
 
-        <h2 className="text-2xl font-semibold">{party_name}</h2>
+        <div className="flex flex-col items-center gap-1">
+          <h2 className="text-2xl font-semibold">{party_name}</h2>
+          <h3 className="text-gray-3">{PARTY_POSITION[party_name as keyof typeof PARTY_NAME_KO]}</h3>
+        </div>
 
         <div className="text-sm">
           <p>
             의석수: {whole_representative_count}석 / 298석 <span className="text-gray-2">{seatRatio}%</span>
           </p>
           <p>
-            지역구 {district_representative_count}석, 비례대표 {propotional_representative_count}석
+            지역구 {propotional_representative_count}석, 비례대표 {district_representative_count}석
           </p>
         </div>
 
@@ -71,6 +82,25 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
       </section>
 
       <Divider />
+
+      <div className="grid w-full grid-cols-4 justify-items-center ">
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-gray-3">당대표</p>
+          <p className="font-medium">{PARTY_LEADER[party_name as keyof typeof PARTY_NAME_KO]}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-gray-3">원내대표</p>
+          <p className="font-medium">{PARTY_FLOOR_LEADER[party_name as keyof typeof PARTY_NAME_KO]}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-gray-3">사무총장</p>
+          <p className="font-medium">{PARTY_SECRETARY_GENERAL[party_name as keyof typeof PARTY_NAME_KO]}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-gray-3">정책위의장</p>
+          <p className="font-medium">{PARTY_POLISY_COMMITTEE_CHAIRMAN[party_name as keyof typeof PARTY_NAME_KO]}</p>
+        </div>
+      </div>
 
       <Button
         as={NextUILink}
