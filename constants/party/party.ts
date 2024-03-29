@@ -22,7 +22,7 @@ export const PARTY_NAME_KO = {
   자유통일당: '자유통일당',
   진보당: '진보당',
   조국혁신당: '조국혁신당',
-};
+} as const;
 
 export const PARTY_POSITION = {
   더불어민주당: '원내 1당',
@@ -35,7 +35,7 @@ export const PARTY_POSITION = {
   자유통일당: '원내 8당',
   진보당: '원내 8당',
   조국혁신당: '원내 8당',
-};
+} as const;
 
 export const PARTY_LEADER = {
   더불어민주당: '이재명',
@@ -48,7 +48,7 @@ export const PARTY_LEADER = {
   자유통일당: '장경동',
   진보당: '윤희숙',
   조국혁신당: '조국',
-};
+} as const;
 
 export const PARTY_FLOOR_LEADER = {
   더불어민주당: '홍익표',
@@ -61,7 +61,7 @@ export const PARTY_FLOOR_LEADER = {
   자유통일당: '황보승희',
   진보당: '강성희',
   조국혁신당: '황운하',
-};
+} as const;
 
 export const PARTY_SECRETARY_GENERAL = {
   더불어민주당: '조정식',
@@ -74,7 +74,7 @@ export const PARTY_SECRETARY_GENERAL = {
   자유통일당: '이동호',
   진보당: '송영주',
   조국혁신당: '황현선',
-};
+} as const;
 
 export const PARTY_POLISY_COMMITTEE_CHAIRMAN = {
   더불어민주당: '이개호',
@@ -87,4 +87,4 @@ export const PARTY_POLISY_COMMITTEE_CHAIRMAN = {
   자유통일당: '유재일',
   진보당: '정태흥',
   조국혁신당: '서왕진',
-};
+} as const;
