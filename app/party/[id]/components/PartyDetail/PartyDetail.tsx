@@ -23,13 +23,13 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
     party_id,
     party_name,
     party_img_url,
-    propotional_representative_count,
-    district_representative_count,
+    proportional_congressman_count,
+    district_congressman_count,
     website_url,
     followed,
   } = party;
   const partyColor = getPartyColor(party_name);
-  const whole_representative_count = propotional_representative_count + district_representative_count;
+  const whole_representative_count = proportional_congressman_count + district_congressman_count;
   const seatRatio = ((100 * whole_representative_count) / 298).toFixed(2);
 
   return (
@@ -51,7 +51,7 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
             의석수: {whole_representative_count}석 / 298석 <span className="text-gray-2">{seatRatio}%</span>
           </p>
           <p>
-            지역구 {propotional_representative_count}석, 비례대표 {district_representative_count}석
+            지역구 {district_congressman_count}석, 비례대표 {proportional_congressman_count}석
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import http from '@/api/config/core';
-import { FeedResponse, PartyDetailResponse, ValueOf } from '@/types';
+import { FeedResponse, PartyDetailResponse, ValueOf, PartyCongressmanResponse } from '@/types';
 import { BILL_TAB } from '@/constants';
 
 export const getBillByParty = async (
@@ -17,4 +17,10 @@ export const getPartyDetail = (partyId: number) =>
   http.get<PartyDetailResponse>({
     url: `/party/detail`,
     params: { party_id: partyId },
+  });
+
+export const getPartyCongressman = async (partyId: number, page: number) =>
+  http.get<PartyCongressmanResponse>({
+    url: `/party/congressman`,
+    params: { party_id: partyId, page },
   });
