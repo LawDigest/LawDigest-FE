@@ -1,3 +1,2 @@
-import PartyDetail from './PartyDetail';
-
-export { PartyDetail };
+export * from './PartyCongressman';
+export * from './PartyDetail';
