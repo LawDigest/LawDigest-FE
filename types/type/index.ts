@@ -5,3 +5,4 @@ export * from './congressman';
 export * from './party';
 export * from './viewCount';
 export * from './bookmark';
+export * from './partyCongressman';
