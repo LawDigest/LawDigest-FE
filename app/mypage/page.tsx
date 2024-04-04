@@ -1,11 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@nextui-org/button';
 import { Avatar } from '@nextui-org/avatar';
 import AddButon from '@/components/common/Button/AddButton';
 import Slider from 'react-slick';
-import PartyItem from './components/Party';
-import CongressmanList from './components/Congressman';
+import { getCookie } from 'cookies-next';
+import { ACCESS_TOKEN } from '@/constants';
+import { PartyItem, CongressmanList } from './components';
 
 const partyList = [
   {
@@ -106,6 +109,8 @@ const congressmanList = [
 ];
 
 export default function MyPage() {
+  const router = useRouter();
+  const accessToken = getCookie(ACCESS_TOKEN);
   const sliderSettings = {
     arrows: false,
     dots: false,
@@ -114,6 +119,14 @@ export default function MyPage() {
     speed: 2000,
     variableWidth: true,
   };
+
+  useEffect(() => {
+    if (!accessToken) {
+      router.push('/login');
+    }
+  }, []);
+
+  if (!accessToken) return <div className="flex items-center justify-center h-full">회원 정보가 없습니다.</div>;
 
   return (
     <div className="flex flex-col h-full gap-8">
