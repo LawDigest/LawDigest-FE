@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback, useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -18,8 +19,7 @@ import Image from 'next/image';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining } from '@/utils';
-import { useState, useCallback } from 'react';
-import { postBookmark } from '@/app/bill/[id]/apis';
+import { usePostBookmark } from '@/app/bill/[id]/apis';
 
 export default function Bill({
   bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary, view_count, bill_like_count },
@@ -39,11 +39,17 @@ export default function Bill({
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
+  const mutateBookmark = usePostBookmark(bill_id);
 
-  const useClickScrab = useCallback(() => {
+  useEffect(() => {
+    setIsLiked(is_book_mark);
+  }, [is_book_mark]);
+
+  const onClickScrab = useCallback(() => {
     setIsLiked(!isLiked);
-    postBookmark(bill_id, isLiked);
-  }, [isLiked, postBookmark]);
+
+    mutateBookmark.mutate(!isLiked);
+  }, [isLiked]);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -59,7 +65,7 @@ export default function Bill({
             <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
 
             {detail && (
-              <Button isIconOnly className="bg-transparent" onClick={useClickScrab}>
+              <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
                 <IconScrabSmall isActive={isLiked} />
               </Button>
             )}
@@ -103,7 +109,7 @@ export default function Bill({
           <CardFooter className="flex items-center justify-between p-0 -ml-1">
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-3">
-                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={useClickScrab}>
+                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
                   <IconScrabSmall isActive={isLiked} />
                 </Button>
                 <h4 className="mr-2">스크랩</h4>
