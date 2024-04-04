@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import http from '@/api/config/core';
-import { FeedResponse, PartyDetailResponse, ValueOf, PartyCongressmanResponse } from '@/types';
+import { FeedResponse, PartyDetailResponse, ValueOf, PartyCongressmanResponse, PartyFollowResponse } from '@/types';
 import { BILL_TAB } from '@/constants';
 
 export const getBillByParty = async (
@@ -23,4 +23,10 @@ export const getPartyCongressman = async (partyId: number, page: number) =>
   http.get<PartyCongressmanResponse>({
     url: `/party/congressman`,
     params: { party_id: partyId, page },
+  });
+
+export const patchPartyFollow = (partyId: number, followChecked: boolean) =>
+  http.patch<PartyFollowResponse>({
+    url: `/party/follow`,
+    params: { party_id: partyId, follow_checked: followChecked },
   });

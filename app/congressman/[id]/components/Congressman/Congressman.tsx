@@ -4,8 +4,8 @@ import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPartyColor } from '@/utils';
-import { FollowButton } from '@/components';
-import { useGetCongressmanDetail, usePatchCongressmanFollow } from '../../apis';
+import FollowButton from './FollowButton';
+import { useGetCongressmanDetail } from '../../apis';
 
 export default async function CongressmanComponent({
   congressmanId,
@@ -57,7 +57,7 @@ export default async function CongressmanComponent({
         </div>
       </div>
 
-      <FollowButton congressmanId={congressmanId} likeChecked={like_checked} apiHook={usePatchCongressmanFollow} />
+      <FollowButton id={congressmanId} likeChecked={like_checked} />
     </Card>
   );
 }
