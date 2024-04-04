@@ -1,7 +1,7 @@
 'use clinet';
 
-import { QueryClient } from '@tanstack/react-query';
-import { getBillDetail } from './api';
+import { QueryClient, useMutation } from '@tanstack/react-query';
+import { getBillDetail, patchViewCount, postBookmark } from './api';
 
 export const useBillDetail = ({ id, queryClient }: { id: string; queryClient: QueryClient }) =>
   queryClient.fetchQuery({
@@ -9,14 +9,8 @@ export const useBillDetail = ({ id, queryClient }: { id: string; queryClient: Qu
     queryFn: () => getBillDetail({ id }),
   });
 
-// export const usePatchViewCount = (id: string) =>
-//   useMutation({
-//     mutationKey: ['/bill/view_count', id],
-//     mutationFn: () => patchViewCount(id),
-//   });
+export const usePatchViewCount = async (bill_id: string) => {
+  const response = await patchViewCount(bill_id);
 
-// export const usePatchViewCount = async (id: string) => {
-//   const response = await patchViewCount(id);
-
-//   return response;
-// };
+  return response;
+};

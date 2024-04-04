@@ -1,9 +1,18 @@
 'use client';
 
-import { Card, CardHeader, CardBody, CardFooter } from '@nextui-org/card';
-import { Avatar } from '@nextui-org/avatar';
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/dropdown';
-import { Button, Divider } from '@nextui-org/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Button,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Divider,
+} from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
@@ -21,20 +30,20 @@ export default function Bill({
     party_image_url,
     party_name,
   },
+  is_book_mark,
   public_proposer_dto_list,
   detail,
   congressman,
   children,
+  viewCount,
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useState(is_book_mark);
 
-  const onClickScrab = useCallback(() => {
+  const useClickScrab = useCallback(() => {
     setIsLiked(!isLiked);
-    postBookmark(bill_id, isLiked)
-      .then((res) => console.log(res))
-      .catch((e) => console.log(e));
-  }, [isLiked]);
+    postBookmark(bill_id, isLiked);
+  }, [isLiked, postBookmark]);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -50,7 +59,7 @@ export default function Bill({
             <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
 
             {detail && (
-              <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
+              <Button isIconOnly className="bg-transparent" onClick={useClickScrab}>
                 <IconScrabSmall isActive={isLiked} />
               </Button>
             )}
@@ -94,7 +103,7 @@ export default function Bill({
           <CardFooter className="flex items-center justify-between p-0 -ml-1">
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-3">
-                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
+                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={useClickScrab}>
                   <IconScrabSmall isActive={isLiked} />
                 </Button>
                 <h4 className="mr-2">스크랩</h4>
@@ -118,12 +127,12 @@ export default function Bill({
           <CardFooter className="flex items-center justify-between p-0">
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-2">
-                <h4 className="mr-2">조회수</h4>
+                <h4 className="mr-2">스크랩</h4>
                 <h4>{bill_like_count}</h4>
               </div>
               <div className="flex items-center text-sm text-gray-2">
-                <h4 className="mr-2">스크랩</h4>
-                <h4>{view_count}</h4>
+                <h4 className="mr-2">조회수</h4>
+                <h4>{viewCount}</h4>
               </div>
             </div>
 

@@ -61,9 +61,9 @@ const createApiMethod =
 
 // eslint-disable-next-line
 export default {
-  get: createApiMethod(axiosInstance, HTTP_METHODS.GET),
-  post: createApiMethod(axiosInstance, HTTP_METHODS.POST),
-  patch: createApiMethod(axiosInstance, HTTP_METHODS.PATCH),
-  put: createApiMethod(axiosInstance, HTTP_METHODS.PUT),
-  delete: createApiMethod(axiosInstance, HTTP_METHODS.DELETE),
+  get: createApiMethod(axiosInstance, HTTP_METHODS.get),
+  post: createApiMethod(axiosInstance, HTTP_METHODS.post),
+  patch: createApiMethod(axiosInstance, HTTP_METHODS.patch),
+  put: createApiMethod(axiosInstance, HTTP_METHODS.put),
+  delete: createApiMethod(axiosInstance, HTTP_METHODS.delete),
 };
