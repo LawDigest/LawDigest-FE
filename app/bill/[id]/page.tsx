@@ -10,7 +10,7 @@ import { SectionContainer } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
-  const { data: bill } = await useBillDetail({ id, queryClient });
+  const { data: bill } = await useBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
 
   // const { public_proposer_dto_list } = bill;
