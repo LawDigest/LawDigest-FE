@@ -11,7 +11,7 @@ export default function KaKaoLogin() {
   useEffect(() => {
     const accessToken = new URL(window.location.href).searchParams.get('token');
 
-    setCookie('ACCESS_TOKEN', accessToken);
+    setCookie('accessToken', accessToken);
 
     router.push('/');
   }, [router]);

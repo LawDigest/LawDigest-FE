@@ -20,7 +20,7 @@ export default function BillContainer({ id }: { id: string }) {
 
   useEffect(() => {
     if (data) {
-      setBills((prevBills) => [...prevBills, ...data.pages.flatMap(({ data: { bill_list: responses } }) => responses)]);
+      setBills(() => [...data.pages.flatMap(({ data: { bill_list: responses } }) => responses)]);
     }
   }, [data]);
 

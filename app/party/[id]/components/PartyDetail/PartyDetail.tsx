@@ -38,7 +38,7 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
         <Avatar
           src={process.env.NEXT_PUBLIC_IMAGE_URL + party_img_url}
           isBordered
-          className={`w-[130px] h-[130px] shadow-lg bg-white border-party-${partyColor}`}
+          className={`w-[130px] h-[130px] shadow-lg bg-white border-[${partyColor}]`}
         />
 
         <div className="flex flex-col items-center gap-1">
