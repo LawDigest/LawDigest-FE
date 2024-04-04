@@ -27,9 +27,9 @@ export const siteConfig = {
   ],
   stageTabs: [
     { label: '접수', value: 'reception' },
-    { label: '공포', value: 'promulgation' },
     { label: '위원회 심사', value: 'committeeJudge' },
     { label: '본회의 심의', value: 'review' },
+    { label: '공포', value: 'promulgation' },
   ],
   billTabs: [
     { label: '대표발의한 법안', value: 'representProposer' },
