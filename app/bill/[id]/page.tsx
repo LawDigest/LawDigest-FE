@@ -5,21 +5,22 @@ import GPTSummary from '@/components/GPTSummary';
 import { Button } from '@nextui-org/button';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
-import { useBillDetail } from './apis';
-import SectionContainer from './components/SectionContainer';
+import { useBillDetail, usePatchViewCount } from './apis';
+import { SectionContainer } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
-  const { data: bill } = await useBillDetail({ id, queryClient });
-  // const { public_proposer_dto_list } = bill;
+  const { data: bill } = await useBillDetail(id, queryClient);
+  const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
 
+  // const { public_proposer_dto_list } = bill;
   // const datas = public_proposer_dto_list.map(({ public_proposer_id }) => public_proposer_id);
   // const partyNames = public_proposer_dto_list.map(({ public_party_name }) => public_party_name);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section className="flex flex-col">
-        <Bill {...bill} detail>
+        <Bill {...bill} detail viewCount={viewCount}>
           <div className="flex flex-col gap-[34px]">
             <Divider className="bg-gray-0.5" />
 

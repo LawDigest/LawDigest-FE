@@ -1,9 +1,6 @@
 import { BillProps } from './bill';
+import { Pagination } from './pagination';
 
-export interface Pagination {
-  readonly last_page: boolean;
-  readonly page_number: number;
-}
 export interface FeedResponse {
   bill_list: BillProps;
   pagination_response: Pagination;

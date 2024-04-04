@@ -24,11 +24,8 @@ export default function Feed() {
 
   useEffect(() => {
     if (data) {
-      const curBills = data.pages.flatMap(({ data: { bill_list: responses } }) => responses);
-
-      setBills((prevBills) => [...prevBills, ...curBills]);
+      setBills(() => [...data.pages.flatMap(({ data: { bill_list: responses } }) => responses)]);
     }
-    // refetch();
   }, [data]);
 
   return (
