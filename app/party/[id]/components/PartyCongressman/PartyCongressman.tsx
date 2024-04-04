@@ -12,7 +12,7 @@ export default function PartyCongressman({ id }: { id: number }) {
     data ? data.pages.flatMap(({ data: { party_congressman: responses } }) => responses) : [],
   );
 
-  const fetchRef = useIntersect(async (entry, observer) => {
+  const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetching) {
       fetchNextPage();
