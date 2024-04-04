@@ -1,12 +1,23 @@
 'use client';
 
+import { UseMutationResult } from '@tanstack/react-query';
+import { BaseResponse, CongressmanFollowResponse } from '@/types';
 import { useCallback, useState } from 'react';
 import { Button } from '@nextui-org/react';
-import { usePatchCongressmanFollow } from '../../apis';
 
-export default function FollowButton({ congressmanId, likeChecked }: { congressmanId: string; likeChecked: boolean }) {
+export default function FollowButton({
+  congressmanId,
+  likeChecked,
+  apiHook,
+}: {
+  congressmanId: string;
+  likeChecked: boolean;
+  apiHook: (
+    congressmanId: string,
+  ) => UseMutationResult<BaseResponse<CongressmanFollowResponse>, Error, boolean, unknown>;
+}) {
   const [isFollowed, setIsFollowed] = useState(likeChecked);
-  const mutationFollow = usePatchCongressmanFollow(congressmanId);
+  const mutationFollow = apiHook(congressmanId);
 
   const onClickFollow = useCallback(() => {
     setIsFollowed(!isFollowed);

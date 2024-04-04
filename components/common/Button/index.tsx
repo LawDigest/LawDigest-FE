@@ -1,3 +1,4 @@
 import AddButon from './AddButton';
+import FollowButton from './FollowButton';
 
-export { AddButon };
+export { AddButon, FollowButton };
