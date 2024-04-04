@@ -1,5 +1,5 @@
 import { Input } from '@nextui-org/input';
-import SearchIcon from './SearchIcon';
+import { IconSearchbar } from '@/public/svgs';
 
 export default function SearchBar() {
   return (
@@ -20,7 +20,7 @@ export default function SearchBar() {
           ],
         }}
         placeholder="궁금한 입법현황을 검색해 보세요."
-        startContent={<SearchIcon />}
+        startContent={<IconSearchbar />}
       />
     </div>
   );

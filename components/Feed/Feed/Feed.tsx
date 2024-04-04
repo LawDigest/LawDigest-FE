@@ -2,11 +2,12 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useIntersect, useTabType } from '@/hooks';
-import { BillList, StageTab } from '@/components/Bill';
+import { BillList } from '@/components/Bill';
 import { IconControl } from '@/public/svgs';
 import { Button } from '@nextui-org/react';
 import { STAGE_TAB_KO } from '@/constants';
-import { useGetBills, useGetBillByStage } from './apis';
+import { useGetBills, useGetBillByStage } from '@/api/mainfeed';
+import StageTab from '../StageTab';
 
 export default function Feed() {
   const [stageType, setStageType] = useTabType<typeof STAGE_TAB_KO & '전체'>('전체');
@@ -16,7 +17,7 @@ export default function Feed() {
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
   const [toggleFilter, setToggleFilter] = useState(false);
 
-  const fetchRef = useIntersect(async (entry, observer) => {
+  const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetching) {
       fetchNextPage();

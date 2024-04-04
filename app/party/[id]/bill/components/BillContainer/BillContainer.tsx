@@ -11,7 +11,7 @@ export default function BillContainer({ id }: { id: number }) {
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByParty(id, billType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 
-  const fetchRef = useIntersect(async (entry, observer) => {
+  const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetching) {
       fetchNextPage();

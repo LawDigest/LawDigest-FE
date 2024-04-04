@@ -1,6 +1,4 @@
-import SearchBar from '@/components/common/SearchBar';
-import Layout from '@/components/common/Layout';
-import Feed from './components/Feed';
+import { Feed, SearchBar, Layout } from '@/components';
 
 export default function Home() {
   return (

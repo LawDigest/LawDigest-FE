@@ -1,14 +1,14 @@
 'use client';
 
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { CongressmanComponent, BillContainer } from './components';
 
 export default function Congressman({ params: { id } }: { params: { id: string } }) {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CongressmanComponent id={id} queryClient={queryClient} />
+      <CongressmanComponent congressmanId={id} queryClient={queryClient} />
       <BillContainer id={id} />
     </HydrationBoundary>
   );

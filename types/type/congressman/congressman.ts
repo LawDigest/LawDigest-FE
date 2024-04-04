@@ -12,4 +12,5 @@ export interface CongressmanDetailResponse {
   represent_count: number;
   public_count: number;
   congressman_image_url: string;
+  like_checked: boolean;
 }

@@ -1,7 +1,6 @@
-import { Bill } from '@/components/Bill';
+import { Bill, GPTSummary } from '@/components/Bill';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import getQueryClient from '@/lib/getQueryClient';
-import GPTSummary from '@/components/GPTSummary';
 import { Button } from '@nextui-org/button';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';

@@ -1,4 +1,4 @@
-import { Pagination } from './pagination';
+import { Pagination } from '../common/pagination';
 
 export interface PartyCongressmanProps {
   congressman_id: string;
