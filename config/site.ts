@@ -25,7 +25,7 @@ export const siteConfig = {
       href: '/mypage',
     },
   ],
-  billNavs: [
+  stageTabs: [
     { label: '접수', value: 'reception' },
     { label: '위원회 심사', value: 'committeeJudge' },
     { label: '본회의 심의', value: 'review' },

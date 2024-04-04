@@ -68,13 +68,13 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
           <p className="text-sm font-medium text-gray-2">팔로워</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          <Link href={`/party/bill/${party_id}`} className="text-2xl font-semibold">
+          <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
             임시
           </Link>
           <p className="text-sm font-medium text-gray-2">대표발의법안</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          <Link href={`/party/bill/${party_id}`} className="text-2xl font-semibold">
+          <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
             <p className="text-2xl font-semibold">임시</p>
           </Link>
           <p className="text-sm font-medium text-gray-2">공동발의법안</p>

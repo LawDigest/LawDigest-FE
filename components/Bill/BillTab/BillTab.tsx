@@ -7,14 +7,11 @@ import { ValueOf } from '@/types';
 export default function BillTab({
   type,
   clickHandler,
-  category = '',
 }: {
   type: ValueOf<typeof BILL_TAB_KO>;
   clickHandler: (key: Key) => any;
-  // eslint-disable-next-line
-  category?: string;
 }) {
-  const values = category === 'feed' ? siteConfig.billNavs : siteConfig.billTabs;
+  const values = siteConfig.billTabs;
 
   return (
     <section className="w-full">
