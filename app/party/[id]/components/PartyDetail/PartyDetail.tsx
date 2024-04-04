@@ -16,9 +16,10 @@ import {
   PARTY_POLISY_COMMITTEE_CHAIRMAN,
 } from '@/constants/party';
 import { useGetPartyDetail } from '../../apis';
+import FollowButton from './FollowButton';
 
-export default async function PartyDetail({ id, queryClient }: { id: number; queryClient: QueryClient }) {
-  const { data: party } = await useGetPartyDetail({ id, queryClient });
+export default async function PartyDetail({ partyId, queryClient }: { partyId: number; queryClient: QueryClient }) {
+  const { data: party } = await useGetPartyDetail({ partyId, queryClient });
   const {
     party_id,
     party_name,
@@ -55,9 +56,7 @@ export default async function PartyDetail({ id, queryClient }: { id: number; que
           </p>
         </div>
 
-        <Button radius="full" className="w-full h-12 text-lg font-medium text-gray-3 bg-gray-1">
-          팔로우
-        </Button>
+        <FollowButton id={partyId} followed={followed} />
       </Card>
 
       <Divider />
