@@ -8,6 +8,7 @@ import IconScrabSmall from './ScrabSmall';
 import IconClock from './Clock';
 import IconWeb from './Web';
 import IconControl from './Control';
+import IconSearchbar from './Search';
 
 export {
   IconEmail,
@@ -20,4 +21,5 @@ export {
   IconClock,
   IconWeb,
   IconControl,
+  IconSearchbar,
 };

@@ -1,16 +1,31 @@
 import { QueryClient } from '@tanstack/react-query';
 import { Card } from '@nextui-org/card';
 import { Avatar } from '@nextui-org/avatar';
-import { Button } from '@nextui-org/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPartyColor } from '@/utils';
 import { useGetCongressmanDetail } from '../../apis';
+import FollowButton from '../FollowButton';
 
-export default async function CongressmanComponent({ id, queryClient }: { id: string; queryClient: QueryClient }) {
-  const { data: congressman } = await useGetCongressmanDetail({ id, queryClient });
-  const { congressman_name, party_id, party_name, party_image_url, district, commits, elected, congressman_image_url } =
-    congressman;
+export default async function CongressmanComponent({
+  congressmanId,
+  queryClient,
+}: {
+  congressmanId: string;
+  queryClient: QueryClient;
+}) {
+  const { data: congressman } = await useGetCongressmanDetail({ congressmanId, queryClient });
+  const {
+    congressman_name,
+    party_id,
+    party_name,
+    party_image_url,
+    district,
+    commits,
+    elected,
+    congressman_image_url,
+    like_checked,
+  } = congressman;
   const partyColor = getPartyColor(party_name);
 
   return (
@@ -42,9 +57,7 @@ export default async function CongressmanComponent({ id, queryClient }: { id: st
         </div>
       </div>
 
-      <Button radius="full" className="text-lg font-medium bg-gray-1 text-gray-3">
-        팔로우
-      </Button>
+      <FollowButton congressmanId={congressmanId} likeChecked={like_checked} />
     </Card>
   );
 }

@@ -1,5 +1,4 @@
-import Layout from '@/components/common/Layout';
-import SearchBar from '@/components/common/SearchBar';
+import { Layout, SearchBar } from '@/components';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -1,10 +1,10 @@
 'use client';
 
-import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { QueryClient, useMutation, useSuspenseInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { BILL_TAB } from '@/constants';
 import { ValueOf } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
-import { getBillByCongressmanId, getCongressmanDetail } from './api';
+import { getBillByCongressmanId, getCongressmanDetail, patchCongressmanFollow } from './api';
 
 export const useGetBillByCongressman = (
   id: string,
@@ -21,8 +21,25 @@ export const useGetBillByCongressman = (
     },
   });
 
-export const useGetCongressmanDetail = ({ id, queryClient }: { id: string; queryClient: QueryClient }) =>
+export const useGetCongressmanDetail = ({
+  congressmanId,
+  queryClient,
+}: {
+  congressmanId: string;
+  queryClient: QueryClient;
+}) =>
   queryClient.fetchQuery({
-    queryKey: ['/congressman/detail', id],
-    queryFn: () => getCongressmanDetail(id),
+    queryKey: ['/congressman/detail', congressmanId],
+    queryFn: () => getCongressmanDetail(congressmanId),
   });
+
+export const usePatchCongressmanFollow = (congressmanId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (likeChecked: boolean) => patchCongressmanFollow(congressmanId, likeChecked),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/congressman/detail', congressmanId] });
+    },
+  });
+};

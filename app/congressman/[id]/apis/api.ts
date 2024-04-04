@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import http from '@/api/config/core';
-import { FeedResponse, CongressmanDetailResponse, ValueOf } from '@/types';
+import { FeedResponse, CongressmanDetailResponse, CongressmanFollowResponse, ValueOf } from '@/types';
 import { BILL_TAB } from '@/constants';
 
 export const getBillByCongressmanId = async (
@@ -17,4 +17,10 @@ export const getCongressmanDetail = (congressmanId: string) =>
   http.get<CongressmanDetailResponse>({
     url: `/congressman/detail`,
     params: { congressman_id: congressmanId },
+  });
+
+export const patchCongressmanFollow = (congressmanId: string, likeChecked: boolean) =>
+  http.patch<CongressmanFollowResponse>({
+    url: `/congressman/like`,
+    params: { congressman_id: congressmanId, like_checked: likeChecked },
   });
