@@ -1,7 +1,7 @@
 import { Avatar } from '@nextui-org/avatar';
-import { Button } from '@nextui-org/react';
 import { QueryClient } from '@tanstack/react-query';
 import { useGetUserInfo } from '../../apis';
+import LogoutButton from './LogoutButton';
 
 export default async function UserInfo({ queryClient }: { queryClient: QueryClient }) {
   const { data: userInfo } = await useGetUserInfo(queryClient);
@@ -18,13 +18,7 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
         </div>
       </div>
 
-      <Button
-        radius="full"
-        size="sm"
-        variant="bordered"
-        className="h-8 bg-transparent border-1 border-[#E0E0E0] text-[#999999] ">
-        로그아웃
-      </Button>
+      <LogoutButton />
     </section>
   );
 }
