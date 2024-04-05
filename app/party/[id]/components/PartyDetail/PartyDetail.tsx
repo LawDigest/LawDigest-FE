@@ -70,15 +70,23 @@ export default async function PartyDetail({ partyId, queryClient }: { partyId: n
           <p className="text-sm font-medium text-gray-2">팔로워</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
-            {representative_bill_count}
-          </Link>
+          {representative_bill_count ? (
+            <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
+              {representative_bill_count}
+            </Link>
+          ) : (
+            <p className="text-2xl font-semibold"> {representative_bill_count}</p>
+          )}
           <p className="text-sm font-medium text-gray-2">대표발의법안</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
-            <p className="text-2xl font-semibold">{public_bill_count}</p>
-          </Link>
+          {public_bill_count ? (
+            <Link href={public_bill_count ? `/party/${party_id}/bill` : ''} className="text-2xl font-semibold">
+              <p className="text-2xl font-semibold">{public_bill_count}</p>
+            </Link>
+          ) : (
+            <p className="text-2xl font-semibold"> {public_bill_count}</p>
+          )}
           <p className="text-sm font-medium text-gray-2">공동발의법안</p>
         </div>
       </section>
