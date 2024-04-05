@@ -1,23 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { FollowingPartyType } from '@/types';
 
-interface PartyItemProps {
-  label: string;
-  src: string;
-}
-
-export default function PartyItem({ label, src }: PartyItemProps) {
-  // eslint-disable-next-line no-nested-ternary
-  const borderColor = label === '더불어민주당' ? 'border-dpk' : label === '국민의힘' ? 'border-ppp' : 'border-jp';
-
+export default function PartyItem({ party_id, party_name, party_image_url }: FollowingPartyType) {
   return (
-    <Link href={`/party/${label}`}>
-      <div className={`w-[132px] h-[102px] rounded-lg mr-[10px] border-[2px] ${borderColor}`}>
+    <Link href={`/party/${party_id}`}>
+      <div className="w-[132px] h-[102px] rounded-lg mr-[10px] border-[2px]">
         <Image
-          src={src}
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
           width={132}
           height={102}
-          alt={`${label} 로고 이미지`}
+          alt={`${party_name} 로고 이미지`}
           className="object-cover w-[132px] h-[102px] rounded-lg"
         />
       </div>

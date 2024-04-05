@@ -1,3 +1,4 @@
 import PartyItem from './PartyItem';
+import PartyList from './PartyList';
 
-export default PartyItem;
+export { PartyItem, PartyList };
