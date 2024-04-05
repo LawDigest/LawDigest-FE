@@ -1,39 +1,23 @@
-'use client';
-
-import { useState, useCallback } from 'react';
-import { Button } from '@nextui-org/button';
+import { QueryClient } from '@tanstack/react-query';
+import { FollowingCongressmanType } from '@/types';
 import CongressmanItem from './CongressmanItem';
+import { useGetFollowingCongressman } from '../../apis';
 
-interface CongressmanListProps {
-  congressmanList: {
-    avatar_src: string;
-    party_label: string;
-    name: string;
-  }[];
-}
-
-export default function CongressmanList({ congressmanList }: CongressmanListProps) {
-  const [toggle, setToggle] = useState(false);
-
-  const onToggle = useCallback(() => {
-    setToggle(!toggle);
-  }, [toggle]);
+export default async function CongressmanList({ queryClient }: { queryClient: QueryClient }) {
+  const { data: congressmanList } = await useGetFollowingCongressman(queryClient);
+  const congressmanLength = congressmanList.length;
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-5 gap-y-[18px]">
-        {congressmanList.slice(0, 10).map((congressman, index) => (
-          <CongressmanItem key={`${congressman.name + index}`} {...congressman} />
-        ))}
-        {toggle &&
-          congressmanList
-            .slice(10)
-            .map((congressman, index) => <CongressmanItem key={`${congressman.name + index}`} {...congressman} />)}
-      </div>
+    <section className="px-[30px] flex flex-col gap-6 pb-10">
+      <p className="text-xl font-semibold">
+        팔로우한 의원 &middot;<span className="text-[#555555]"> {congressmanLength}</span>
+      </p>
 
-      <Button size="sm" className="text-gray-3 bg-gray-1 w-[73px] h-8 mx-auto " onClick={onToggle}>
-        {toggle ? '간략히' : '전체보기'}
-      </Button>
-    </div>
+      <div className="grid grid-cols-5 gap-y-[18px]">
+        {congressmanList.map((congressman: FollowingCongressmanType) => (
+          <CongressmanItem key={`${congressman.congressman_id}`} {...congressman} />
+        ))}
+      </div>
+    </section>
   );
 }

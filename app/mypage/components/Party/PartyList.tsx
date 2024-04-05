@@ -1,6 +1,5 @@
 import { QueryClient } from '@tanstack/react-query';
 import Slider from 'react-slick';
-import { AddButon } from '@/components';
 import { FollowingPartyType } from '@/types';
 import PartyItem from './PartyItem';
 import { useGetFollowingParty } from '../../apis';
@@ -14,16 +13,13 @@ export default async function PartyList({ qeuryClient }: { qeuryClient: QueryCli
     variableWidth: true,
   };
   const { data: partyList } = await useGetFollowingParty(qeuryClient);
+  const partyLength = partyList.length;
 
   return (
     <section className="pl-[30px] flex flex-col gap-6">
-      <div className="flex items-center justify-between pr-[30px]">
-        <p className="text-xl font-semibold">
-          팔로우한 정당 &middot;<span className="text-[#555555]"> 3</span>
-        </p>
-
-        <AddButon />
-      </div>
+      <p className="text-xl font-semibold">
+        팔로우한 정당 &middot;<span className="text-[#555555]"> {partyLength}</span>
+      </p>
 
       <Slider {...sliderSettings}>
         {partyList.map((party: FollowingPartyType) => (

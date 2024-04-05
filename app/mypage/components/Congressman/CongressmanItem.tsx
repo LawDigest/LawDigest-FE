@@ -1,19 +1,20 @@
+import Link from 'next/link';
 import { Avatar } from '@nextui-org/avatar';
+import { FollowingCongressmanType } from '@/types';
 
-interface CongressmanItemProps {
-  avatar_src: string;
-  party_label: string;
-  name: string;
-}
-
-export default function CongressmanItem({ avatar_src, party_label, name }: CongressmanItemProps) {
+export default function CongressmanItem({
+  congressman_id,
+  congressman_name,
+  congressman_image_url,
+  party_name,
+}: FollowingCongressmanType) {
   return (
-    <div className="flex flex-col items-center gap-1">
-      <Avatar src={avatar_src} />
+    <Link href={`/congressman/${congressman_id}`} className="flex flex-col items-center gap-1">
+      <Avatar size="lg" src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url} className="border-2" />
       <div className="flex flex-col items-center">
-        <p className="text-xs font-medium text-gray-2">{party_label}</p>
-        <p className="text-sm font-medium">{name}</p>
+        <p className="text-xs font-medium text-gray-2">{party_name}</p>
+        <p className="text-sm font-medium">{congressman_name}</p>
       </div>
-    </div>
+    </Link>
   );
 }
