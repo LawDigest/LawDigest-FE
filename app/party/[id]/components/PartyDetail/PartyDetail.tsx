@@ -26,6 +26,9 @@ export default async function PartyDetail({ partyId, queryClient }: { partyId: n
     party_img_url,
     proportional_congressman_count,
     district_congressman_count,
+    representative_bill_count,
+    public_bill_count,
+    follow_count,
     website_url,
     followed,
   } = party;
@@ -63,18 +66,18 @@ export default async function PartyDetail({ partyId, queryClient }: { partyId: n
 
       <section className="grid grid-cols-3 gap-10">
         <div className="flex flex-col items-center gap-[10px]">
-          <p className="text-2xl font-semibold">{followed || '임시'}</p>
+          <p className="text-2xl font-semibold">{follow_count}</p>
           <p className="text-sm font-medium text-gray-2">팔로워</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
           <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
-            임시
+            {representative_bill_count}
           </Link>
           <p className="text-sm font-medium text-gray-2">대표발의법안</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
           <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
-            <p className="text-2xl font-semibold">임시</p>
+            <p className="text-2xl font-semibold">{public_bill_count}</p>
           </Link>
           <p className="text-sm font-medium text-gray-2">공동발의법안</p>
         </div>
@@ -85,19 +88,21 @@ export default async function PartyDetail({ partyId, queryClient }: { partyId: n
       <div className="grid w-full grid-cols-4 justify-items-center ">
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3">당대표</p>
-          <p className="font-medium">{PARTY_LEADER[party_name as keyof typeof PARTY_NAME_KO]}</p>
+          <p className="font-medium">{PARTY_LEADER[party_name as keyof typeof PARTY_NAME_KO] || '없음'}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3">원내대표</p>
-          <p className="font-medium">{PARTY_FLOOR_LEADER[party_name as keyof typeof PARTY_NAME_KO]}</p>
+          <p className="font-medium">{PARTY_FLOOR_LEADER[party_name as keyof typeof PARTY_NAME_KO] || '없음'}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3">사무총장</p>
-          <p className="font-medium">{PARTY_SECRETARY_GENERAL[party_name as keyof typeof PARTY_NAME_KO]}</p>
+          <p className="font-medium">{PARTY_SECRETARY_GENERAL[party_name as keyof typeof PARTY_NAME_KO] || '없음'}</p>
         </div>
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3">정책위의장</p>
-          <p className="font-medium">{PARTY_POLISY_COMMITTEE_CHAIRMAN[party_name as keyof typeof PARTY_NAME_KO]}</p>
+          <p className="font-medium">
+            {PARTY_POLISY_COMMITTEE_CHAIRMAN[party_name as keyof typeof PARTY_NAME_KO] || '없음'}
+          </p>
         </div>
       </div>
 
