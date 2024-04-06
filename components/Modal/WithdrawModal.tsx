@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@nextui-org/react';
 import { postWithdraw } from '@/api/auth';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants';
+import { ACCESS_TOKEN } from '@/constants';
 import { deleteCookie } from 'cookies-next';
 
 export default function WithdrawModal({ isOpen, onOpenChange }: { isOpen: boolean; onOpenChange: () => void }) {
@@ -13,7 +13,6 @@ export default function WithdrawModal({ isOpen, onOpenChange }: { isOpen: boolea
     postWithdraw().then((res) => {
       if (Number(res.code) === 200) {
         deleteCookie(ACCESS_TOKEN);
-        deleteCookie(REFRESH_TOKEN);
         router.push('/login');
       }
     });

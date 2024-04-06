@@ -1,6 +1,6 @@
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants';
+import { ACCESS_TOKEN } from '@/constants';
 import { useCallback } from 'react';
 import { Button } from '@nextui-org/react';
 import { postLogout } from '../../apis';
@@ -14,7 +14,6 @@ export default function LogoutButton() {
     if (Number(res.code) === 200) {
       router.push('/login');
       deleteCookie(ACCESS_TOKEN);
-      deleteCookie(REFRESH_TOKEN);
     }
   }, []);
 

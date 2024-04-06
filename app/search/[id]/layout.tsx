@@ -1,15 +1,14 @@
-import { Layout, SearchBar } from '@/components';
+import { Layout } from '@/components';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '알림 페이지',
-  description: '알림을 자세히 확인할 수 있는 페이지',
+  title: '검색 페이지',
+  description: '검색결과를 자세히 확인할 수 있는 페이지',
 };
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout goBack>
-      <SearchBar />
+    <Layout nav goBack>
       {children}
     </Layout>
   );

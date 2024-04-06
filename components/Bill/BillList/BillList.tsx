@@ -1,4 +1,4 @@
-import { BillResponse } from '@/types';
+import { BillProps } from '@/types';
 import { RefObject } from 'react';
 import { Spinner } from '@nextui-org/spinner';
 import Bill from './Bill';
@@ -10,7 +10,7 @@ export default function BillList({
   detail,
   congressman,
 }: {
-  bills: BillResponse[];
+  bills: BillProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
   detail?: boolean;
