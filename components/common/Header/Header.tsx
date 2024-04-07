@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import GoBackButton from './GoBackButton';

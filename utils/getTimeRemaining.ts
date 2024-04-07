@@ -1,9 +1,9 @@
 export default function getTimeRemaining(time: string) {
-  const timeDiff = new Date().getTime() - new Date(time).getTime();
+  const timeDiff = new Date().getTime() - new Date(time.replace('T', ' ')).getTime();
   const hours = Math.floor(timeDiff / 1000 / 60 / 60);
   // eslint-disable-next-line no-nested-ternary
   return hours > 168
-    ? time
+    ? time.split('T')[0]
     : // eslint-disable-next-line no-nested-ternary
       hours > 24
       ? `${Math.floor(hours / 24)}일 전`
