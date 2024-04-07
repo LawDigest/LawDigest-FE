@@ -24,12 +24,13 @@ export default function SearchBill({
   id,
   name,
   proposed_date,
-  summary,
+  gpt_summary,
   like_count,
   view_count,
   proposers,
   party_name,
   party_image_url,
+  congressman_id,
   congressman_image_url,
   representative_proposer,
   viewCount,
@@ -103,7 +104,7 @@ export default function SearchBill({
         </CardHeader>
 
         <CardBody className="p-0 leading-normal whitespace-pre-wrap">
-          <p className={detail ? '' : 'line-clamp-[8]'}>{summary}</p>
+          <p className={detail ? '' : 'line-clamp-[8]'}>{gpt_summary}</p>
         </CardBody>
 
         {!detail && (
@@ -150,16 +151,20 @@ export default function SearchBill({
         )}
       </Card>
       {!congressman && (
-        <Link href="/congressman/">
+        <Link href={`/congressman/${congressman_id}`}>
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] `}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
-              <Avatar radius="full" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${congressman_image_url}`} />
+              <Avatar
+                radius="full"
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${congressman_image_url}`}
+                className="border"
+              />
               <div className="flex flex-col gap-0.5">
                 <h3 className="font-medium">{`${representative_proposer} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{`${representative_proposer} 의원 외 ${proposers}인`}</h4>
+                <h4 className="text-xs text-gray-2">{proposers}</h4>
               </div>
             </div>
 
@@ -173,7 +178,6 @@ export default function SearchBill({
         </Link>
       )}
       {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
-      hh
     </section>
   );
 }

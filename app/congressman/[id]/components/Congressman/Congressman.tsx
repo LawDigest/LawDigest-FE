@@ -37,7 +37,7 @@ export default async function CongressmanComponent({
         <Avatar
           radius="full"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-          className="w-[100px] h-[100px]"
+          className="w-[100px] h-[100px] border"
         />
 
         <div className="flex flex-col justify-between w-[65%]">
