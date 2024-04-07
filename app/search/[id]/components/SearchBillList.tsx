@@ -1,25 +1,21 @@
-import { BillResponse } from '@/types';
+import { SearchBillProps } from '@/types';
 import { RefObject } from 'react';
 import { Spinner } from '@nextui-org/spinner';
-import Bill from './Bill';
+import SearchBill from './SearchBill';
 
-export default function BillList({
+export default function SearchBillList({
   bills,
   isFetching,
   fetchRef,
-  detail,
-  congressman,
 }: {
-  bills: BillResponse[];
+  bills: SearchBillProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
-  detail?: boolean;
-  congressman?: boolean;
 }) {
   return (
     <>
       {bills.map((bill, index) => (
-        <Bill key={`${bill.bill_info_dto.bill_id + index}`} {...bill} detail={detail} congressman={congressman} />
+        <SearchBill key={`${bill.id + index}`} {...bill} detail={false} congressman={false} />
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">
