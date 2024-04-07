@@ -35,6 +35,10 @@ export const siteConfig = {
     { label: '대표발의한 법안', value: 'representProposer' },
     { label: '공동발의한 법안', value: 'publicProposer' },
   ],
+  searchTabs: [
+    { label: '법안', value: 'bill' },
+    { label: '의원/정당', value: 'congressmanParty' },
+  ],
   links: {
     github: 'https://github.com/LawDigest',
   },

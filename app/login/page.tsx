@@ -11,7 +11,7 @@ export default function Login() {
 
       <Button
         as={NextUILink}
-        href={`${process.env.NEXT_PUBLIC_URL}oauth2/authorization/kakao?redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}`}
+        href={`${process.env.NEXT_PUBLIC_URL}oauth2/authorization/kakao?redirect_uri=${`${process.env.NEXT_PUBLIC_DOMAIN}/login/kakaoLogin`}`}
         variant="bordered"
         radius="full"
         startContent={<Image src="/images/kakao.svg" width={22} height={22} alt="카카오톡 로고 이미지" />}

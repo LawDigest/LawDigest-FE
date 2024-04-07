@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -16,57 +16,62 @@ import {
 } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { BillProps } from '@/types';
+import { SearchBillProps } from '@/types';
 import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining } from '@/utils';
-import { usePostBookmark } from '@/app/bill/[id]/apis';
 
-export default function Bill({
-  bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary, view_count, bill_like_count },
-  representative_proposer_dto: {
-    representative_proposer_id,
-    representative_proposer_name,
-    represent_proposer_img_url,
-    party_image_url,
-    party_name,
-  },
-  is_book_mark,
-  public_proposer_dto_list,
+export default function SearchBill({
+  id,
+  name,
+  proposed_date,
+  gpt_summary,
+  like_count,
+  view_count,
+  proposers,
+  party_name,
+  party_image_url,
+  congressman_id,
+  congressman_image_url,
+  representative_proposer,
+  viewCount,
   detail,
   congressman,
-  children,
-  viewCount,
-}: BillProps) {
+}: SearchBillProps) {
   const partyColor = getPartyColor(party_name);
-  const [isLiked, setIsLiked] = useState(is_book_mark);
-  const mutateBookmark = usePostBookmark(bill_id);
 
   useEffect(() => {
-    setIsLiked(is_book_mark);
-  }, [is_book_mark]);
-
-  const onClickScrab = useCallback(() => {
-    setIsLiked(!isLiked);
-
-    mutateBookmark.mutate(!isLiked);
-  }, [isLiked]);
+    // console.log(
+    //   id,
+    //   name,
+    //   proposed_date,
+    //   summary,
+    //   like_count,
+    //   view_count,
+    //   proposers,
+    //   party_name,
+    //   party_image_url,
+    //   congressman_image_url,
+    //   representative_proposer,
+    //   viewCount,
+    // );
+  }, []);
 
   return (
     <section className="flex flex-col gap-5 my-6">
-      <Card key={bill_id} className="flex flex-col gap-5 mx-5 " radius="none" shadow="none">
+      <Card key={id} className="flex flex-col gap-5 mx-5 " radius="none" shadow="none">
         <CardHeader className="flex flex-col items-start gap-2 p-0">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
-              <h5 className="text-sm tracking-tight text-gray-2">{getTimeRemaining(propose_date)}</h5>
+              <h5 className="text-sm tracking-tight text-gray-2">{getTimeRemaining(proposed_date)}</h5>
             </div>
           )}
           <div className="flex items-start justify-between w-full">
-            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
+            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{name}</h2>
 
             {detail && (
-              <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
-                <IconScrabSmall isActive={isLiked} />
+              <Button isIconOnly className="bg-transparent">
+                <IconScrabSmall isActive={false} />
               </Button>
             )}
 
@@ -95,25 +100,22 @@ export default function Bill({
             )}
           </div>
 
-          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>}
+          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(proposed_date)}</h5>}
         </CardHeader>
 
         <CardBody className="p-0 leading-normal whitespace-pre-wrap">
-          <p className={detail ? '' : 'line-clamp-[8]'}>
-            {gpt_summary && gpt_summary}
-            {!gpt_summary && summary}
-          </p>
+          <p className={detail ? '' : 'line-clamp-[8]'}>{gpt_summary}</p>
         </CardBody>
 
         {!detail && (
           <CardFooter className="flex items-center justify-between p-0 -ml-1">
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-3">
-                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
-                  <IconScrabSmall isActive={isLiked} />
+                <Button isIconOnly size="sm" className="p-0 bg-transparent">
+                  <IconScrabSmall isActive={false} />
                 </Button>
                 <h4 className="mr-2">스크랩</h4>
-                <h4>{bill_like_count}</h4>
+                <h4>{like_count}</h4>
               </div>
               <div className="flex items-center text-sm text-gray-3">
                 <h4 className="mr-2">조회수</h4>
@@ -121,7 +123,7 @@ export default function Bill({
               </div>
             </div>
 
-            <Link href={`/bill/${bill_id}`}>
+            <Link href={`/bill/${id}`}>
               <Button className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8" size="sm" variant="flat">
                 자세히 보기
               </Button>
@@ -134,7 +136,7 @@ export default function Bill({
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-2">
                 <h4 className="mr-2">스크랩</h4>
-                <h4>{bill_like_count}</h4>
+                <h4>{like_count}</h4>
               </div>
               <div className="flex items-center text-sm text-gray-2">
                 <h4 className="mr-2">조회수</h4>
@@ -148,11 +150,8 @@ export default function Bill({
           </CardFooter>
         )}
       </Card>
-
-      <section className="mx-5">{children}</section>
-
       {!congressman && (
-        <Link href={`/congressman/${representative_proposer_id}`}>
+        <Link href={`/congressman/${congressman_id}`}>
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] `}
             radius="sm"
@@ -160,12 +159,12 @@ export default function Bill({
             <div className="flex items-center gap-2">
               <Avatar
                 radius="full"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${congressman_image_url}`}
                 className="border"
               />
               <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+                <h3 className="font-medium">{`${representative_proposer} 의원`}</h3>
+                <h4 className="text-xs text-gray-2">{proposers}</h4>
               </div>
             </div>
 
@@ -178,7 +177,6 @@ export default function Bill({
           </Card>
         </Link>
       )}
-
       {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
     </section>
   );

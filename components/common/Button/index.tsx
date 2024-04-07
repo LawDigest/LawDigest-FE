@@ -1,3 +1,3 @@
-import AddButon from './AddButton';
+import EnterButton from './EnterButton';
 
-export { AddButon };
+export { EnterButton };

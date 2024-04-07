@@ -9,6 +9,7 @@ import IconClock from './Clock';
 import IconWeb from './Web';
 import IconControl from './Control';
 import IconSearchbar from './Search';
+import IconArrowRight from './ArrowRIght';
 
 export {
   IconEmail,
@@ -22,4 +23,5 @@ export {
   IconWeb,
   IconControl,
   IconSearchbar,
+  IconArrowRight,
 };

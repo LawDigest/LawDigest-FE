@@ -33,3 +33,13 @@ export const BILL_TAB_KO = {
   representProposer: '대표발의한 법안',
   publicProposer: '공동발의한 법안',
 } as const;
+
+export const SEARCH_TAB = {
+  bill: 'bill',
+  congressmanParty: 'congressmanParty',
+} as const;
+
+export const SEARCH_TAB_KO = {
+  bill: '법안',
+  congressmanParty: '의원/정당',
+} as const;

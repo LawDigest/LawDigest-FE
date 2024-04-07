@@ -1,10 +1,10 @@
 import { Button } from '@nextui-org/button';
-import { IconPlus } from '@/public/svgs';
+import { IconArrowRight } from '@/public/svgs';
 
-export default function AddButon() {
+export default function EnterButton() {
   return (
     <Button isIconOnly className="bg-transparent">
-      <IconPlus />
+      <IconArrowRight />
     </Button>
   );
 }

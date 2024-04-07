@@ -16,8 +16,7 @@ export const getFollowingCongressman = async () =>
     url: `/user/liking/congressman`,
   });
 
-export const postLogout = () => {
+export const postLogout = async () =>
   http.post({
     url: `/logout`,
   });
-};
