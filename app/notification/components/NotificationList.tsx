@@ -1,10 +1,11 @@
-import { QueryClient } from '@tanstack/react-query';
-import { useGetNotification } from '../apis';
+import { useQuery } from '@tanstack/react-query';
+import { getNotification } from '../apis';
 import Notification from './Notification';
 
-export default async function NotificationList({ queryClient }: { queryClient: QueryClient }) {
-  const { data: notifications } = await useGetNotification(queryClient);
-  const notificationLength = notifications.length;
+export default function NotificationList() {
+  const { data: notifications } = useQuery({ queryKey: ['/notification'], queryFn: getNotification });
+
+  const notificationLength = notifications && notifications.data.length;
 
   return (
     <section className="flex flex-col gap-6 px-5 mb-10">
@@ -17,9 +18,10 @@ export default async function NotificationList({ queryClient }: { queryClient: Q
 
       <div className="flex flex-col gap-[18px]">
         <div className="flex flex-col gap-4">
-          {notifications.map((notification) => (
-            <Notification key={notification.title} {...notification} />
-          ))}
+          {notifications &&
+            notifications.data.map((notification) => (
+              <Notification key={notification.title + notification.content} {...notification} />
+            ))}
         </div>
       </div>
     </section>

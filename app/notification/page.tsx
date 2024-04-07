@@ -1,14 +1,13 @@
 'use client';
 
-import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { NotificationList } from './components';
+import { putNotificationRead } from './apis';
 
 export default function Notification() {
-  const queryClient = useQueryClient();
+  useEffect(() => {
+    putNotificationRead();
+  }, []);
 
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotificationList queryClient={queryClient} />
-    </HydrationBoundary>
-  );
+  return <NotificationList />;
 }

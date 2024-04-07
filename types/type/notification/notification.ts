@@ -8,3 +8,13 @@ export interface NotificationProps {
 }
 
 export type NotificationResponse = NotificationProps[];
+
+export interface NotificationReadProps {
+  title: string;
+  content: string;
+  target: string;
+  type: string;
+  created_date: string;
+}
+
+export type NotificationReadResponse = NotificationReadProps[];

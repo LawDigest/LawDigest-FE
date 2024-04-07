@@ -12,14 +12,21 @@ export default function Notification({
 }: NotificationProps) {
   return (
     <Link href={`bill/${target}`} className="flex items-center gap-4">
-      <Image src={notification_image_url} width={50} height={50} alt="정당 로고 이미지" />
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <p className="font-medium">{title}</p>
-          <p className="text-gray-2">&#183;</p>
-          <p className="text-sm text-gray-2"> {getTimeRemaining(created_date)}</p>
+      <div className="w-[52px] h-[52px] rounded-full border flex items-center justify-center overflow-hidden shrink-0	">
+        <Image
+          src={process.env.NEXT_PUBLIC_IMAGE_URL + notification_image_url}
+          width={50}
+          height={20}
+          alt="정당 로고 이미지"
+          className="object-fit w-[50px] h-[20px]"
+        />
+      </div>
+      <div className="flex flex-col w-full gap-2">
+        <div className="flex items-center justify-between">
+          <p className="font-medium truncate w-[240px]">{title}</p>
+          <p className="text-sm text-gray-2 shrink-0 "> {getTimeRemaining(created_date)}</p>
         </div>
-        <p className="text-[#A1A1AA] text-sm">{content}</p>
+        <p className="text-[#A1A1AA] text-sm truncate w-[240px]">{content}</p>
       </div>
     </Link>
   );
