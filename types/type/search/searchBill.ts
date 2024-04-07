@@ -5,13 +5,14 @@ export interface SearchBillProps {
   name: string;
   search_type: string;
   proposed_date: string;
-  summary: string;
+  gpt_summary: string;
   like_count: number;
   view_count: number;
   party_id: number;
   proposers: string;
   party_name: string;
   party_image_url: string;
+  congressman_id: string;
   congressman_image_url: string;
   representative_proposer: string;
   viewCount?: number;

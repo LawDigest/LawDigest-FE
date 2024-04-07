@@ -1,6 +1,5 @@
 import http from '@/api/config/core';
-import { SearchCongressmanPartyResponse } from '@/types/type/search/searchCongressmanParty';
-import { SearchBillResponse } from '@/types';
+import { SearchCongressmanPartyResponse, SearchBillResponse } from '@/types';
 
 export const getSearchCongressmanParty = async (searchWord: string, page: number) =>
   http.get<SearchCongressmanPartyResponse>({
