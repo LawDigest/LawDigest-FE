@@ -43,13 +43,3 @@ export const SEARCH_TAB_KO = {
   bill: '법안',
   congressmanParty: '의원/정당',
 } as const;
-
-export const ELECTION_TAB = {
-  district: 'district',
-  propotional: 'propotional',
-} as const;
-
-export const ELECTION_TAB_KO = {
-  district: '지역구',
-  propotional: '비례대표',
-} as const;

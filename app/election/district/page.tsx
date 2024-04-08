@@ -2,7 +2,7 @@
 
 import { IconArrowRight } from '@/public/svgs';
 import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { LocationSelect } from '../components';
 
 export default function ElectionDistrict() {
   const mode = useSearchParams().get('set');
@@ -20,6 +20,8 @@ export default function ElectionDistrict() {
           <IconArrowRight />
           <div className="text-gray-1">구 · 시 · 군 선택</div>
         </div>
+
+        <LocationSelect />
       </section>
     );
   }

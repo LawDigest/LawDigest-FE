@@ -4,13 +4,13 @@ import { QueryClient } from '@tanstack/react-query';
 import { getDistrictList } from './apis';
 
 export const useGetDistrictList = ({
+  queryClient,
   cityName,
   guName,
-  queryClient,
 }: {
+  queryClient: QueryClient;
   cityName?: string;
   guName?: string;
-  queryClient: QueryClient;
 }) =>
   queryClient.fetchQuery({
     queryKey: ['/district/list'],
