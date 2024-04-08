@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -19,6 +18,7 @@ import Image from 'next/image';
 import { SearchBillProps } from '@/types';
 import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining } from '@/utils';
+import { PartyLogo } from '@/components';
 
 export default function SearchBill({
   id,
@@ -38,23 +38,6 @@ export default function SearchBill({
   congressman,
 }: SearchBillProps) {
   const partyColor = getPartyColor(party_name);
-
-  useEffect(() => {
-    // console.log(
-    //   id,
-    //   name,
-    //   proposed_date,
-    //   summary,
-    //   like_count,
-    //   view_count,
-    //   proposers,
-    //   party_name,
-    //   party_image_url,
-    //   congressman_image_url,
-    //   representative_proposer,
-    //   viewCount,
-    // );
-  }, []);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -168,12 +151,16 @@ export default function SearchBill({
               </div>
             </div>
 
-            <Image
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-              width={120}
-              height={120}
-              alt={`${party_name} 이미지`}
-            />
+            {party_image_url !== null ? (
+              <Image
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                width={120}
+                height={120}
+                alt={`${party_name} 이미지`}
+              />
+            ) : (
+              <PartyLogo partyName={party_name} circle={false} />
+            )}
           </Card>
         </Link>
       )}

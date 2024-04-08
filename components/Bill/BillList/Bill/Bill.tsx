@@ -20,6 +20,7 @@ import { BillProps } from '@/types';
 import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
+import { PartyLogo } from '@/components/common';
 
 export default function Bill({
   bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary, view_count, bill_like_count },
@@ -169,12 +170,16 @@ export default function Bill({
               </div>
             </div>
 
-            <Image
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-              width={120}
-              height={120}
-              alt={`${party_name} 이미지`}
-            />
+            {party_image_url !== null ? (
+              <Image
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                width={120}
+                height={120}
+                alt={`${party_name} 이미지`}
+              />
+            ) : (
+              <PartyLogo partyName={party_name} circle={false} />
+            )}
           </Card>
         </Link>
       )}

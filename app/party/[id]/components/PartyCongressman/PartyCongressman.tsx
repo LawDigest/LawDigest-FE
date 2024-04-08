@@ -27,7 +27,7 @@ export default function PartyCongressman({ id }: { id: number }) {
 
   return (
     <section className="mx-5 my-10">
-      <div className="grid w-full grid-cols-4 justify-items-center gap-y-3 ">
+      <div className="w-full grid grid-cols-4 justify-items-center gap-y-3 ">
         {congressmen.map((congressman, index) => (
           <PartyCongressmanCard key={`${congressman.congressman_id + index}`} {...congressman} />
         ))}
