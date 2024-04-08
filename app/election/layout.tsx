@@ -1,6 +1,6 @@
 import { Layout } from '@/components';
 import { Metadata } from 'next';
-import { HeadBoard } from './components';
+import { HeadBoard, ElectionTab } from './components';
 
 export const metadata: Metadata = {
   title: '선거 페이지',
@@ -11,6 +11,7 @@ export default function ElectionLayout({ children }: { children: React.ReactNode
   return (
     <Layout nav logo notification>
       <HeadBoard />
+      <ElectionTab />
       {children}
     </Layout>
   );
