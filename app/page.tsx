@@ -3,7 +3,7 @@ import { Feed, SearchBar, Layout } from '@/components';
 export default function Home() {
   return (
     <Layout nav logo notification>
-      <SearchBar />
+      <SearchBar isElection={false} />
       <Feed />
     </Layout>
   );
