@@ -14,7 +14,7 @@ export default function SearchList({
   fetchRef: RefObject<HTMLDivElement>;
 }) {
   return (
-    <section className="my-10">
+    <section className="mx-5 my-8">
       <div className="flex flex-col gap-5">
         {searchResults.map((searchResult, index) =>
           searchResult.search_type === 'PARTY' ? (

@@ -61,9 +61,9 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
   return (
     <>
       <SearchBar />
-      <section className="mx-5">
+      <section className="">
         <p className="my-4 text-sm font-medium text-center text-gray-2">{`'${decodeURI(id)}'에 대한 검색결과입니다.`}</p>
-        <div className="my-10">
+        <div className="mb-10">
           <SearchTab type={searchType as any} clickHandler={setSearchType as any} />
           {searchType === '법안' ? (
             <SearchBillList bills={searchResultsBill} isFetching={isFetchingBill} fetchRef={fetchRefBill} />
