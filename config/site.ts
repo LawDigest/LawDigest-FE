@@ -39,6 +39,10 @@ export const siteConfig = {
     { label: '법안', value: 'bill' },
     { label: '의원/정당', value: 'congressmanParty' },
   ],
+  electionTabs: [
+    { label: '지역구', value: 'district' },
+    { label: '비례대표', value: 'propotional' },
+  ],
   links: {
     github: 'https://github.com/LawDigest',
   },

@@ -7,7 +7,7 @@ export default function ElectionTab() {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col items-center my-5">
+    <section className="flex flex-col items-center my-5">
       <Tabs
         color="primary"
         size="sm"
@@ -23,6 +23,6 @@ export default function ElectionTab() {
           <p>비례대표</p>
         </Tab>
       </Tabs>
-    </div>
+    </section>
   );
 }
