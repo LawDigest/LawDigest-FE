@@ -1,6 +1,6 @@
 'use client';
 
-import { QueryClient, useInfiniteQuery } from '@tanstack/react-query';
+import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { CookieValueTypes } from 'cookies-next';
 import {
   getDistrictId,
@@ -9,6 +9,7 @@ import {
   getProportionalPartyList,
   getProportionalPartyInfo,
   getProportionalPromise,
+  getProportionalCandidate,
 } from './apis';
 
 export const useGetDistrictId = ({
@@ -42,7 +43,7 @@ export const useGetCandidateDetail = ({
   });
 
 export const useGetDistrictCandidateList = ({ districtId }: { districtId: number }) =>
-  useInfiniteQuery({
+  useSuspenseInfiniteQuery({
     queryKey: ['/districtCandidate/list', districtId],
     queryFn: ({ pageParam }: { pageParam: number }) => getDistrictCandidateList(districtId, pageParam),
     initialPageParam: 0,
@@ -54,7 +55,7 @@ export const useGetDistrictCandidateList = ({ districtId }: { districtId: number
   });
 
 export const useGetProportionalPartyList = () =>
-  useInfiniteQuery({
+  useSuspenseInfiniteQuery({
     queryKey: ['/proportional_candidate/party_logo'],
     queryFn: ({ pageParam }: { pageParam: number }) => getProportionalPartyList(pageParam),
     initialPageParam: 0,
@@ -72,9 +73,21 @@ export const useGetProportionalPartyInfo = ({ partyId, queryClient }: { partyId:
   });
 
 export const useGetProportionalPromise = (partyId: number) =>
-  useInfiniteQuery({
-    queryKey: ['/proportional_candidate/promise'],
+  useSuspenseInfiniteQuery({
+    queryKey: ['/proportional_candidate/promise', partyId],
     queryFn: ({ pageParam }: { pageParam: number }) => getProportionalPromise(partyId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: ({ data }) => {
+      const { pagination_response } = data || {};
+      const { last_page, page_number } = pagination_response || {};
+      return last_page ? undefined : page_number + 1;
+    },
+  });
+
+export const useGetProportionalCandidate = (partyId: number) =>
+  useSuspenseInfiniteQuery({
+    queryKey: ['/proportional_candidate/list', partyId],
+    queryFn: ({ pageParam }: { pageParam: number }) => getProportionalCandidate(partyId, pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};

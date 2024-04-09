@@ -4,6 +4,7 @@ import {
   DistrictCandidateResponse,
   DistrictIdResponse,
   DistrictListResponse,
+  ProportionalCandidateResponse,
   ProportionalPartyInfoResponse,
   ProportionalPartyListResponse,
   ProportionalPromiseResponse,
@@ -57,5 +58,11 @@ export const getProportionalPartyInfo = async ({ partyId }: { partyId: number })
 export const getProportionalPromise = async (partyId: number, page: number) =>
   http.get<ProportionalPromiseResponse>({
     url: `/proportional_candidate/promise`,
+    params: { party_id: partyId, page },
+  });
+
+export const getProportionalCandidate = async (partyId: number, page: number) =>
+  http.get<ProportionalCandidateResponse>({
+    url: `/proportional_candidate/list`,
     params: { party_id: partyId, page },
   });
