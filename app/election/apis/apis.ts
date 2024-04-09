@@ -4,9 +4,9 @@ import {
   DistrictCandidateResponse,
   DistrictIdResponse,
   DistrictListResponse,
-  PropotionalPartyInfoResponse,
-  PropotionalPartyListResponse,
-  PropotionalPromiseResponse,
+  ProportionalPartyInfoResponse,
+  ProportionalPartyListResponse,
+  ProportionalPromiseResponse,
 } from '@/types';
 import { CookieValueTypes } from 'cookies-next';
 
@@ -42,20 +42,20 @@ export const getCandidateDetail = async ({ candidateId, type }: { candidateId: n
     params: { candidate_id: candidateId, type },
   });
 
-export const getPropotionalPartyList = async (page: number) =>
-  http.get<PropotionalPartyListResponse>({
+export const getProportionalPartyList = async (page: number) =>
+  http.get<ProportionalPartyListResponse>({
     url: `/proportional_candidate/party_logo`,
     params: { page },
   });
 
-export const getPropotionalPartyInfo = async ({ partyId }: { partyId: number }) =>
-  http.get<PropotionalPartyInfoResponse>({
+export const getProportionalPartyInfo = async ({ partyId }: { partyId: number }) =>
+  http.get<ProportionalPartyInfoResponse>({
     url: `/proportional_candidate/party_info`,
     params: { party_id: partyId },
   });
 
-export const getPropotionalPromise = async (partyId: number, page: number) =>
-  http.get<PropotionalPromiseResponse>({
+export const getProportionalPromise = async (partyId: number, page: number) =>
+  http.get<ProportionalPromiseResponse>({
     url: `/proportional_candidate/promise`,
     params: { party_id: partyId, page },
   });

@@ -44,12 +44,12 @@ export const SEARCH_TAB_KO = {
   congressmanParty: '의원/정당',
 } as const;
 
-export const PROPOTIONAL_TAB = {
+export const PROPORTIONAL_TAB = {
   promise: 'promise',
   candidate: 'candidate',
 };
 
-export const PROPOTIONAL_TAB_KO = {
+export const PROPORTIONAL_TAB_KO = {
   promise: '정당 공약',
   candidate: '후보자 명단',
 };

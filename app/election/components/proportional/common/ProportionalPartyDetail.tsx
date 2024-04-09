@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { Chip } from '@nextui-org/chip';
 import { useQueryClient } from '@tanstack/react-query';
 import { PartyLogo } from '@/components';
-import { useGetPropotionalPartyInfo } from '../../../apis';
+import { useGetProportionalPartyInfo } from '../../../apis';
 
-export default async function PropotionalPartyDetail({ partyId }: { partyId: number }) {
+export default async function ProportionalPartyDetail({ partyId }: { partyId: number }) {
   const queryClient = useQueryClient();
-  const { data: party } = await useGetPropotionalPartyInfo({ queryClient, partyId });
+  const { data: party } = await useGetProportionalPartyInfo({ queryClient, partyId });
   const { party_image_url, candidate_number, party_name, party_order } = party;
 
   return (

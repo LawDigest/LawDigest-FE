@@ -1,4 +1,4 @@
-import { PropotionalPromiseProps } from '@/types';
+import { ProportionalPromiseProps } from '@/types';
 import { RefObject } from 'react';
 import { Spinner } from '@nextui-org/spinner';
 import PromiseItem from './PromiseItem';
@@ -8,7 +8,7 @@ export default function PromiseList({
   isFetching,
   fetchRef,
 }: {
-  promiseList: PropotionalPromiseProps[];
+  promiseList: ProportionalPromiseProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
 }) {

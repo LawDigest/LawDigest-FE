@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { useIntersect, useTabType } from '@/hooks';
-import { PROPOTIONAL_TAB_KO } from '@/constants';
-import { PropotionalPartyDetail, PropotionalTab, PromiseList } from '../../components';
-import { useGetPropotionalPromise } from '../../apis';
+import { PROPORTIONAL_TAB_KO } from '@/constants';
+import { ProportionalPartyDetail, ProportionalTab, PromiseList } from '../../components';
+import { useGetProportionalPromise } from '../../apis';
 
 export default function ElectionParty({ params: { id } }: { params: { id: number } }) {
-  const [type, setType] = useTabType<typeof PROPOTIONAL_TAB_KO>('정당 공약');
+  const [type, setType] = useTabType<typeof PROPORTIONAL_TAB_KO>('정당 공약');
 
   const {
     data: promise,
@@ -15,7 +15,7 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
     isFetching: isFetchingP,
     fetchNextPage: fetchNextPageP,
     refetch: refetchP,
-  } = useGetPropotionalPromise(id);
+  } = useGetProportionalPromise(id);
   const [promiseList, setPromiseList] = useState(
     promise ? promise.pages.flatMap(({ data: { party_promise: responses } }) => responses) : [],
   );
@@ -39,11 +39,11 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
 
   return (
     <div>
-      <PropotionalPartyDetail partyId={id} />
+      <ProportionalPartyDetail partyId={id} />
 
       <br />
 
-      <PropotionalTab type={type as any} clickHandler={setType as any} />
+      <ProportionalTab type={type as any} clickHandler={setType as any} />
 
       <PromiseList promiseList={promiseList} isFetching={isFetchingP} fetchRef={fetchRefP} />
     </div>

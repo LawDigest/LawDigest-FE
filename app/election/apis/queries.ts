@@ -6,9 +6,9 @@ import {
   getDistrictId,
   getDistrictCandidateList,
   getCandidateDetail,
-  getPropotionalPartyList,
-  getPropotionalPartyInfo,
-  getPropotionalPromise,
+  getProportionalPartyList,
+  getProportionalPartyInfo,
+  getProportionalPromise,
 } from './apis';
 
 export const useGetDistrictId = ({
@@ -53,10 +53,10 @@ export const useGetDistrictCandidateList = ({ districtId }: { districtId: number
     },
   });
 
-export const useGetPropotionalPartyList = () =>
+export const useGetProportionalPartyList = () =>
   useInfiniteQuery({
     queryKey: ['/proportional_candidate/party_logo'],
-    queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPartyList(pageParam),
+    queryFn: ({ pageParam }: { pageParam: number }) => getProportionalPartyList(pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};
@@ -65,16 +65,16 @@ export const useGetPropotionalPartyList = () =>
     },
   });
 
-export const useGetPropotionalPartyInfo = ({ partyId, queryClient }: { partyId: number; queryClient: QueryClient }) =>
+export const useGetProportionalPartyInfo = ({ partyId, queryClient }: { partyId: number; queryClient: QueryClient }) =>
   queryClient.fetchQuery({
     queryKey: ['/proportional_candidate/party_info', partyId],
-    queryFn: () => getPropotionalPartyInfo({ partyId }),
+    queryFn: () => getProportionalPartyInfo({ partyId }),
   });
 
-export const useGetPropotionalPromise = (partyId: number) =>
+export const useGetProportionalPromise = (partyId: number) =>
   useInfiniteQuery({
     queryKey: ['/proportional_candidate/promise'],
-    queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPromise(partyId, pageParam),
+    queryFn: ({ pageParam }: { pageParam: number }) => getProportionalPromise(partyId, pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};

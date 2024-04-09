@@ -1,17 +1,17 @@
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { siteConfig } from '@/config/site';
-import { PROPOTIONAL_TAB, PROPOTIONAL_TAB_KO } from '@/constants';
+import { PROPORTIONAL_TAB, PROPORTIONAL_TAB_KO } from '@/constants';
 import { Key } from 'react';
 import { ValueOf } from '@/types';
 
-export default function PropotionalTab({
+export default function ProportionalTab({
   type,
   clickHandler,
 }: {
-  type: ValueOf<typeof PROPOTIONAL_TAB_KO>;
+  type: ValueOf<typeof PROPORTIONAL_TAB_KO>;
   clickHandler: (key: Key) => any;
 }) {
-  const values = siteConfig.propotionalTabs;
+  const values = siteConfig.proportionalTabs;
 
   return (
     <section className="w-full">
@@ -29,7 +29,7 @@ export default function PropotionalTab({
         onSelectionChange={clickHandler}
         className="w-full">
         {values.map(({ label, value }) => (
-          <Tab key={label} title={PROPOTIONAL_TAB_KO[value as keyof typeof PROPOTIONAL_TAB]} />
+          <Tab key={label} title={PROPORTIONAL_TAB_KO[value as keyof typeof PROPORTIONAL_TAB]} />
         ))}
       </Tabs>
     </section>

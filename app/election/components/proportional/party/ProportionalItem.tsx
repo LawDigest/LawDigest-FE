@@ -1,10 +1,10 @@
-import { PropotionalPartyListProps } from '@/types';
+import { ProportionalPartyListProps } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Button, Link as NextUILInk } from '@nextui-org/react';
 import Image from 'next/image';
 import { PartyLogo } from '@/components';
 
-export default function PropotionalItem({ party_id, party_image_url, party_name }: PropotionalPartyListProps) {
+export default function ProportionalItem({ party_id, party_image_url, party_name }: ProportionalPartyListProps) {
   return (
     <Card className="flex flex-row justify-between px-4 items-center h-[78px]">
       {party_image_url ? (

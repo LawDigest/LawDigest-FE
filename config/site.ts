@@ -41,9 +41,9 @@ export const siteConfig = {
   ],
   electionTabs: [
     { label: '지역구', value: 'district' },
-    { label: '비례대표', value: 'propotional' },
+    { label: '비례대표', value: 'proportional' },
   ],
-  propotionalTabs: [
+  proportionalTabs: [
     { label: '정당 공약', value: 'promise' },
     { label: '후보자 명단', value: 'candidate' },
   ],
