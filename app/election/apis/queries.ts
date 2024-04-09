@@ -8,6 +8,7 @@ import {
   getCandidateDetail,
   getPropotionalPartyList,
   getPropotionalPartyInfo,
+  getPropotionalPromise,
 } from './apis';
 
 export const useGetDistrictId = ({
@@ -68,4 +69,16 @@ export const useGetPropotionalPartyInfo = ({ partyId, queryClient }: { partyId: 
   queryClient.fetchQuery({
     queryKey: ['/proportional_candidate/party_info', partyId],
     queryFn: () => getPropotionalPartyInfo({ partyId }),
+  });
+
+export const useGetPropotionalPromise = ({ partyId }: { partyId: number }) =>
+  useInfiniteQuery({
+    queryKey: ['/proportional_candidate/promise'],
+    queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPromise(partyId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: ({ data }) => {
+      const { pagination_response } = data || {};
+      const { last_page, page_number } = pagination_response || {};
+      return last_page ? undefined : page_number + 1;
+    },
   });
