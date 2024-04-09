@@ -25,7 +25,7 @@ export default function CandidateItem({
         </div>
       </div>
 
-      <Link href={`/election/candidate/${district_candidate_id}`}>
+      <Link href={`/election/candidate/${district_candidate_id}?type=district`}>
         <EnterButton />
       </Link>
     </div>
