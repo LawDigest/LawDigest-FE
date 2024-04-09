@@ -36,7 +36,7 @@ function Nav() {
       <NavbarContent>
         <ul className="flex justify-between w-full px-10 gap-2 ">
           {Nav_Items.map(({ label, path, IconComponent }) => {
-            const isActive = pathname?.endsWith(path);
+            const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
             return (
               <NavbarItem key={label}>

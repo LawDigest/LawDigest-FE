@@ -40,9 +40,9 @@ export default function SearchBill({
   const partyColor = getPartyColor(party_name);
 
   return (
-    <section className="flex flex-col gap-5 my-6">
-      <Card key={id} className="flex flex-col gap-5 mx-5 " radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start gap-2 p-0">
+    <section className="flex flex-col my-6 gap-5">
+      <Card key={id} className="flex flex-col mx-5 gap-5 " radius="none" shadow="none">
+        <CardHeader className="flex flex-col items-start p-0 gap-2">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
