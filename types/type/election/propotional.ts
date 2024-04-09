@@ -18,3 +18,14 @@ export interface PropotionalPartyInfoResponse {
   party_name: string;
   party_order: number;
 }
+
+export interface PropotionalPromiseProps {
+  party_promise_id: number;
+  title: string;
+  content: string;
+}
+
+export interface PropotionalPromiseResponse {
+  party_promise: PropotionalPromiseProps[];
+  pagination_response: Pagination;
+}
