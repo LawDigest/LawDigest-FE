@@ -2,21 +2,7 @@
 
 import { QueryClient } from '@tanstack/react-query';
 import { CookieValueTypes } from 'cookies-next';
-import { getDistrictList, getDistrictId } from './apis';
-
-export const useGetDistrictList = ({
-  queryClient,
-  cityName,
-  guName,
-}: {
-  queryClient: QueryClient;
-  cityName?: string;
-  guName?: string;
-}) =>
-  queryClient.fetchQuery({
-    queryKey: ['/district/list'],
-    queryFn: () => getDistrictList({ cityName, guName }),
-  });
+import { getDistrictId } from './apis';
 
 export const useGetDistrictId = ({
   queryClient,

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation';
-import { CITY_NAME_SHORT, CITY_NAME_LONG } from '@/constants';
+import { CITY_NAME_SHORT, CITY_KO } from '@/constants';
 import { setCookie } from 'cookies-next';
 import DistrictItem from './DistrictItem';
 
@@ -7,12 +7,10 @@ export default function CityList() {
   const router = useRouter();
 
   const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const cityName = e.currentTarget.value;
-    const cityNameLong = Object.entries(CITY_NAME_SHORT)
-      .filter((city) => city[1] === cityName)
-      .flat()[0];
+    const cityNameShort = e.currentTarget.value;
+    const cityNameLong = CITY_KO.filter((city) => city.short === cityNameShort)[0].long;
 
-    setCookie('cityName', CITY_NAME_LONG[cityNameLong]);
+    setCookie('cityName', cityNameLong);
     router.push(`/election/district?set=gu`);
   };
 
