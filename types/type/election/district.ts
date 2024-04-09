@@ -27,6 +27,8 @@ export interface DistrictCandidateResponse {
   pagination_response: Pagination;
 }
 
+export type CandidateType = 'proportional_candidate' | 'district_candidate';
+
 export interface CandidateDetailResponse {
   name: string;
   city_name: string;

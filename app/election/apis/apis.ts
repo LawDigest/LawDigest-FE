@@ -1,5 +1,11 @@
 import http from '@/api/config/core';
-import { DistrictCandidateResponse, DistrictIdResponse, DistrictListResponse } from '@/types/type/election/district';
+import {
+  CandidateDetailResponse,
+  CandidateType,
+  DistrictCandidateResponse,
+  DistrictIdResponse,
+  DistrictListResponse,
+} from '@/types/type/election/district';
 import { CookieValueTypes } from 'cookies-next';
 
 export const getDistrictList = async ({ cityName, guName }: { cityName?: string; guName?: string }) =>
@@ -26,4 +32,10 @@ export const getDistrictCandidateList = async (districtId: number, page: number)
   http.get<DistrictCandidateResponse>({
     url: `/districtCandidate/list`,
     params: { district_id: districtId, page },
+  });
+
+export const getCandidateDetail = async ({ candidateId, type }: { candidateId: string; type: CandidateType }) =>
+  http.get<CandidateDetailResponse>({
+    url: `/party/candidate/detail`,
+    params: { candidate_id: candidateId, type },
   });
