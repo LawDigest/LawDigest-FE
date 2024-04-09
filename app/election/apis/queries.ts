@@ -2,7 +2,13 @@
 
 import { QueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { CookieValueTypes } from 'cookies-next';
-import { getDistrictId, getDistrictCandidateList, getCandidateDetail, getPropotionalPartyList } from './apis';
+import {
+  getDistrictId,
+  getDistrictCandidateList,
+  getCandidateDetail,
+  getPropotionalPartyList,
+  getPropotionalPartyInfo,
+} from './apis';
 
 export const useGetDistrictId = ({
   queryClient,
@@ -56,4 +62,10 @@ export const useGetPropotionalPartyList = () =>
       const { last_page, page_number } = pagination_response || {};
       return last_page ? undefined : page_number + 1;
     },
+  });
+
+export const useGetPropotionalPartyInfo = ({ partyId, queryClient }: { partyId: number; queryClient: QueryClient }) =>
+  queryClient.fetchQuery({
+    queryKey: ['/proportional_candidate/party_info', partyId],
+    queryFn: () => getPropotionalPartyInfo({ partyId }),
   });

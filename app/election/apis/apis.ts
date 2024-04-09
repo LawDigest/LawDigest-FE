@@ -4,6 +4,7 @@ import {
   DistrictCandidateResponse,
   DistrictIdResponse,
   DistrictListResponse,
+  PropotionalPartyInfoResponse,
   PropotionalPartyListResponse,
 } from '@/types';
 import { CookieValueTypes } from 'cookies-next';
@@ -44,4 +45,10 @@ export const getPropotionalPartyList = async (page: number) =>
   http.get<PropotionalPartyListResponse>({
     url: `/proportional_candidate/party_logo`,
     params: { page },
+  });
+
+export const getPropotionalPartyInfo = async ({ partyId }: { partyId: number }) =>
+  http.get<PropotionalPartyInfoResponse>({
+    url: `/proportional_candidate/party_info`,
+    params: { party_id: partyId },
   });
