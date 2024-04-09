@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useIntersect } from '@/hooks';
-import { useGetPropotionalPartyList } from '../../apis';
-import PropotionalList from './PropotionalList';
+import { useGetProportionalPartyList } from '../../../apis';
+import PropotionalList from './ProportionalList';
 
 export default function PropotionalContainer() {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useGetPropotionalPartyList();
+  const { data, hasNextPage, isFetching, fetchNextPage } = useGetProportionalPartyList();
   const [partyList, setPartyList] = useState(
     data ? data.pages.flatMap(({ data: { proportional_party_logo_list_dto_list: responses } }) => responses) : [],
   );

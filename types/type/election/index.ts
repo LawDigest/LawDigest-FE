@@ -1,2 +1,2 @@
 export * from './district';
-export * from './propotional';
+export * from './proportional';

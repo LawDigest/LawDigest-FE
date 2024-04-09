@@ -1,10 +1,10 @@
-import { PropotionalPartyListProps } from '@/types';
+import { ProportionalPartyListProps } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Button, Link as NextUILInk } from '@nextui-org/react';
 import Image from 'next/image';
 import { PartyLogo } from '@/components';
 
-export default function PropotionalItem({ party_id, party_image_url, party_name }: PropotionalPartyListProps) {
+export default function ProportionalItem({ party_id, party_image_url, party_name }: ProportionalPartyListProps) {
   return (
     <Card className="flex flex-row justify-between px-4 items-center h-[78px]">
       {party_image_url ? (
@@ -21,13 +21,13 @@ export default function PropotionalItem({ party_id, party_image_url, party_name 
       <div>
         <Button
           as={NextUILInk}
-          href={`/election/party/${party_id}?view=promise`}
+          href={`/election/party/${party_id}`}
           className="text-sm font-medium bg-tranparent text-gray-2">
           정당 공약
         </Button>
         <Button
           as={NextUILInk}
-          href={`/election/party/${party_id}?view=candidateList`}
+          href={`/election/party/${party_id}`}
           className="text-sm font-medium bg-tranparent text-gray-2">
           후보자 명단
         </Button>

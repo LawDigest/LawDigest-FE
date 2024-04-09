@@ -1,22 +1,22 @@
 import { RefObject } from 'react';
 import { Spinner } from '@nextui-org/spinner';
-import { PropotionalPartyListProps } from '@/types';
-import PropotionalItem from './PropotionalItem';
+import { ProportionalPartyListProps } from '@/types';
+import ProportionalItem from './ProportionalItem';
 
-export default function PropotionalList({
+export default function ProportionalList({
   partyList,
   isFetching,
   fetchRef,
 }: {
-  partyList: PropotionalPartyListProps[];
+  partyList: ProportionalPartyListProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
 }) {
   return (
     <div>
-      <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-col gap-[14px] my-5">
         {partyList.map((party) => (
-          <PropotionalItem key={party.party_id} {...party} />
+          <ProportionalItem key={party.party_id} {...party} />
         ))}
       </div>
       {isFetching && (
