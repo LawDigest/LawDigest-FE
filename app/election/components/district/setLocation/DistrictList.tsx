@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import { setCookie, getCookie } from 'cookies-next';
 import { CITY_NAME, GU_NAME } from '@/constants';
-import { getDistrictList } from '../../apis';
+import { getDistrictList } from '../../../apis';
 import DistrictItem from './DistrictItem';
 
 export default async function DistrictList() {
