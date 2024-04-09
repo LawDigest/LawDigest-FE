@@ -2,7 +2,6 @@
 
 import { QueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { CookieValueTypes } from 'cookies-next';
-import { CandidateType } from '@/types/type/election/district';
 import { getDistrictId, getDistrictCandidateList, getCandidateDetail } from './apis';
 
 export const useGetDistrictId = ({
@@ -39,8 +38,8 @@ export const useGetCandidateDetail = ({
   type,
 }: {
   queryClient: QueryClient;
-  candidateId: string;
-  type: CandidateType;
+  candidateId: number;
+  type: string | null;
 }) =>
   queryClient.fetchQuery({
     queryKey: ['/party/candidate/detail', candidateId, type],

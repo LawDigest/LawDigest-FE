@@ -1,7 +1,6 @@
 import http from '@/api/config/core';
 import {
   CandidateDetailResponse,
-  CandidateType,
   DistrictCandidateResponse,
   DistrictIdResponse,
   DistrictListResponse,
@@ -34,7 +33,7 @@ export const getDistrictCandidateList = async (districtId: number, page: number)
     params: { district_id: districtId, page },
   });
 
-export const getCandidateDetail = async ({ candidateId, type }: { candidateId: string; type: CandidateType }) =>
+export const getCandidateDetail = async ({ candidateId, type }: { candidateId: number; type: string | null }) =>
   http.get<CandidateDetailResponse>({
     url: `/party/candidate/detail`,
     params: { candidate_id: candidateId, type },

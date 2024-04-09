@@ -37,7 +37,7 @@ export interface CandidateDetailResponse {
   career1: string;
   career2: string;
   gender: string;
-  age: string;
+  age: number;
   edu: string;
   district_candidate_image: string;
   district_candidate_id: string;
