@@ -21,13 +21,13 @@ export default function PropotionalItem({ party_id, party_image_url, party_name 
       <div>
         <Button
           as={NextUILInk}
-          href={`/election/party/${party_id}?view=promise`}
+          href={`/election/party/${party_id}?type=promise`}
           className="text-sm font-medium bg-tranparent text-gray-2">
           정당 공약
         </Button>
         <Button
           as={NextUILInk}
-          href={`/election/party/${party_id}?view=candidateList`}
+          href={`/election/party/${party_id}?type=candidateList`}
           className="text-sm font-medium bg-tranparent text-gray-2">
           후보자 명단
         </Button>
