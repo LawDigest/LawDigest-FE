@@ -14,7 +14,7 @@ export default function ProportionalList({
 }) {
   return (
     <div>
-      <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-col gap-[14px] my-5">
         {partyList.map((party) => (
           <ProportionalItem key={party.party_id} {...party} />
         ))}

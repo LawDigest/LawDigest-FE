@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useIntersect, useTabType } from '@/hooks';
 import { PROPORTIONAL_TAB_KO } from '@/constants';
-import { ProportionalPartyDetail, ProportionalTab, PromiseList } from '../../components';
-import { useGetProportionalPromise } from '../../apis';
+import { ProportionalPartyDetail, ProportionalTab, PromiseList, CandidateList } from '../../components';
+import { useGetProportionalPromise, useGetProportionalCandidate } from '../../apis';
 
 export default function ElectionParty({ params: { id } }: { params: { id: number } }) {
   const [type, setType] = useTabType<typeof PROPORTIONAL_TAB_KO>('정당 공약');
@@ -20,10 +20,30 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
     promise ? promise.pages.flatMap(({ data: { party_promise: responses } }) => responses) : [],
   );
 
+  const {
+    data: candidate,
+    hasNextPage: hasNextPageC,
+    isFetching: isFetchingC,
+    fetchNextPage: fetchNextPageC,
+    refetch: refetchC,
+  } = useGetProportionalCandidate(id);
+  const [candidateList, setCandidateList] = useState(
+    candidate
+      ? candidate.pages.flatMap(({ data: { proportional_candidate_list_dto_list: responses } }) => responses)
+      : [],
+  );
+
   const fetchRefP = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
     if (hasNextPageP && !isFetchingP) {
       fetchNextPageP();
+    }
+  });
+
+  const fetchRefC = useIntersect(async (entry: any, observer: any) => {
+    observer.unobserve(entry.target);
+    if (hasNextPageC && !isFetchingC) {
+      fetchNextPageC();
     }
   });
 
@@ -34,8 +54,17 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
   }, [promise]);
 
   useEffect(() => {
+    if (candidate) {
+      setCandidateList(() => [
+        ...candidate.pages.flatMap(({ data: { proportional_candidate_list_dto_list: responses } }) => responses),
+      ]);
+    }
+  }, [candidate]);
+
+  useEffect(() => {
     refetchP();
-  }, [promise]);
+    refetchC();
+  }, [type]);
 
   return (
     <div>
@@ -45,7 +74,13 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
 
       <ProportionalTab type={type as any} clickHandler={setType as any} />
 
-      <PromiseList promiseList={promiseList} isFetching={isFetchingP} fetchRef={fetchRefP} />
+      <section className="flex flex-col gap-5 mx-5 my-5">
+        {type === '정당 공약' ? (
+          <PromiseList promiseList={promiseList} isFetching={isFetchingP} fetchRef={fetchRefP} />
+        ) : (
+          <CandidateList candidateList={candidateList} isFetching={isFetchingC} fetchRef={fetchRefC} />
+        )}
+      </section>
     </div>
   );
 }
