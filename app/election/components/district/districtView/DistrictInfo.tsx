@@ -3,7 +3,7 @@ import { getCookie } from 'cookies-next';
 import { CITY_NAME, GU_NAME, DISTRICT_NAME } from '@/constants';
 import { Button, Link as NextUILink } from '@nextui-org/react';
 import { useGetDistrictId } from '../../../apis';
-import CandidateList from './CandidateList';
+import CandidateContainer from './CandidateContainer';
 
 export default async function DistrictInfo() {
   const queryClient = useQueryClient();
@@ -15,7 +15,7 @@ export default async function DistrictInfo() {
   } = await useGetDistrictId({ queryClient, cityName, guName, districtName });
 
   return (
-    <section className="mx-5 flex flex-col gap-8">
+    <section className="flex flex-col gap-8 mx-5 mb-5">
       <div className="flex items-baseline justify-between">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">
@@ -34,7 +34,7 @@ export default async function DistrictInfo() {
         </Button>
       </div>
 
-      <CandidateList districtId={districtId} />
+      <CandidateContainer districtId={districtId} />
     </section>
   );
 }

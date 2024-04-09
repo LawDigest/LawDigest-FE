@@ -1,38 +1,30 @@
-'use client';
+import { RefObject } from 'react';
+import { DistrictCandidateProps } from '@/types/type/election/district';
+import { Spinner } from '@nextui-org/spinner';
+import CandidateItem from './CandidateItem';
 
-import { useState, useEffect } from 'react';
-import { useIntersect } from '@/hooks';
-import { useGetDistrictCandidateList } from '@/app/election/apis';
-
-export default function CandidateList({ districtId }: { districtId: number }) {
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetDistrictCandidateList({ districtId });
-  const [candidates, setCandidates] = useState(
-    data ? data.pages.flatMap(({ data: { district_candidate_list_dto_list: responses } }) => responses) : [],
-  );
-
-  const fetchRef = useIntersect(async (entry: any, observer: any) => {
-    observer.unobserve(entry.target);
-    if (hasNextPage && !isFetching) {
-      fetchNextPage();
-    }
-  });
-
-  useEffect(() => {
-    if (data) {
-      setCandidates(() => [
-        ...data.pages.flatMap(({ data: { district_candidate_list_dto_list: responses } }) => responses),
-      ]);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    setCandidates([]);
-    refetch();
-  }, [districtId]);
-
+export default function CandidateList({
+  candidates,
+  isFetching,
+  fetchRef,
+}: {
+  candidates: DistrictCandidateProps[];
+  isFetching: boolean;
+  fetchRef: RefObject<HTMLDivElement>;
+}) {
   return (
     <div>
-      <div>list</div>
+      <div className="flex flex-col gap-5">
+        {candidates.map((candidate) => (
+          <CandidateItem key={candidate.district_candidate_id} {...candidate} />
+        ))}
+      </div>
+      {isFetching && (
+        <div className="flex justify-center w-full my-4">
+          <Spinner color="default" />
+        </div>
+      )}
+      <div ref={fetchRef} />
     </div>
   );
 }

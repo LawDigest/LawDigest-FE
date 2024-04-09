@@ -1,6 +1,6 @@
 'use client';
 
-import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { QueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { CookieValueTypes } from 'cookies-next';
 import { getDistrictId, getDistrictCandidateList } from './apis';
 
@@ -21,7 +21,7 @@ export const useGetDistrictId = ({
   });
 
 export const useGetDistrictCandidateList = ({ districtId }: { districtId: number }) =>
-  useSuspenseInfiniteQuery({
+  useInfiniteQuery({
     queryKey: ['/districtCandidate/list', districtId],
     queryFn: ({ pageParam }: { pageParam: number }) => getDistrictCandidateList(districtId, pageParam),
     initialPageParam: 0,
