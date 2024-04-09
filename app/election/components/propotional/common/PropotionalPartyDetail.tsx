@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Chip } from '@nextui-org/chip';
 import { useQueryClient } from '@tanstack/react-query';
 import { PartyLogo } from '@/components';
-import { useGetPropotionalPartyInfo } from '../../apis';
+import { useGetPropotionalPartyInfo } from '../../../apis';
 
 export default async function PropotionalPartyDetail({ partyId }: { partyId: number }) {
   const queryClient = useQueryClient();

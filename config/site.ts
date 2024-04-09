@@ -43,6 +43,10 @@ export const siteConfig = {
     { label: '지역구', value: 'district' },
     { label: '비례대표', value: 'propotional' },
   ],
+  propotionalTabs: [
+    { label: '정당 공약', value: 'promise' },
+    { label: '후보자 명단', value: 'candidate' },
+  ],
   links: {
     github: 'https://github.com/LawDigest',
   },

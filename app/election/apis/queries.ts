@@ -71,7 +71,7 @@ export const useGetPropotionalPartyInfo = ({ partyId, queryClient }: { partyId: 
     queryFn: () => getPropotionalPartyInfo({ partyId }),
   });
 
-export const useGetPropotionalPromise = ({ partyId }: { partyId: number }) =>
+export const useGetPropotionalPromise = (partyId: number) =>
   useInfiniteQuery({
     queryKey: ['/proportional_candidate/promise'],
     queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPromise(partyId, pageParam),

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useIntersect } from '@/hooks';
-import { useGetPropotionalPartyList } from '../../apis';
+import { useGetPropotionalPartyList } from '../../../apis';
 import PropotionalList from './PropotionalList';
 
 export default function PropotionalContainer() {

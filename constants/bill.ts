@@ -43,3 +43,13 @@ export const SEARCH_TAB_KO = {
   bill: '법안',
   congressmanParty: '의원/정당',
 } as const;
+
+export const PROPOTIONAL_TAB = {
+  promise: 'promise',
+  candidate: 'candidate',
+};
+
+export const PROPOTIONAL_TAB_KO = {
+  promise: '정당 공약',
+  candidate: '후보자 명단',
+};
