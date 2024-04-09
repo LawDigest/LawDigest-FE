@@ -1,5 +1,5 @@
 import { Avatar } from '@nextui-org/avatar';
-import { DistrictCandidateProps } from '@/types/type/election/district';
+import { DistrictCandidateProps } from '@/types';
 import { EnterButton } from '@/components';
 import Link from 'next/link';
 

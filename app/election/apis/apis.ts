@@ -1,10 +1,5 @@
 import http from '@/api/config/core';
-import {
-  CandidateDetailResponse,
-  DistrictCandidateResponse,
-  DistrictIdResponse,
-  DistrictListResponse,
-} from '@/types/type/election/district';
+import { CandidateDetailResponse, DistrictCandidateResponse, DistrictIdResponse, DistrictListResponse } from '@/types';
 import { CookieValueTypes } from 'cookies-next';
 
 export const getDistrictList = async ({ cityName, guName }: { cityName?: string; guName?: string }) =>

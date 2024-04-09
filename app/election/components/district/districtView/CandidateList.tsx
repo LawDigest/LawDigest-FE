@@ -1,5 +1,5 @@
 import { RefObject } from 'react';
-import { DistrictCandidateProps } from '@/types/type/election/district';
+import { DistrictCandidateProps } from '@/types';
 import { Spinner } from '@nextui-org/spinner';
 import CandidateItem from './CandidateItem';
 
