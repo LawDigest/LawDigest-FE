@@ -1,22 +1,22 @@
 import { RefObject } from 'react';
 import { Spinner } from '@nextui-org/spinner';
-import { DistrictCandidateProps } from '@/types';
-import CandidateItem from './CandidateItem';
+import { PropotionalPartyListProps } from '@/types';
+import PropotionalItem from './PropotionalItem';
 
-export default function CandidateList({
-  candidates,
+export default function PropotionalList({
+  partyList,
   isFetching,
   fetchRef,
 }: {
-  candidates: DistrictCandidateProps[];
+  partyList: PropotionalPartyListProps[];
   isFetching: boolean;
   fetchRef: RefObject<HTMLDivElement>;
 }) {
   return (
     <div>
-      <div className="flex flex-col gap-5">
-        {candidates.map((candidate) => (
-          <CandidateItem key={candidate.district_candidate_id} {...candidate} />
+      <div className="flex flex-col gap-[14px]">
+        {partyList.map((party) => (
+          <PropotionalItem key={party.party_id} {...party} />
         ))}
       </div>
       {isFetching && (

@@ -4,6 +4,6 @@ export default function PartyLogo({ partyName, circle }: { partyName: string; ci
       {partyName}
     </div>
   ) : (
-    <div className="w-[100px] text-center text-xl font-semibold text-gray-3">{partyName}</div>
+    <div className="text-xl font-semibold text-center  text-gray-3">{partyName}</div>
   );
 }

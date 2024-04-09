@@ -4,7 +4,8 @@ import {
   DistrictCandidateResponse,
   DistrictIdResponse,
   DistrictListResponse,
-} from '@/types/type/election/district';
+  PropotionalPartyListResponse,
+} from '@/types';
 import { CookieValueTypes } from 'cookies-next';
 
 export const getDistrictList = async ({ cityName, guName }: { cityName?: string; guName?: string }) =>
@@ -37,4 +38,10 @@ export const getCandidateDetail = async ({ candidateId, type }: { candidateId: n
   http.get<CandidateDetailResponse>({
     url: `/party/candidate/detail`,
     params: { candidate_id: candidateId, type },
+  });
+
+export const getPropotionalPartyList = async (page: number) =>
+  http.get<PropotionalPartyListResponse>({
+    url: `/proportional_candidate/party_logo`,
+    params: { page },
   });
