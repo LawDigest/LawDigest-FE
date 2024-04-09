@@ -20,18 +20,6 @@ export const useGetDistrictId = ({
     queryFn: () => getDistrictId({ cityName, guName, districtName }),
   });
 
-export const useGetPropotionalPartyList = () =>
-  useInfiniteQuery({
-    queryKey: ['/proportional_candidate/party_logo'],
-    queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPartyList(pageParam),
-    initialPageParam: 0,
-    getNextPageParam: ({ data }) => {
-      const { pagination_response } = data || {};
-      const { last_page, page_number } = pagination_response || {};
-      return last_page ? undefined : page_number + 1;
-    },
-  });
-
 export const useGetCandidateDetail = ({
   queryClient,
   candidateId,
@@ -50,6 +38,18 @@ export const useGetDistrictCandidateList = ({ districtId }: { districtId: number
   useInfiniteQuery({
     queryKey: ['/districtCandidate/list', districtId],
     queryFn: ({ pageParam }: { pageParam: number }) => getDistrictCandidateList(districtId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: ({ data }) => {
+      const { pagination_response } = data || {};
+      const { last_page, page_number } = pagination_response || {};
+      return last_page ? undefined : page_number + 1;
+    },
+  });
+
+export const useGetPropotionalPartyList = () =>
+  useInfiniteQuery({
+    queryKey: ['/proportional_candidate/party_logo'],
+    queryFn: ({ pageParam }: { pageParam: number }) => getPropotionalPartyList(pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};
