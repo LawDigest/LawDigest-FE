@@ -1,6 +1,6 @@
 import { Layout } from '@/components';
 import { Metadata } from 'next';
-import { HeadBoard, ElectionTab } from './components';
+import { HeadBoard, ElectionTab } from './components/common';
 
 export const metadata: Metadata = {
   title: '선거 페이지',

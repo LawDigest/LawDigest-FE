@@ -1,5 +1,2 @@
-import HeadBoard from './HeadBoard';
-import ElectionTab from './ElectionTab';
-import LocationSelect from './LocationSelect';
-
-export { HeadBoard, ElectionTab, LocationSelect };
+export * from './common';
+export * from './district';
