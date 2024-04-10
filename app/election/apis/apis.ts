@@ -8,6 +8,7 @@ import {
   ProportionalPartyInfoResponse,
   ProportionalPartyListResponse,
   ProportionalPromiseResponse,
+  SearchCandidateResponse,
 } from '@/types';
 import { CookieValueTypes } from 'cookies-next';
 
@@ -65,4 +66,10 @@ export const getProportionalCandidate = async (partyId: number, page: number) =>
   http.get<ProportionalCandidateResponse>({
     url: `/proportional_candidate/list`,
     params: { party_id: partyId, page },
+  });
+
+export const getSearchCandidate = async (searchWord: string, page: number) =>
+  http.get<SearchCandidateResponse>({
+    url: `/search/candidate`,
+    params: { search_word: searchWord, page },
   });
