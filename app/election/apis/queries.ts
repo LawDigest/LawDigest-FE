@@ -10,6 +10,7 @@ import {
   getProportionalPartyInfo,
   getProportionalPromise,
   getProportionalCandidate,
+  getSearchCandidate,
 } from './apis';
 
 export const useGetDistrictId = ({
@@ -88,6 +89,18 @@ export const useGetProportionalCandidate = (partyId: number) =>
   useSuspenseInfiniteQuery({
     queryKey: ['/proportional_candidate/list', partyId],
     queryFn: ({ pageParam }: { pageParam: number }) => getProportionalCandidate(partyId, pageParam),
+    initialPageParam: 0,
+    getNextPageParam: ({ data }) => {
+      const { pagination_response } = data || {};
+      const { last_page, page_number } = pagination_response || {};
+      return last_page ? undefined : page_number + 1;
+    },
+  });
+
+export const useGetSearchCandidate = (searchWord: string) =>
+  useSuspenseInfiniteQuery({
+    queryKey: ['/search/candidate'],
+    queryFn: ({ pageParam }: { pageParam: number }) => getSearchCandidate(searchWord, pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};
