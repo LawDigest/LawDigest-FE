@@ -10,6 +10,7 @@ export interface SearcHCandidateProps {
   name: string;
   party_name: string;
   is_district: boolean;
+  candidate_image_url: string;
 }
 
 export interface SearchCandidateResponse {
