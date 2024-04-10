@@ -24,7 +24,7 @@ export default async function CandidateProfile({ candidateId, type }: { candidat
   return (
     <section className="flex flex-col gap-8 mx-5">
       <Card className="py-[26px] px-[30px] flex flex-row gap-6 h-[156px]">
-        {district_candidate_image ? (
+        {district_candidate_image !== null ? (
           <Avatar
             src={process.env.NEXT_PUBLIC_IMAGE_URL + district_candidate_image}
             className="w-[104px] h-[104px] object-cover border"
