@@ -3,10 +3,10 @@ import { NotificationReadResponse, NotificationResponse } from '@/types';
 
 export const getNotification = () =>
   http.get<NotificationResponse>({
-    url: `/notification`,
+    url: `/notification/user`,
   });
 
 export const putNotificationRead = () =>
   http.put<NotificationReadResponse>({
-    url: `/notification/read`,
+    url: `/notification/user/read`,
   });

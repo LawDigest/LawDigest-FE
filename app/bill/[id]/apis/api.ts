@@ -14,6 +14,6 @@ export const patchViewCount = (billId: string) =>
 
 export const postBookmark = (billId: string, likeChecked: boolean) =>
   http.post<BookmarkResponse>({
-    url: `/bill/bookmark`,
+    url: `/bill/user/bookmark`,
     params: { bill_id: billId, likeChecked },
   });
