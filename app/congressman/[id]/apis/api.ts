@@ -21,6 +21,6 @@ export const getCongressmanDetail = (congressmanId: string) =>
 
 export const patchCongressmanFollow = (congressmanId: string, likeChecked: boolean) =>
   http.patch<CongressmanFollowResponse>({
-    url: `/congressman/like`,
+    url: `/congressman/user/like`,
     params: { congressman_id: congressmanId, like_checked: likeChecked },
   });

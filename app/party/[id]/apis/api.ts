@@ -27,6 +27,6 @@ export const getPartyCongressman = async (partyId: number, page: number) =>
 
 export const patchPartyFollow = (partyId: number, followChecked: boolean) =>
   http.patch<PartyFollowResponse>({
-    url: `/party/follow`,
+    url: `/party/user/follow`,
     params: { party_id: partyId, follow_checked: followChecked },
   });
