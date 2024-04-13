@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && next export"
+    "vercel-deploy": "next build && next export"
   },
   "dependencies": {
     "@nextui-org/avatar": "^2.0.24",
