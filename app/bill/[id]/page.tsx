@@ -1,7 +1,7 @@
 import { Bill, GPTSummary } from '@/components/Bill';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import getQueryClient from '@/lib/getQueryClient';
 import { Button } from '@nextui-org/button';
+import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
 import { useBillDetail, usePatchViewCount } from './apis';
@@ -11,10 +11,6 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
   const queryClient = getQueryClient();
   const { data: bill } = await useBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
-
-  // const { public_proposer_dto_list } = bill;
-  // const datas = public_proposer_dto_list.map(({ public_proposer_id }) => public_proposer_id);
-  // const partyNames = public_proposer_dto_list.map(({ public_party_name }) => public_party_name);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

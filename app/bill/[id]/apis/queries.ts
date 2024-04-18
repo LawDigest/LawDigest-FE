@@ -1,6 +1,6 @@
 'use clinet';
 
-import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient, QueryClient } from '@tanstack/react-query';
 import { getBillDetail, patchViewCount, postBookmark } from './api';
 
 export const useBillDetail = (billId: string, queryClient: QueryClient) =>
@@ -20,9 +20,8 @@ export const usePostBookmark = (billId: string) => {
 
   return useMutation({
     mutationFn: (likeChecked: boolean) => postBookmark(billId, likeChecked),
-    onSuccess: ({ data }) => {
-      // queryClient.invalidateQueries({ queryKey: ['/bill/detail', billId] });
-      queryClient.setQueryData(['/bill/detail', billId], data.like_checked);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/bill/detail', billId] });
       queryClient.invalidateQueries({ queryKey: ['/bill/mainfeed'] });
     },
   });
