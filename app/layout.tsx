@@ -4,8 +4,7 @@ import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
-import QueryProvider from '../lib/query';
-import { Providers } from '../lib/providers';
+import { QueryClientProvider, NextUIProvider } from '@/lib/provider';
 
 export const metadata: Metadata = {
   title: {
@@ -25,15 +24,15 @@ function RootLayout({ children }: { children: React.ReactNode }) {
     <html lang="ko" suppressHydrationWarning>
       <head />
       <body className={clsx('min-h-screen bg-white text-black font-sans antialiased', fontSans.variable)}>
-        <Providers>
-          <QueryProvider>
+        <NextUIProvider>
+          <QueryClientProvider>
             <div className="relative flex flex-col h-screen">
               <main className="flex items-center justify-center w-full h-full">
                 <Suspense fallback={<div>로딩...</div>}>{children}</Suspense>
               </main>
             </div>
-          </QueryProvider>
-        </Providers>
+          </QueryClientProvider>
+        </NextUIProvider>
       </body>
     </html>
   );
