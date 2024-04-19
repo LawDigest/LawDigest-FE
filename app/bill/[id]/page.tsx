@@ -4,12 +4,14 @@ import { Button } from '@nextui-org/button';
 import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
-import { useBillDetail, usePatchViewCount } from './apis';
+import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
 import { SectionContainer } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
-  const { data: bill } = await useBillDetail(id, queryClient);
+  await prefetchGetBillDetail(id, queryClient);
+
+  const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
 
   return (

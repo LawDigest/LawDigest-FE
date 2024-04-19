@@ -1,3 +1,3 @@
-import Congressman from './Congressman';
+import CongressmanDetail from './CongressmanDetail';
 
-export default Congressman;
+export default CongressmanDetail;

@@ -1,4 +1,4 @@
-import { QueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { Card } from '@nextui-org/card';
 import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
@@ -7,13 +7,8 @@ import { getPartyColor } from '@/utils';
 import FollowButton from './FollowButton';
 import { useGetCongressmanDetail } from '../../apis';
 
-export default async function CongressmanComponent({
-  congressmanId,
-  queryClient,
-}: {
-  congressmanId: string;
-  queryClient: QueryClient;
-}) {
+export default async function CongressmanDetail({ congressmanId }: { congressmanId: string }) {
+  const queryClient = useQueryClient();
   const { data: congressman } = await useGetCongressmanDetail({ congressmanId, queryClient });
   const {
     congressman_name,

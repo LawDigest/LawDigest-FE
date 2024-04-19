@@ -1,4 +1,4 @@
 import BillContainer from './BillContainer';
-import CongressmanComponent from './Congressman';
+import CongressmanDetail from './Congressman';
 
-export { BillContainer, CongressmanComponent };
+export { BillContainer, CongressmanDetail };

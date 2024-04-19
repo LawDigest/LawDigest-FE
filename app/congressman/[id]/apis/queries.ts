@@ -4,7 +4,7 @@ import { QueryClient, useMutation, useSuspenseInfiniteQuery, useQueryClient } fr
 import { BILL_TAB } from '@/constants';
 import { ValueOf } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
-import { getBillByCongressmanId, getCongressmanDetail, patchCongressmanFollow } from './api';
+import { getBillByCongressmanId, getCongressmanDetail, patchCongressmanFollow } from './apis';
 
 export const useGetBillByCongressman = (
   id: string,

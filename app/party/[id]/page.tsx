@@ -8,7 +8,7 @@ export default function Party({ params: { id } }: { params: { id: string } }) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PartyDetail partyId={Number(id)} queryClient={queryClient} />
+      <PartyDetail partyId={Number(id)} />
       <PartyCongressman id={Number(id)} />
     </HydrationBoundary>
   );

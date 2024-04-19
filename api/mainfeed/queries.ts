@@ -1,14 +1,14 @@
 'use client';
 
-import { useSuspenseInfiniteQuery, useInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { STAGE_TAB_KO } from '@/constants';
 import { ValueOf } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
 import { getBill, getBillByStage } from './apis';
 
 export const useGetBills = () =>
-  useInfiniteQuery({
-    queryKey: ['/bill/mainfeed'],
+  useSuspenseInfiniteQuery({
+    queryKey: [' /bill/mainfeed'],
     queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
