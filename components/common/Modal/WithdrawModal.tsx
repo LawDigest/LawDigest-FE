@@ -3,9 +3,9 @@
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@nextui-org/react';
-import { postWithdraw } from '@/api/auth';
 import { ACCESS_TOKEN } from '@/constants';
 import { deleteCookie } from 'cookies-next';
+import { postWithdraw } from './apis';
 
 export default function WithdrawModal({ isOpen, onOpenChange }: { isOpen: boolean; onOpenChange: () => void }) {
   const router = useRouter();

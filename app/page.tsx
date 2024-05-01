@@ -1,7 +1,7 @@
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import getQueryClient from '@/lib/getQueryClient';
 import { Feed, SearchBar, Layout } from '@/components';
-import { getBill } from '@/api/mainfeed';
+import { getBill } from '@/components/Feed/Feed/apis';
 
 export default async function Home() {
   const queryClient = getQueryClient();

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import http from '@/api/config/core';
+import http from '@/api';
 import { FeedResponse, PartyDetailResponse, ValueOf, PartyCongressmanResponse, PartyFollowResponse } from '@/types';
 import { BILL_TAB } from '@/constants';
 

@@ -2,7 +2,7 @@
 
 import { IconSetting } from '@/public/svgs';
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, useDisclosure } from '@nextui-org/react';
-import { WithdrawModal } from '@/components/Modal';
+import { WithdrawModal } from '../Modal';
 
 export default function SettingButton() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

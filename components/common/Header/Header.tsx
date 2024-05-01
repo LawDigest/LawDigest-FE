@@ -3,10 +3,7 @@
 import Link from 'next/link';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import { useCallback, useState } from 'react';
-import GoBackButton from './GoBackButton';
-import SettingButton from './SettingButton';
-import SearchButton from './SearchButton';
-import NotificationButton from './NotifcationButton';
+import { GoBackButton, SettingButton, SearchButton, NotificationButton } from '../Button';
 import Logo from './Logo';
 import { SearchBar } from '../SearchBar';
 
