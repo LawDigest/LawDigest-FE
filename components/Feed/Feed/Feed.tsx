@@ -6,7 +6,7 @@ import { BillList } from '@/components/Bill';
 import { IconControl } from '@/public/svgs';
 import { Button } from '@nextui-org/react';
 import { STAGE_TAB_KO } from '@/constants';
-import { useGetBills, useGetBillByStage } from '@/api/mainfeed';
+import { useGetBills, useGetBillByStage } from './apis';
 import StageTab from '../StageTab';
 
 export default function Feed() {

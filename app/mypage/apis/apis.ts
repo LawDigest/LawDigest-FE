@@ -1,4 +1,4 @@
-import http from '@/api/config/core';
+import http from '@/api';
 import { FollowingCongressmanResponse, FollowingPartyResponse, UserInfoResponse } from '@/types';
 
 export const getUserInfo = async () =>

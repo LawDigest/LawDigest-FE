@@ -8,12 +8,16 @@ export default function NotificationList() {
   const notificationLength = notifications && notifications.data.length;
 
   return (
-    <section className="flex flex-col px-5 mb-10 gap-6">
-      <div className="flex flex-col mb-8 gap-3">
+    <section className="flex flex-col gap-6 px-5 mb-10">
+      <div className="flex flex-col gap-3 mb-8">
         <h1 className="text-2xl font-bold ">알림</h1>
-        <p className="text-sm text-gray-2">
-          <span className="text-black">{notificationLength}개</span>의 읽지 않은 알림이 있습니다.
-        </p>
+        {notificationLength === 0 ? (
+          <p className="text-sm text-gray-2">알림이 없습니다.</p>
+        ) : (
+          <p className="text-sm text-gray-2">
+            <span className="text-black">{notificationLength}개</span>의 읽지 않은 알림이 있습니다.
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col gap-[18px]">

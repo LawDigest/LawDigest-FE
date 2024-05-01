@@ -14,9 +14,14 @@ export default function SearchBillList({
 }) {
   return (
     <>
-      {bills.map((bill, index) => (
-        <SearchBill key={`${bill.id + index}`} {...bill} detail={false} congressman={false} />
-      ))}
+      {bills.length ? (
+        bills.map((bill, index) => (
+          <SearchBill key={`${bill.id + index}`} {...bill} detail={false} congressman={false} />
+        ))
+      ) : (
+        <p className="my-8 text-sm text-center text-gray-2">검샐 결과가 없습니다.</p>
+      )}
+
       {isFetching && (
         <div className="flex justify-center w-full my-4">
           <Spinner color="default" />

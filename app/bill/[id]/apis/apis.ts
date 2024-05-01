@@ -1,4 +1,4 @@
-import http from '@/api/config/core';
+import http from '@/api';
 import { BillResponse, ViewCountResponse, BookmarkResponse } from '@/types';
 
 export const getBillDetail = (billId: string) =>
