@@ -19,7 +19,7 @@ export default function SettingButton() {
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownItem onClick={() => onOpen()} key="Withdrawal">
-            <p className="w-full h-6 text-sm text-center">회원탈퇴</p>
+            <p className="w-full h-6 text-sm text-center dark:text-white">회원탈퇴</p>
           </DropdownItem>
           <DropdownItem>
             <ThemeSwitchButton />
