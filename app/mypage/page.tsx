@@ -1,22 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useEffect } from 'react';
+// import { useRouter } from 'next/navigation';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { CongressmanList, UserInfo, PartyList } from './components';
 
 export default function MyPage() {
-  const router = useRouter();
+  // const router = useRouter();
   const accessToken = getCookie(ACCESS_TOKEN);
   const queryClient = useQueryClient();
 
-  useEffect(() => {
-    if (!accessToken) {
-      router.push('/login');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!accessToken) {
+  //     router.push('/login');
+  //   }
+  // }, []);
 
   if (!accessToken) return <div className="flex items-center justify-center h-full">회원 정보가 없습니다.</div>;
 
