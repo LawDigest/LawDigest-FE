@@ -17,7 +17,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
     <section className="flex flex-col">
       <Bill {...bill} detail viewCount={viewCount}>
         <div className="flex flex-col gap-[34px]">
-          <Divider className="bg-gray-0.5" />
+          <Divider className="bg-gray-0.5 dark:bg-dark-l" />
 
           <GPTSummary />
 
@@ -27,16 +27,18 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
             </h5>
 
             <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
-              <Button size="lg" color="primary" radius="full" className="w-[242px] h-[56px] bg-primary-3">
+              <Button
+                size="lg"
+                color="primary"
+                radius="full"
+                className="w-[242px] h-[56px] bg-primary-3 dark:bg-gray-0.5 dark:text-black">
                 원문 확인하기
               </Button>
             </Link>
           </div>
 
-          <Divider className="bg-gray-0.5" />
+          <Divider className="bg-gray-0.5 dark:bg-dark-l" />
         </div>
-
-        <SectionContainer title="주요 키워드">키워드</SectionContainer>
 
         <SectionContainer title="발의자 명단">발의자 명단</SectionContainer>
 

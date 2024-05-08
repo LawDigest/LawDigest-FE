@@ -165,7 +165,7 @@ export default function Bill({
               <Avatar
                 radius="full"
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
-                className="border"
+                className="border dark:border-dark-l"
               />
               <div className="flex flex-col gap-0.5">
                 <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
