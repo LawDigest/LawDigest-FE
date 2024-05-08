@@ -14,8 +14,8 @@ export default function NotificationList() {
         {notificationLength === 0 ? (
           <p className="text-sm text-gray-2">알림이 없습니다.</p>
         ) : (
-          <p className="text-sm text-gray-2">
-            <span className="text-black">{notificationLength}개</span>의 읽지 않은 알림이 있습니다.
+          <p className="text-sm text-gray-2 dark:text-gray-3">
+            <span className="text-black dark:text-white">{notificationLength}개</span>의 읽지 않은 알림이 있습니다.
           </p>
         )}
       </div>

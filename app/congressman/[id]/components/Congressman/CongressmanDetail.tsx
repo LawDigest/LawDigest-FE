@@ -25,14 +25,14 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
   return (
     <Card
-      className={`mx-5 p-[18px] border-1.5 flex flex-col gap-[22px] border-party-${partyColor} `}
+      className={`mx-5 p-[18px] border-1.5 flex flex-col gap-[22px] border-party-${partyColor} mb-4 dark:border-dark-l dark:bg-dark-b`}
       shadow="none"
       radius="md">
       <div className="flex justify-between gap-4">
         <Avatar
           radius="full"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-          className="w-[100px] h-[100px] border"
+          className="w-[100px] h-[100px] border dark:border-dark-l"
         />
 
         <div className="flex flex-col justify-between w-[65%]">

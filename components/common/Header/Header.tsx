@@ -25,7 +25,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
 
   return (
     <section className="w-full">
-      <Navbar>
+      <Navbar className="dark:bg-dark-b">
         {logo && (
           <NavbarBrand>
             <Link href="/">

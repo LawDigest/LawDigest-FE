@@ -18,7 +18,7 @@ export default function FollowButton({ id, likeChecked }: { id: string; likeChec
     <Button
       radius="full"
       onClick={onClickFollow}
-      className={`w-full h-12 text-lg font-medium bg-${isFollowed ? 'gray-1' : 'primary-3'} text-${isFollowed ? 'gray-3' : 'white'}`}>
+      className={`w-full h-12 text-lg font-medium ${isFollowed ? 'bg-gray-1 text-gray-3' : 'bg-primary-3 text-white dark:bg-gray-4 dark:text-gray-2'} `}>
       {isFollowed ? '팔로우 취소' : '팔로우'}
     </Button>
   );
