@@ -28,7 +28,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <NextThemesProvider>
             <NextUIProvider>
               <div className="relative flex flex-col h-screen">
-                <main className="flex items-center justify-center w-full h-full">
+                <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:text-white">
                   <Suspense fallback={<div>로딩...</div>}>{children}</Suspense>
                 </main>
               </div>

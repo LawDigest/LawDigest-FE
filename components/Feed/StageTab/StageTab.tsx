@@ -36,7 +36,7 @@ export default function StageTab({
         </div>
       </RadioGroup>
 
-      <hr className="w-full h-0.5 " />
+      <hr className="w-full h-0.5 dark:border-dark-l" />
     </section>
   );
 }

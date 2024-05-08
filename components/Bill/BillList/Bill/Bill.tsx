@@ -53,9 +53,9 @@ export default function Bill({
   }, [isLiked]);
 
   return (
-    <section className="flex flex-col my-6 gap-5">
-      <Card key={bill_id} className="flex flex-col mx-5 gap-5 " radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start p-0 gap-2">
+    <section className="flex flex-col gap-5 my-6">
+      <Card key={bill_id} className="flex flex-col gap-5 mx-5 dark:bg-dark-b" radius="none" shadow="none">
+        <CardHeader className="flex flex-col items-start gap-2 p-0">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
@@ -123,7 +123,10 @@ export default function Bill({
             </div>
 
             <Link href={`/bill/${bill_id}`}>
-              <Button className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8" size="sm" variant="flat">
+              <Button
+                className="text-sm font-medium bg-gray-1 dark:bg-gray-3 text-gray-3 dark:text-gray-2 w-[88px] h-8"
+                size="sm"
+                variant="flat">
                 자세히 보기
               </Button>
             </Link>
@@ -155,7 +158,7 @@ export default function Bill({
       {!congressman && (
         <Link href={`/congressman/${representative_proposer_id}`}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] `}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
@@ -184,7 +187,7 @@ export default function Bill({
         </Link>
       )}
 
-      {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
+      {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
   );
 }
