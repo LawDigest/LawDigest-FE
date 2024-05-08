@@ -8,7 +8,7 @@ export default function SearchParty({ party_id, party_name, party_image_url }: S
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-6">
         {party_image_url !== null ? (
-          <div className="flex justify-center items-center w-[54px] h-[54px] border overflow-hidden rounded-full">
+          <div className="flex justify-center items-center w-[54px] h-[54px] border overflow-hidden rounded-full dark:border-dark-l dark:bg-white">
             <Image
               src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
               width={50}

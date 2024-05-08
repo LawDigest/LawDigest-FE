@@ -40,9 +40,9 @@ export default function SearchBill({
   const partyColor = getPartyColor(party_name);
 
   return (
-    <section className="flex flex-col my-6 gap-5">
-      <Card key={id} className="flex flex-col mx-5 gap-5 " radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start p-0 gap-2">
+    <section className="flex flex-col gap-5 my-6">
+      <Card key={id} className="flex flex-col gap-5 mx-5 dark:bg-dark-b" radius="none" shadow="none">
+        <CardHeader className="flex flex-col items-start gap-2 p-0">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
@@ -107,7 +107,10 @@ export default function SearchBill({
             </div>
 
             <Link href={`/bill/${id}`}>
-              <Button className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8" size="sm" variant="flat">
+              <Button
+                className="text-sm font-medium bg-gray-1 text-gray-3 w-[88px] h-8 dark:bg-gray-4 dark:text-gray-2"
+                size="sm"
+                variant="flat">
                 자세히 보기
               </Button>
             </Link>
@@ -136,7 +139,7 @@ export default function SearchBill({
       {!congressman && (
         <Link href={`/congressman/${congressman_id}`}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] `}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
@@ -164,7 +167,7 @@ export default function SearchBill({
           </Card>
         </Link>
       )}
-      {!detail && <Divider className="h-[10px] bg-gray-0.5" />}
+      {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
   );
 }
