@@ -1,4 +1,3 @@
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import getQueryClient from '@/lib/getQueryClient';
 import { Feed, SearchBar, Layout } from '@/components';
 import { getBill } from '@/components/Feed/Feed/apis';
@@ -19,11 +18,9 @@ export default async function Home() {
   });
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Layout nav logo notification>
-        <SearchBar isElection={false} />
-        <Feed />
-      </Layout>
-    </HydrationBoundary>
+    <Layout nav logo notification>
+      <SearchBar isElection={false} />
+      <Feed />
+    </Layout>
   );
 }
