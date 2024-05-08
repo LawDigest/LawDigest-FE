@@ -10,6 +10,8 @@ import IconWeb from './Web';
 import IconControl from './Control';
 import IconSearchbar from './Search';
 import IconArrowRight from './ArrowRIght';
+import IconLightMode from './LightMode';
+import IconDarkMode from './DarkMode';
 
 export {
   IconEmail,
@@ -24,4 +26,6 @@ export {
   IconControl,
   IconSearchbar,
   IconArrowRight,
+  IconLightMode,
+  IconDarkMode,
 };
