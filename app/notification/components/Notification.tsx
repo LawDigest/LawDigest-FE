@@ -12,7 +12,7 @@ export default function Notification({
 }: NotificationProps) {
   return (
     <Link href={`bill/${target}`} className="flex items-center gap-4">
-      <div className="w-[52px] h-[52px] rounded-full border flex items-center justify-center overflow-hidden shrink-0	">
+      <div className="w-[52px] h-[52px] rounded-full border flex items-center justify-center overflow-hidden shrink-0	dark:border-dark-l">
         <Image
           src={process.env.NEXT_PUBLIC_IMAGE_URL + notification_image_url}
           width={50}
@@ -26,7 +26,7 @@ export default function Notification({
           <p className="font-medium truncate w-[240px]">{title}</p>
           <p className="text-sm text-gray-2 shrink-0 "> {getTimeRemaining(created_date)}</p>
         </div>
-        <p className="text-[#A1A1AA] text-sm truncate w-[240px]">{content}</p>
+        <p className="text-[#A1A1AA] dark:text-gray-3 text-sm truncate w-[240px]">{content}</p>
       </div>
     </Link>
   );
