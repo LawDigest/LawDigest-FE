@@ -30,6 +30,12 @@ module.exports = {
           alert: '#E63946',
           info: '#D7F963',
         },
+        // Dark mode
+        dark: {
+          b: '101012',
+          l: '2E2E2E',
+          pb: '1E1E1E',
+        },
       },
     },
   },
