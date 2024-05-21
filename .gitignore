@@ -37,3 +37,6 @@ next-env.d.ts
 
 # etc
 /.vscode/
+
+# local server
+server.js
