@@ -25,8 +25,8 @@ export const BILL_STAGE_KO = {
 } as const;
 
 export const BILL_TAB = {
-  representProposer: 'representProposer',
-  publicProposer: 'publicProposer',
+  representProposer: 'represent_proposer',
+  publicProposer: 'public_proposer',
 } as const;
 
 export const BILL_TAB_KO = {

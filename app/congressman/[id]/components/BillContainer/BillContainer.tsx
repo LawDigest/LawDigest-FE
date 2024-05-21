@@ -7,7 +7,7 @@ import { BILL_TAB } from '@/constants';
 import { useGetBillByCongressman } from '../../apis';
 
 export default function BillContainer({ id }: { id: string }) {
-  const [billType, setBillType] = useTabType<typeof BILL_TAB>('representProposer');
+  const [billType, setBillType] = useTabType<typeof BILL_TAB>('represent_proposer');
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByCongressman(id, billType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 

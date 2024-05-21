@@ -1,6 +1,6 @@
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { siteConfig } from '@/config/site';
-import { BILL_TAB, BILL_TAB_KO } from '@/constants';
+import { BILL_TAB } from '@/constants';
 import { Key } from 'react';
 import { ValueOf } from '@/types';
 
@@ -8,7 +8,7 @@ export default function BillTab({
   type,
   clickHandler,
 }: {
-  type: ValueOf<typeof BILL_TAB_KO>;
+  type: ValueOf<typeof BILL_TAB>;
   clickHandler: (key: Key) => any;
 }) {
   const values = siteConfig.billTabs;
@@ -29,7 +29,7 @@ export default function BillTab({
         onSelectionChange={clickHandler}
         className="w-full">
         {values.map(({ label, value }) => (
-          <Tab key={label} title={BILL_TAB_KO[value as keyof typeof BILL_TAB]} />
+          <Tab key={BILL_TAB[value as keyof typeof BILL_TAB]} title={label} />
         ))}
       </Tabs>
     </section>
