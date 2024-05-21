@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "local": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -43,6 +44,7 @@
     "cookies-next": "^4.1.0",
     "eslint-config-next": "14.0.2",
     "framer-motion": "^10.16.14",
+    "fs": "^0.0.1-security",
     "intl-messageformat": "^10.5.8",
     "json5": "^2.2.3",
     "next": "14.0.2",
