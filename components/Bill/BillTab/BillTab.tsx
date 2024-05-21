@@ -1,6 +1,6 @@
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { siteConfig } from '@/config/site';
-import { BILL_TAB, BILL_TAB_KO } from '@/constants';
+import { BILL_TAB } from '@/constants';
 import { Key } from 'react';
 import { ValueOf } from '@/types';
 
