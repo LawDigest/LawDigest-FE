@@ -1,23 +1,12 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Avatar,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Divider,
-} from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
-import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
+import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
@@ -28,6 +17,7 @@ export default function Bill({
     representative_proposer_id,
     representative_proposer_name,
     represent_proposer_img_url,
+    party_id,
     party_image_url,
     party_name,
   },
@@ -41,6 +31,7 @@ export default function Bill({
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const mutateBookmark = usePostBookmark(bill_id);
+  const router = useRouter();
 
   useEffect(() => {
     setIsLiked(is_book_mark);
@@ -155,16 +146,24 @@ export default function Bill({
               </div>
             </div>
 
-            {party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                width={120}
-                height={120}
-                alt={`${party_name} 이미지`}
-              />
-            ) : (
-              <PartyLogo partyName={party_name} circle={false} />
-            )}
+            <Button
+              className="bg-tranparent"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                router.push(`/party/${party_id}`);
+              }}>
+              {party_image_url !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                  width={120}
+                  height={120}
+                  alt={`${party_name} 이미지`}
+                />
+              ) : (
+                <PartyLogo partyName={party_name} circle={false} />
+              )}
+            </Button>
           </Card>
         </Link>
       )}
