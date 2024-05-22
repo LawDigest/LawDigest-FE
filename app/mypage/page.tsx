@@ -25,7 +25,7 @@ export default function MyPage() {
       <div className="flex flex-col h-full gap-8">
         <UserInfo queryClient={queryClient} />
         <PartyList qeuryClient={queryClient} />
-        <hr className="mx-[30px] bg-[#E0E0E0] dark:bg-dark-l" />
+        <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l" />
         <CongressmanList queryClient={queryClient} />
       </div>
     </HydrationBoundary>
