@@ -72,27 +72,9 @@ export default function Bill({
             )}
 
             {!detail && (
-              <div className="flex">
-                <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
-                  <IconExport />
-                </Button>
-
-                <Dropdown placement="bottom-end">
-                  <DropdownTrigger>
-                    <Button isIconOnly size="sm" className="bg-transparent" aria-label="Dropdown Trigger">
-                      <IconKebab />
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu aria-label="More Actions">
-                    <DropdownItem key="profile" className="gap-2 h-14">
-                      <p className="font-semibold">Signed in as</p>
-                      <p className="font-semibold">zoey@example.com</p>
-                    </DropdownItem>
-                    <DropdownItem key="settings">My Settings</DropdownItem>
-                    <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </div>
+              <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
+                <IconExport />
+              </Button>
             )}
           </div>
 
