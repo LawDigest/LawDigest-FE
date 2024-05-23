@@ -32,7 +32,7 @@ export default function BillContainer({ id }: { id: string }) {
   return (
     <section>
       <BillTab type={billType as any} clickHandler={setBillType as any} />
-      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} congressman />
+      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
     </section>
   );
 }

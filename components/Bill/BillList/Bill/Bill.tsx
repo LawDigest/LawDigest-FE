@@ -24,7 +24,6 @@ export default function Bill({
   is_book_mark,
   public_proposer_dto_list,
   detail,
-  congressman,
   children,
   viewCount,
 }: BillProps) {
@@ -128,45 +127,43 @@ export default function Bill({
 
       <section className="mx-5">{children}</section>
 
-      {!congressman && (
-        <Link href={`/congressman/${representative_proposer_id}`}>
-          <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
-            radius="sm"
-            shadow="sm">
-            <div className="flex items-center gap-2">
-              <Avatar
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
-                className="border dark:border-dark-l"
-              />
-              <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
-              </div>
+      <Link href={`/congressman/${representative_proposer_id}`}>
+        <Card
+          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
+          radius="sm"
+          shadow="sm">
+          <div className="flex items-center gap-2">
+            <Avatar
+              radius="full"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
+              className="border dark:border-dark-l"
+            />
+            <div className="flex flex-col gap-0.5">
+              <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
+              <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
             </div>
+          </div>
 
-            <Button
-              className="bg-tranparent"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                router.push(`/party/${party_id}`);
-              }}>
-              {party_image_url !== null ? (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                  width={120}
-                  height={120}
-                  alt={`${party_name} 이미지`}
-                />
-              ) : (
-                <PartyLogo partyName={party_name} circle={false} />
-              )}
-            </Button>
-          </Card>
-        </Link>
-      )}
+          <Button
+            className="bg-tranparent"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              router.push(`/party/${party_id}`);
+            }}>
+            {party_image_url !== null ? (
+              <Image
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                width={120}
+                height={120}
+                alt={`${party_name} 이미지`}
+              />
+            ) : (
+              <PartyLogo partyName={party_name} circle={false} />
+            )}
+          </Button>
+        </Card>
+      </Link>
 
       {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
