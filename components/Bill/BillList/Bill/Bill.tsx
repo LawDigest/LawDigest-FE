@@ -12,7 +12,7 @@ import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
 
 export default function Bill({
-  bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary, view_count, bill_like_count },
+  bill_info_dto: { bill_id, brief_summary, propose_date, summary, gpt_summary, view_count, bill_like_count },
   representative_proposer_dto: {
     representative_proposer_id,
     representative_proposer_name,
@@ -53,7 +53,7 @@ export default function Bill({
             </div>
           )}
           <div className="flex items-start justify-between w-full">
-            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
+            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{brief_summary}</h2>
 
             {detail && (
               <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
