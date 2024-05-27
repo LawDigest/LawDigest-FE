@@ -1,46 +1,37 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Avatar,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Divider,
-} from '@nextui-org/react';
+import { useRouter, usePathname } from 'next/navigation';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
-import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
-import { getPartyColor, getTimeRemaining } from '@/utils';
+import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
+import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
 
 export default function Bill({
-  bill_info_dto: { bill_id, bill_name, propose_date, summary, gpt_summary, view_count, bill_like_count },
+  bill_info_dto: { bill_id, brief_summary, propose_date, summary, gpt_summary, view_count, bill_like_count },
   representative_proposer_dto: {
     representative_proposer_id,
     representative_proposer_name,
     represent_proposer_img_url,
+    party_id,
     party_image_url,
     party_name,
   },
   is_book_mark,
   public_proposer_dto_list,
   detail,
-  congressman,
   children,
   viewCount,
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const mutateBookmark = usePostBookmark(bill_id);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsLiked(is_book_mark);
@@ -51,6 +42,10 @@ export default function Bill({
 
     mutateBookmark.mutate(!isLiked);
   }, [isLiked]);
+
+  const handleCopyClipBoard = useCallback(() => {
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+  }, []);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -63,7 +58,7 @@ export default function Bill({
             </div>
           )}
           <div className="flex items-start justify-between w-full">
-            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{bill_name}</h2>
+            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{brief_summary}</h2>
 
             {detail && (
               <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
@@ -72,27 +67,16 @@ export default function Bill({
             )}
 
             {!detail && (
-              <div className="flex">
-                <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
+              <Tooltip content="링크 복사하기">
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="bg-transparent"
+                  aria-label="Export Button"
+                  onClick={handleCopyClipBoard}>
                   <IconExport />
                 </Button>
-
-                <Dropdown placement="bottom-end">
-                  <DropdownTrigger>
-                    <Button isIconOnly size="sm" className="bg-transparent" aria-label="Dropdown Trigger">
-                      <IconKebab />
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu aria-label="More Actions">
-                    <DropdownItem key="profile" className="gap-2 h-14">
-                      <p className="font-semibold">Signed in as</p>
-                      <p className="font-semibold">zoey@example.com</p>
-                    </DropdownItem>
-                    <DropdownItem key="settings">My Settings</DropdownItem>
-                    <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </div>
+              </Tooltip>
             )}
           </div>
 
@@ -145,34 +129,41 @@ export default function Bill({
                 <h4>{viewCount}</h4>
               </div>
             </div>
-
-            <Button isIconOnly size="sm" className="bg-transparent">
-              <IconExport />
-            </Button>
+            <Tooltip content="링크 복사하기">
+              <Button isIconOnly size="sm" className="bg-transparent" onClick={handleCopyClipBoard}>
+                <IconExport />
+              </Button>
+            </Tooltip>
           </CardFooter>
         )}
       </Card>
 
       <section className="mx-5">{children}</section>
 
-      {!congressman && (
-        <Link href={`/congressman/${representative_proposer_id}`}>
-          <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
-            radius="sm"
-            shadow="sm">
-            <div className="flex items-center gap-2">
-              <Avatar
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
-                className="border dark:border-dark-l"
-              />
-              <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
-              </div>
+      <Link href={`/congressman/${representative_proposer_id}`}>
+        <Card
+          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
+          radius="sm"
+          shadow="sm">
+          <div className="flex items-center gap-2">
+            <Avatar
+              radius="full"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
+              className="border dark:border-dark-l"
+            />
+            <div className="flex flex-col gap-0.5">
+              <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
+              <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
             </div>
+          </div>
 
+          <Button
+            className="bg-tranparent"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              router.push(`/party/${party_id}`);
+            }}>
             {party_image_url !== null ? (
               <Image
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
@@ -183,9 +174,9 @@ export default function Bill({
             ) : (
               <PartyLogo partyName={party_name} circle={false} />
             )}
-          </Card>
-        </Link>
-      )}
+          </Button>
+        </Card>
+      </Link>
 
       {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>

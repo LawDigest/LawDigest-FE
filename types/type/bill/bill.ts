@@ -9,6 +9,8 @@ export interface BillResponse {
     gpt_summary: string;
     view_count: number;
     bill_like_count: number;
+    bill_stage: string;
+    brief_summary: string;
   };
   representative_proposer_dto: {
     representative_proposer_id: string;
@@ -32,6 +34,5 @@ export interface BillResponse {
 export interface BillProps extends BillResponse {
   children?: ReactNode;
   detail?: boolean;
-  congressman?: boolean;
   viewCount?: number;
 }

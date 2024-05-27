@@ -8,7 +8,7 @@ export default function KaKaoLogin() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/');
+    router.push('/mypage');
   }, [router]);
 
   return (

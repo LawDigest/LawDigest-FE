@@ -9,9 +9,9 @@ export default function PartyItem({ party_id, party_name, party_image_url }: Fol
         <Image
           src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
           width={100}
-          height={40}
+          height={35}
           alt={`${party_name} 로고 이미지`}
-          className="object-cover w-[100px] h-[40px] rounded-lg"
+          className="object-cover w-[100px] h-[35px] rounded-lg"
         />
       </div>
     </Link>
