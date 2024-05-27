@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
-import { getPartyColor, getTimeRemaining } from '@/utils';
+import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
 
@@ -31,6 +31,7 @@ export default function Bill({
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const mutateBookmark = usePostBookmark(bill_id);
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setIsLiked(is_book_mark);
@@ -41,6 +42,10 @@ export default function Bill({
 
     mutateBookmark.mutate(!isLiked);
   }, [isLiked]);
+
+  const handleCopyClipBoard = useCallback(() => {
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+  }, []);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -62,7 +67,12 @@ export default function Bill({
             )}
 
             {!detail && (
-              <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
+              <Button
+                isIconOnly
+                size="sm"
+                className="bg-transparent"
+                aria-label="Export Button"
+                onClick={handleCopyClipBoard}>
                 <IconExport />
               </Button>
             )}
@@ -118,7 +128,7 @@ export default function Bill({
               </div>
             </div>
 
-            <Button isIconOnly size="sm" className="bg-transparent">
+            <Button isIconOnly size="sm" className="bg-transparent" onClick={handleCopyClipBoard}>
               <IconExport />
             </Button>
           </CardFooter>

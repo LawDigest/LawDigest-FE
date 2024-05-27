@@ -1,4 +1,4 @@
-export default async function handleCopyClipBoard(text: string) {
+export default async function copyClipBoard(text: string) {
   try {
     await navigator.clipboard.writeText(text);
   } catch (err) {
