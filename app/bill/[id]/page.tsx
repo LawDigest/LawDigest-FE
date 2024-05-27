@@ -26,7 +26,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
               AI 기반의 요약은 내용이 불완전할 수 있습니다. 꼭 원문을 확인해주세요 !
             </h5>
 
-            <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
+            <Link href={bill.bill_info_dto.bill_link}>
               <Button
                 size="lg"
                 color="primary"
