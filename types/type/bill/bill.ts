@@ -11,6 +11,7 @@ export interface BillResponse {
     bill_like_count: number;
     bill_stage: string;
     brief_summary: string;
+    bill_link: string;
   };
   representative_proposer_dto: {
     representative_proposer_id: string;
@@ -29,6 +30,10 @@ export interface BillResponse {
     public_party_image_url: string;
   }[];
   is_book_mark: boolean;
+  similar_bills: {
+    billId: string;
+    billName: string;
+  }[];
 }
 
 export interface BillProps extends BillResponse {
