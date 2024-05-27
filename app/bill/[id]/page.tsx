@@ -12,6 +12,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
+  const SimilarBills = bill.similar_bills;
 
   return (
     <section className="flex flex-col">
@@ -44,7 +45,18 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
         <SectionContainer title="심사 진행 단계">심사 진행 단계</SectionContainer>
 
-        <SectionContainer title="다른 개정안 보기">다른 개정안 보기</SectionContainer>
+        <SectionContainer title="다른 개정안 보기">
+          <div className="flex flex-col gap-[10px]">
+            {SimilarBills.map(({ billId, billName }) => (
+              <Link
+                href={`/bill/${billId}`}
+                className="w-[250px] h-10 bg-gray-1 rounded-[10px] text-xs truncate flex items-center p-3"
+                key={billId}>
+                <p className="truncate">{billName}</p>
+              </Link>
+            ))}
+          </div>
+        </SectionContainer>
       </Bill>
     </section>
   );
