@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
@@ -67,14 +67,16 @@ export default function Bill({
             )}
 
             {!detail && (
-              <Button
-                isIconOnly
-                size="sm"
-                className="bg-transparent"
-                aria-label="Export Button"
-                onClick={handleCopyClipBoard}>
-                <IconExport />
-              </Button>
+              <Tooltip content="링크 복사하기">
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="bg-transparent"
+                  aria-label="Export Button"
+                  onClick={handleCopyClipBoard}>
+                  <IconExport />
+                </Button>
+              </Tooltip>
             )}
           </div>
 
@@ -127,10 +129,11 @@ export default function Bill({
                 <h4>{viewCount}</h4>
               </div>
             </div>
-
-            <Button isIconOnly size="sm" className="bg-transparent" onClick={handleCopyClipBoard}>
-              <IconExport />
-            </Button>
+            <Tooltip content="링크 복사하기">
+              <Button isIconOnly size="sm" className="bg-transparent" onClick={handleCopyClipBoard}>
+                <IconExport />
+              </Button>
+            </Tooltip>
           </CardFooter>
         )}
       </Card>
