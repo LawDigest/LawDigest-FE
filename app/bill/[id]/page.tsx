@@ -4,7 +4,7 @@ import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
-import { SectionContainer } from './components';
+import { SectionContainer, ProposerList } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
@@ -12,7 +12,9 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
-  const SimilarBills = bill.similar_bills;
+  const representativeProposer = bill.representative_proposer_dto.representative_proposer_name;
+  const proposerList = bill.public_proposer_dto_list;
+  const similarBills = bill.similar_bills;
 
   return (
     <section className="flex flex-col">
@@ -41,13 +43,15 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           <Divider className="bg-gray-0.5 dark:bg-dark-l" />
         </div>
 
-        <SectionContainer title="발의자 명단">발의자 명단</SectionContainer>
+        <SectionContainer title="발의자 명단">
+          <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
+        </SectionContainer>
 
         <SectionContainer title="심사 진행 단계">심사 진행 단계</SectionContainer>
 
         <SectionContainer title="다른 개정안 보기">
           <div className="flex flex-col gap-[10px]">
-            {SimilarBills.map(({ billId, billName }) => (
+            {similarBills.map(({ billId, billName }) => (
               <Link
                 href={`/bill/${billId}`}
                 className="w-[250px] h-10 bg-gray-1 rounded-[10px] text-xs truncate flex items-center p-3"
