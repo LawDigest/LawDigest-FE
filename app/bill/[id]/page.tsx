@@ -4,7 +4,7 @@ import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
-import { SectionContainer, ProposerList } from './components';
+import { SectionContainer, ProposerList, ProgressStage } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
@@ -15,6 +15,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
   const representativeProposer = bill.representative_proposer_dto.representative_proposer_name;
   const proposerList = bill.public_proposer_dto_list;
   const similarBills = bill.similar_bills;
+  const billStage = bill.bill_info_dto.bill_stage;
 
   return (
     <section className="flex flex-col">
@@ -47,7 +48,9 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
         </SectionContainer>
 
-        <SectionContainer title="심사 진행 단계">심사 진행 단계</SectionContainer>
+        <SectionContainer title="심사 진행 단계">
+          <ProgressStage billStage={billStage} />
+        </SectionContainer>
 
         <SectionContainer title="다른 개정안 보기">
           <div className="flex flex-col gap-[10px]">
