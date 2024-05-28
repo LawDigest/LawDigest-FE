@@ -12,9 +12,9 @@ export default function ProposerList({
     public_proposer_id: string;
     public_proposer_name: string;
     public_proposer_img_url: string;
-    public_party_id: number;
-    public_party_name: string;
-    public_party_image_url: string;
+    public_proposer_party_id: number;
+    public_proposer_party_image_url: string;
+    public_proposer_party_name: string;
   }[];
 }) {
   const proposerLength = proposerList.length;
