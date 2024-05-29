@@ -4,7 +4,7 @@ import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
-import { SectionContainer } from './components';
+import { SectionContainer, ProposerList, ProgressStage } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
@@ -12,6 +12,10 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
+  const representativeProposer = bill.representative_proposer_dto;
+  const proposerList = bill.public_proposer_dto_list;
+  const similarBills = bill.similar_bills;
+  const billStage = bill.bill_info_dto.bill_stage;
 
   return (
     <section className="flex flex-col">
@@ -26,7 +30,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
               AI 기반의 요약은 내용이 불완전할 수 있습니다. 꼭 원문을 확인해주세요 !
             </h5>
 
-            <Link href="https://law.nanet.go.kr/foreignlaw/newForeignLawissue/list.do?isMenu=Y">
+            <Link href={bill.bill_info_dto.bill_link}>
               <Button
                 size="lg"
                 color="primary"
@@ -40,11 +44,26 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
           <Divider className="bg-gray-0.5 dark:bg-dark-l" />
         </div>
 
-        <SectionContainer title="발의자 명단">발의자 명단</SectionContainer>
+        <SectionContainer title="발의자 명단">
+          <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
+        </SectionContainer>
 
-        <SectionContainer title="심사 진행 단계">심사 진행 단계</SectionContainer>
+        <SectionContainer title="심사 진행 단계">
+          <ProgressStage billStage={billStage} />
+        </SectionContainer>
 
-        <SectionContainer title="다른 개정안 보기">다른 개정안 보기</SectionContainer>
+        <SectionContainer title="다른 개정안 보기">
+          <div className="flex flex-col gap-[10px]">
+            {similarBills.map(({ billId, billName }) => (
+              <Link
+                href={`/bill/${billId}`}
+                className="w-[250px] h-10 bg-gray-1 dark:bg-dark-l dark:text-gray-2 rounded-[10px] text-xs truncate flex items-center p-3"
+                key={billId}>
+                <p className="truncate">{billName}</p>
+              </Link>
+            ))}
+          </div>
+        </SectionContainer>
       </Bill>
     </section>
   );

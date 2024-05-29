@@ -12,6 +12,8 @@ import IconSearchbar from './Search';
 import IconArrowRight from './ArrowRIght';
 import IconLightMode from './LightMode';
 import IconDarkMode from './DarkMode';
+import IconChecked from './Checked';
+import IconPointed from './Pointed';
 
 export {
   IconEmail,
@@ -28,4 +30,6 @@ export {
   IconArrowRight,
   IconLightMode,
   IconDarkMode,
+  IconChecked,
+  IconPointed,
 };
