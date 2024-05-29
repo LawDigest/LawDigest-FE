@@ -1,23 +1,13 @@
 'use client';
 
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Avatar,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Divider,
-} from '@nextui-org/react';
+import { useCallback } from 'react';
+import { usePathname } from 'next/navigation';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBillProps } from '@/types';
-import { IconClock, IconExport, IconKebab, IconScrabSmall } from '@/public/svgs';
-import { getPartyColor, getTimeRemaining } from '@/utils';
+import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
+import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { PartyLogo } from '@/components';
 
 export default function SearchBill({
@@ -35,9 +25,13 @@ export default function SearchBill({
   representative_proposer,
   viewCount,
   detail,
-  congressman,
 }: SearchBillProps) {
   const partyColor = getPartyColor(party_name);
+  const pathname = usePathname();
+
+  const handleCopyClipBoard = useCallback(() => {
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+  }, []);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -59,27 +53,16 @@ export default function SearchBill({
             )}
 
             {!detail && (
-              <div className="flex">
-                <Button isIconOnly size="sm" className="bg-transparent" aria-label="Export Button">
+              <Tooltip content="링크 복사하기">
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="bg-transparent"
+                  aria-label="Export Button"
+                  onClick={handleCopyClipBoard}>
                   <IconExport />
                 </Button>
-
-                <Dropdown placement="bottom-end">
-                  <DropdownTrigger>
-                    <Button isIconOnly size="sm" className="bg-transparent" aria-label="Dropdown Trigger">
-                      <IconKebab />
-                    </Button>
-                  </DropdownTrigger>
-                  <DropdownMenu aria-label="More Actions">
-                    <DropdownItem key="profile" className="gap-2 h-14">
-                      <p className="font-semibold">Signed in as</p>
-                      <p className="font-semibold">zoey@example.com</p>
-                    </DropdownItem>
-                    <DropdownItem key="settings">My Settings</DropdownItem>
-                    <DropdownItem key="team_settings">Team Settings</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
-              </div>
+              </Tooltip>
             )}
           </div>
 
@@ -130,43 +113,43 @@ export default function SearchBill({
               </div>
             </div>
 
-            <Button isIconOnly size="sm" className="bg-transparent">
-              <IconExport />
-            </Button>
+            <Tooltip content="링크 복사하기">
+              <Button isIconOnly size="sm" className="bg-transparent" onClick={handleCopyClipBoard}>
+                <IconExport />
+              </Button>
+            </Tooltip>
           </CardFooter>
         )}
       </Card>
-      {!congressman && (
-        <Link href={`/congressman/${congressman_id}`}>
-          <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
-            radius="sm"
-            shadow="sm">
-            <div className="flex items-center gap-2">
-              <Avatar
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${congressman_image_url}`}
-                className="border"
-              />
-              <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">{`${representative_proposer} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{proposers}</h4>
-              </div>
+      <Link href={`/congressman/${congressman_id}`}>
+        <Card
+          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l`}
+          radius="sm"
+          shadow="sm">
+          <div className="flex items-center gap-2">
+            <Avatar
+              radius="full"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${congressman_image_url}`}
+              className="border"
+            />
+            <div className="flex flex-col gap-0.5">
+              <h3 className="font-medium">{`${representative_proposer} 의원`}</h3>
+              <h4 className="text-xs text-gray-2">{proposers}</h4>
             </div>
+          </div>
 
-            {party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                width={120}
-                height={120}
-                alt={`${party_name} 이미지`}
-              />
-            ) : (
-              <PartyLogo partyName={party_name} circle={false} />
-            )}
-          </Card>
-        </Link>
-      )}
+          {party_image_url !== null ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+              width={120}
+              height={120}
+              alt={`${party_name} 이미지`}
+            />
+          ) : (
+            <PartyLogo partyName={party_name} circle={false} />
+          )}
+        </Card>
+      </Link>
       {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
   );
