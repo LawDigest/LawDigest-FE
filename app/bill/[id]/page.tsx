@@ -57,7 +57,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
             {similarBills.map(({ billId, billName }) => (
               <Link
                 href={`/bill/${billId}`}
-                className="w-[250px] h-10 bg-gray-1 rounded-[10px] text-xs truncate flex items-center p-3"
+                className="w-[250px] h-10 bg-gray-1 dark:bg-dark-l dark:text-gray-2 rounded-[10px] text-xs truncate flex items-center p-3"
                 key={billId}>
                 <p className="truncate">{billName}</p>
               </Link>

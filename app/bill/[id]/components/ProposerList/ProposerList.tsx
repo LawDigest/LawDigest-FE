@@ -39,7 +39,7 @@ export default function ProposerList({
           {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[] }) => (
             <div key={party} className="flex items-center gap-10">
               <Badge content={proposers.length - 1} color="danger">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0">
+                <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 dark:bg-white">
                   <Image
                     src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0]}
                     width={30}
