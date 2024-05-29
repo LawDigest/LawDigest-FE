@@ -12,7 +12,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
-  const representativeProposer = bill.representative_proposer_dto.representative_proposer_name;
+  const representativeProposer = bill.representative_proposer_dto;
   const proposerList = bill.public_proposer_dto_list;
   const similarBills = bill.similar_bills;
   const billStage = bill.bill_info_dto.bill_stage;
