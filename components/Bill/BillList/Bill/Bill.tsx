@@ -167,9 +167,10 @@ export default function Bill({
             {party_image_url !== null ? (
               <Image
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                width={120}
-                height={120}
+                width={100}
+                height={45}
                 alt={`${party_name} 이미지`}
+                className="w-[100px] h-[40px] object-contain"
               />
             ) : (
               <PartyLogo partyName={party_name} circle={false} />
