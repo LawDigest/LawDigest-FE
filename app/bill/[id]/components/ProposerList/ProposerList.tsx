@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Accordion, AccordionItem, Badge } from '@nextui-org/react';
+import { Accordion, AccordionItem, Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
 import { sortByParty } from '@/utils';
 
 export default function ProposerList({
@@ -29,11 +29,14 @@ export default function ProposerList({
   const proposerListByParty = sortByParty({ representativeProposer, proposerList });
 
   return (
-    <Accordion variant="bordered">
-      <AccordionItem
-        key="anchor"
-        aria-label="Anchor"
-        title={`${representativeProposer.representative_proposer_name} 외 ${proposerLength}인`}>
+    <Card>
+      <CardHeader>
+        <p className="font-medium">
+          {representativeProposer.representative_proposer_name}{' '}
+          <span className="text-sm font-normal">{`외 ${proposerLength}인`}</span>
+        </p>
+      </CardHeader>
+      <CardBody>
         <div className="flex flex-col gap-5 my-[18px]">
           {/* eslint-disable-next-line react/no-unused-prop-types */}
           {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[] }) => (
@@ -59,7 +62,7 @@ export default function ProposerList({
             </div>
           ))}
         </div>
-      </AccordionItem>
-    </Accordion>
+      </CardBody>
+    </Card>
   );
 }
