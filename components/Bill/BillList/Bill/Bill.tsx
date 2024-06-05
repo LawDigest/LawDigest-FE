@@ -14,6 +14,7 @@ import { PartyLogo } from '@/components/common';
 export default function Bill({
   bill_info_dto: {
     bill_id,
+    bill_name,
     brief_summary,
     propose_date,
     summary,
@@ -92,7 +93,7 @@ export default function Bill({
             <div className="flex items-center justify-between w-full">
               <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
               <Chip
-                className="text-xs bg-transparent text-gray-2 border-gray-1 border-1 dark:border-gray-3"
+                className="text-xs bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
                 size="sm"
                 variant="bordered"
                 radius="sm">
@@ -102,7 +103,8 @@ export default function Bill({
           )}
         </CardHeader>
 
-        <CardBody className="p-0 leading-normal whitespace-pre-wrap">
+        <CardBody className="flex flex-col gap-3 p-0 leading-normal whitespace-pre-wrap">
+          <h3 className="text-sm text-gray-2 dark:text-gray-3">{bill_name}</h3>
           <p className={detail ? '' : 'line-clamp-[8]'}>
             {gpt_summary && gpt_summary}
             {!gpt_summary && summary}
