@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -31,7 +31,6 @@ export default function Bill({
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const mutateBookmark = usePostBookmark(bill_id);
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     setIsLiked(is_book_mark);
@@ -44,7 +43,7 @@ export default function Bill({
   }, [isLiked]);
 
   const handleCopyClipBoard = useCallback(() => {
-    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
   }, []);
 
   return (
