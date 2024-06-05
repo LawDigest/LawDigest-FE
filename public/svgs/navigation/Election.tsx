@@ -1,8 +1,14 @@
 import { NavIconProps } from '@/types';
 
-export default function IconElection({ isActive }: NavIconProps) {
+export default function IconElection({ className, isActive }: NavIconProps) {
   return (
-    <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="30"
+      height="31"
+      viewBox="0 0 30 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}>
       <circle
         cx="15"
         cy="15.5"

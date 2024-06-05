@@ -27,9 +27,9 @@ function Nav() {
   const pathname = usePathname();
 
   return (
-    <Navbar position="sticky" className="h-16 bg-primary-3">
+    <Navbar position="sticky" className="h-16 bg-primary-3 lg:hidden">
       <NavbarContent>
-        <ul className="flex justify-between w-full px-10 gap-2 ">
+        <ul className="flex justify-between w-full gap-2 px-10 ">
           {Nav_Items.map(({ label, path, IconComponent }) => {
             const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
