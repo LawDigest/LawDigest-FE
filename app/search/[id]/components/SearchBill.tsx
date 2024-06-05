@@ -1,8 +1,7 @@
 'use client';
 
-import { useCallback } from 'react';
-import { usePathname } from 'next/navigation';
-import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
+import { useCallback, useState } from 'react';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBillProps } from '@/types';
@@ -13,6 +12,8 @@ import { PartyLogo } from '@/components';
 export default function SearchBill({
   id,
   name,
+  brief_summary,
+  bill_stage,
   proposed_date,
   gpt_summary,
   like_count,
@@ -27,11 +28,15 @@ export default function SearchBill({
   detail,
 }: SearchBillProps) {
   const partyColor = getPartyColor(party_name);
-  const pathname = usePathname();
+  const [toggleMore, setToggleMore] = useState(false);
 
   const handleCopyClipBoard = useCallback(() => {
-    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${id}`);
   }, []);
+
+  const onClickToggleMore = useCallback(() => {
+    setToggleMore(!toggleMore);
+  }, [toggleMore]);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -44,7 +49,7 @@ export default function SearchBill({
             </div>
           )}
           <div className="flex items-start justify-between w-full">
-            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{name}</h2>
+            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{brief_summary}</h2>
 
             {detail && (
               <Button isIconOnly className="bg-transparent">
@@ -66,11 +71,36 @@ export default function SearchBill({
             )}
           </div>
 
-          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(proposed_date)}</h5>}
+          {!detail && (
+            <div className="flex items-center justify-between w-full">
+              <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(proposed_date)}</h5>
+              <Chip
+                className="text-xs bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
+                size="sm"
+                variant="bordered"
+                radius="sm">
+                {bill_stage}
+              </Chip>
+            </div>
+          )}
         </CardHeader>
 
-        <CardBody className="p-0 leading-normal whitespace-pre-wrap">
-          <p className={detail ? '' : 'line-clamp-[8]'}>{gpt_summary}</p>
+        <CardBody className="flex flex-col gap-3 p-0 leading-normal whitespace-pre-wrap">
+          <h3 className="text-sm text-gray-2 dark:text-gray-3">{name}</h3>
+
+          {/* eslint-disable-next-line no-nested-ternary */}
+          <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'}>{gpt_summary}</p>
+
+          <div className="flex justify-center">
+            <Button
+              onClick={onClickToggleMore}
+              className="h-[30px] border-1 border-gray-1 text-gray-2 dark:border-gray-3"
+              radius="full"
+              size="sm"
+              variant="bordered">
+              {toggleMore ? '줄이기' : '더 보기'}
+            </Button>
+          </div>
         </CardBody>
 
         {!detail && (
