@@ -4,7 +4,7 @@ import getQueryClient from '@/lib/getQueryClient';
 import Link from 'next/link';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
-import { SectionContainer, ProposerList, ProgressStage } from './components';
+import { SectionContainer, ProposerList, ProgressStage, AnotherBill } from './components';
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
@@ -53,16 +53,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
         </SectionContainer>
 
         <SectionContainer title="다른 개정안 보기">
-          <div className="flex flex-col gap-[10px]">
-            {similarBills.map(({ billId, billName }) => (
-              <Link
-                href={`/bill/${billId}`}
-                className="w-[250px] h-10 bg-gray-1 dark:bg-dark-l dark:text-gray-2 rounded-[10px] text-xs truncate flex items-center p-3"
-                key={billId}>
-                <p className="truncate">{billName}</p>
-              </Link>
-            ))}
-          </div>
+          <AnotherBill similarBills={similarBills} />
         </SectionContainer>
       </Bill>
     </section>

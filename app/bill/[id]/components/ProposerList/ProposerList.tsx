@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Accordion, AccordionItem, Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
+import { Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
 import { sortByParty } from '@/utils';
 
 export default function ProposerList({
