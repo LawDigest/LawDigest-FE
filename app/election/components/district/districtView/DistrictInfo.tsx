@@ -15,7 +15,7 @@ export default async function DistrictInfo() {
   } = await useGetDistrictId({ queryClient, cityName, guName, districtName });
 
   return (
-    <section className="flex flex-col gap-8 mx-5 mb-5">
+    <section className="flex flex-col mx-5 mb-5 gap-8">
       <div className="flex items-baseline justify-between">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">

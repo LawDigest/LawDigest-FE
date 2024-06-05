@@ -25,9 +25,15 @@ export default function Header({ logo, goBack, title, setting, search, notificat
 
   return (
     <section className="w-full">
-      <Navbar className="dark:bg-dark-b">
+      <Navbar className=" dark:bg-dark-b lg:shadow-md">
+        <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
+          <Link href="/">
+            <Logo width={106} height={18} />
+          </Link>
+        </NavbarBrand>
+
         {logo && (
-          <NavbarBrand>
+          <NavbarBrand className="lg:hidden">
             <Link href="/">
               <Logo width={106} height={18} />
             </Link>
@@ -35,7 +41,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         )}
 
         {goBack && (
-          <NavbarContent justify="start">
+          <NavbarContent justify="start" className="lg:invisible">
             <NavbarItem>
               <GoBackButton />
             </NavbarItem>
@@ -43,13 +49,13 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         )}
 
         {title && (
-          <NavbarContent justify="center">
+          <NavbarContent justify="center" className="lg:invisible">
             <NavbarItem className="font-medium">{title}</NavbarItem>
           </NavbarContent>
         )}
 
         {setting && (
-          <NavbarContent justify="end">
+          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
             <NavbarItem>
               <ThemeSwitchButton />
             </NavbarItem>
@@ -60,7 +66,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         )}
 
         {search && (
-          <NavbarContent justify="end">
+          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
             <NavbarItem>
               <SearchButton onClick={onClickSearch} />
             </NavbarItem>
@@ -71,7 +77,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         )}
 
         {notification && (
-          <NavbarContent justify="end">
+          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
             <NavbarItem>
               <ThemeSwitchButton />
             </NavbarItem>

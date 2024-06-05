@@ -15,7 +15,7 @@ export default function ElectionDistrict() {
 
   if (set === 'city') {
     return (
-      <section className="flex flex-col gap-5 mx-5">
+      <section className="flex flex-col mx-5 gap-5">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">내 지역구 선택</h2>
           <h3 className="text-xs text-gray-3">위치를 설정하고 내 지역구 정보를 한눈에 확인하세요!</h3>
@@ -34,7 +34,7 @@ export default function ElectionDistrict() {
 
   if (set === 'gu') {
     return (
-      <section className="flex flex-col gap-5 mx-5">
+      <section className="flex flex-col mx-5 gap-5">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">내 지역구 선택</h2>
           <h3 className="text-xs text-gray-3">위치를 설정하고 내 지역구 정보를 한눈에 확인하세요!</h3>
@@ -53,7 +53,7 @@ export default function ElectionDistrict() {
 
   if (set === 'district') {
     return (
-      <section className="flex flex-col gap-5 mx-5">
+      <section className="flex flex-col mx-5 gap-5">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-semibold">내 지역구 선택</h2>
           <h3 className="text-xs text-gray-3">위치를 설정하고 내 지역구 정보를 한눈에 확인하세요!</h3>

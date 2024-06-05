@@ -39,7 +39,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
 
   return (
     <section className="flex flex-col items-center mx-5 gap-7">
-      <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b">
+      <Card shadow="none" className="flex flex-col items-center w-full pt-1 gap-5 dark:bg-dark-b">
         <div className="shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white">
           <Image
             src={process.env.NEXT_PUBLIC_IMAGE_URL + party_img_url}
@@ -99,7 +99,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
 
       <Divider className="dark:bg-dark-l" />
 
-      <div className="grid w-full grid-cols-4 justify-items-center ">
+      <div className="w-full grid grid-cols-4 justify-items-center ">
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3 dark:text-gray-2">당대표</p>
           <p className="font-medium">{PARTY_LEADER[party_name as keyof typeof PARTY_NAME_KO] || '없음'}</p>

@@ -39,9 +39,9 @@ export default function SearchBill({
   }, [toggleMore]);
 
   return (
-    <section className="flex flex-col gap-5 my-6">
-      <Card key={id} className="flex flex-col gap-5 mx-5 dark:bg-dark-b" radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start gap-2 p-0">
+    <section className="flex flex-col my-6 gap-5">
+      <Card key={id} className="flex flex-col mx-5 gap-5 dark:bg-dark-b" radius="none" shadow="none">
+        <CardHeader className="flex flex-col items-start p-0 gap-2">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
@@ -85,7 +85,7 @@ export default function SearchBill({
           )}
         </CardHeader>
 
-        <CardBody className="flex flex-col gap-3 p-0 leading-normal whitespace-pre-wrap">
+        <CardBody className="flex flex-col p-0 leading-normal whitespace-pre-wrap gap-3">
           <h3 className="text-sm text-gray-2 dark:text-gray-3">{name}</h3>
 
           {/* eslint-disable-next-line no-nested-ternary */}
