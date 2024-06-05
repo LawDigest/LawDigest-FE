@@ -39,6 +39,7 @@ export default function Bill({
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
+  const [toggleMore, setToggleMore] = useState(false);
   const mutateBookmark = usePostBookmark(bill_id);
   const router = useRouter();
 
@@ -55,6 +56,10 @@ export default function Bill({
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
   }, []);
+
+  const onClickToggleMore = useCallback(() => {
+    setToggleMore(!toggleMore);
+  }, [toggleMore]);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -105,10 +110,23 @@ export default function Bill({
 
         <CardBody className="flex flex-col gap-3 p-0 leading-normal whitespace-pre-wrap">
           <h3 className="text-sm text-gray-2 dark:text-gray-3">{bill_name}</h3>
-          <p className={detail ? '' : 'line-clamp-[8]'}>
+
+          {/* eslint-disable-next-line no-nested-ternary */}
+          <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'}>
             {gpt_summary && gpt_summary}
             {!gpt_summary && summary}
           </p>
+
+          <div className="flex justify-center">
+            <Button
+              onClick={onClickToggleMore}
+              className="h-[30px] border-1 border-gray-1 text-gray-2 dark:border-gray-3"
+              radius="full"
+              size="sm"
+              variant="bordered">
+              {toggleMore ? '줄이기' : '더 보기'}
+            </Button>
+          </div>
         </CardBody>
 
         {!detail && (
