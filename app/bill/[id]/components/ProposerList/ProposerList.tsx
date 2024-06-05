@@ -46,12 +46,16 @@ export default function ProposerList({
                 <Link
                   href={`/party/${proposers[0][0]}`}
                   className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 dark:bg-white">
-                  <Image
-                    src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0][1]}
-                    width={30}
-                    height={30}
-                    alt={`${party} 로고 이미지`}
-                  />
+                  {party === '무소속' ? (
+                    <div className="text-xs font-medium text-black">무소속</div>
+                  ) : (
+                    <Image
+                      src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0][1]}
+                      width={30}
+                      height={30}
+                      alt={`${party} 로고 이미지`}
+                    />
+                  )}
                 </Link>
               </Badge>
               <div className="grid grid-cols-5 text-sm gap-x-[10px] gap-y-1">

@@ -42,17 +42,24 @@ export default function sortByParty({
       }
     });
 
-  map.set(
-    representativeProposer.party_name,
-    map
-      .get(representativeProposer.party_name)
-      .concat(
-        Array.of([
-          representativeProposer.representative_proposer_id,
-          representativeProposer.representative_proposer_name,
-        ]),
-      ),
-  );
+  if (map.has(representativeProposer.party_name)) {
+    map.set(
+      representativeProposer.party_name,
+      map
+        .get(representativeProposer.party_name)
+        .concat(
+          Array.of([
+            representativeProposer.representative_proposer_id,
+            representativeProposer.representative_proposer_name,
+          ]),
+        ),
+    );
+  } else {
+    map.set(representativeProposer.party_name, [
+      [representativeProposer.party_id, representativeProposer.party_image_url],
+      [representativeProposer.representative_proposer_id, representativeProposer.representative_proposer_name],
+    ]);
+  }
 
   map.forEach((key, value) => {
     newProposerList.push({ party: value, proposers: key });
