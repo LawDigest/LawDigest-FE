@@ -62,40 +62,22 @@ export default function Bill({
   }, [toggleMore]);
 
   return (
-    <section className="flex flex-col my-6 gap-5">
-      <Card key={bill_id} className="flex flex-col mx-5 gap-5 dark:bg-dark-b" radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start p-0 gap-2">
+    <section className="flex flex-col gap-5 my-6">
+      <Card key={bill_id} className="flex flex-col gap-5 mx-5 dark:bg-dark-b" radius="none" shadow="none">
+        <CardHeader className="flex flex-col items-start gap-2 p-0">
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
               <h5 className="text-sm tracking-tight text-gray-2">{getTimeRemaining(propose_date)}</h5>
             </div>
           )}
-          <div className="flex items-start justify-between w-full">
-            <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{brief_summary}</h2>
 
-            {detail && (
-              <Button isIconOnly className="bg-transparent" onClick={onClickScrab}>
-                <IconScrabSmall isActive={isLiked} />
-              </Button>
-            )}
+          <h2 className={`${detail ? 'text-[26px]' : 'text-xl'} font-semibold`}>{brief_summary}</h2>
 
-            {!detail && (
-              <Tooltip content="링크 복사하기">
-                <Button
-                  isIconOnly
-                  size="sm"
-                  className="bg-transparent"
-                  aria-label="Export Button"
-                  onClick={handleCopyClipBoard}>
-                  <IconExport />
-                </Button>
-              </Tooltip>
-            )}
-          </div>
+          <h3 className="text-sm text-gray-2 dark:text-gray-3">{bill_name}</h3>
 
           {!detail && (
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center w-full gap-3">
               <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
               <Chip
                 className="text-xs bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
@@ -108,30 +90,21 @@ export default function Bill({
           )}
         </CardHeader>
 
-        <CardBody className="flex flex-col p-0 leading-normal whitespace-pre-wrap gap-3">
-          <h3 className="text-sm text-gray-2 dark:text-gray-3">{bill_name}</h3>
-
-          {/* eslint-disable-next-line no-nested-ternary */}
-          <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'}>
+        <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
+          {/* eslint-disable-next-line no-nested-ternary, jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+          <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
             {gpt_summary && gpt_summary}
             {!gpt_summary && summary}
           </p>
-
-          <div className="flex justify-center">
-            <Button
-              onClick={onClickToggleMore}
-              className="h-[30px] border-1 border-gray-1 text-gray-2 dark:border-gray-3"
-              radius="full"
-              size="sm"
-              variant="bordered">
-              {toggleMore ? '줄이기' : '더 보기'}
-            </Button>
-          </div>
+          <p
+            className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:bg-dark-b dark:text-gray-3`}>
+            {toggleMore ? '' : ' ... 더 보기'}
+          </p>
         </CardBody>
 
         {!detail && (
           <CardFooter className="flex items-center justify-between p-0 -ml-1">
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <div className="flex items-center text-sm text-gray-3">
                 <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
                   <IconScrabSmall isActive={isLiked} />
@@ -143,6 +116,16 @@ export default function Bill({
                 <h4 className="mr-2">조회수</h4>
                 <h4>{view_count}</h4>
               </div>
+              <Tooltip content="링크 복사하기">
+                <Button
+                  isIconOnly
+                  size="sm"
+                  className="bg-transparent"
+                  aria-label="Export Button"
+                  onClick={handleCopyClipBoard}>
+                  <IconExport />
+                </Button>
+              </Tooltip>
             </div>
 
             <Link href={`/bill/${bill_id}`}>
@@ -160,6 +143,9 @@ export default function Bill({
           <CardFooter className="flex items-center justify-between p-0">
             <div className="flex gap-4">
               <div className="flex items-center text-sm text-gray-2">
+                <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
+                  <IconScrabSmall isActive={isLiked} />
+                </Button>
                 <h4 className="mr-2">스크랩</h4>
                 <h4>{bill_like_count}</h4>
               </div>
