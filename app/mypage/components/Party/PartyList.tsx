@@ -5,13 +5,6 @@ import PartyItem from './PartyItem';
 import { useGetFollowingParty } from '../../apis';
 
 export default async function PartyList({ qeuryClient }: { qeuryClient: QueryClient }) {
-  const sliderSettings = {
-    infinite: false,
-    slidesToScroll: 1,
-    swipeToSlide: true,
-    speed: 2000,
-    variableWidth: true,
-  };
   const { data: partyList } = await useGetFollowingParty(qeuryClient);
   const partyLength = partyList.length;
 
@@ -21,11 +14,11 @@ export default async function PartyList({ qeuryClient }: { qeuryClient: QueryCli
         팔로우한 정당 &middot;<span className="text-[#555555] dark:text-gray-2"> {partyLength}</span>
       </p>
 
-      <Slider {...sliderSettings}>
+      <div className="grid grid-cols-2 gap-y-5">
         {partyList.map((party: FollowingPartyType) => (
           <PartyItem key={party.party_name} {...party} />
         ))}
-      </Slider>
+      </div>
     </section>
   );
 }

@@ -57,7 +57,8 @@ export default function ProposerList({
               <div className="grid grid-cols-5 text-sm gap-x-[10px] gap-y-1">
                 {proposers
                   .slice(1)
-                  .toSorted((a: any, b: any) => a[1] - b[1])
+                  // eslint-disable-next-line no-nested-ternary
+                  .toSorted((a, b) => (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0))
                   .map((proposer) => (
                     <Link href={`/congressman/${proposer[0]}`} key={proposer[0]}>
                       {proposer[1]}
