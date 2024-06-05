@@ -5,6 +5,7 @@ import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
 import { QueryClientProvider, NextUIProvider, NextThemesProvider } from '@/lib/provider';
+import { Loading } from '@/components';
 
 export const metadata: Metadata = {
   title: {
@@ -29,7 +30,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
             <NextUIProvider>
               <div className="relative flex flex-col h-screen">
                 <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:text-white">
-                  <Suspense fallback={<div>로딩...</div>}>{children}</Suspense>
+                  <Suspense fallback={<Loading />}>{children}</Suspense>
                 </main>
               </div>
             </NextUIProvider>
