@@ -1,5 +1,4 @@
 import { QueryClient } from '@tanstack/react-query';
-import Slider from 'react-slick';
 import { FollowingPartyType } from '@/types';
 import PartyItem from './PartyItem';
 import { useGetFollowingParty } from '../../apis';

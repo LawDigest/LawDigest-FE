@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import { useCallback, useState } from 'react';
-import { GoBackButton, SettingButton, SearchButton, NotificationButton } from '../Button';
+import { GoBackButton, SettingButton, SearchButton, NotificationButton, ThemeSwitchButton } from '../Button';
 import Logo from './Logo';
 import { SearchBar } from '../SearchBar';
 
@@ -51,6 +51,9 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         {setting && (
           <NavbarContent justify="end">
             <NavbarItem>
+              <ThemeSwitchButton />
+            </NavbarItem>
+            <NavbarItem>
               <SettingButton />
             </NavbarItem>
           </NavbarContent>
@@ -69,6 +72,9 @@ export default function Header({ logo, goBack, title, setting, search, notificat
 
         {notification && (
           <NavbarContent justify="end">
+            <NavbarItem>
+              <ThemeSwitchButton />
+            </NavbarItem>
             <NavbarItem>
               <NotificationButton />
             </NavbarItem>
