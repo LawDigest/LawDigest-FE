@@ -3,6 +3,8 @@ import { Pagination } from '../common';
 export interface SearchBillProps {
   id: number;
   name: string;
+  brief_summary: string;
+  bill_stage: string;
   search_type: string;
   proposed_date: string;
   gpt_summary: string;
@@ -17,7 +19,6 @@ export interface SearchBillProps {
   representative_proposer: string;
   viewCount?: number;
   detail?: boolean;
-  congressman?: boolean;
 }
 
 export interface SearchBillResponse {

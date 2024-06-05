@@ -29,10 +29,10 @@ export default function ThemeSwitchButton() {
     <Button
       startContent={theme === 'dark' ? <IconDarkMode /> : <IconLightMode />}
       color={theme === 'dark' ? 'warning' : 'primary'}
-      variant={theme === 'dark' ? 'light' : 'flat'}
-      className="w-full h-6 p-0 text-xs font-bold"
-      onClick={onClick}>
-      {theme === 'dark' ? 'Dark' : 'Light'}
-    </Button>
+      variant="light"
+      size="sm"
+      onClick={onClick}
+      isIconOnly
+    />
   );
 }

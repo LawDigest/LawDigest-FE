@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
@@ -12,7 +12,17 @@ import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
 
 export default function Bill({
-  bill_info_dto: { bill_id, brief_summary, propose_date, summary, gpt_summary, view_count, bill_like_count },
+  bill_info_dto: {
+    bill_id,
+    bill_name,
+    brief_summary,
+    propose_date,
+    summary,
+    gpt_summary,
+    view_count,
+    bill_like_count,
+    bill_stage,
+  },
   representative_proposer_dto: {
     representative_proposer_id,
     representative_proposer_name,
@@ -29,9 +39,9 @@ export default function Bill({
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
+  const [toggleMore, setToggleMore] = useState(false);
   const mutateBookmark = usePostBookmark(bill_id);
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     setIsLiked(is_book_mark);
@@ -44,8 +54,12 @@ export default function Bill({
   }, [isLiked]);
 
   const handleCopyClipBoard = useCallback(() => {
-    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}${pathname}`);
+    copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
   }, []);
+
+  const onClickToggleMore = useCallback(() => {
+    setToggleMore(!toggleMore);
+  }, [toggleMore]);
 
   return (
     <section className="flex flex-col gap-5 my-6">
@@ -80,14 +94,39 @@ export default function Bill({
             )}
           </div>
 
-          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>}
+          {!detail && (
+            <div className="flex items-center justify-between w-full">
+              <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
+              <Chip
+                className="text-xs bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
+                size="sm"
+                variant="bordered"
+                radius="sm">
+                {bill_stage}
+              </Chip>
+            </div>
+          )}
         </CardHeader>
 
-        <CardBody className="p-0 leading-normal whitespace-pre-wrap">
-          <p className={detail ? '' : 'line-clamp-[8]'}>
+        <CardBody className="flex flex-col gap-3 p-0 leading-normal whitespace-pre-wrap">
+          <h3 className="text-sm text-gray-2 dark:text-gray-3">{bill_name}</h3>
+
+          {/* eslint-disable-next-line no-nested-ternary */}
+          <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'}>
             {gpt_summary && gpt_summary}
             {!gpt_summary && summary}
           </p>
+
+          <div className="flex justify-center">
+            <Button
+              onClick={onClickToggleMore}
+              className="h-[30px] border-1 border-gray-1 text-gray-2 dark:border-gray-3"
+              radius="full"
+              size="sm"
+              variant="bordered">
+              {toggleMore ? '줄이기' : '더 보기'}
+            </Button>
+          </div>
         </CardBody>
 
         {!detail && (

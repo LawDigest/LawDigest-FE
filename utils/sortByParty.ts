@@ -25,21 +25,33 @@ export default function sortByParty({
   proposerList
     .toSorted((a, b) => a.public_proposer_party_id - b.public_proposer_party_id)
     .forEach((proposer) => {
+      const proposerId = proposer.public_proposer_id;
       const proposerName = proposer.public_proposer_name;
       const partyName = proposer.public_proposer_party_name;
+      const partyId = proposer.public_proposer_party_id;
       const partyLogo = proposer.public_proposer_party_image_url;
-      const newProposer = Array.of(proposerName);
+      const newProposer = Array.of([proposerId, proposerName]);
 
       if (map.has(partyName)) {
         map.set(partyName, map.get(partyName).concat(newProposer));
       } else {
-        map.set(partyName, [partyLogo, proposerName]);
+        map.set(partyName, [
+          [partyId, partyLogo],
+          [proposerId, proposerName],
+        ]);
       }
     });
 
   map.set(
     representativeProposer.party_name,
-    map.get(representativeProposer.party_name).concat([representativeProposer.representative_proposer_name]),
+    map
+      .get(representativeProposer.party_name)
+      .concat(
+        Array.of([
+          representativeProposer.representative_proposer_id,
+          representativeProposer.representative_proposer_name,
+        ]),
+      ),
   );
 
   map.forEach((key, value) => {
