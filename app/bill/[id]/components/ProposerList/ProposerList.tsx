@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
 import { sortByParty } from '@/utils';
 
@@ -39,24 +40,28 @@ export default function ProposerList({
       <CardBody>
         <div className="flex flex-col gap-5 my-[18px]">
           {/* eslint-disable-next-line react/no-unused-prop-types */}
-          {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[] }) => (
+          {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[][] }) => (
             <div key={party} className="flex items-center gap-10">
               <Badge content={proposers.length - 1} color="danger">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 dark:bg-white">
+                <Link
+                  href={`/party/${proposers[0][0]}`}
+                  className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 dark:bg-white">
                   <Image
-                    src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0]}
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0][1]}
                     width={30}
                     height={30}
                     alt={`${party} 로고 이미지`}
                   />
-                </div>
+                </Link>
               </Badge>
               <div className="grid grid-cols-5 text-sm gap-x-[10px] gap-y-1">
                 {proposers
                   .slice(1)
-                  .toSorted()
+                  .toSorted((a: any, b: any) => a[1] - b[1])
                   .map((proposer) => (
-                    <p key={proposer}>{proposer}</p>
+                    <Link href={`/congressman/${proposer[0]}`} key={proposer[0]}>
+                      {proposer[1]}
+                    </Link>
                   ))}
               </div>
             </div>
