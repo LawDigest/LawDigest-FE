@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { BillProps } from '@/types';
@@ -12,7 +12,16 @@ import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
 
 export default function Bill({
-  bill_info_dto: { bill_id, brief_summary, propose_date, summary, gpt_summary, view_count, bill_like_count },
+  bill_info_dto: {
+    bill_id,
+    brief_summary,
+    propose_date,
+    summary,
+    gpt_summary,
+    view_count,
+    bill_like_count,
+    bill_stage,
+  },
   representative_proposer_dto: {
     representative_proposer_id,
     representative_proposer_name,
@@ -79,7 +88,18 @@ export default function Bill({
             )}
           </div>
 
-          {!detail && <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>}
+          {!detail && (
+            <div className="flex items-center justify-between w-full">
+              <h5 className="text-xs tracking-tight text-gray-3">{getTimeRemaining(propose_date)}</h5>
+              <Chip
+                className="text-xs bg-transparent text-gray-2 border-gray-1 border-1 dark:border-gray-3"
+                size="sm"
+                variant="bordered"
+                radius="sm">
+                {bill_stage}
+              </Chip>
+            </div>
+          )}
         </CardHeader>
 
         <CardBody className="p-0 leading-normal whitespace-pre-wrap">
