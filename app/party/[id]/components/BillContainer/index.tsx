@@ -1,3 +1,3 @@
 import BillContainer from './BillContainer';
 
-export default BillContainer;
+export { BillContainer };

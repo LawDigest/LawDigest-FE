@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { BillList, BillTab } from '@/components/Bill';
 import { useIntersect, useTabType } from '@/hooks';
 import { BILL_TAB } from '@/constants';
-import { useGetBillByParty } from '../../../apis';
+import { useGetBillByParty } from '../../apis';
 
 export default function BillContainer({ id }: { id: number }) {
   const [billType, setBillType] = useTabType<typeof BILL_TAB>('represent_proposer');
