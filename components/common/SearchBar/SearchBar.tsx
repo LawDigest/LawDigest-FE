@@ -22,7 +22,9 @@ export default function SearchBar({ isElection }: { isElection: boolean }) {
   );
 
   return (
-    <form onSubmit={onSubmitSearch} className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px]">
+    <form
+      onSubmit={onSubmitSearch}
+      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] lg:w-[600px] mx-auto">
       <Input
         value={value}
         onValueChange={setValue}
