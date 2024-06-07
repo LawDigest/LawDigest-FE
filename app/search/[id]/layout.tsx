@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout nav goBack>
+    <Layout nav goBack theme>
       {children}
     </Layout>
   );

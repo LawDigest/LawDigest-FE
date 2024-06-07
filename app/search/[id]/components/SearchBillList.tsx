@@ -15,7 +15,7 @@ export default function SearchBillList({
   return (
     <>
       {bills.length ? (
-        bills.map((bill, index) => <SearchBill key={`${bill.id + index}`} {...bill} detail={false} />)
+        bills.map((bill, index) => <SearchBill key={`${bill.id + index}`} {...bill} />)
       ) : (
         <p className="my-8 text-sm text-center text-gray-2">검샐 결과가 없습니다.</p>
       )}

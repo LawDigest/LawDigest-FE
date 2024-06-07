@@ -17,8 +17,6 @@ export interface SearchBillProps {
   congressman_id: string;
   congressman_image_url: string;
   representative_proposer: string;
-  viewCount?: number;
-  detail?: boolean;
 }
 
 export interface SearchBillResponse {

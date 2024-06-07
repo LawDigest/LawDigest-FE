@@ -15,7 +15,7 @@ export default function SearchList({
 }) {
   return (
     <section className="mx-5 my-8">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:gap-y-5 ">
         {searchResults.length ? (
           searchResults.map((searchResult, index) =>
             searchResult.search_type === 'PARTY' ? (
