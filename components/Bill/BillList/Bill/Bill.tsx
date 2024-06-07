@@ -126,7 +126,7 @@ export default function Bill({
                     <h4 className="mr-2">조회수</h4>
                     <h4>{view_count}</h4>
                   </div>
-                  <Tooltip content="링크 복사하기">
+                  <Tooltip content="링크 복사하기" className="dark:text-white">
                     <Button
                       isIconOnly
                       size="sm"

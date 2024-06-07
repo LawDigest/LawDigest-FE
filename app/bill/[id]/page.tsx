@@ -1,6 +1,6 @@
 import { Bill } from '@/components/Bill';
 import getQueryClient from '@/lib/getQueryClient';
-import { GoBackButton } from '@/components';
+import { SubHeader } from '@/components';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
 import { SectionContainer, ProposerList, ProgressStage, AnotherBill } from './components';
@@ -18,12 +18,7 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   return (
     <section className="flex flex-col">
-      <section className="relative items-center hidden pb-3 font-medium lg:flex border-b-1 dark:border-dark-l">
-        <div className="absolute">
-          <GoBackButton />
-        </div>
-        <div className="mx-auto">의안 자세히 보기</div>
-      </section>
+      <SubHeader title="의안 자세히 보기" />
       <Bill {...bill} detail viewCount={viewCount}>
         <section className="lg:w-[490px] lg:float-right">
           <SectionContainer title="발의자 명단">
