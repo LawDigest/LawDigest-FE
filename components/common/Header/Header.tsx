@@ -16,6 +16,7 @@ interface HeaderProps {
   setting?: boolean;
   search?: boolean;
   notification?: boolean;
+  theme?: boolean;
 }
 
 const Nav_Items = [
@@ -36,7 +37,7 @@ const Nav_Items = [
   },
 ];
 
-export default function Header({ logo, goBack, title, setting, search, notification }: HeaderProps) {
+export default function Header({ logo, goBack, title, setting, search, notification, theme }: HeaderProps) {
   const pathname = usePathname();
   const [toggleSearch, setToggleSearch] = useState(false);
 
@@ -126,6 +127,14 @@ export default function Header({ logo, goBack, title, setting, search, notificat
             </NavbarItem>
             <NavbarItem>
               <NotificationButton />
+            </NavbarItem>
+          </NavbarContent>
+        )}
+
+        {theme && (
+          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
+            <NavbarItem>
+              <ThemeSwitchButton />
             </NavbarItem>
           </NavbarContent>
         )}
