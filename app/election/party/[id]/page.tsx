@@ -74,7 +74,7 @@ export default function ElectionParty({ params: { id } }: { params: { id: number
 
       <ProportionalTab type={type as any} clickHandler={setType as any} />
 
-      <section className="flex flex-col gap-5 mx-5 my-5">
+      <section className="flex flex-col mx-5 my-5 gap-5">
         {type === '정당 공약' ? (
           <PromiseList promiseList={promiseList} isFetching={isFetchingP} fetchRef={fetchRefP} />
         ) : (

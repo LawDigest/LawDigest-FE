@@ -30,7 +30,7 @@ export default function ProposerList({
   const proposerListByParty = sortByParty({ representativeProposer, proposerList });
 
   return (
-    <Card>
+    <Card classNames={{ base: ['lg:shadow-none dark:lg:bg-dark-pb'] }}>
       <CardHeader>
         <p className="font-medium">
           {representativeProposer.representative_proposer_name}{' '}

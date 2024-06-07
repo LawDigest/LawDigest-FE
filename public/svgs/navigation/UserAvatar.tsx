@@ -1,8 +1,14 @@
 import { NavIconProps } from '@/types';
 
-export default function IconUserAvatar({ isActive }: NavIconProps) {
+export default function IconUserAvatar({ className, isActive }: NavIconProps) {
   return isActive ? (
-    <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="30"
+      height="31"
+      viewBox="0 0 30 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}>
       <circle cx="15" cy="9.25" r="6.25" fill="white" />
       <path
         d="M27.5 28C27.5 27.5815 27.4741 27.1642 27.4226 26.75C27.2924 25.7018 26.9987 24.6731 26.5485 23.6948C25.9203 22.3299 24.9996 21.0897 23.8388 20.045C22.6781 19.0004 21.3001 18.1717 19.7835 17.6064C18.267 17.041 16.6415 16.75 15 16.75C13.3585 16.75 11.733 17.041 10.2165 17.6064C8.69989 18.1717 7.3219 19.0004 6.16116 20.045C5.00043 21.0897 4.07969 22.3299 3.4515 23.6948C3.00125 24.6731 2.70762 25.7018 2.5774 26.75C2.52594 27.1642 2.5 27.5815 2.5 28L27.5 28Z"
@@ -10,7 +16,13 @@ export default function IconUserAvatar({ isActive }: NavIconProps) {
       />
     </svg>
   ) : (
-    <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="30"
+      height="31"
+      viewBox="0 0 30 31"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}>
       <circle
         cx="15"
         cy="9.25"

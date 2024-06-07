@@ -22,11 +22,13 @@ export default function MyPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex flex-col h-full gap-8">
+      <div className="flex flex-col h-full gap-8 lg:flex-row lg:justify-center lg:mt-10">
         <UserInfo queryClient={queryClient} />
-        <PartyList qeuryClient={queryClient} />
-        <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l" />
-        <CongressmanList queryClient={queryClient} />
+        <div className="flex flex-col h-full gap-8">
+          <PartyList qeuryClient={queryClient} />
+          <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l lg:border-transparent dark:lg:border-transparent" />
+          <CongressmanList queryClient={queryClient} />
+        </div>
       </div>
     </HydrationBoundary>
   );

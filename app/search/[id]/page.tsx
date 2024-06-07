@@ -61,7 +61,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
   return (
     <>
       <SearchBar isElection={false} />
-      <section className="">
+      <section className="lg:w-[840px] mx-auto">
         <p className="my-4 text-sm font-medium text-center text-gray-2">{`'${decodeURI(id)}'에 대한 검색결과입니다.`}</p>
         <div className="mb-10">
           <SearchTab type={searchType as any} clickHandler={setSearchType as any} />

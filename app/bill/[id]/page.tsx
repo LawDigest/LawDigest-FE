@@ -1,7 +1,6 @@
-import { Bill, GPTSummary } from '@/components/Bill';
-import { Button } from '@nextui-org/button';
+import { Bill } from '@/components/Bill';
 import getQueryClient from '@/lib/getQueryClient';
-import Link from 'next/link';
+import { SubHeader } from '@/components';
 import { Divider } from '@nextui-org/react';
 import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from './apis';
 import { SectionContainer, ProposerList, ProgressStage, AnotherBill } from './components';
@@ -19,42 +18,25 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   return (
     <section className="flex flex-col">
+      <SubHeader title="의안 자세히 보기" />
       <Bill {...bill} detail viewCount={viewCount}>
-        <div className="flex flex-col gap-[34px]">
-          <Divider className="bg-gray-0.5 dark:bg-dark-l" />
+        <section className="lg:w-[490px] lg:float-right">
+          <SectionContainer title="발의자 명단">
+            <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
+          </SectionContainer>
 
-          <GPTSummary />
+          <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-          <div className="flex flex-col items-center gap-3">
-            <h5 className="text-xs font-semibold text-theme-alert">
-              AI 기반의 요약은 내용이 불완전할 수 있습니다. 꼭 원문을 확인해주세요 !
-            </h5>
+          <SectionContainer title="심사 진행 단계">
+            <ProgressStage billStage={billStage} />
+          </SectionContainer>
 
-            <Link href={bill.bill_info_dto.bill_link}>
-              <Button
-                size="lg"
-                color="primary"
-                radius="full"
-                className="w-[242px] h-[56px] bg-primary-3 dark:bg-gray-0.5 dark:text-black">
-                원문 확인하기
-              </Button>
-            </Link>
-          </div>
+          <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-          <Divider className="bg-gray-0.5 dark:bg-dark-l" />
-        </div>
-
-        <SectionContainer title="발의자 명단">
-          <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
-        </SectionContainer>
-
-        <SectionContainer title="심사 진행 단계">
-          <ProgressStage billStage={billStage} />
-        </SectionContainer>
-
-        <SectionContainer title="다른 개정안 보기">
-          <AnotherBill similarBills={similarBills} />
-        </SectionContainer>
+          <SectionContainer title="다른 개정안 보기">
+            <AnotherBill similarBills={similarBills} />
+          </SectionContainer>
+        </section>
       </Bill>
     </section>
   );

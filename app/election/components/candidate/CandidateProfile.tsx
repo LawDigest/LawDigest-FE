@@ -22,7 +22,7 @@ export default async function CandidateProfile({ candidateId, type }: { candidat
   } = candidate;
 
   return (
-    <section className="flex flex-col gap-8 mx-5">
+    <section className="flex flex-col mx-5 gap-8">
       <Card className="py-[26px] px-[30px] flex flex-row gap-6 h-[156px]">
         {district_candidate_image !== null ? (
           <Avatar

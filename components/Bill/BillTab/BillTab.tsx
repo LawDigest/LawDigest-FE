@@ -14,7 +14,7 @@ export default function BillTab({
   const values = siteConfig.billTabs;
 
   return (
-    <section className="w-full">
+    <section className="w-full lg:min-w-[840px]">
       <Tabs
         fullWidth
         aria-label="Options"

@@ -39,14 +39,14 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
 
   return (
     <section className="flex flex-col items-center mx-5 gap-7">
-      <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b">
+      <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
         <div className="shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white">
           <Image
             src={process.env.NEXT_PUBLIC_IMAGE_URL + party_img_url}
             width={200}
             height={90}
             alt={`${party_name} 로고 이미지`}
-            className={`w-[100px] h-[45px] object-cover bg-white border-[${partyColor}]`}
+            className={`w-[100px] h-[45px] object-contain bg-white border-[${partyColor}]`}
           />
         </div>
 
