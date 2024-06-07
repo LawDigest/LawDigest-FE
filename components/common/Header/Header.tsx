@@ -46,7 +46,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
 
   return (
     <section className="w-full">
-      <Navbar className=" dark:bg-dark-b lg:shadow-md lg:h-[98px]">
+      <Navbar className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px]">
         <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
           <Link href="/">
             <Logo width={106} height={18} />
@@ -59,12 +59,12 @@ export default function Header({ logo, goBack, title, setting, search, notificat
               const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
               return (
-                <NavbarItem key={label} className="flex items-center justify-center">
+                <NavbarItem key={label} className="flex items-center justify-center ">
                   <div className={`${isActive ? 'z-10' : '-z-10'} absolute`}>
                     <IconNavBorder />
                   </div>
                   <Link
-                    className={`${isActive ? 'text-white lg:text-black lg:dark:text-white lg:font-semibold lg:bg-transparent' : 'text-gray-2'} flex flex-col items-center text-xs lg:text-base lg:font-medium font-bold lg:px-5 lg:py-3 lg:bg-white lg:dark:bg-dark-b lg:w-[100px] lg:h-[50px]`}
+                    className={`${isActive ? 'text-white lg:text-black lg:dark:text-white lg:font-semibold lg:bg-transparent' : 'text-gray-2'} flex flex-col items-center text-xs lg:text-base lg:font-medium font-bold lg:px-5 lg:py-3 lg:bg-white dark:lg:bg-dark-pb lg:w-[100px] lg:h-[50px]`}
                     href={path}>
                     <IconComponent isActive={isActive} className="lg:hidden" />
                     <p>{label}</p>

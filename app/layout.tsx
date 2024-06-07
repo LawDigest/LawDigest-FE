@@ -29,7 +29,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           <NextThemesProvider>
             <NextUIProvider>
               <div className="relative flex flex-col h-screen">
-                <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:text-white">
+                <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white">
                   <Suspense fallback={<Loading />}>{children}</Suspense>
                 </main>
               </div>

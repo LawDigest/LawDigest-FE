@@ -10,6 +10,7 @@ import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
 import { PartyLogo } from '@/components/common';
+import GPTSummary from '../../GPTSummary';
 
 export default function Bill({
   bill_info_dto: {
@@ -22,6 +23,7 @@ export default function Bill({
     view_count,
     bill_like_count,
     bill_stage,
+    bill_link,
   },
   representative_proposer_dto: {
     representative_proposer_id,
@@ -62,9 +64,14 @@ export default function Bill({
   }, [toggleMore]);
 
   return (
-    <section className="flex flex-col gap-5 my-6">
-      <Card key={bill_id} className="flex flex-col gap-5 mx-5 dark:bg-dark-b " radius="none" shadow="none">
-        <CardHeader className="flex flex-col items-start gap-2 p-0 lg:absolute lg:w-[270px] lg:left-0">
+    <section className={`flex flex-col gap-5 ${detail ? 'lg:flex-row' : ''}`}>
+      <Card
+        key={bill_id}
+        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
+        radius="none"
+        shadow="none">
+        <CardHeader
+          className={`flex flex-col items-start gap-2 p-0  ${!detail ? 'lg:w-[270px] lg:left-0 lg:absolute' : ''}`}>
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
@@ -89,9 +96,10 @@ export default function Bill({
             </div>
           )}
         </CardHeader>
-        <section className="lg:flex lg:justify-between lg:gap-10">
-          <div className="hidden lg:block lg:w-[270px]" />
-          <div className="lg:w-[490px]">
+
+        <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
+          <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
+          <div className={!detail ? 'lg:w-[490px]' : ''}>
             <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
               {/* eslint-disable-next-line no-nested-ternary, jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
               <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
@@ -99,7 +107,7 @@ export default function Bill({
                 {!gpt_summary && summary}
               </p>
               <p
-                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:bg-dark-b dark:text-gray-3`}>
+                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:text-gray-3`}>
                 {toggleMore ? '' : ' ... 더 보기'}
               </p>
             </CardBody>
@@ -165,48 +173,77 @@ export default function Bill({
             )}
           </div>
         </section>
+
+        {detail && (
+          <div className="flex flex-col gap-[34px]">
+            <Divider className="bg-gray-0.5 dark:bg-dark-l lg:hidden" />
+
+            <GPTSummary />
+
+            <div className="flex flex-col items-center gap-3">
+              <h5 className="text-xs font-semibold text-theme-alert">
+                AI 기반의 요약은 내용이 불완전할 수 있습니다. 꼭 원문을 확인해주세요 !
+              </h5>
+
+              <Link href={bill_link}>
+                <Button
+                  size="lg"
+                  color="primary"
+                  radius="full"
+                  className="w-[242px] h-[56px] bg-primary-3 dark:bg-gray-0.5 dark:text-black">
+                  원문 확인하기
+                </Button>
+              </Link>
+            </div>
+
+            <Divider className="bg-gray-0.5 dark:bg-dark-l lg:hidden" />
+          </div>
+        )}
       </Card>
 
-      <section className="mx-5">{children}</section>
+      <div
+        className={`flex flex-col py-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
+        <section className="mx-5">{children}</section>
 
-      <Link href={`/congressman/${representative_proposer_id}`}>
-        <Card
-          className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
-          radius="sm"
-          shadow="sm">
-          <div className="flex items-center gap-2">
-            <Avatar
-              radius="full"
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
-              className="border dark:border-dark-l"
-            />
-            <div className="flex flex-col gap-0.5">
-              <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-              <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
-            </div>
-          </div>
-
-          <Button
-            className="bg-tranparent"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              router.push(`/party/${party_id}`);
-            }}>
-            {party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                width={100}
-                height={45}
-                alt={`${party_name} 이미지`}
-                className="w-[100px] h-[40px] object-contain"
+        <Link href={`/congressman/${representative_proposer_id}`}>
+          <Card
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
+            radius="sm"
+            shadow="sm">
+            <div className="flex items-center gap-2">
+              <Avatar
+                radius="full"
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
+                className="border dark:border-dark-l"
               />
-            ) : (
-              <PartyLogo partyName={party_name} circle={false} />
-            )}
-          </Button>
-        </Card>
-      </Link>
+              <div className="flex flex-col gap-0.5">
+                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
+                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+              </div>
+            </div>
+
+            <Button
+              className="bg-tranparent"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                router.push(`/party/${party_id}`);
+              }}>
+              {party_image_url !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                  width={100}
+                  height={45}
+                  alt={`${party_name} 이미지`}
+                  className="w-[100px] h-[40px] object-contain"
+                />
+              ) : (
+                <PartyLogo partyName={party_name} circle={false} />
+              )}
+            </Button>
+          </Card>
+        </Link>
+      </div>
 
       {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
