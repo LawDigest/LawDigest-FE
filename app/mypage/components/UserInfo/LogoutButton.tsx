@@ -9,12 +9,9 @@ export default function LogoutButton() {
   const router = useRouter();
 
   const onClickLogout = useCallback(async () => {
-    const res = await postLogout();
-
-    if (Number(res.code) === 200) {
-      router.push('/login');
-      deleteCookie(ACCESS_TOKEN);
-    }
+    postLogout();
+    deleteCookie(ACCESS_TOKEN);
+    router.push('/login');
   }, []);
 
   return (
