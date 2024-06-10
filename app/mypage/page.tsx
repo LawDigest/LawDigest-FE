@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
-import { CongressmanList, UserInfo, PartyList } from './components';
+import { CongressmanList, UserInfo, PartyList, BillContainer } from './components';
 
 export default function MyPage() {
   const router = useRouter();
@@ -28,6 +28,8 @@ export default function MyPage() {
           <PartyList qeuryClient={queryClient} />
           <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l lg:border-transparent dark:lg:border-transparent" />
           <CongressmanList queryClient={queryClient} />
+          <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l lg:border-transparent dark:lg:border-transparent" />
+          <BillContainer />
         </div>
       </div>
     </HydrationBoundary>
