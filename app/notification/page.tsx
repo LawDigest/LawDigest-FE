@@ -9,5 +9,9 @@ export default function Notification() {
     putNotificationRead();
   }, []);
 
-  return <NotificationList />;
+  return (
+    <section className="lg:max-w-[840px] mx-auto">
+      <NotificationList />
+    </section>
+  );
 }
