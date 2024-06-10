@@ -1,5 +1,5 @@
 import http from '@/api';
-import { FollowingCongressmanResponse, FollowingPartyResponse, UserInfoResponse } from '@/types';
+import { FeedResponse, FollowingCongressmanResponse, FollowingPartyResponse, UserInfoResponse } from '@/types';
 
 export const getUserInfo = async () =>
   http.get<UserInfoResponse>({
@@ -19,4 +19,10 @@ export const getFollowingCongressman = async () =>
 export const postLogout = async () =>
   http.post({
     url: `/logout`,
+  });
+
+export const getBillBookmarked = async (page: number) =>
+  http.get<FeedResponse>({
+    url: `/user/bookmarking/bill`,
+    params: { page, size: 3 },
   });
