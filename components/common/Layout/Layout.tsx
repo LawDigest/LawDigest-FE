@@ -25,7 +25,7 @@ export default function Layout({
   children,
 }: LayoutProps) {
   return (
-    <section className="w-full h-full flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  sm:w-[430px] lg:w-full min-w-[360px]">
+    <section className="w-full h-full flex flex-col items-center relative sm:w-[430px] lg:w-full min-w-[360px]">
       <Header
         logo={logo}
         goBack={goBack}
@@ -35,7 +35,7 @@ export default function Layout({
         notification={notification}
         theme={theme}
       />
-      <section className="w-full h-[calc(100%-64px)] overflow-scroll max-w-[1280px]">{children}</section>
+      <section className="w-full h-full overflow-scroll max-w-[1280px]">{children}</section>
       {nav && <Nav />}
     </section>
   );
