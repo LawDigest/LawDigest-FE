@@ -27,7 +27,7 @@ function Nav() {
   const pathname = usePathname();
 
   return (
-    <Navbar position="static" className="absolute bottom-0 h-16 bg-primary-3 lg:hidden">
+    <Navbar position="static" className="fixed bottom-0 h-16 z-99 bg-primary-3 lg:hidden">
       <NavbarContent>
         <ul className="flex justify-between w-full gap-2 px-10 ">
           {Nav_Items.map(({ label, path, IconComponent }) => {
