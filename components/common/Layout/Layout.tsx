@@ -35,7 +35,7 @@ export default function Layout({
         notification={notification}
         theme={theme}
       />
-      <section className="w-full h-full overflow-scroll max-w-[1280px]">{children}</section>
+      <section className="w-full h-[calc(100%-64px)] overflow-scroll max-w-[1280px]">{children}</section>
       {nav && <Nav />}
     </section>
   );
