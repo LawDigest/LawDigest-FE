@@ -44,27 +44,16 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   async (error: AxiosError) => {
     if (error.response?.status === 401) {
-      axiosInstance
+      return axiosInstance
         .patch('/auth/reissue/token')
-        .then((response) => {
-          if (response.status === 200) {
-            handleSuccessReissueToken();
-          }
+        .then(() => {
+          return handleSuccessReissueToken(error);
         })
-        .catch((response) => {
-          if (response.status === 500) {
-            handleFailReissueToken();
-          }
+        .catch(() => {
+          return handleFailReissueToken(error);
         });
     }
 
-    if (!error.response) {
-      // eslint-disable-next-line
-      console.error('에러 응답이 없습니다.');
-      return Promise.reject(error);
-    }
-    // eslint-disable-next-line
-    console.error('에러가 발생했습니다.');
     return Promise.reject(error);
   },
 );

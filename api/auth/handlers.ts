@@ -3,13 +3,32 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { deleteCookie, getCookie } from 'cookies-next';
+import { ACCESS_TOKEN } from '@/constants';
+import axios, { AxiosError } from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import _ from 'lodash';
 
-export const handleSuccessReissueToken = () => {
-  const router = useRouter();
-  router.push('/');
+export const handleSuccessReissueToken = (error: AxiosError) => {
+  const { response } = error;
+
+  const newConfig = _.cloneDeep(response!.config);
+  const accessToken = getCookie(ACCESS_TOKEN)!;
+  newConfig.headers.Authorization = `Bearer ${accessToken}`;
+
+  return axios(newConfig).catch(() => {
+    deleteCookie(ACCESS_TOKEN);
+    const router = useRouter();
+    router.push('/login');
+
+    return Promise.reject(error);
+  });
 };
 
-export const handleFailReissueToken = () => {
+export const handleFailReissueToken = (error: AxiosError) => {
+  deleteCookie(ACCESS_TOKEN);
   const router = useRouter();
   router.push('/login');
+
+  return Promise.reject(error);
 };
