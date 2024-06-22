@@ -107,7 +107,7 @@ export default function Bill({
                 {!gpt_summary && summary}
               </p>
               <p
-                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:text-gray-3`}>
+                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:bg-dark-b dark:text-gray-3`}>
                 {toggleMore ? '' : ' ... 더 보기'}
               </p>
             </CardBody>
