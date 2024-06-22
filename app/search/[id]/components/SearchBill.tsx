@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { SearchBillProps } from '@/types';
+import { BillProps } from '@/types';
 import { IconExport, IconScrabSmall } from '@/public/svgs';
 import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { PartyLogo } from '@/components';
@@ -24,7 +24,7 @@ export default function SearchBill({
   congressman_id,
   congressman_image_url,
   representative_proposer,
-}: SearchBillProps) {
+}: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [toggleMore, setToggleMore] = useState(false);
 

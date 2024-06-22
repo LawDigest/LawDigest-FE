@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { SearchBar } from '@/components';
+import { BillList, SearchBar } from '@/components';
 import { useIntersect, useTabType } from '@/hooks';
 import { SEARCH_TAB_KO } from '@/constants';
 import { useGetSearchCongressmanParty, useGetSearchBill } from '../apis';
-import { SearchList, SearchBillList, SearchTab } from './components';
+import { SearchList, SearchTab } from './components';
 
 export default function SearchResult({ params: { id } }: { params: { id: string } }) {
   const [searchType, setSearchType] = useTabType<typeof SEARCH_TAB_KO>('법안');
@@ -66,7 +66,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
         <div className="mb-10">
           <SearchTab type={searchType as any} clickHandler={setSearchType as any} />
           {searchType === '법안' ? (
-            <SearchBillList bills={searchResultsBill} isFetching={isFetchingBill} fetchRef={fetchRefBill} />
+            <BillList bills={searchResultsBill} isFetching={isFetchingBill} fetchRef={fetchRefBill} detail={false} />
           ) : (
             <SearchList searchResults={searchResultsCP} isFetching={isFetchingCP} fetchRef={fetchRefCP} />
           )}
