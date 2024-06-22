@@ -1,7 +1,5 @@
 import { Avatar } from '@nextui-org/avatar';
 import { QueryClient } from '@tanstack/react-query';
-import { Button } from '@nextui-org/react';
-import http from '@/api';
 import { useGetUserInfo } from '../../apis';
 import LogoutButton from './LogoutButton';
 
@@ -19,21 +17,6 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
           <p className="text-[#999999] text-xs dark:text-gray-2">{user_email}</p>
         </div>
       </div>
-
-      <Button
-        onClick={() =>
-          http
-            .patch({
-              url: '/auth/reissue/token',
-            })
-            .then((response) => console.log(response))
-        }
-        radius="full"
-        size="sm"
-        variant="bordered"
-        className="h-8 bg-transparent border-1 border-[#E0E0E0] text-[#999999] dark:border-gray-3 dark:text-gray-2">
-        토큰 재발급
-      </Button>
 
       <div className="lg:absolute lg:-bottom-[50px]">
         <LogoutButton />

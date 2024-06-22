@@ -6,14 +6,23 @@ import { useRouter } from 'next/navigation';
 import { deleteCookie, getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import axios, { AxiosError } from 'axios';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import _ from 'lodash';
 
 export const handleSuccessReissueToken = (error: AxiosError) => {
   const { response } = error;
 
+  const newConfig = _.cloneDeep(response!.config);
   const accessToken = getCookie(ACCESS_TOKEN)!;
-  response!.config.headers.Authorization = `Bearer ${accessToken}`;
+  newConfig.headers.Authorization = `Bearer ${accessToken}`;
 
-  return axios(response!.config);
+  return axios(newConfig).catch(() => {
+    deleteCookie(ACCESS_TOKEN);
+    const router = useRouter();
+    router.push('/login');
+
+    return Promise.reject(error);
+  });
 };
 
 export const handleFailReissueToken = (error: AxiosError) => {
