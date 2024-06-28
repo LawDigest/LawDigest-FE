@@ -30,7 +30,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
       shadow="none"
       radius="md">
       <div className="flex justify-between gap-4 lg:flex-col lg:items-center">
-        <Link href={`/party/${party_id.toString()}`} className="hidden lg:block">
+        <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="hidden lg:block">
           {party_image_url !== null ? (
             <Image
               src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
@@ -51,7 +51,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         />
 
         <div className="flex flex-col justify-between w-[65%] lg:items-center items-start">
-          <Link href={`/party/${party_id.toString()}`} className="lg:hidden">
+          <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="lg:hidden">
             {party_image_url !== null ? (
               <Image
                 src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}

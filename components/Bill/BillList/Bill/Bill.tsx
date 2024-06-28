@@ -223,7 +223,7 @@ export default function Bill({
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                router.push(`/party/${party_id}`);
+                if (party_image_url !== null) router.push(`/party/${party_id}`);
               }}>
               {party_image_url !== null ? (
                 <Image
