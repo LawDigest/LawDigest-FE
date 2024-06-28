@@ -4,6 +4,7 @@ import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPartyColor } from '@/utils';
+import { PartyLogoReplacement } from '@/components';
 import FollowButton from './FollowButton';
 import { useGetCongressmanDetail } from '../../apis';
 
@@ -29,14 +30,18 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
       shadow="none"
       radius="md">
       <div className="flex justify-between gap-4 lg:flex-col lg:items-center">
-        <Link href={`/party/${party_id.toString()}`} className="hidden lg:block">
-          <Image
-            src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
-            width={128}
-            height={60}
-            alt={`${party_name} 로고 이미지`}
-            className="object-contain w-[128px] h-[60px]"
-          />
+        <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="hidden lg:block">
+          {party_image_url !== null ? (
+            <Image
+              src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+              width={128}
+              height={60}
+              alt={`${party_name} 로고 이미지`}
+              className="object-contain w-[128px] h-[60px]"
+            />
+          ) : (
+            <PartyLogoReplacement partyName={party_name} circle={false} />
+          )}
         </Link>
 
         <Avatar
@@ -45,15 +50,19 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
           className="w-[100px] h-[100px] border dark:border-dark-l"
         />
 
-        <div className="flex flex-col justify-between w-[65%] lg:items-center">
-          <Link href={`/party/${party_id.toString()}`} className="lg:hidden">
-            <Image
-              src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
-              width={80}
-              height={28}
-              alt={`${party_name} 로고 이미지`}
-              className="object-contain w-[80px] h-[28px]"
-            />
+        <div className="flex flex-col justify-between w-[65%] lg:items-center items-start">
+          <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="lg:hidden">
+            {party_image_url !== null ? (
+              <Image
+                src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+                width={80}
+                height={28}
+                alt={`${party_name} 로고 이미지`}
+                className="object-contain w-[80px] h-[28px]"
+              />
+            ) : (
+              <PartyLogoReplacement partyName={party_name} circle={false} />
+            )}
           </Link>
           <h3 className="text-2xl font-semibold">{congressman_name}</h3>
           <p className="text-xs text-gray-2 line-clamp-2">
