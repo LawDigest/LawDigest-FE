@@ -2,7 +2,7 @@ import { ProportionalPartyListProps } from '@/types';
 import { Card } from '@nextui-org/card';
 import { Button, Link as NextUILInk } from '@nextui-org/react';
 import Image from 'next/image';
-import { PartyLogo } from '@/components';
+import { PartyLogoReplacement } from '@/components';
 
 export default function ProportionalItem({ party_id, party_image_url, party_name }: ProportionalPartyListProps) {
   return (
@@ -15,7 +15,7 @@ export default function ProportionalItem({ party_id, party_image_url, party_name
           alt={`${party_name} 로고 이미지`}
         />
       ) : (
-        <PartyLogo partyName={party_name} circle={false} />
+        <PartyLogoReplacement partyName={party_name} circle={false} />
       )}
 
       <div>

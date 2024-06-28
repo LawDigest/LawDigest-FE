@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Chip } from '@nextui-org/chip';
 import { useQueryClient } from '@tanstack/react-query';
-import { PartyLogo } from '@/components';
+import { PartyLogoReplacement } from '@/components';
 import { useGetProportionalPartyInfo } from '../../../apis';
 
 export default async function ProportionalPartyDetail({ partyId }: { partyId: number }) {
@@ -21,7 +21,7 @@ export default async function ProportionalPartyDetail({ partyId }: { partyId: nu
             className="w-[150px] h-[60px] object-cover"
           />
         ) : (
-          <PartyLogo partyName={party_name} circle={false} />
+          <PartyLogoReplacement partyName={party_name} circle={false} />
         )}
 
         <div className="flex flex-col items-end gap-3">

@@ -8,7 +8,7 @@ import { getBill, getBillByStage } from './apis';
 
 export const useGetBills = () =>
   useSuspenseInfiniteQuery({
-    queryKey: [' /bill/mainfeed'],
+    queryKey: ['/bill/mainfeed'],
     queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
