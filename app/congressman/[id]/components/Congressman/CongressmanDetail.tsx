@@ -50,9 +50,9 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
             <Image
               src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
               width={80}
-              height={15}
+              height={28}
               alt={`${party_name} 로고 이미지`}
-              className="object-cover w-[80px] h-[15px]"
+              className="object-contain w-[80px] h-[28px]"
             />
           </Link>
           <h3 className="text-2xl font-semibold">{congressman_name}</h3>
