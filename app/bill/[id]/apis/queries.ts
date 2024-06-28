@@ -17,7 +17,7 @@ export const usePatchViewCount = async (billId: string) => {
 
 export const prefetchGetBillDetail = (billId: string, queryClient: QueryClient) =>
   queryClient.prefetchQuery({
-    queryKey: ['/bill/detail', billId],
+    queryKey: ['prefetch/bill/detail', billId],
     queryFn: () => getBillDetail(billId),
   });
 
@@ -29,6 +29,7 @@ export const usePostBookmark = (billId: string) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/bill/detail', billId] });
       queryClient.invalidateQueries({ queryKey: ['/bill/mainfeed'] });
+      queryClient.invalidateQueries({ queryKey: ['/user/bookmarking/bill'] });
     },
   });
 };

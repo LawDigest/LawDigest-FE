@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useCallback } from 'react';
 import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
-import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
-import { PartyLogo } from '@/components/common';
+import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { PartyLogoReplacement } from '@/components/common';
 import GPTSummary from '../../GPTSummary';
 
 export default function Bill({
@@ -36,32 +36,28 @@ export default function Bill({
   is_book_mark,
   public_proposer_dto_list,
   detail,
-  children,
   viewCount,
+  children,
 }: BillProps) {
   const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
-  const [toggleMore, setToggleMore] = useState(false);
   const mutateBookmark = usePostBookmark(bill_id);
+  const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    setIsLiked(is_book_mark);
-  }, [is_book_mark]);
+  const onClickToggleMore = useCallback(() => {
+    setToggleMore(!toggleMore);
+  }, [toggleMore]);
 
   const onClickScrab = useCallback(() => {
     setIsLiked(!isLiked);
 
     mutateBookmark.mutate(!isLiked);
-  }, [isLiked]);
+  }, [isLiked, is_book_mark]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
   }, []);
-
-  const onClickToggleMore = useCallback(() => {
-    setToggleMore(!toggleMore);
-  }, [toggleMore]);
 
   return (
     <section className={`flex flex-col gap-5 ${detail ? 'lg:flex-row' : ''}`}>
@@ -101,7 +97,7 @@ export default function Bill({
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
             <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
-              {/* eslint-disable-next-line no-nested-ternary, jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */}
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
               <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
@@ -238,7 +234,7 @@ export default function Bill({
                   className="w-[100px] h-[40px] object-contain"
                 />
               ) : (
-                <PartyLogo partyName={party_name} circle={false} />
+                <PartyLogoReplacement partyName={party_name} circle={false} />
               )}
             </Button>
           </Card>

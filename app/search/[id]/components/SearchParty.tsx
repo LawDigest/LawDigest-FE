@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { SearchCongressmanPartyProps } from '@/types';
-import { EnterButton, PartyLogo } from '@/components';
+import { EnterButton, PartyLogoReplacement } from '@/components';
 import Image from 'next/image';
 
 export default function SearchParty({ party_id, party_name, party_image_url }: SearchCongressmanPartyProps) {
@@ -17,7 +17,7 @@ export default function SearchParty({ party_id, party_name, party_image_url }: S
             />
           </div>
         ) : (
-          <PartyLogo partyName={party_name} circle />
+          <PartyLogoReplacement partyName={party_name} circle />
         )}
         <p className="text-lg font-semibold">{party_name}</p>
       </div>

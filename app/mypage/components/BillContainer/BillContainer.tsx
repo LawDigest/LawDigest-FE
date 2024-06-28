@@ -6,7 +6,7 @@ import { useIntersect } from '@/hooks';
 import { useGetBillBookmarked } from '../../apis';
 
 export default function BillContainer() {
-  const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillBookmarked();
+  const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillBookmarked();
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 
   const fetchRef = useIntersect(async (entry: any, observer: any) => {
@@ -21,11 +21,6 @@ export default function BillContainer() {
       setBills(() => [...data.pages.flatMap(({ data: { bill_list: responses } }) => responses)]);
     }
   }, [data]);
-
-  useEffect(() => {
-    setBills([]);
-    refetch();
-  }, []);
 
   return (
     <section className="lg:px-[30px] flex flex-col gap-6">
