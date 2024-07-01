@@ -23,7 +23,10 @@ export const metadata: Metadata = {
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
       <body className={clsx('min-h-screen bg-white text-black font-sans antialiased', fontSans.variable)}>
         <QueryClientProvider>
           <NextThemesProvider>
