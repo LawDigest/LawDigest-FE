@@ -13,14 +13,14 @@ export interface BillResponse {
     brief_summary: string;
     bill_link: string;
   };
-  representative_proposer_dto: {
+  representative_proposer_dto_list: {
     representative_proposer_id: string;
     representative_proposer_name: string;
     represent_proposer_img_url: string;
     party_id: number;
     party_image_url: string;
     party_name: string;
-  };
+  }[];
   public_proposer_dto_list: {
     public_proposer_id: string;
     public_proposer_name: string;
