@@ -27,7 +27,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
-      <body className={clsx('min-h-screen bg-white text-black font-sans antialiased', fontSans.variable)}>
+      <body className={clsx('bg-white text-black font-sans antialiased', fontSans.variable)}>
         <QueryClientProvider>
           <NextThemesProvider>
             <NextUIProvider>
