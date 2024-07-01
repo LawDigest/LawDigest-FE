@@ -1,7 +1,6 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/navbar';
 import Link from 'next/link';
 import { IconHome, IconElection, IconUserAvatar } from '@/public/svgs';
 
@@ -27,26 +26,26 @@ function Nav() {
   const pathname = usePathname();
 
   return (
-    <Navbar position="static" className="h-16 bg-primary-3 lg:hidden">
-      <NavbarContent>
-        <ul className="flex justify-between w-full gap-2 px-10 ">
+    <section className="w-full h-16 bg-primary-3 lg:hidden">
+      <div>
+        <ul className="flex justify-between w-full gap-2 px-10 py-2">
           {Nav_Items.map(({ label, path, IconComponent }) => {
             const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
             return (
-              <NavbarItem key={label}>
+              <li key={label}>
                 <Link
                   className={`${isActive ? 'text-white' : 'text-gray-2'} flex flex-col items-center text-xs font-bold`}
                   href={path}>
                   <IconComponent isActive={isActive} />
                   <p>{label}</p>
                 </Link>
-              </NavbarItem>
+              </li>
             );
           })}
         </ul>
-      </NavbarContent>
-    </Navbar>
+      </div>
+    </section>
   );
 }
 
