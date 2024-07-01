@@ -23,12 +23,15 @@ export const metadata: Metadata = {
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <head />
-      <body className={clsx('min-h-screen bg-white text-black font-sans antialiased', fontSans.variable)}>
+      <head>
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+      </head>
+      <body className={clsx('bg-white text-black font-sans antialiased', fontSans.variable)}>
         <QueryClientProvider>
           <NextThemesProvider>
             <NextUIProvider>
-              <div className="relative flex flex-col h-screen">
+              <div className="relative flex flex-col h-auto min-h-[100dvh]">
                 <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white">
                   <Suspense fallback={<Loading />}>{children}</Suspense>
                 </main>

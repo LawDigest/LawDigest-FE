@@ -47,7 +47,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
 
   return (
     <section className="w-full">
-      <Navbar className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px]">
+      <Navbar position="static" className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px]">
         <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
           <Link href="/">
             <Logo width={106} height={18} />
