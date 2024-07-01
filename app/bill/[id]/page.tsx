@@ -11,8 +11,8 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
 
   const { data: bill } = await useGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
-  const representativeProposer = bill.representative_proposer_dto;
-  const proposerList = bill.public_proposer_dto_list;
+  const representativeProposerList = bill.representative_proposer_dto_list;
+  const publicProposerList = bill.public_proposer_dto_list;
   const similarBills = bill.similar_bills;
   const billStage = bill.bill_info_dto.bill_stage;
 
@@ -22,7 +22,10 @@ export default async function BillDetail({ params: { id } }: { params: { id: str
       <Bill {...bill} detail viewCount={viewCount}>
         <section className="lg:w-[490px] lg:float-right">
           <SectionContainer title="발의자 명단">
-            <ProposerList representativeProposer={representativeProposer} proposerList={proposerList} />
+            <ProposerList
+              representativeProposerList={representativeProposerList}
+              publicProposerList={publicProposerList}
+            />
           </SectionContainer>
 
           <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />

@@ -1,16 +1,16 @@
 export default function sortByParty({
-  representativeProposer,
-  proposerList,
+  representativeProposerList,
+  publicProposerList,
 }: {
-  representativeProposer: {
+  representativeProposerList: {
     representative_proposer_id: string;
     representative_proposer_name: string;
     represent_proposer_img_url: string;
     party_id: number;
     party_image_url: string;
     party_name: string;
-  };
-  proposerList: {
+  }[];
+  publicProposerList: {
     public_proposer_id: string;
     public_proposer_name: string;
     public_proposer_img_url: string;
@@ -22,7 +22,37 @@ export default function sortByParty({
   const map = new Map();
   const newProposerList: any = [];
 
-  proposerList
+  if (representativeProposerList.length > 1) {
+    representativeProposerList
+      .toSorted((a, b) => a.party_id - b.party_id)
+      .forEach((proposer) => {
+        const proposerId = proposer.representative_proposer_id;
+        const proposerName = proposer.representative_proposer_name;
+        const partyName = proposer.party_name;
+        const partyId = proposer.party_id;
+        const partyLogo = proposer.party_image_url;
+        const newProposer = Array.of([proposerId, proposerName]);
+
+        if (map.has(partyName)) {
+          map.set(partyName, map.get(partyName).concat(newProposer));
+        } else {
+          map.set(partyName, [
+            [partyId, partyLogo],
+            [proposerId, proposerName],
+          ]);
+        }
+      });
+  } else {
+    map.set(representativeProposerList[0].party_name, [
+      [representativeProposerList[0].party_id, representativeProposerList[0].party_image_url],
+      [
+        representativeProposerList[0].representative_proposer_id,
+        representativeProposerList[0].representative_proposer_name,
+      ],
+    ]);
+  }
+
+  publicProposerList
     .toSorted((a, b) => a.public_proposer_party_id - b.public_proposer_party_id)
     .forEach((proposer) => {
       const proposerId = proposer.public_proposer_id;
@@ -41,25 +71,6 @@ export default function sortByParty({
         ]);
       }
     });
-
-  if (map.has(representativeProposer.party_name)) {
-    map.set(
-      representativeProposer.party_name,
-      map
-        .get(representativeProposer.party_name)
-        .concat(
-          Array.of([
-            representativeProposer.representative_proposer_id,
-            representativeProposer.representative_proposer_name,
-          ]),
-        ),
-    );
-  } else {
-    map.set(representativeProposer.party_name, [
-      [representativeProposer.party_id, representativeProposer.party_image_url],
-      [representativeProposer.representative_proposer_id, representativeProposer.representative_proposer_name],
-    ]);
-  }
 
   map.forEach((key, value) => {
     newProposerList.push({ party: value, proposers: key });
