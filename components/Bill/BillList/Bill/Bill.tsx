@@ -1,7 +1,18 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Avatar, Button, Divider, Tooltip, Chip } from '@nextui-org/react';
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Button,
+  Divider,
+  Tooltip,
+  Chip,
+  AvatarGroup,
+} from '@nextui-org/react';
 import Link from 'next/link';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
@@ -32,11 +43,12 @@ export default function Bill({
   viewCount,
   children,
 }: BillProps) {
-  const partyColor = getPartyColor(party_name);
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const mutateBookmark = usePostBookmark(bill_id);
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
+  const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
+  const partyColor = isRepresentativeSolo ? getPartyColor(representative_proposer_dto_list[0].party_name) : '';
 
   const onClickToggleMore = useCallback(() => {
     setToggleMore(!toggleMore);
@@ -194,42 +206,79 @@ export default function Bill({
         className={`flex flex-col py-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
         <section className="mx-5">{children}</section>
 
-        <Link href={`/congressman/${representative_proposer_id}`}>
+        <Link
+          href={
+            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : ''
+          }>
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
-              <Avatar
-                radius="full"
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${represent_proposer_img_url}`}
-                className="border dark:border-dark-l"
-              />
+              {isRepresentativeSolo && (
+                <Avatar
+                  radius="full"
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].represent_proposer_img_url}`}
+                  className="border dark:border-dark-l"
+                />
+              )}
               <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">{`${representative_proposer_name} 의원`}</h3>
-                <h4 className="text-xs text-gray-2">{`${representative_proposer_name} 의원 외 ${public_proposer_dto_list.length}인`}</h4>
+                <h3 className="font-medium">
+                  {isRepresentativeSolo
+                    ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원`
+                    : `${representative_proposer_dto_list.map(({ representative_proposer_name }) => representative_proposer_name).join('·')} 의원`}
+                </h3>
+                <h4 className="text-xs text-gray-2">
+                  {isRepresentativeSolo
+                    ? `${
+                        representative_proposer_dto_list[0].representative_proposer_name
+                      } 의원 등 ${public_proposer_dto_list.length + 1}인`
+                    : `${representative_proposer_dto_list
+                        .map(({ representative_proposer_name }) => representative_proposer_name)
+                        .join(
+                          '·',
+                        )} 의원 등 ${representative_proposer_dto_list.length + public_proposer_dto_list.length}인`}
+                </h4>
               </div>
             </div>
 
-            <Button
-              className="bg-tranparent"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (party_image_url !== null) router.push(`/party/${party_id}`);
-              }}>
-              {party_image_url !== null ? (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
-                  width={100}
-                  height={45}
-                  alt={`${party_name} 이미지`}
-                  className="w-[100px] h-[40px] object-contain"
-                />
-              ) : (
-                <PartyLogoReplacement partyName={party_name} circle={false} />
-              )}
-            </Button>
+            {isRepresentativeSolo ? (
+              <Button
+                className="bg-tranparent"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (representative_proposer_dto_list[0].party_image_url !== null)
+                    router.push(`/party/${representative_proposer_dto_list[0].party_id}`);
+                }}>
+                {representative_proposer_dto_list[0].party_image_url !== null ? (
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].party_image_url}`}
+                    width={100}
+                    height={45}
+                    alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
+                    className="w-[100px] h-[40px] object-contain"
+                  />
+                ) : (
+                  <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
+                )}
+              </Button>
+            ) : (
+              <AvatarGroup isBordered>
+                {representative_proposer_dto_list.map(({ party_image_url, party_id }) => (
+                  <Avatar
+                    src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+                    key={party_id}
+                    size="sm"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (party_image_url !== null) router.push(`/party/${party_id}`);
+                    }}
+                  />
+                ))}
+              </AvatarGroup>
+            )}
           </Card>
         </Link>
       </div>
