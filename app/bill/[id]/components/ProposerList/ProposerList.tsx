@@ -6,18 +6,18 @@ import { Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
 import { sortByParty } from '@/utils';
 
 export default function ProposerList({
-  representativeProposer,
-  proposerList,
+  representativeProposerList,
+  publicProposerList,
 }: {
-  representativeProposer: {
+  representativeProposerList: {
     representative_proposer_id: string;
     representative_proposer_name: string;
     represent_proposer_img_url: string;
     party_id: number;
     party_image_url: string;
     party_name: string;
-  };
-  proposerList: {
+  }[];
+  publicProposerList: {
     public_proposer_id: string;
     public_proposer_name: string;
     public_proposer_img_url: string;
@@ -26,15 +26,20 @@ export default function ProposerList({
     public_proposer_party_name: string;
   }[];
 }) {
-  const proposerLength = proposerList.length;
-  const proposerListByParty = sortByParty({ representativeProposer, proposerList });
+  const representativeProposerLength = representativeProposerList.length;
+  const publicProposerLength = publicProposerList.length;
+  const proposerListByParty = sortByParty({ representativeProposerList, publicProposerList });
 
   return (
     <Card classNames={{ base: ['lg:shadow-none dark:lg:bg-dark-pb'] }}>
       <CardHeader>
         <p className="font-medium">
-          {representativeProposer.representative_proposer_name}{' '}
-          <span className="text-sm font-normal">{`외 ${proposerLength}인`}</span>
+          {representativeProposerLength === 1
+            ? representativeProposerList[0].representative_proposer_name
+            : representativeProposerList
+                .map(({ representative_proposer_name }) => representative_proposer_name)
+                .join('·')}{' '}
+          <span className="text-sm font-normal">{`등 ${representativeProposerLength + publicProposerLength}인`}</span>
         </p>
       </CardHeader>
       <CardBody>
