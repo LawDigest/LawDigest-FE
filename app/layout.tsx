@@ -28,7 +28,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <QueryClientProvider>
           <NextThemesProvider>
             <NextUIProvider>
-              <div className="relative flex flex-col h-auto min-h-screen">
+              <div className="relative flex flex-col h-[100dvh]">
                 <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white">
                   <Suspense fallback={<Loading />}>{children}</Suspense>
                 </main>
