@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconHome, IconElection, IconUserAvatar } from '@/public/svgs';
+import { Navbar, NavbarItem, NavbarContent } from '@nextui-org/navbar';
 
 const Nav_Items = [
   {
@@ -25,27 +26,50 @@ const Nav_Items = [
 function Nav() {
   const pathname = usePathname();
 
+  // return (
+  //   <section className="w-full h-16 bg-primary-3 lg:hidden">
+  //     <div>
+  //       <ul className="flex justify-between w-full gap-2 px-10 py-2">
+  //         {Nav_Items.map(({ label, path, IconComponent }) => {
+  //           const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
+
+  //           return (
+  //             <li key={label}>
+  //               <Link
+  //                 className={`${isActive ? 'text-white' : 'text-gray-2'} flex flex-col items-center text-xs font-bold`}
+  //                 href={path}>
+  //                 <IconComponent isActive={isActive} />
+  //                 <p>{label}</p>
+  //               </Link>
+  //             </li>
+  //           );
+  //         })}
+  //       </ul>
+  //     </div>
+  //   </section>
+  // );
+
   return (
-    <section className="w-full h-16 bg-primary-3 lg:hidden">
-      <div>
-        <ul className="flex justify-between w-full gap-2 px-10 py-2">
+    <Navbar className="h-16 bg-primary-3 lg:hidden">
+      <NavbarContent>
+        <ul className="flex justify-between w-full gap-2 px-10 ">
           {Nav_Items.map(({ label, path, IconComponent }) => {
             const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
             return (
-              <li key={label}>
+              <NavbarItem key={label}>
                 <Link
                   className={`${isActive ? 'text-white' : 'text-gray-2'} flex flex-col items-center text-xs font-bold`}
                   href={path}>
                   <IconComponent isActive={isActive} />
                   <p>{label}</p>
                 </Link>
-              </li>
+              </NavbarItem>
             );
           })}
         </ul>
-      </div>
-    </section>
+      </NavbarContent>
+    </Navbar>
   );
 }
 

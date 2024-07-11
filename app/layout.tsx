@@ -27,12 +27,16 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
-      <body className={clsx('bg-white text-black font-sans antialiased', fontSans.variable)}>
+      <body
+        className={clsx(
+          'text-black bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white font-sans antialiased',
+          fontSans.variable,
+        )}>
         <QueryClientProvider>
           <NextThemesProvider>
             <NextUIProvider>
               <div className="relative flex flex-col h-auto min-h-[100dvh]">
-                <main className="flex items-center justify-center w-full h-full bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white">
+                <main className="flex items-center justify-center w-full h-full ">
                   <Suspense fallback={<Loading />}>{children}</Suspense>
                 </main>
               </div>
