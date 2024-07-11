@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconHome, IconElection, IconUserAvatar } from '@/public/svgs';
-// import { Navbar, NavbarItem, NavbarContent } from '@nextui-org/navbar';
 
 const Nav_Items = [
   {
@@ -29,25 +28,24 @@ function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const position = window.scrollY;
-      if (position > 300) {
-        setIsScrolled(true);
-      } else {
+    const handleScroll = (event: WheelEvent) => {
+      if (event.deltaY < 0) {
         setIsScrolled(false);
+      } else {
+        setIsScrolled(true);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('wheel', (event) => handleScroll(event), true);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', (event) => handleScroll(event), true);
     };
   }, []);
 
   return (
     <section
-      className={`fixed bottom-0 left-0 w-full h-16 bg-primary-3 lg:hidden transition-transform duration-300 ${isScrolled ? 'transform translate-y-full' : ''}`}>
+      className={` w-full h-16 bg-primary-3 lg:hidden transition-transform duration-300 ${isScrolled ? 'transform translate-y-full fixed bottom-0 left-0' : ''}`}>
       <div>
         <ul className="flex justify-between w-full gap-2 px-10 py-2">
           {Nav_Items.map(({ label, path, IconComponent }) => {
@@ -68,29 +66,6 @@ function Nav() {
       </div>
     </section>
   );
-
-  // return (
-  //   <Navbar className="h-16 bg-primary-3 lg:hidden">
-  //     <NavbarContent>
-  //       <ul className="flex justify-between w-full gap-2 px-10 ">
-  //         {Nav_Items.map(({ label, path, IconComponent }) => {
-  //           const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
-
-  //           return (
-  //             <NavbarItem key={label}>
-  //               <Link
-  //                 className={`${isActive ? 'text-white' : 'text-gray-2'} flex flex-col items-center text-xs font-bold`}
-  //                 href={path}>
-  //                 <IconComponent isActive={isActive} />
-  //                 <p>{label}</p>
-  //               </Link>
-  //             </NavbarItem>
-  //           );
-  //         })}
-  //       </ul>
-  //     </NavbarContent>
-  //   </Navbar>
-  // );
 }
 
 export default Nav;
