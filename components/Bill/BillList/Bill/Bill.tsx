@@ -34,7 +34,6 @@ export default function Bill({
     view_count,
     bill_like_count,
     bill_stage,
-    bill_link,
   },
   representative_proposer_dto_list,
   is_book_mark,
@@ -186,7 +185,7 @@ export default function Bill({
                 AI 기반의 요약은 내용이 불완전할 수 있습니다. 꼭 원문을 확인해주세요 !
               </h5>
 
-              <Link href={bill_link}>
+              <Link href={`https://likms.assembly.go.kr/bill/billDetail.do?billId=${bill_id}`}>
                 <Button
                   size="lg"
                   color="primary"
