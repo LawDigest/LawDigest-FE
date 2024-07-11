@@ -140,7 +140,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         )}
       </Navbar>
 
-      <div className="mb-5">{toggleSearch && <SearchBar isElection={false} />}</div>
+      <div className="lg:mb-5">{toggleSearch && <SearchBar isElection={false} />}</div>
     </section>
   );
 }

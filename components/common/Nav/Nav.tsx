@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { IconHome, IconElection, IconUserAvatar } from '@/public/svgs';
@@ -25,9 +26,28 @@ const Nav_Items = [
 
 function Nav() {
   const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      if (position > 300) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <section className="w-full h-16 bg-primary-3 lg:hidden">
+    <section
+      className={`w-full h-16 bg-primary-3 lg:hidden transition-transform duration-300 ${isScrolled ? 'transform translate-y-full' : ''}`}>
       <div>
         <ul className="flex justify-between w-full gap-2 px-10 py-2">
           {Nav_Items.map(({ label, path, IconComponent }) => {
