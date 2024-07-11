@@ -40,8 +40,7 @@ function Nav() {
     const handleTouchMove = (event: TouchEvent) => {
       const currentTouch = event.touches[0].clientY;
 
-      console.log(lastScrollTop);
-      if (currentTouch < lastScrollTop) {
+      if (currentTouch > lastScrollTop) {
         setIsScrolled(false);
       } else {
         setIsScrolled(true);
