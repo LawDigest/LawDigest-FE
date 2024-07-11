@@ -26,6 +26,7 @@ const Nav_Items = [
 function Nav() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -39,11 +40,13 @@ function Nav() {
     const handleTouchMove = (event: TouchEvent) => {
       const currentTouch = event.touches[0].clientY;
 
-      if (currentTouch < 0) {
+      if (currentTouch < lastScrollTop) {
         setIsScrolled(false);
       } else {
         setIsScrolled(true);
       }
+
+      setLastScrollTop(currentTouch <= 0 ? 0 : currentTouch);
     };
 
     window.addEventListener('wheel', (event) => handleScroll(event), true);
