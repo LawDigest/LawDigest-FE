@@ -40,6 +40,7 @@ function Nav() {
     const handleTouchMove = (event: TouchEvent) => {
       const currentTouch = event.touches[0].clientY;
 
+      console.log(lastScrollTop);
       if (currentTouch < lastScrollTop) {
         setIsScrolled(false);
       } else {
@@ -56,7 +57,7 @@ function Nav() {
       window.removeEventListener('wheel', (event) => handleScroll(event), true);
       window.addEventListener('touchmove', (event) => handleTouchMove(event), true);
     };
-  }, []);
+  }, [lastScrollTop]);
 
   return (
     <section
