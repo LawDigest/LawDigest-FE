@@ -24,8 +24,9 @@ export default function Layout({
   theme,
   children,
 }: LayoutProps) {
+  // absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
   return (
-    <section className="w-full h-full flex flex-col absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center sm:w-[430px] lg:w-full min-w-[360px]">
+    <section className="w-full h-[100dvh] flex flex-col  items-center sm:w-[430px] lg:w-full min-w-[360px]">
       <Header
         logo={logo}
         goBack={goBack}
