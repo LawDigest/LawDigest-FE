@@ -36,10 +36,22 @@ function Nav() {
       }
     };
 
+    const handleTouchMove = (event: TouchEvent) => {
+      const currentTouch = event.touches[0].clientY;
+
+      if (currentTouch < 0) {
+        setIsScrolled(false);
+      } else {
+        setIsScrolled(true);
+      }
+    };
+
     window.addEventListener('wheel', (event) => handleScroll(event), true);
+    window.addEventListener('touchmove', (event) => handleTouchMove(event), true);
 
     return () => {
       window.removeEventListener('wheel', (event) => handleScroll(event), true);
+      window.addEventListener('touchmove', (event) => handleTouchMove(event), true);
     };
   }, []);
 
