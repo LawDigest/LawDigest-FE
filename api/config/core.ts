@@ -45,7 +45,7 @@ axiosInstance.interceptors.response.use(
   async (error: AxiosError) => {
     if (error.response?.status === 401) {
       return axiosInstance
-        .patch('/auth/reissue/token')
+        .post('/auth/reissue/token')
         .then(() => {
           return handleSuccessReissueToken(error);
         })
