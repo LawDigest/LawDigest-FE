@@ -17,3 +17,8 @@ export const getBillByStage = async (
     url: '/bill/mainfeed/stage',
     params: { page, size: 3, stage },
   });
+
+export const getBillPopular = async () =>
+  http.get<FeedResponse>({
+    url: `/bill/popular`,
+  });
