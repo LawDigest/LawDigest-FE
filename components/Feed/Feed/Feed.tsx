@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { useIntersect, useTabType } from '@/hooks';
 import { BillList } from '@/components/Bill';
 import { FEED_TAB } from '@/constants';
-import { useGetBills, useGetBillByStage } from './apis';
+import { useGetBills, useGetBillByStage, useGetBillPopular } from './apis';
 import StageDropdown from '../StageDropdown';
 import FeedTab from '../FeedTab';
 
@@ -16,6 +16,8 @@ export default function Feed() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     selectedStageType === '전체' ? useGetBills() : useGetBillByStage(selectedStageType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
+  const { data: popularFeed } = useGetBillPopular();
+  const [popularBills, setPopularBills] = useState(popularFeed ? popularFeed.data : []);
 
   const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
@@ -31,6 +33,12 @@ export default function Feed() {
   }, [data]);
 
   useEffect(() => {
+    if (popularFeed) {
+      setPopularBills(() => [...popularFeed.data]);
+    }
+  }, [popularFeed]);
+
+  useEffect(() => {
     setBills([]);
     refetch();
   }, [selectedStageType]);
@@ -43,7 +51,12 @@ export default function Feed() {
           <StageDropdown type={selectedStageType as any} clickHandler={setStageType as any} />
         )}
       </section>
-      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
+      <BillList
+        bills={feedType === 'sorted_by_latest' ? bills : popularBills}
+        isFetching={isFetching}
+        fetchRef={fetchRef}
+        feedType={feedType as any}
+      />
     </section>
   );
 }

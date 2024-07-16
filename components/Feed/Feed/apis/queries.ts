@@ -1,6 +1,6 @@
 'use client';
 
-import { useSuspenseInfiniteQuery, QueryClient } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { STAGE_TAB_KO } from '@/constants';
 import { ValueOf } from '@/types';
 import { Dispatch, SetStateAction } from 'react';
@@ -32,8 +32,8 @@ export const useGetBillByStage = (
     },
   });
 
-export const useGetBillPopular = (queryClient: QueryClient) =>
-  queryClient.fetchQuery({
+export const useGetBillPopular = () =>
+  useQuery({
     queryKey: ['/bill/popular'],
     queryFn: () => getBillPopular(),
   });
