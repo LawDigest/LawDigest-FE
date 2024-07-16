@@ -207,8 +207,12 @@ export default function Bill({
 
         <Link
           href={
-            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : ''
-          }>
+            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : {}
+          }
+          scroll={isRepresentativeSolo}
+          onClick={(e) => {
+            if (!isRepresentativeSolo) e.preventDefault();
+          }}>
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
             radius="sm"
@@ -273,6 +277,10 @@ export default function Bill({
                       e.preventDefault();
                       e.stopPropagation();
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
+                    }}
+                    classNames={{
+                      base: ['bg-white'],
+                      img: ['object-contain'],
                     }}
                   />
                 ))}
