@@ -1,21 +1,23 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useIntersect, useTabType } from '@/hooks';
 import { BillList } from '@/components/Bill';
-import { IconControl } from '@/public/svgs';
-import { Button } from '@nextui-org/react';
-import { STAGE_TAB_KO } from '@/constants';
-import { useGetBills, useGetBillByStage } from './apis';
-import StageTab from '../StageTab';
+import { FEED_TAB } from '@/constants';
+import { useGetBills, useGetBillByStage, useGetBillPopular } from './apis';
+import StageDropdown from '../StageDropdown';
+import FeedTab from '../FeedTab';
 
 export default function Feed() {
-  const [stageType, setStageType] = useTabType<typeof STAGE_TAB_KO & '전체'>('전체');
+  const [feedType, setFeedType] = useTabType<typeof FEED_TAB>('sorted_by_latest');
+  const [stageType, setStageType] = useState(new Set(['전체']));
+  const selectedStageType = useMemo(() => Array.from(stageType).join(', ').replaceAll('_', ' '), [stageType]);
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } =
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    stageType === '전체' ? useGetBills() : useGetBillByStage(stageType);
+    selectedStageType === '전체' ? useGetBills() : useGetBillByStage(selectedStageType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
-  const [toggleFilter, setToggleFilter] = useState(false);
+  const { data: popularFeed } = useGetBillPopular();
+  const [popularBills, setPopularBills] = useState(popularFeed ? popularFeed.data : []);
 
   const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
@@ -24,10 +26,6 @@ export default function Feed() {
     }
   });
 
-  const onClickFilter = useCallback(() => {
-    setToggleFilter(!toggleFilter);
-  }, [toggleFilter]);
-
   useEffect(() => {
     if (data) {
       setBills(() => [...data.pages.flatMap(({ data: { bill_list: responses } }) => responses)]);
@@ -35,19 +33,30 @@ export default function Feed() {
   }, [data]);
 
   useEffect(() => {
+    if (popularFeed) {
+      setPopularBills(() => [...popularFeed.data]);
+    }
+  }, [popularFeed]);
+
+  useEffect(() => {
     setBills([]);
     refetch();
-  }, [stageType]);
+  }, [selectedStageType]);
 
   return (
     <section>
-      <section className="flex justify-end mx-5 my-5">
-        <Button endContent={<IconControl />} className="text-sm font-medium bg-transparent " onClick={onClickFilter}>
-          필터
-        </Button>
+      <section className="flex items-center justify-between mx-5 mt-5">
+        <FeedTab type={feedType as any} clickHandler={setFeedType as any} />
+        {feedType === 'sorted_by_latest' && (
+          <StageDropdown type={selectedStageType as any} clickHandler={setStageType as any} />
+        )}
       </section>
-      {toggleFilter && <StageTab type={stageType as any} clickHandler={setStageType as any} />}
-      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
+      <BillList
+        bills={feedType === 'sorted_by_latest' ? bills : popularBills}
+        isFetching={isFetching}
+        fetchRef={fetchRef}
+        feedType={feedType as any}
+      />
     </section>
   );
 }

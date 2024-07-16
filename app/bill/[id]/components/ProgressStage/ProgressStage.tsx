@@ -4,7 +4,7 @@ import { IconChecked, IconKebab, IconPointed } from '@/public/svgs';
 
 export default function ProgressStage({ billStage }: { billStage: string }) {
   const progressStageList = Object.values(PROGRESS_STAGE_KO);
-  const stageNum = progressStageList.indexOf(billStage);
+  const stageNum = progressStageList.indexOf(billStage) >= 0 ? progressStageList.indexOf(billStage) : 1;
 
   return (
     <section className="flex justify-center">

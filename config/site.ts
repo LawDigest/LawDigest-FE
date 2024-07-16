@@ -31,6 +31,10 @@ export const siteConfig = {
     { label: '본회의 심의', value: 'review' },
     { label: '공포', value: 'promulgation' },
   ],
+  feedTabs: [
+    { label: '시간순', value: 'sortedByLatest' },
+    { label: '인기순', value: 'sortedByPopularity' },
+  ],
   billTabs: [
     { label: '대표발의한 법안', value: 'representProposer' },
     { label: '공동발의한 법안', value: 'publicProposer' },
