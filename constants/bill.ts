@@ -42,6 +42,11 @@ export const PROGRESS_STAGE_KO = {
   promulgation: '공포',
 };
 
+export const FEED_TAB = {
+  sortedByLatest: 'sorted_by_latest',
+  sortedByPopularity: 'sorted_by_popularity',
+} as const;
+
 export const BILL_TAB = {
   representProposer: 'represent_proposer',
   publicProposer: 'public_proposer',
