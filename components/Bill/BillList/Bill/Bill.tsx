@@ -17,7 +17,7 @@ import Link from 'next/link';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
-import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
+import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { PartyLogoReplacement } from '@/components/common';
@@ -47,7 +47,7 @@ export default function Bill({
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
-  const partyColor = isRepresentativeSolo ? getPartyColor(representative_proposer_dto_list[0].party_name) : '';
+  const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
 
   const onClickToggleMore = useCallback(() => {
     setToggleMore(!toggleMore);
@@ -214,7 +214,7 @@ export default function Bill({
             if (!isRepresentativeSolo) e.preventDefault();
           }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
@@ -267,19 +267,19 @@ export default function Bill({
                 )}
               </Button>
             ) : (
-              <AvatarGroup isBordered>
-                {representative_proposer_dto_list.map(({ party_image_url, party_id }) => (
+              <AvatarGroup>
+                {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                   <Avatar
                     src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
                     key={party_id}
-                    size="sm"
+                    size="md"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
                     }}
                     classNames={{
-                      base: ['bg-white'],
+                      base: [`bg-white p-1 border ${party_name}`],
                       img: ['object-contain'],
                     }}
                   />

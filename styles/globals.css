@@ -36,3 +36,43 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+.더불어민주당 {
+  border-color: #152484;
+}
+
+.국민의힘 {
+  border-color: #e61e2b;
+}
+
+.조국혁신당 {
+  border-color: #0073cf;
+}
+
+.개혁신당 {
+  border-color: #ff7210;
+}
+
+.진보당 {
+  border-color: #d6001c;
+}
+
+.새로운미래 {
+  border-color: #45babd;
+}
+
+.기본소득당 {
+  border-color: #00d2c3;
+}
+
+.사회민주당 {
+  border-color: #f58400;
+}
+
+.녹색정의당 {
+  border-color: #007c36;
+}
+
+.무소속 {
+  border-color: #797c85;
+}
