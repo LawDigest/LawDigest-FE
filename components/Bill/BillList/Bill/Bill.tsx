@@ -267,19 +267,19 @@ export default function Bill({
                 )}
               </Button>
             ) : (
-              <AvatarGroup isBordered>
-                {representative_proposer_dto_list.map(({ party_image_url, party_id }) => (
+              <AvatarGroup>
+                {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                   <Avatar
                     src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
                     key={party_id}
-                    size="sm"
+                    size="md"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
                     }}
                     classNames={{
-                      base: ['bg-white'],
+                      base: [`bg-white p-1 border ${party_name}`],
                       img: ['object-contain'],
                     }}
                   />
