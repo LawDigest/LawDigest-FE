@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Link as NextUILink } from '@nextui-org/link';
 import { Card } from '@nextui-org/card';
 import { Divider } from '@nextui-org/react';
-import { getPartyColor } from '@/utils';
 import { IconWeb } from '@/public/svgs';
 import {
   PARTY_NAME_KO,
@@ -33,20 +32,20 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
     website_url,
     followed,
   } = party;
-  const partyColor = getPartyColor(party_name);
   const whole_representative_count = proportional_congressman_count + district_congressman_count;
   const seatRatio = ((100 * whole_representative_count) / 298).toFixed(2);
 
   return (
     <section className="flex flex-col items-center mx-5 gap-7">
       <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
-        <div className="shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white">
+        <div
+          className={`shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white ${party_name}`}>
           <Image
             src={process.env.NEXT_PUBLIC_IMAGE_URL + party_img_url}
             width={200}
             height={90}
             alt={`${party_name} 로고 이미지`}
-            className={`w-[100px] h-[45px] object-contain bg-white border-[${partyColor}]`}
+            className="w-[100px] h-[45px] object-contain bg-white"
           />
         </div>
 
