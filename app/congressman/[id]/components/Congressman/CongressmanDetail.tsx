@@ -24,7 +24,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
   return (
     <Card
-      className={`mx-5 p-[18px] border-1.5 flex flex-col gap-[22px] mb-4 dark:border-dark-l dark:bg-dark-b lg:h-min lg:w-[307px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
+      className={`mx-5 mt-5 p-[18px] border-1.5 flex flex-col gap-[22px] mb-4 dark:border-dark-l dark:bg-dark-b lg:h-min lg:w-[307px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
       shadow="none"
       radius="md">
       <div className="flex justify-between gap-4 lg:flex-col lg:items-center">

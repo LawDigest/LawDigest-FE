@@ -36,7 +36,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
   const seatRatio = ((100 * whole_representative_count) / 298).toFixed(2);
 
   return (
-    <section className="flex flex-col items-center mx-5 gap-7">
+    <section className="flex flex-col items-center mx-5 mt-5 gap-7">
       <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
         <div
           className={`shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white ${party_name}`}>
