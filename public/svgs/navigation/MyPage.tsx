@@ -1,6 +1,6 @@
 import { NavIconProps } from '@/types';
 
-export default function IconUserAvatar({ className, isActive }: NavIconProps) {
+export default function IconMyPage({ className, isActive }: NavIconProps) {
   return isActive ? (
     <svg
       width="30"

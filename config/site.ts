@@ -1,3 +1,5 @@
+import { IconHome, IconMyPage } from '@/public/svgs';
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -5,12 +7,14 @@ export const siteConfig = {
   description: '자연어 처리 기술을 이용한 법률 개정안 요약 플랫폼',
   navItems: [
     {
-      label: 'Home',
+      label: '피드',
       href: '/',
+      IconComponent: IconHome,
     },
     {
-      label: 'MyPage',
+      label: '마이페이지',
       href: '/mypage',
+      IconComponent: IconMyPage,
     },
   ],
   stageTabs: [
