@@ -67,7 +67,7 @@ export default function Bill({
     <section className={`flex flex-col gap-5 ${detail ? 'lg:flex-row' : ''}`}>
       <Card
         key={bill_id}
-        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
+        className="flex flex-col mx-5 mt-6 gap-5 dark:bg-dark-b dark:lg:bg-dark-pb"
         radius="none"
         shadow="none">
         <CardHeader
@@ -100,7 +100,7 @@ export default function Bill({
         <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
+            <CardBody className="flex flex-row flex-wrap p-0 leading-normal whitespace-pre-wrap gap-3">
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
               <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}

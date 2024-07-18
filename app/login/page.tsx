@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export default function Login() {
   return (
-    <section className="w-[90%] mx-auto h-full flex flex-col justify-center items-center gap-20">
+    <section className="w-[90%] mx-auto flex flex-col items-center gap-20 mt-48 sm:w-[430px] ">
       <Logo width={222} height={37} />
 
       <Button
