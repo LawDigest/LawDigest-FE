@@ -9,18 +9,6 @@ export const siteConfig = {
       href: '/',
     },
     {
-      label: 'Statistics',
-      href: '/statistics',
-    },
-    {
-      label: 'Search',
-      href: '/search',
-    },
-    {
-      label: 'Notification',
-      href: '/notification',
-    },
-    {
       label: 'MyPage',
       href: '/mypage',
     },
@@ -42,14 +30,6 @@ export const siteConfig = {
   searchTabs: [
     { label: '법안', value: 'bill' },
     { label: '의원/정당', value: 'congressmanParty' },
-  ],
-  electionTabs: [
-    { label: '지역구', value: 'district' },
-    { label: '비례대표', value: 'proportional' },
-  ],
-  proportionalTabs: [
-    { label: '정당 공약', value: 'promise' },
-    { label: '후보자 명단', value: 'candidate' },
   ],
   links: {
     github: 'https://github.com/LawDigest',

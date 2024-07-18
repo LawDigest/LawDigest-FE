@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navbar';
 import { useCallback, useState } from 'react';
-import { IconHome, IconElection, IconUserAvatar, IconNavBorder } from '@/public/svgs';
+import { IconHome, IconUserAvatar, IconNavBorder } from '@/public/svgs';
 import { GoBackButton, SettingButton, SearchButton, NotificationButton, ThemeSwitchButton } from '../Button';
 import Logo from './Logo';
 import { SearchBar } from '../SearchBar';
@@ -24,11 +24,6 @@ const Nav_Items = [
     label: '타임라인',
     path: '/',
     IconComponent: IconHome,
-  },
-  {
-    label: '선거',
-    path: '/election',
-    IconComponent: IconElection,
   },
   {
     label: '마이페이지',
@@ -55,7 +50,7 @@ export default function Header({ logo, goBack, title, setting, search, notificat
         </NavbarBrand>
 
         <NavbarContent justify="center" className="hidden mx-auto lg:flex">
-          <ul className="flex justify-between w-full px-10 gap-2 lg:gap-20">
+          <ul className="flex justify-between w-full gap-2 px-10 lg:gap-20">
             {Nav_Items.map(({ label, path, IconComponent }) => {
               const isActive = pathname === '/' ? pathname?.endsWith(path) : path !== '/' && pathname?.startsWith(path);
 
