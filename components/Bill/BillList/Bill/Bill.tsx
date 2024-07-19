@@ -100,18 +100,15 @@ export default function Bill({
         <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className="p-0 leading-normal whitespace-pre-wrap ">
+            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
               <p className={detail ? '' : toggleMore ? '' : `line-clamp-[8]`} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
               </p>
-              {/* <p
-                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:bg-dark-b dark:text-gray-3`}
-                onClick={onClickToggleMore}>
-                {toggleMore ? '' : ' ... 더 보기'}
-              </p> */}
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,  */}
               <span
+                // eslint-disable-next-line no-nested-ternary
                 className={detail ? 'hidden' : toggleMore ? 'hidden' : 'text-gray-2 dark:text-gray-3'}
                 onClick={onClickToggleMore}>
                 더 보기
