@@ -100,16 +100,19 @@ export default function Bill({
         <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
+            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
-              <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
+              <p className={detail ? '' : toggleMore ? '' : `line-clamp-[8]`} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
               </p>
-              <p
-                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:bg-dark-b dark:text-gray-3`}>
-                {toggleMore ? '' : ' ... 더 보기'}
-              </p>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,  */}
+              <span
+                // eslint-disable-next-line no-nested-ternary
+                className={detail ? 'hidden' : toggleMore ? 'hidden' : 'text-gray-2 dark:text-gray-3'}
+                onClick={onClickToggleMore}>
+                더 보기
+              </span>
             </CardBody>
 
             {!detail && (
@@ -214,7 +217,7 @@ export default function Bill({
             if (!isRepresentativeSolo) e.preventDefault();
           }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right ${partyName}`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 lg:w-[490px] lg:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
