@@ -4,10 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  display: none;
-}
-
 * {
   font-family:
     'Pretendard Variable',
@@ -25,8 +21,10 @@
     'Segoe UI Emoji',
     'Segoe UI Symbol',
     sans-serif;
-  /* -ms-overflow-style: none; */
-  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
 }
 
 .더불어민주당 {
