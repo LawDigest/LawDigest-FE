@@ -217,7 +217,7 @@ export default function Bill({
             if (!isRepresentativeSolo) e.preventDefault();
           }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right ${partyName}`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 lg:w-[490px] lg:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
