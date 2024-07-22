@@ -42,7 +42,7 @@ export default function Snackbar() {
           className={`
               pointer-events-auto w-full max-w-xl overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ${snackbar.type}
             `}>
-          <div className="flex items-center p-4">
+          <div className="flex items-center px-4 py-3">
             <p className="flex-1 w-0 text-sm font-medium text-white sm:text-base">{snackbar.message}</p>
             <Button
               isIconOnly

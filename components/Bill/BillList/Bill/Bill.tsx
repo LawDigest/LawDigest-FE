@@ -21,6 +21,10 @@ import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { PartyLogoReplacement } from '@/components/common';
+import { getCookie } from 'cookies-next';
+import { ACCESS_TOKEN } from '@/constants';
+import { useSetRecoilState } from 'recoil';
+import { snackbarState } from '@/store';
 import GPTSummary from '../../GPTSummary';
 
 export default function Bill({
@@ -48,16 +52,29 @@ export default function Bill({
   const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
+  const setSnackbar = useSetRecoilState(snackbarState);
 
   const onClickToggleMore = useCallback(() => {
     setToggleMore(!toggleMore);
   }, [toggleMore]);
 
   const onClickScrab = useCallback(() => {
-    setIsLiked(!isLiked);
+    const accessToken = getCookie(ACCESS_TOKEN);
 
-    mutateBookmark.mutate(!isLiked);
-  }, [isLiked, is_book_mark]);
+    if (accessToken) {
+      setIsLiked(!isLiked);
+      setSnackbar({
+        show: true,
+        type: 'SUCCESS',
+        message: isLiked ? '해당 법안의 스크랩을 취소했습니다.' : '해당 법안을 스크랩했습니다.',
+        duration: 3000,
+      });
+
+      mutateBookmark.mutate(!isLiked);
+    } else {
+      setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
+    }
+  }, [isLiked, is_book_mark, setSnackbar]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
