@@ -12,7 +12,7 @@ const snackbarState = atom<SnackbarStateProps>({
   key: 'snackbarState',
   default: {
     show: false,
-    type: 'SUCCESS',
+    type: 'DEFAULT',
     message: '',
     duration: 3000,
   },
