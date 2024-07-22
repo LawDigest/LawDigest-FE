@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site';
 import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
-import { QueryClientProvider, NextUIProvider, NextThemesProvider } from '@/lib/provider';
+import { QueryClientProvider, NextUIProvider, NextThemesProvider, RecoilRootProvider } from '@/lib/provider';
 import { Loading } from '@/components';
 
 export const metadata: Metadata = {
@@ -32,17 +32,19 @@ function RootLayout({ children }: { children: React.ReactNode }) {
           'text-black bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white font-sans antialiased',
           fontSans.variable,
         )}>
-        <QueryClientProvider>
-          <NextThemesProvider>
-            <NextUIProvider>
-              <div className="relative flex flex-col h-auto min-h-[100dvh] min-w-[360px]">
-                <main className="flex items-center justify-center w-full h-full ">
-                  <Suspense fallback={<Loading />}>{children}</Suspense>
-                </main>
-              </div>
-            </NextUIProvider>
-          </NextThemesProvider>
-        </QueryClientProvider>
+        <RecoilRootProvider>
+          <QueryClientProvider>
+            <NextThemesProvider>
+              <NextUIProvider>
+                <div className="relative flex flex-col h-auto min-h-[100dvh] min-w-[360px]">
+                  <main className="flex items-center justify-center w-full h-full ">
+                    <Suspense fallback={<Loading />}>{children}</Suspense>
+                  </main>
+                </div>
+              </NextUIProvider>
+            </NextThemesProvider>
+          </QueryClientProvider>
+        </RecoilRootProvider>
       </body>
     </html>
   );
