@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <Layout nav logo notification>
       <section className="lg:w-[840px] mx-auto ">
-        <SearchBar isElection={false} />
+        <SearchBar />
         <Feed />
       </section>
     </Layout>
