@@ -1,6 +1,6 @@
 'use client';
 
-import { Logo } from '@/components/common/Header';
+import { Logo } from '@/components';
 import { Button, Link as NextUILink } from '@nextui-org/react';
 import Image from 'next/image';
 

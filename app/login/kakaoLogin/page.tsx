@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Logo } from '@/components/common/Header';
+import { Logo } from '@/components';
 import { useRouter } from 'next/navigation';
 
 export default function KaKaoLogin() {
