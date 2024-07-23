@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Fragment, useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { Transition } from '@headlessui/react';
@@ -43,7 +44,12 @@ export default function Snackbar() {
               pointer-events-auto w-full max-w-xl overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 ${snackbar.type}
             `}>
           <div className="flex items-center px-4 py-3">
-            <p className="flex-1 w-0 text-sm font-semibold text-white sm:text-base">{snackbar.message}</p>
+            <p className="flex-1 w-0 text-sm font-semibold text-white lg:text-base">{snackbar.message}</p>
+            {snackbar.message === '로그인이 필요한 서비스입니다.' && (
+              <Link href="/login" className="mr-2">
+                <p className="text-xs font-medium text-white underline lg:text-sm ">로그인 하기</p>
+              </Link>
+            )}
             <Button
               isIconOnly
               size="sm"
