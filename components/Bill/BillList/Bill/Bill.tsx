@@ -78,6 +78,7 @@ export default function Bill({
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
+    setSnackbar({ show: true, type: 'SUCCESS', message: '링크를 복사했습니다.', duration: 3000 });
   }, []);
 
   return (
