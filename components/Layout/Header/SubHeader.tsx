@@ -1,4 +1,4 @@
-import { GoBackButton } from '../Button';
+import { GoBackButton } from '@/components/common';
 
 export default function SubHeader({ title }: { title: string }) {
   return (

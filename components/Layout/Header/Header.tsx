@@ -6,9 +6,15 @@ import { Navbar, NavbarContent, NavbarItem, NavbarBrand } from '@nextui-org/navb
 import { useCallback, useState } from 'react';
 import { siteConfig } from '@/config/site';
 import { IconNavBorder } from '@/public/svgs';
-import { GoBackButton, SettingButton, SearchButton, NotificationButton, ThemeSwitchButton } from '../Button';
+import {
+  SearchBar,
+  GoBackButton,
+  SettingButton,
+  SearchButton,
+  NotificationButton,
+  ThemeSwitchButton,
+} from '@/components/common';
 import Logo from './Logo';
-import { SearchBar } from '../SearchBar';
 
 export default function Header({
   logo,
