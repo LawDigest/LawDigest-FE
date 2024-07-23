@@ -29,6 +29,7 @@
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": "off",
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "import/no-cycle": "off"
   }
 }

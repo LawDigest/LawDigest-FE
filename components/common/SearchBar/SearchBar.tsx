@@ -4,15 +4,18 @@ import { useRouter } from 'next/navigation';
 import { useState, useCallback } from 'react';
 import { Input } from '@nextui-org/input';
 import { IconSearchbar } from '@/public/svgs';
+import { Button } from '@nextui-org/react';
 
 export default function SearchBar() {
   const router = useRouter();
   const [value, setValue] = useState('');
 
   const onSubmitSearch = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      router.push(`/search/${value}`);
+
+      if (value.trim() !== '') router.push(`/search/${value.trim()}`);
+      else setValue('');
     },
     [value],
   );
@@ -39,7 +42,11 @@ export default function SearchBar() {
           ],
         }}
         placeholder="궁금한 입법현황을 검색해 보세요."
-        startContent={<IconSearchbar />}
+        endContent={
+          <Button size="sm" isIconOnly className="bg-transparent" onClick={onSubmitSearch}>
+            <IconSearchbar />
+          </Button>
+        }
       />
     </form>
   );

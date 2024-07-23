@@ -78,6 +78,7 @@ export default function Bill({
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
+    setSnackbar({ show: true, type: 'SUCCESS', message: '링크를 복사했습니다.', duration: 3000 });
   }, []);
 
   return (
@@ -117,7 +118,7 @@ export default function Bill({
         <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm'}`}>
+            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm lg:text-base'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
               <p className={detail ? '' : toggleMore ? '' : `line-clamp-[8]`} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}
