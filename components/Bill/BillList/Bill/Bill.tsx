@@ -17,10 +17,14 @@ import Link from 'next/link';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
 import { usePostBookmark } from '@/app/bill/[id]/apis';
-import { getPartyColor, getTimeRemaining, copyClipBoard } from '@/utils';
+import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { PartyLogoReplacement } from '@/components/common';
+import { getCookie } from 'cookies-next';
+import { ACCESS_TOKEN } from '@/constants';
+import { useSetRecoilState } from 'recoil';
+import { snackbarState } from '@/store';
 import GPTSummary from '../../GPTSummary';
 
 export default function Bill({
@@ -47,20 +51,34 @@ export default function Bill({
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
-  const partyColor = isRepresentativeSolo ? getPartyColor(representative_proposer_dto_list[0].party_name) : '';
+  const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
+  const setSnackbar = useSetRecoilState(snackbarState);
 
   const onClickToggleMore = useCallback(() => {
     setToggleMore(!toggleMore);
   }, [toggleMore]);
 
   const onClickScrab = useCallback(() => {
-    setIsLiked(!isLiked);
+    const accessToken = getCookie(ACCESS_TOKEN);
 
-    mutateBookmark.mutate(!isLiked);
-  }, [isLiked, is_book_mark]);
+    if (accessToken) {
+      setIsLiked(!isLiked);
+      setSnackbar({
+        show: true,
+        type: 'SUCCESS',
+        message: isLiked ? '해당 법안의 스크랩을 취소했습니다.' : '해당 법안을 스크랩했습니다.',
+        duration: 3000,
+      });
+
+      mutateBookmark.mutate(!isLiked);
+    } else {
+      setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
+    }
+  }, [isLiked, is_book_mark, setSnackbar]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
+    setSnackbar({ show: true, type: 'SUCCESS', message: '링크를 복사했습니다.', duration: 3000 });
   }, []);
 
   return (
@@ -100,16 +118,19 @@ export default function Bill({
         <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
           <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
           <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className="flex flex-row flex-wrap gap-3 p-0 leading-normal whitespace-pre-wrap">
+            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm lg:text-base'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
-              <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore}>
+              <p className={detail ? '' : toggleMore ? '' : `line-clamp-[8]`} onClick={onClickToggleMore}>
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
               </p>
-              <p
-                className={`${detail ? 'hidden' : ''} absolute bottom-0 right-0 bg-white text-gray-2 dark:lg:bg-dark-pb dark:bg-dark-b dark:text-gray-3`}>
-                {toggleMore ? '' : ' ... 더 보기'}
-              </p>
+              {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions,  */}
+              <span
+                // eslint-disable-next-line no-nested-ternary
+                className={detail ? 'hidden' : toggleMore ? 'hidden' : 'text-gray-2 dark:text-gray-3'}
+                onClick={onClickToggleMore}>
+                더 보기
+              </span>
             </CardBody>
 
             {!detail && (
@@ -207,10 +228,14 @@ export default function Bill({
 
         <Link
           href={
-            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : ''
-          }>
+            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : {}
+          }
+          scroll={isRepresentativeSolo}
+          onClick={(e) => {
+            if (!isRepresentativeSolo) e.preventDefault();
+          }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] border-[${partyColor}] dark:bg-gray-4 dark:border-dark-l lg:w-[490px] lg:float-right`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 lg:w-[490px] lg:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
@@ -263,16 +288,20 @@ export default function Bill({
                 )}
               </Button>
             ) : (
-              <AvatarGroup isBordered>
-                {representative_proposer_dto_list.map(({ party_image_url, party_id }) => (
+              <AvatarGroup>
+                {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                   <Avatar
                     src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
                     key={party_id}
-                    size="sm"
+                    size="md"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
+                    }}
+                    classNames={{
+                      base: [`bg-white p-1 border ${party_name}`],
+                      img: ['object-contain'],
                     }}
                   />
                 ))}

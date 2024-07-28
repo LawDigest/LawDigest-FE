@@ -4,19 +4,18 @@ import { useRouter } from 'next/navigation';
 import { useState, useCallback } from 'react';
 import { Input } from '@nextui-org/input';
 import { IconSearchbar } from '@/public/svgs';
+import { Button } from '@nextui-org/react';
 
-export default function SearchBar({ isElection }: { isElection: boolean }) {
+export default function SearchBar() {
   const router = useRouter();
   const [value, setValue] = useState('');
 
   const onSubmitSearch = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
+    (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      if (isElection) {
-        router.push(`/election/search/${value}`);
-      } else {
-        router.push(`/search/${value}`);
-      }
+
+      if (value.trim() !== '') router.push(`/search/${value.trim()}`);
+      else setValue('');
     },
     [value],
   );
@@ -24,7 +23,7 @@ export default function SearchBar({ isElection }: { isElection: boolean }) {
   return (
     <form
       onSubmit={onSubmitSearch}
-      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] lg:w-[600px] mx-auto">
+      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] lg:w-[600px] mx-auto lg:my-5">
       <Input
         value={value}
         onValueChange={setValue}
@@ -42,8 +41,12 @@ export default function SearchBar({ isElection }: { isElection: boolean }) {
             'pt-2.5',
           ],
         }}
-        placeholder={isElection ? '지역구, 후보자명을 검색해 보세요.' : '궁금한 입법현황을 검색해 보세요.'}
-        startContent={<IconSearchbar />}
+        placeholder="궁금한 입법현황을 검색해 보세요."
+        endContent={
+          <Button size="sm" isIconOnly className="bg-transparent" onClick={onSubmitSearch}>
+            <IconSearchbar />
+          </Button>
+        }
       />
     </form>
   );

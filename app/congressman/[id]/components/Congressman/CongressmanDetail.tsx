@@ -3,7 +3,6 @@ import { Card } from '@nextui-org/card';
 import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPartyColor } from '@/utils';
 import { PartyLogoReplacement } from '@/components';
 import FollowButton from './FollowButton';
 import { useGetCongressmanDetail } from '../../apis';
@@ -22,12 +21,11 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
     congressman_image_url,
     like_checked,
   } = congressman;
-  const partyColor = getPartyColor(party_name);
 
   return (
     <Card
-      className={`mx-5 p-[18px] border-1.5 flex flex-col gap-[22px] border-party-${partyColor} mb-4 dark:border-dark-l dark:bg-dark-b lg:h-min lg:w-[307px] shrink-0 lg:dark:bg-dark-pb`}
-      shadow="none"
+      className={`mx-5 mt-5 p-[18px] border-1.5 flex flex-col gap-[22px] mb-4 dark:border-dark-l dark:bg-dark-b lg:h-min lg:w-[307px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
+      shadow="md"
       radius="md">
       <div className="flex justify-between gap-4 lg:flex-col lg:items-center">
         <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="hidden lg:block">

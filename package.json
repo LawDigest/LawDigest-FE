@@ -11,6 +11,7 @@
     "vercel-deploy": "next build && next export"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
     "@nextui-org/avatar": "^2.0.24",
     "@nextui-org/badge": "^2.0.24",
     "@nextui-org/button": "2.0.26",
@@ -58,6 +59,7 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.12.0",
     "react-slick": "^0.29.0",
+    "recoil": "^0.7.7",
     "tailwind-variants": "^0.1.18",
     "tailwindcss": "3.3.5",
     "typescript": "^5.4.2"
