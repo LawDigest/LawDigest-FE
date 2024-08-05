@@ -16,7 +16,7 @@ import {
 import Link from 'next/link';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
-import { usePostBookmark } from '@/app/bill/[id]/apis';
+import { usePatchBookmark } from '@/app/bill/[id]/apis';
 import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -47,7 +47,7 @@ export default function Bill({
   children,
 }: BillProps) {
   const [isLiked, setIsLiked] = useState(is_book_mark);
-  const mutateBookmark = usePostBookmark(bill_id);
+  const mutateBookmark = usePatchBookmark(bill_id);
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;

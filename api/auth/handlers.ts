@@ -25,10 +25,21 @@ export const handleSuccessReissueToken = (error: AxiosError) => {
   });
 };
 
-export const handleFailReissueToken = (error: AxiosError) => {
-  deleteCookie(ACCESS_TOKEN);
-  const router = useRouter();
-  router.push('/login');
+export const handleFailReissueToken = async (error: AxiosError) => {
+  try {
+    const { response } = error;
 
-  return Promise.reject(error);
+    const newConfig = _.cloneDeep(response!.config);
+    const accessToken = getCookie(ACCESS_TOKEN)!;
+    newConfig.headers.Authorization = `Bearer ${accessToken}`;
+    const result = await axios(newConfig);
+
+    return result;
+  } catch (err) {
+    deleteCookie(ACCESS_TOKEN);
+    const router = useRouter();
+    router.push('/login');
+
+    return Promise.reject(err);
+  }
 };

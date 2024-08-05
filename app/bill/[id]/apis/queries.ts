@@ -21,7 +21,7 @@ export const prefetchGetBillDetail = (billId: string, queryClient: QueryClient) 
     queryFn: () => getBillDetail(billId),
   });
 
-export const usePostBookmark = (billId: string) => {
+export const usePatchBookmark = (billId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -30,6 +30,7 @@ export const usePostBookmark = (billId: string) => {
       queryClient.invalidateQueries({ queryKey: ['/bill/detail', billId] });
       queryClient.invalidateQueries({ queryKey: ['/bill/mainfeed'] });
       queryClient.invalidateQueries({ queryKey: ['/user/bookmarking/bill'] });
+      queryClient.invalidateQueries({ queryKey: ['/user/bookmarking/bill/count'] });
     },
   });
 };
