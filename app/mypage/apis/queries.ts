@@ -1,7 +1,13 @@
 'use client';
 
 import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import { getUserInfo, getFollowingParty, getFollowingCongressman, getBillBookmarked } from './apis';
+import {
+  getUserInfo,
+  getFollowingParty,
+  getFollowingCongressman,
+  getBillBookmarked,
+  getBillBookmarkedCount,
+} from './apis';
 
 export const useGetUserInfo = (queryClient: QueryClient) =>
   queryClient.fetchQuery({
@@ -31,4 +37,10 @@ export const useGetBillBookmarked = () =>
       const { last_page, page_number } = pagination_response || {};
       return last_page ? undefined : page_number + 1;
     },
+  });
+
+export const useGetBillBookmarkedCount = (queryClinet: QueryClient) =>
+  queryClinet.fetchQuery({
+    queryKey: ['/user/bookmarking/bill/count'],
+    queryFn: () => getBillBookmarkedCount(),
   });

@@ -16,7 +16,7 @@ import {
 import Link from 'next/link';
 import { BillProps } from '@/types';
 import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
-import { usePostBookmark } from '@/app/bill/[id]/apis';
+import { usePatchBookmark } from '@/app/bill/[id]/apis';
 import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -47,7 +47,8 @@ export default function Bill({
   children,
 }: BillProps) {
   const [isLiked, setIsLiked] = useState(is_book_mark);
-  const mutateBookmark = usePostBookmark(bill_id);
+  const [likeCount, setLikeCount] = useState(bill_like_count);
+  const mutateBookmark = usePatchBookmark(bill_id);
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
@@ -63,6 +64,7 @@ export default function Bill({
 
     if (accessToken) {
       setIsLiked(!isLiked);
+      setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
       setSnackbar({
         show: true,
         type: 'SUCCESS',
@@ -74,7 +76,7 @@ export default function Bill({
     } else {
       setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
-  }, [isLiked, is_book_mark, setSnackbar]);
+  }, [isLiked, likeCount, is_book_mark, setSnackbar]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
@@ -141,7 +143,7 @@ export default function Bill({
                       <IconScrabSmall isActive={isLiked} />
                     </Button>
                     <h4 className="mr-2">스크랩</h4>
-                    <h4>{bill_like_count}</h4>
+                    <h4>{likeCount}</h4>
                   </div>
                   <div className="flex items-center text-sm text-gray-3">
                     <h4 className="mr-2">조회수</h4>
@@ -178,7 +180,7 @@ export default function Bill({
                       <IconScrabSmall isActive={isLiked} />
                     </Button>
                     <h4 className="mr-2">스크랩</h4>
-                    <h4>{bill_like_count}</h4>
+                    <h4>{likeCount}</h4>
                   </div>
                   <div className="flex items-center text-sm text-gray-2">
                     <h4 className="mr-2">조회수</h4>

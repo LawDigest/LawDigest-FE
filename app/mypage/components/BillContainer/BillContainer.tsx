@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { BillList } from '@/components';
 import { useIntersect } from '@/hooks';
 import { useGetBillBookmarked } from '../../apis';
+import BillBookmaredCount from './BillBookmaredCount';
 
 export default function BillContainer() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillBookmarked();
@@ -25,7 +26,7 @@ export default function BillContainer() {
   return (
     <section className="lg:px-[30px] flex flex-col gap-6">
       <p className="text-xl font-semibold px-[30px] lg:px-0">
-        스크랩한 법안 &middot;<span className="text-[#555555] dark:text-gray-2"> {bills.length}</span>
+        스크랩한 법안 &middot; <BillBookmaredCount />
       </p>
       <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
     </section>
