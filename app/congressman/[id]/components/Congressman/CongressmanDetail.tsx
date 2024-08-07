@@ -35,7 +35,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
   return (
     <Card
-      className={`mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:border-dark-l dark:bg-dark-b lg:h-min lg:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
+      className={`mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b lg:h-min lg:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
       shadow="md"
       radius="md">
       <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="">
@@ -68,7 +68,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         </div>
       </div>
 
-      <Divider className="bg-gray-1" />
+      <Divider className="bg-gray-1 dark:bg-dark-l" />
 
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-center basis-1/3">
@@ -87,27 +87,29 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
       <FollowButton id={congressmanId} likeChecked={like_checked} />
 
-      <Divider className="bg-gray-1" />
+      <Divider className="bg-gray-1 dark:bg-dark-l" />
 
       <div className="flex gap-[26px] justify-between w-full">
-        <Chip className="text-sm font-medium text-white bg-primary-3 w-[78px] h-8">기본정보</Chip>
+        <Chip className="text-sm font-medium text-white bg-primary-3 dark:bg-gray-4 dark:text-gray-1 w-[78px] h-8">
+          기본정보
+        </Chip>
 
         <div className="w-full">
-          <div className="flex justify-between">
-            <p className="font-medium text-gray-2">나이</p>
-            <p className="text-sm font-medium">{age}세</p>
+          <div className="flex items-center justify-between">
+            <p className="font-medium text-gray-2 dark:text-gray-3">나이</p>
+            <p className="text-sm font-medium dark:text-gray-1">{age}세</p>
           </div>
-          <div className="flex justify-between">
-            <p className="font-medium text-gray-2">성별</p>
-            <p className="text-sm font-medium">{gender}</p>
+          <div className="flex items-center justify-between">
+            <p className="font-medium text-gray-2 dark:text-gray-3">성별</p>
+            <p className="text-sm font-medium dark:text-gray-1">{gender}</p>
           </div>
-          <div className="flex justify-between">
-            <p className="font-medium text-gray-2">이메일</p>
-            <p className="text-sm font-medium">{email}</p>
+          <div className="flex items-center justify-between">
+            <p className="font-medium text-gray-2 dark:text-gray-3">이메일</p>
+            <p className="text-sm font-medium dark:text-gray-1">{email}</p>
           </div>
-          <div className="flex justify-between">
-            <p className="font-medium text-gray-2">의원실</p>
-            <p className="text-sm font-medium">{office}</p>
+          <div className="flex items-center justify-between">
+            <p className="font-medium text-gray-2 dark:text-gray-3">의원실</p>
+            <p className="text-sm font-medium dark:text-gray-1">{office}</p>
           </div>
         </div>
       </div>
@@ -121,9 +123,9 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
           }}
           title="후보약력">
           <div className="flex flex-col h-full gap-5">
-            <Divider className="bg-gray-1" />
+            <Divider className="bg-gray-1 dark:bg-dark-l" />
 
-            <div className="text-sm font-medium text-gray-3">
+            <div className="text-sm font-medium text-gray-3 dark:text-gray-2">
               {biography || '해당 의원의 약력이 존재하지 않습니다.'}
             </div>
 
@@ -133,7 +135,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
               endContent={<IconWeb />}
               variant="bordered"
               radius="full"
-              className="w-[135px] h-8 text-gray-2 mx-auto border-gray-1">
+              className="w-[135px] h-8 text-gray-2 mx-auto border-gray-1 dark:border-gray-2 dark:text-gray-3">
               홈페이지 방문
             </Button>
           </div>
