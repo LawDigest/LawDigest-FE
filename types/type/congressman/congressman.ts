@@ -13,4 +13,10 @@ export interface CongressmanDetailResponse {
   public_count: number;
   congressman_image_url: string;
   like_checked: boolean;
+  office: string;
+  email: string;
+  age: number;
+  gender: string;
+  follow_count: number;
+  biography: string;
 }
