@@ -91,7 +91,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         <div className="w-full">
           <div className="flex justify-between">
             <p className="font-medium text-gray-2">나이</p>
-            <p className="text-sm font-medium">{age}</p>
+            <p className="text-sm font-medium">{age}세</p>
           </div>
           <div className="flex justify-between">
             <p className="font-medium text-gray-2">성별</p>
