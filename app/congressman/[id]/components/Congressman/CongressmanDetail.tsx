@@ -4,7 +4,8 @@ import { Avatar } from '@nextui-org/avatar';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PartyLogoReplacement } from '@/components';
-import { Chip, Divider } from '@nextui-org/react';
+import { Chip, Divider, Button, Link as NextUILink, Accordion, AccordionItem } from '@nextui-org/react';
+import { IconWeb } from '@/public/svgs';
 import FollowButton from './FollowButton';
 import { useGetCongressmanDetail } from '../../apis';
 
@@ -23,10 +24,13 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
     like_checked,
     represent_count,
     public_count,
+    homepage,
     office,
     email,
     age,
     gender,
+    follow_count,
+    biography,
   } = congressman;
 
   return (
@@ -68,7 +72,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-center basis-1/3">
-          <p className="text-2xl font-semibold">0</p> {/* 팔로워 수 데이터 추가 시 변경 */}
+          <p className="text-2xl font-semibold">{follow_count}</p>
           <p className="text-sm font-medium text-gray-2">팔로워</p>
         </div>
         <div className="flex flex-col items-center basis-1/3">
@@ -107,6 +111,34 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
           </div>
         </div>
       </div>
+
+      <Accordion>
+        <AccordionItem
+          classNames={{
+            base: ['flex', 'flex-col-reverse'],
+            indicator: ['mx-auto', '-rotate-90', 'data-[open=true]:rotate-90'],
+            titleWrapper: ['hidden'],
+          }}
+          title="후보약력">
+          <div className="flex flex-col h-full gap-5">
+            <Divider className="bg-gray-1" />
+
+            <div className="text-sm font-medium text-gray-3">
+              {biography || '해당 의원의 약력이 존재하지 않습니다.'}
+            </div>
+
+            <Button
+              as={NextUILink}
+              href={homepage}
+              endContent={<IconWeb />}
+              variant="bordered"
+              radius="full"
+              className="w-[135px] h-8 text-gray-2 mx-auto border-gray-1">
+              홈페이지 방문
+            </Button>
+          </div>
+        </AccordionItem>
+      </Accordion>
     </Card>
   );
 }

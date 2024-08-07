@@ -15,6 +15,8 @@ import IconDarkMode from './DarkMode';
 import IconChecked from './Checked';
 import IconPointed from './Pointed';
 import IconCancel from './Cancel';
+import IconArrowDown from './ArrowDown';
+import IconArrowUp from './ArrowUp';
 
 export {
   IconEmail,
@@ -34,4 +36,6 @@ export {
   IconChecked,
   IconPointed,
   IconCancel,
+  IconArrowDown,
+  IconArrowUp,
 };
