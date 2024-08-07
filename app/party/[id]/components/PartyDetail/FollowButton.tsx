@@ -20,7 +20,7 @@ export default function FollowButton({ id, followed }: { id: number; followed: b
       setIsFollowed(!isFollowed);
       setSnackbar({
         show: true,
-        type: 'SUCCESS',
+        type: isFollowed ? 'CANCEL' : 'SUCCESS',
         message: isFollowed ? '해당 정당의 팔로우를 취소했습니다.' : '해당 정당을 팔로우했습니다.',
         duration: 3000,
       });

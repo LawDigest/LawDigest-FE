@@ -67,7 +67,7 @@ export default function Bill({
       setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
       setSnackbar({
         show: true,
-        type: 'SUCCESS',
+        type: isLiked ? 'CANCEL' : 'SUCCESS',
         message: isLiked ? '해당 법안의 스크랩을 취소했습니다.' : '해당 법안을 스크랩했습니다.',
         duration: 3000,
       });
