@@ -30,7 +30,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
     age,
     gender,
     follow_count,
-    biography,
+    briefHistory,
   } = congressman;
 
   return (
@@ -126,7 +126,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
             <Divider className="bg-gray-1 dark:bg-dark-l" />
 
             <div className="text-sm font-medium text-gray-3 dark:text-gray-2">
-              {biography || '해당 의원의 약력이 존재하지 않습니다.'}
+              {briefHistory || '해당 의원의 약력이 존재하지 않습니다.'}
             </div>
 
             <Button
