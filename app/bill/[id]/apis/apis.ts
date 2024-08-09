@@ -1,7 +1,7 @@
 import http from '@/api';
 import { BillResponse, ViewCountResponse, BookmarkResponse } from '@/types';
 
-export const getBillDetail = (billId: string) =>
+export const getBillDetail = async (billId: string) =>
   http.get<BillResponse>({
     url: `/bill/detail/${billId}`,
   });

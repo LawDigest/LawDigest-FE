@@ -1,10 +1,10 @@
 'use clinet';
 
-import { useMutation, useQueryClient, QueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient, QueryClient, useQuery } from '@tanstack/react-query';
 import { getBillDetail, patchViewCount, postBookmark } from './apis';
 
-export const useGetBillDetail = (billId: string, queryClient: QueryClient) =>
-  queryClient.fetchQuery({
+export const useGetBillDetail = (billId: string) =>
+  useQuery({
     queryKey: ['/bill/detail', billId],
     queryFn: () => getBillDetail(billId),
   });
