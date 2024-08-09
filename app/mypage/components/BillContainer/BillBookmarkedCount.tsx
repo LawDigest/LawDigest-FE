@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { useGetBillBookmarkedCount } from '../../apis';
 
-export default async function BillBookmaredCount() {
+export default async function BillBookmarkedCount() {
   const queryClient = useQueryClient();
   const {
     data: { count: billCount },

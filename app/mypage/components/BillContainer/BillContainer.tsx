@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BillList } from '@/components';
 import { useIntersect } from '@/hooks';
 import { useGetBillBookmarked } from '../../apis';
-import BillBookmaredCount from './BillBookmaredCount';
+import BillBookmarkedCount from './BillBookmarkedCount';
+import BillBookmarkedList from './BillBookmaredList';
 
 export default function BillContainer() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetBillBookmarked();
@@ -26,9 +26,9 @@ export default function BillContainer() {
   return (
     <section className="lg:px-[30px] flex flex-col gap-6">
       <p className="text-xl font-semibold px-[30px] lg:px-0">
-        스크랩한 법안 &middot; <BillBookmaredCount />
+        스크랩한 법안 &middot; <BillBookmarkedCount />
       </p>
-      <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
+      <BillBookmarkedList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
     </section>
   );
 }
