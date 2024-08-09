@@ -1,1 +1,1 @@
-export type SnackbarType = 'INFO' | 'ERROR' | 'SUCCESS' | 'DEFAULT';
+export type SnackbarType = 'INFO' | 'ERROR' | 'SUCCESS' | 'CANCEL' | 'DEFAULT';

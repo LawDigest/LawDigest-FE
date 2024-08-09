@@ -1,44 +1,88 @@
-import { useQueryClient } from '@tanstack/react-query';
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Bill } from '@/components/Bill';
-import { Divider } from '@nextui-org/react';
-import { prefetchGetBillDetail, useGetBillDetail, usePatchViewCount } from '../../apis';
+import { Divider, Spinner } from '@nextui-org/react';
+import { useGetBillDetail } from '../../apis';
 import { SectionContainer, ProposerList, ProgressStage, AnotherBill } from '..';
 
-export default async function BillContainer({ id }: { id: string }) {
-  const queryClient = useQueryClient();
-  await prefetchGetBillDetail(id, queryClient);
+const billSample = {
+  bill_info_dto: {
+    bill_id: '',
+    bill_name: '',
+    propose_date: '',
+    summary: '',
+    gpt_summary: '',
+    view_count: 0,
+    bill_like_count: 0,
+    bill_stage: '',
+    brief_summary: '',
+  },
+  representative_proposer_dto_list: [
+    {
+      representative_proposer_id: '',
+      representative_proposer_name: '',
+      represent_proposer_img_url: '',
+      party_id: 0,
+      party_image_url: '',
+      party_name: '',
+    },
+  ],
+  public_proposer_dto_list: [
+    {
+      public_proposer_id: '',
+      public_proposer_name: '',
+      public_proposer_img_url: '',
+      public_proposer_party_id: 0,
+      public_proposer_party_image_url: '',
+      public_proposer_party_name: '',
+    },
+  ],
+  is_book_mark: false,
+  similar_bills: [],
+};
 
-  const { data: bill } = await useGetBillDetail(id, queryClient);
-  const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
-  const representativeProposerList = bill.representative_proposer_dto_list;
-  const publicProposerList = bill.public_proposer_dto_list;
-  const similarBills = bill.similar_bills;
-  const billStage = bill.bill_info_dto.bill_stage;
+export default function BillContainer({ id, viewCount }: { id: string; viewCount: number }) {
+  const { data, isFetching } = useGetBillDetail(id);
+  const [bill, setBill] = useState(data ? data.data : billSample);
+
+  useEffect(() => {
+    if (data) {
+      setBill(data.data);
+    }
+  }, [data]);
 
   return (
     <section className="flex flex-col">
-      <Bill {...bill} detail viewCount={viewCount}>
-        <section className="lg:w-[490px] lg:float-right">
-          <SectionContainer title="발의자 명단">
-            <ProposerList
-              representativeProposerList={representativeProposerList}
-              publicProposerList={publicProposerList}
-            />
-          </SectionContainer>
+      {isFetching && (
+        <div className="flex justify-center w-full my-4">
+          <Spinner color="default" />
+        </div>
+      )}
+      {Object.keys(bill).length !== 0 && !isFetching && (
+        <Bill {...bill} detail viewCount={viewCount}>
+          <section className="lg:w-[490px] lg:float-right">
+            <SectionContainer title="발의자 명단">
+              <ProposerList
+                representativeProposerList={bill.representative_proposer_dto_list}
+                publicProposerList={bill.public_proposer_dto_list}
+              />
+            </SectionContainer>
 
-          <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+            <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-          <SectionContainer title="심사 진행 단계">
-            <ProgressStage billStage={billStage} />
-          </SectionContainer>
+            <SectionContainer title="심사 진행 단계">
+              <ProgressStage billStage={bill.bill_info_dto.bill_stage} />
+            </SectionContainer>
 
-          <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+            <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-          <SectionContainer title="다른 개정안 보기">
-            <AnotherBill similarBills={similarBills} />
-          </SectionContainer>
-        </section>
-      </Bill>
+            <SectionContainer title="다른 개정안 보기">
+              <AnotherBill similarBills={bill.similar_bills} />
+            </SectionContainer>
+          </section>
+        </Bill>
+      )}
     </section>
   );
 }

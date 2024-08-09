@@ -12,17 +12,19 @@ export default function Snackbar() {
   const snackbar = useRecoilValue(snackbarState);
   const resetSnackbar = useResetRecoilState(snackbarState);
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (snackbar.show) {
       const timer = setTimeout(
         () => {
-          clearTimeout(timer);
           resetSnackbar();
         },
         snackbar?.duration !== null ? snackbar?.duration : 3000,
       );
-    } else {
-      resetSnackbar();
+
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [snackbar, resetSnackbar]);
 
