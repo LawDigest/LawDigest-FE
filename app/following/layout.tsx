@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function FollowingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout nav logo setting>
+    <Layout nav logo notification>
       {children}
     </Layout>
   );
