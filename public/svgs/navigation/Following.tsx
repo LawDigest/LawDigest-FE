@@ -1,6 +1,6 @@
 import { NavIconProps } from '@/types';
 
-export default function IconFollow({ className, isActive }: NavIconProps) {
+export default function IconFollowing({ className, isActive }: NavIconProps) {
   return isActive ? (
     <svg
       width="30"
@@ -26,7 +26,7 @@ export default function IconFollow({ className, isActive }: NavIconProps) {
       />
       <path
         d="M5.65 26.9483V3.65H24.35V26.9483L15.2907 22.4186L15 22.2733L14.7093 22.4186L5.65 26.9483Z"
-        stroke="black"
+        stroke="#999999"
         strokeOpacity="0.2"
         strokeWidth="1.3"
       />

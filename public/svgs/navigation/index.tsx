@@ -1,6 +1,6 @@
 import IconHome from './Home';
 import IconMyPage from './MyPage';
 import IconNavBorder from './NavBorder';
-import IconFollow from './Follow';
+import IconFollowing from './Following';
 
-export { IconHome, IconMyPage, IconNavBorder, IconFollow };
+export { IconHome, IconMyPage, IconNavBorder, IconFollowing };
