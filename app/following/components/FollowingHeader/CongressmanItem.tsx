@@ -5,7 +5,6 @@ export default function CongressmanItem({
   congressman_id,
   congressman_name,
   congressman_image_url,
-  party_id,
   party_name,
 }: {
   congressman_id: string;
