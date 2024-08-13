@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
 import {
   Card,
   CardHeader,
@@ -48,6 +48,7 @@ export default function Bill({
 }: BillProps) {
   const [isLiked, setIsLiked] = useState(is_book_mark);
   const [likeCount, setLikeCount] = useState(bill_like_count);
+  const [isLoaded, setIsLoaded] = useState(false);
   const mutateBookmark = usePatchBookmark(bill_id);
   const [toggleMore, setToggleMore] = useState(false);
   const router = useRouter();
@@ -76,12 +77,23 @@ export default function Bill({
     } else {
       setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
-  }, [isLiked, likeCount, is_book_mark, setSnackbar]);
+  }, [isLiked, likeCount, setSnackbar, is_book_mark, bill_like_count]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
     setSnackbar({ show: true, type: 'SUCCESS', message: '링크를 복사했습니다.', duration: 3000 });
   }, []);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  useLayoutEffect(() => {
+    if (isLoaded) {
+      setIsLiked(is_book_mark);
+      setLikeCount(bill_like_count);
+    }
+  }, [isLoaded]);
 
   return (
     <section className={`flex flex-col gap-5 ${detail ? 'lg:flex-row' : ''}`}>
@@ -177,10 +189,10 @@ export default function Bill({
                 <div className="flex gap-4">
                   <div className="flex items-center text-sm text-gray-2">
                     <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
-                      <IconScrabSmall isActive={isLiked} />
+                      <IconScrabSmall isActive={isLiked === false ? is_book_mark : isLiked} />
                     </Button>
                     <h4 className="mr-2">스크랩</h4>
-                    <h4>{likeCount}</h4>
+                    <h4>{likeCount === 0 ? bill_like_count : likeCount}</h4>
                   </div>
                   <div className="flex items-center text-sm text-gray-2">
                     <h4 className="mr-2">조회수</h4>

@@ -7,6 +7,7 @@ export const useGetBillDetail = (billId: string) =>
   useQuery({
     queryKey: ['/bill/detail', billId],
     queryFn: () => getBillDetail(billId),
+    placeholderData: (previousData) => previousData,
   });
 
 export const usePatchViewCount = async (billId: string) => {
