@@ -1,6 +1,6 @@
 import { Card, CardHeader, CardBody } from '@nextui-org/react';
-import CongressmanList from './CongressmanList';
 import { useQueryClient } from '@tanstack/react-query';
+import CongressmanList from './CongressmanList';
 import { useGetFollowingCongressman } from '../../apis';
 
 export default async function FollowingHeader() {
