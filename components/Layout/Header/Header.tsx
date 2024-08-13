@@ -136,7 +136,7 @@ export default function Header({
         )}
       </Navbar>
 
-      <div className="lg:mb-5">{toggleSearch && <SearchBar />}</div>
+      <div>{toggleSearch && <SearchBar />}</div>
     </section>
   );
 }

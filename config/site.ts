@@ -1,4 +1,4 @@
-import { IconHome, IconMyPage } from '@/public/svgs';
+import { IconFollowing, IconHome, IconMyPage } from '@/public/svgs';
 
 export type SiteConfig = typeof siteConfig;
 
@@ -10,6 +10,11 @@ export const siteConfig = {
       label: '피드',
       href: '/',
       IconComponent: IconHome,
+    },
+    {
+      label: '팔로잉',
+      href: '/following',
+      IconComponent: IconFollowing,
     },
     {
       label: '마이페이지',

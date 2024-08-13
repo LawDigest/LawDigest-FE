@@ -8,7 +8,7 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
   const { user_name, user_image_url, user_email } = userInfo;
 
   return (
-    <section className="flex items-center px-[30px] justify-between h-[200px] shadow-md rounded-xl bg-white pb-7 dark:bg-primary-3 lg:bg-gray-0.5 lg:shadow-none lg:h-[260px] lg:w-[200px] lg:justify-center lg:relative">
+    <section className="flex items-center px-[30px] justify-between h-[200px] shadow-md rounded-b-xl lg:rounded-xl bg-white pt-3 pb-7 dark:bg-primary-3 lg:bg-gray-0.5 lg:shadow-none lg:h-[260px] lg:w-[200px] lg:justify-center lg:relative">
       <div className="flex items-center lg:flex-col lg:gap-5 ">
         <Avatar src={`${user_image_url}`} className="w-[100px] h-[100px] mr-4 lg:mr-0" />
 
