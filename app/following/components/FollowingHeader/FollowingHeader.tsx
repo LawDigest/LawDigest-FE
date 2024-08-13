@@ -1,5 +1,7 @@
 import { Card, CardHeader, CardBody } from '@nextui-org/react';
 import CongressmanList from './CongressmanList';
+import { useQueryClient } from '@tanstack/react-query';
+import { useGetFollowingCongressman } from '../../apis';
 
 const congressmanList = [
   {
@@ -144,9 +146,12 @@ const congressmanList = [
   },
 ];
 
-export default function FollowingHeader() {
+export default async function FollowingHeader() {
+  const queryClient = useQueryClient();
+  const { data: congressmanList } = await useGetFollowingCongressman(queryClient);
+
   return (
-    <Card className="pl-[30px] lg:mt-8 lg:bg-gray-0.5 dark:bg-primary-3 max-w-[960px] mx-auto">
+    <Card className="pl-5 lg:pl-3 lg:mt-8 lg:bg-gray-0.5 dark:bg-primary-3 w-full lg:w-[964px] mx-auto">
       <CardHeader className="pt-5 pl-0">
         <h2 className="text-2xl font-bold lg:text-3xl lg:mx-auto">팔로잉</h2>
       </CardHeader>
