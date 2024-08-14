@@ -99,7 +99,7 @@ export default function Bill({
     <section className={`flex flex-col lg:gap-5 ${detail ? 'lg:flex-row' : ''}`}>
       <Card
         key={bill_id}
-        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
+        className="flex flex-col mx-5 mt-6 gap-5 dark:bg-dark-b dark:lg:bg-dark-pb"
         radius="none"
         shadow="none">
         <CardHeader

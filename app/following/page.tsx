@@ -7,7 +7,7 @@ import { ACCESS_TOKEN } from '@/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
-import { FollowingHeader, BillContainer } from './components';
+import { FollowingNav, BillContainer } from './components';
 
 export default function Following() {
   const router = useRouter();
@@ -26,9 +26,11 @@ export default function Following() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section className="flex flex-col lg:w-[840px] mx-auto lg:gap-6">
-        <FollowingHeader />
-        <BillContainer />
+      <section className="flex flex-col mx-auto lg:flex-row">
+        <FollowingNav />
+        <div>
+          <BillContainer />
+        </div>
       </section>
     </HydrationBoundary>
   );

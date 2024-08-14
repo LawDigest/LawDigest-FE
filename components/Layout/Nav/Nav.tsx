@@ -45,7 +45,7 @@ function Nav() {
     <section
       className={`w-full h-16 bg-primary-3 lg:hidden transition-transform duration-300 ${isScrolled ? 'transform translate-y-full fixed bottom-0 left-0' : ''}`}>
       <div className="mx-auto w-fit">
-        <ul className="flex justify-between gap-12 px-10 py-2">
+        <ul className="flex justify-between px-10 py-2 gap-12">
           {navItems.map(({ label, href, IconComponent }) => {
             const isActive = pathname === '/' ? pathname?.endsWith(href) : href !== '/' && pathname?.startsWith(href);
 

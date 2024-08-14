@@ -1,3 +1,3 @@
-import FollowingHeader from './FollowingHeader';
+import FollowingNav from './FollowingNav';
 
-export { FollowingHeader };
+export { FollowingNav };

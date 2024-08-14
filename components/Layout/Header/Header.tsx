@@ -51,7 +51,7 @@ export default function Header({
         </NavbarBrand>
 
         <NavbarContent justify="center" className="hidden mx-auto lg:flex">
-          <ul className="flex justify-between w-full gap-2 px-10 lg:gap-20">
+          <ul className="flex justify-between w-full px-10 gap-2 lg:gap-20">
             {navItems.map(({ label, href }) => {
               const isActive = pathname === '/' ? pathname?.endsWith(href) : href !== '/' && pathname?.startsWith(href);
 

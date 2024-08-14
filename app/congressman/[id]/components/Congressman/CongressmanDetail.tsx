@@ -57,7 +57,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         <Avatar
           radius="full"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-          className={`w-[100px] h-[100px] border-1.5 dark:border-dark-l shadow-lg ${party_name}`}
+          className={`w-[100px] h-[100px] border-1.5 shadow-lg ${party_name}`}
         />
 
         <div className="flex flex-col justify-between py-3 w-[65%] items-end">
