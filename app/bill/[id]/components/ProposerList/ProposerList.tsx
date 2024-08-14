@@ -69,8 +69,16 @@ export default function ProposerList({
                   // eslint-disable-next-line no-nested-ternary
                   .toSorted((a, b) => (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : 0))
                   .map((proposer) => (
-                    <Link href={`/congressman/${proposer[0]}`} key={proposer[0]}>
-                      {proposer[1]}
+                    <Link href={`/congressman/${proposer[0]}`} key={proposer[0]} className="whitespace-nowrap">
+                      {proposer[1].length === 2 ? (
+                        <div className="flex justify-between">
+                          {proposer[1].split('').map((char) => (
+                            <p key={char}>{char}</p>
+                          ))}
+                        </div>
+                      ) : (
+                        proposer[1]
+                      )}
                     </Link>
                   ))}
               </div>
