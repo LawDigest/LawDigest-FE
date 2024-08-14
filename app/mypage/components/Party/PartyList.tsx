@@ -13,7 +13,7 @@ export default async function PartyList({ qeuryClient }: { qeuryClient: QueryCli
         팔로우한 정당 &middot;<span className="text-[#555555] dark:text-gray-2"> {partyLength}</span>
       </p>
 
-      <div className="grid grid-cols-2 gap-y-5 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-y-5 lg:grid-cols-6">
         {partyList.map((party: FollowingPartyType) => (
           <PartyItem key={party.party_name} {...party} />
         ))}

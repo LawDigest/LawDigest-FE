@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { PartyLogoReplacement } from '@/components';
 
 export default function BillBookmarked({
-  bill_info_dto: { bill_id, bill_name, bill_stage },
+  bill_info_dto: { bill_id, brief_summary, bill_stage },
   representative_proposer_dto_list,
   public_proposer_dto_list,
 }: BillProps) {
@@ -14,18 +14,18 @@ export default function BillBookmarked({
 
   return (
     <Link href={`/bill/${bill_id}`}>
-      <Card className={`border-1.5 ${partyName}`} radius="sm">
-        <CardBody className="flex flex-row justify-between gap-2">
-          <p className="text-sm font-bold">{bill_name}</p>
-          <div className="flex flex-col items-end w-[100px] gap-2 shrink-0">
+      <Card className={`border-1.5 lg:flex-row lg:py-6 ${partyName}`} radius="md">
+        <CardBody className="flex flex-row justify-between gap-2 lg:flex-col lg:items-start">
+          <p className="text-sm font-bold lg:text-lg">{brief_summary}</p>
+          <div className="flex flex-col lg:flex-row items-end w-[100px] lg:w-full lg:items-center gap-2 shrink-0">
             <Chip
-              className="text-xs bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
+              className="text-xs bg-transparent lg:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
               size="sm"
               variant="bordered"
               radius="sm">
               {bill_stage}
             </Chip>
-            <h4 className="text-xs font-semibold text-gray-2">
+            <h4 className="text-xs font-semibold lg:text-sm text-gray-2">
               {isRepresentativeSolo
                 ? `${
                     representative_proposer_dto_list[0].representative_proposer_name
@@ -36,7 +36,7 @@ export default function BillBookmarked({
             </h4>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center pt-0">
+        <CardFooter className="flex justify-center pt-0 lg:basis-1/4">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
             representative_proposer_dto_list[0].party_image_url !== null ? (
@@ -45,7 +45,7 @@ export default function BillBookmarked({
                 width={40}
                 height={20}
                 alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
-                className="object-contain w-10 h-8"
+                className="object-contain w-10 h-8 lg:w-[100px] lg:h-[25px]"
               />
             ) : (
               <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />

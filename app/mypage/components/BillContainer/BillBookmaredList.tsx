@@ -13,7 +13,7 @@ export default function BillBookmarkedList({
   fetchRef: RefObject<HTMLDivElement>;
 }) {
   return (
-    <ul className="flex flex-col gap-4 mx-[30px]">
+    <ul className="flex flex-col gap-4 mx-[30px] lg:mx-0">
       {bills.map((bill) => (
         <BillBookmarked {...bill} key={bill.bill_info_dto.bill_id} />
       ))}
