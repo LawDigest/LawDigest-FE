@@ -31,6 +31,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
     gender,
     follow_count,
     briefHistory,
+    telephone,
   } = congressman;
 
   return (
@@ -56,11 +57,11 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         <Avatar
           radius="full"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-          className="w-[100px] h-[100px] border dark:border-dark-l"
+          className={`w-[100px] h-[100px] border-1.5 shadow-lg ${party_name}`}
         />
 
         <div className="flex flex-col justify-between py-3 w-[65%] items-end">
-          <h3 className="text-2xl font-semibold">{congressman_name}</h3>
+          <h3 className="text-2xl font-semibold">{congressman_name} 의원</h3>
           <p className="text-sm text-gray-2">
             {district} {elected}
           </p>
@@ -89,27 +90,33 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
       <Divider className="bg-gray-1 dark:bg-dark-l" />
 
-      <div className="flex gap-[26px] justify-between w-full">
+      <div className="flex flex-col w-full gap-2">
         <Chip className="text-sm font-medium text-white bg-primary-3 dark:bg-gray-4 dark:text-gray-1 w-[78px] h-8">
           기본정보
         </Chip>
 
-        <div className="w-full">
-          <div className="flex items-center justify-between">
-            <p className="font-medium text-gray-2 dark:text-gray-3">나이</p>
-            <p className="text-sm font-medium dark:text-gray-1">{age}세</p>
+        <div className="w-full ml-3 ">
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">나이</p>
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">
+              {age ? `${age} 세` : '-'}
+            </p>
           </div>
-          <div className="flex items-center justify-between">
-            <p className="font-medium text-gray-2 dark:text-gray-3">성별</p>
-            <p className="text-sm font-medium dark:text-gray-1">{gender}</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">성별</p>
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{gender || '-'}</p>
           </div>
-          <div className="flex items-center justify-between">
-            <p className="font-medium text-gray-2 dark:text-gray-3">이메일</p>
-            <p className="text-sm font-medium dark:text-gray-1">{email}</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">번호</p>
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{telephone || '-'}</p>
           </div>
-          <div className="flex items-center justify-between">
-            <p className="font-medium text-gray-2 dark:text-gray-3">의원실</p>
-            <p className="text-sm font-medium dark:text-gray-1">{office}</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">이메일</p>
+            <p className="w-[80%] text-sm font-medium break-words dark:text-gray-1 text-end">{email || '-'}</p>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">의원실</p>
+            <p className="text-sm font-medium break-words dark:text-gray-1 w-[80%] text-end">{office || '-'}</p>
           </div>
         </div>
       </div>

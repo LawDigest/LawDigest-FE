@@ -96,10 +96,10 @@ export default function Bill({
   }, [isLoaded]);
 
   return (
-    <section className={`flex flex-col gap-5 ${detail ? 'lg:flex-row' : ''}`}>
+    <section className={`flex flex-col lg:gap-5 ${detail ? 'lg:flex-row' : ''}`}>
       <Card
         key={bill_id}
-        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
+        className="flex flex-col mx-5 mt-6 gap-5 dark:bg-dark-b dark:lg:bg-dark-pb"
         radius="none"
         shadow="none">
         <CardHeader
@@ -237,7 +237,7 @@ export default function Bill({
       </Card>
 
       <div
-        className={`flex flex-col py-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
+        className={`flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
         <section className="mx-5">{children}</section>
 
         <Link
