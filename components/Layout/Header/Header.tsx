@@ -52,7 +52,7 @@ export default function Header({
 
         <NavbarContent justify="center" className="hidden mx-auto lg:flex">
           <ul className="flex justify-between w-full gap-2 px-10 lg:gap-20">
-            {navItems.map(({ label, href, IconComponent }) => {
+            {navItems.map(({ label, href }) => {
               const isActive = pathname === '/' ? pathname?.endsWith(href) : href !== '/' && pathname?.startsWith(href);
 
               return (
@@ -61,10 +61,9 @@ export default function Header({
                     <IconNavBorder />
                   </div>
                   <Link
-                    className={`${isActive ? 'text-white lg:text-black lg:dark:text-white lg:font-semibold lg:bg-transparent' : 'text-gray-2'} flex flex-col items-center text-xs lg:text-base lg:font-medium font-bold lg:px-5 lg:py-3 lg:bg-white dark:lg:bg-dark-pb lg:w-[100px] lg:h-[50px]`}
+                    className={`${isActive ? 'text-white lg:text-black lg:dark:text-white lg:font-semibold lg:bg-transparent' : 'text-gray-2'} flex flex-col items-center justify-center text-xs lg:text-base lg:font-medium font-bold lg:px-5 lg:py-3 lg:bg-white dark:lg:bg-dark-pb lg:w-[110px] lg:h-[60px] leading-[60px]`}
                     href={href}>
-                    <IconComponent isActive={isActive} className="lg:hidden" />
-                    <p>{label}</p>
+                    {label}
                   </Link>
                 </NavbarItem>
               );
