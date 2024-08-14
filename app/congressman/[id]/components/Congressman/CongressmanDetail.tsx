@@ -57,11 +57,11 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         <Avatar
           radius="full"
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-          className="w-[100px] h-[100px] border dark:border-dark-l"
+          className={`w-[100px] h-[100px] border-1.5 dark:border-dark-l shadow-lg ${party_name}`}
         />
 
         <div className="flex flex-col justify-between py-3 w-[65%] items-end">
-          <h3 className="text-2xl font-semibold">{congressman_name}</h3>
+          <h3 className="text-2xl font-semibold">{congressman_name} 의원</h3>
           <p className="text-sm text-gray-2">
             {district} {elected}
           </p>
