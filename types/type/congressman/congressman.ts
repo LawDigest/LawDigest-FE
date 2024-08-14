@@ -19,4 +19,5 @@ export interface CongressmanDetailResponse {
   gender: string;
   follow_count: number;
   briefHistory: string;
+  telephone: string;
 }
