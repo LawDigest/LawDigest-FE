@@ -6,6 +6,7 @@ import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
+import { IconCheck, IconPlus } from '@/public/svgs';
 import { usePatchCongressmanFollow } from '../../apis';
 
 export default function FollowButton({ id, likeChecked }: { id: string; likeChecked: boolean }) {
@@ -35,8 +36,9 @@ export default function FollowButton({ id, likeChecked }: { id: string; likeChec
     <Button
       radius="full"
       onClick={onClickFollow}
-      className={`w-full h-12 text-lg font-medium ${isFollowed ? 'bg-gray-1 text-gray-3' : 'bg-primary-3 text-white dark:bg-gray-4 dark:text-gray-2'} `}>
-      {isFollowed ? '팔로우 취소' : '팔로우'}
+      endContent={isFollowed ? <IconCheck /> : <IconPlus />}
+      className={`w-full h-12 text-lg font-medium flex justify-between px-6 ${isFollowed ? 'bg-gray-1 text-gray-3' : 'bg-primary-3 text-white dark:bg-gray-4 dark:text-gray-2'} `}>
+      {isFollowed ? '팔로우 중' : '팔로우 하기'}
     </Button>
   );
 }
