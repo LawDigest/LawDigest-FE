@@ -13,7 +13,7 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
       <div className="flex items-center lg:flex-col lg:gap-5 ">
         <div className="relative">
           <Image
-            src="/images/Ellipse.png"
+            src="/images/profileBorder.png"
             width={100}
             height={100}
             alt="프로필 사진 테두리"

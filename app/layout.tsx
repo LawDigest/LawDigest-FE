@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: '/images/favicon.ico',
+    shortcut: '/images/favicon-16x16.png',
+    apple: '/images/apple-icon.png',
   },
 };
 
