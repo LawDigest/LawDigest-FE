@@ -98,43 +98,25 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
         <div className="w-full ml-3 ">
           <div className="flex items-center justify-between gap-2">
             <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">나이</p>
-            {age ? (
-              <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{age}세</p>
-            ) : (
-              <p className="text-sm font-medium text-gray-2 dark:text-gray-4">정보없음</p>
-            )}
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">
+              {age ? `${age} 세` : '-'}
+            </p>
           </div>
           <div className="flex items-center justify-between gap-2">
             <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">성별</p>
-            {gender ? (
-              <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{gender}</p>
-            ) : (
-              <p className="text-sm font-medium text-gray-2 dark:text-gray-4">정보없음</p>
-            )}
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{gender || '-'}</p>
           </div>
           <div className="flex items-center justify-between gap-2">
             <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">번호</p>
-            {telephone ? (
-              <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{telephone}</p>
-            ) : (
-              <p className="text-sm font-medium text-gray-2 dark:text-gray-4">정보없음</p>
-            )}
+            <p className="text-sm font-medium dark:text-gray-1 w-[80%] break-words text-end">{telephone || '-'}</p>
           </div>
           <div className="flex items-center justify-between gap-2">
             <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">이메일</p>
-            {email ? (
-              <p className="w-[80%] text-sm font-medium break-words dark:text-gray-1 text-end">{email}</p>
-            ) : (
-              <p className="text-sm font-medium text-gray-2 dark:text-gray-4">정보없음</p>
-            )}
+            <p className="w-[80%] text-sm font-medium break-words dark:text-gray-1 text-end">{email || '-'}</p>
           </div>
           <div className="flex items-center justify-between gap-2">
             <p className="font-medium text-gray-2 dark:text-gray-3 shrink-0">의원실</p>
-            {office ? (
-              <p className="text-sm font-medium break-words dark:text-gray-1 w-[80%] text-end">{office}</p>
-            ) : (
-              <p className="text-sm font-medium text-gray-2 dark:text-gray-4">정보없음</p>
-            )}
+            <p className="text-sm font-medium break-words dark:text-gray-1 w-[80%] text-end">{office || '-'}</p>
           </div>
         </div>
       </div>
