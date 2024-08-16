@@ -1,43 +1,44 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useIntersect } from '@/hooks';
+import { useState, useCallback } from 'react';
 import { useGetPartyCongressman } from '@/app/party/[id]/apis';
-import { Spinner } from '@nextui-org/spinner';
+import { Spinner, Button, Divider } from '@nextui-org/react';
+import { IconArrowDown, IconArrowUp } from '@/public/svgs';
 import PartyCongressmanCard from './PartyCongressmanCard';
 
 export default function PartyCongressman({ id }: { id: number }) {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useGetPartyCongressman(id);
-  const [congressmen, setCongressmen] = useState(
-    data ? data.pages.flatMap(({ data: { party_congressman: responses } }) => responses) : [],
-  );
+  const { data, isFetching } = useGetPartyCongressman(id);
+  const [isOpened, setIsOpened] = useState(false);
 
-  const fetchRef = useIntersect(async (entry: any, observer: any) => {
-    observer.unobserve(entry.target);
-    if (hasNextPage && !isFetching) {
-      fetchNextPage();
-    }
-  });
-
-  useEffect(() => {
-    if (data) {
-      setCongressmen(() => [...data.pages.flatMap(({ data: { party_congressman: responses } }) => responses)]);
-    }
-  }, [data]);
+  const onClickButton = useCallback(() => {
+    setIsOpened(!isOpened);
+  }, [isOpened]);
 
   return (
-    <section className="mx-5 my-10">
-      <div className="w-full grid grid-cols-4 justify-items-center gap-y-3 ">
-        {congressmen.map((congressman, index) => (
-          <PartyCongressmanCard key={`${congressman.congressman_id + index}`} {...congressman} />
-        ))}
+    <section className="flex flex-col gap-5 mx-5 my-10">
+      <div className="grid w-full grid-cols-4 justify-items-center gap-y-3 ">
+        {isOpened
+          ? data?.data.party_congressman.map((congressman, index) => (
+              <PartyCongressmanCard key={`${congressman.congressman_id + index}`} {...congressman} />
+            ))
+          : data?.data.party_congressman
+              .slice(0, 8)
+              .map((congressman, index) => (
+                <PartyCongressmanCard key={`${congressman.congressman_id + index}`} {...congressman} />
+              ))}
       </div>
       {isFetching && (
         <div className="flex justify-center w-full my-4">
           <Spinner color="default" />
         </div>
       )}
-      <div ref={fetchRef} />
+      <div className="flex justify-center">
+        <Button isIconOnly onClick={onClickButton} className="p-0 bg-transparent" size="sm">
+          {isOpened ? <IconArrowUp /> : <IconArrowDown />}
+        </Button>
+      </div>
+
+      <Divider className="dark:bg-dark-l lg:hidden" />
     </section>
   );
 }

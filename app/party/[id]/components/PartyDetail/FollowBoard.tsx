@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
@@ -15,14 +14,12 @@ export default function FollowBoard({
   follow_count,
   representative_bill_count,
   public_bill_count,
-  party_id,
 }: {
   id: number;
   followed: boolean;
   follow_count: number;
   representative_bill_count: number;
   public_bill_count: number;
-  party_id: number;
 }) {
   const [isFollowed, setIsFollowed] = useState(followed);
   const [followCount, setFollowCount] = useState(follow_count);
@@ -57,9 +54,7 @@ export default function FollowBoard({
         </div>
         <div className="flex flex-col items-center gap-[10px]">
           {representative_bill_count ? (
-            <Link href={`/party/${party_id}/bill`} className="text-2xl font-semibold">
-              {representative_bill_count}
-            </Link>
+            <p className="text-2xl font-semibold">{representative_bill_count}</p>
           ) : (
             <p className="text-2xl font-semibold"> {representative_bill_count}</p>
           )}
@@ -67,9 +62,9 @@ export default function FollowBoard({
         </div>
         <div className="flex flex-col items-center gap-[10px]">
           {public_bill_count ? (
-            <Link href={public_bill_count ? `/party/${party_id}/bill` : ''} className="text-2xl font-semibold">
+            <p className="text-2xl font-semibold">
               <p className="text-2xl font-semibold">{public_bill_count}</p>
-            </Link>
+            </p>
           ) : (
             <p className="text-2xl font-semibold"> {public_bill_count}</p>
           )}

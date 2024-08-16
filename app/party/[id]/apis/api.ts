@@ -19,10 +19,10 @@ export const getPartyDetail = (partyId: number) =>
     params: { party_id: partyId },
   });
 
-export const getPartyCongressman = async (partyId: number, page: number) =>
+export const getPartyCongressman = async (partyId: number) =>
   http.get<PartyCongressmanResponse>({
     url: `/party/congressman`,
-    params: { party_id: partyId, page },
+    params: { party_id: partyId },
   });
 
 export const patchPartyFollow = (partyId: number, followChecked: boolean) =>
