@@ -92,6 +92,17 @@ export default function Bill({
     if (isLoaded) {
       setIsLiked(is_book_mark);
       setLikeCount(bill_like_count);
+
+      const summaryElement = document.getElementById('summary');
+
+      if (summaryElement !== null && summaryElement?.innerHTML !== null) {
+        const markedGptSummary = gpt_summary
+          .split('**')
+          .map((value, index) => (index % 2 === 0 ? value : `<strong>${value}</strong>`))
+          .join('');
+
+        summaryElement.innerHTML = markedGptSummary;
+      }
     }
   }, [isLoaded]);
 
@@ -99,7 +110,7 @@ export default function Bill({
     <section className={`flex flex-col lg:gap-5 ${detail ? 'lg:flex-row' : ''}`}>
       <Card
         key={bill_id}
-        className="flex flex-col mx-5 mt-6 gap-5 dark:bg-dark-b dark:lg:bg-dark-pb"
+        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
         radius="none"
         shadow="none">
         <CardHeader
@@ -134,7 +145,7 @@ export default function Bill({
           <div className={!detail ? 'lg:w-[490px]' : ''}>
             <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm lg:text-base'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
-              <p className={detail ? '' : toggleMore ? '' : `line-clamp-[8]`} onClick={onClickToggleMore}>
+              <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore} id="summary">
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
               </p>
