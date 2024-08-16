@@ -20,7 +20,6 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
   const queryClient = useQueryClient();
   const { data: party } = await useGetPartyDetail({ partyId, queryClient });
   const {
-    party_id,
     party_name,
     party_img_url,
     proportional_congressman_count,
@@ -72,7 +71,6 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
         follow_count={follow_count}
         representative_bill_count={representative_bill_count}
         public_bill_count={public_bill_count}
-        party_id={party_id}
       />
 
       <Divider className="dark:bg-dark-l" />
