@@ -1,6 +1,6 @@
 'use client';
 
-import { useSuspenseInfiniteQuery, QueryClient, useQueryClient, useMutation } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery, QueryClient, useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { Dispatch, SetStateAction } from 'react';
 import { BILL_TAB } from '@/constants';
 import { ValueOf } from '@/types';
@@ -28,15 +28,9 @@ export const useGetPartyDetail = ({ partyId, queryClient }: { partyId: number; q
   });
 
 export const useGetPartyCongressman = (partyId: number) =>
-  useSuspenseInfiniteQuery({
+  useQuery({
     queryKey: ['/party/congressman', { party_id: partyId }],
-    queryFn: ({ pageParam }: { pageParam: number }) => getPartyCongressman(partyId, pageParam),
-    initialPageParam: 0,
-    getNextPageParam: ({ data }) => {
-      const { pagination_response } = data || {};
-      const { last_page, page_number } = pagination_response || {};
-      return last_page ? undefined : page_number + 1;
-    },
+    queryFn: () => getPartyCongressman(partyId),
   });
 
 export const usePatchPartyFollow = (partyId: number) => {

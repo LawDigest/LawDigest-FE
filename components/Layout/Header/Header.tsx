@@ -43,7 +43,7 @@ export default function Header({
 
   return (
     <section className="w-full">
-      <Navbar position="static" className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px] ">
+      <Navbar position="static" isBordered className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px] ">
         <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
           <Link href="/">
             <Logo width={106} height={18} />
@@ -51,7 +51,7 @@ export default function Header({
         </NavbarBrand>
 
         <NavbarContent justify="center" className="hidden mx-auto lg:flex">
-          <ul className="flex justify-between w-full px-10 gap-2 lg:gap-20">
+          <ul className="flex justify-between w-full gap-2 px-10 lg:gap-20">
             {navItems.map(({ label, href }) => {
               const isActive = pathname === '/' ? pathname?.endsWith(href) : href !== '/' && pathname?.startsWith(href);
 

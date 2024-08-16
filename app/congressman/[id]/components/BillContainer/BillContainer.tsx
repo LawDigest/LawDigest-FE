@@ -33,6 +33,11 @@ export default function BillContainer({ id }: { id: string }) {
     <section>
       <BillTab type={billType as any} clickHandler={setBillType as any} />
       <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
+      {bills.length === 0 && (
+        <p className="flex justify-center my-8 text-sm text-gray-2 dark:text-gray-3">
+          발의한 법안이 존재하지 않습니다.
+        </p>
+      )}
     </section>
   );
 }

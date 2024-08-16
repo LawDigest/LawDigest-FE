@@ -16,7 +16,7 @@ export default function Party({ params: { id } }: { params: { id: string } }) {
             <PartyDetail partyId={Number(id)} />
             <PartyCongressman id={Number(id)} />
           </div>
-          <div className="hidden lg:block">
+          <div className="">
             <BillContainer id={Number(id)} />
           </div>
         </div>

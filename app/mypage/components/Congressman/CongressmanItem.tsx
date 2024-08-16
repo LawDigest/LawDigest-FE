@@ -13,7 +13,7 @@ export default function CongressmanItem({
       <Avatar
         size="lg"
         src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-        className="border-2 dark:border-dark-l"
+        className={`border-1.5 ${party_name}`}
       />
       <div className="flex flex-col items-center">
         <p className="text-xs font-medium text-gray-2 dark:text-[#999999]">{party_name}</p>

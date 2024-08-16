@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { PartyLogoReplacement } from '@/components';
 import { Chip, Divider, Button, Link as NextUILink, Accordion, AccordionItem } from '@nextui-org/react';
 import { IconWeb } from '@/public/svgs';
-import FollowButton from './FollowButton';
+import FollowBoard from './FollowBoard';
 import { useGetCongressmanDetail } from '../../apis';
 
 export default async function CongressmanDetail({ congressmanId }: { congressmanId: string }) {
@@ -71,22 +71,13 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
       <Divider className="bg-gray-1 dark:bg-dark-l" />
 
-      <div className="flex justify-between w-full">
-        <div className="flex flex-col items-center basis-1/3">
-          <p className="text-2xl font-semibold">{follow_count}</p>
-          <p className="text-sm font-medium text-gray-2">팔로워</p>
-        </div>
-        <div className="flex flex-col items-center basis-1/3">
-          <p className="text-2xl font-semibold">{represent_count}</p>
-          <p className="text-sm font-medium text-gray-2">대표발의법안</p>
-        </div>
-        <div className="flex flex-col items-center basis-1/3">
-          <p className="text-2xl font-semibold">{public_count}</p>
-          <p className="text-sm font-medium text-gray-2">공동발의법안</p>
-        </div>
-      </div>
-
-      <FollowButton id={congressmanId} likeChecked={like_checked} />
+      <FollowBoard
+        id={congressmanId}
+        likeChecked={like_checked}
+        follow_count={follow_count}
+        represent_count={represent_count}
+        public_count={public_count}
+      />
 
       <Divider className="bg-gray-1 dark:bg-dark-l" />
 

@@ -1,5 +1,3 @@
-import { Pagination } from '../common/pagination';
-
 export interface PartyCongressmanProps {
   congressman_id: string;
   congressman_name: string;
@@ -7,6 +5,5 @@ export interface PartyCongressmanProps {
 }
 
 export interface PartyCongressmanResponse {
-  party_congressman: PartyCongressmanProps;
-  pagination_response: Pagination;
+  party_congressman: PartyCongressmanProps[];
 }
