@@ -30,8 +30,16 @@ export interface BillResponse {
   }[];
   is_book_mark: boolean;
   similar_bills: {
+    billBriefSummary: string;
     billId: string;
     billName: string;
+    billProposers: string;
+    billStage: string;
+    party: {
+      party_id: number;
+      party_image_url: string;
+      party_name: string;
+    }[];
   }[];
 }
 
