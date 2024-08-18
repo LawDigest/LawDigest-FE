@@ -25,12 +25,4 @@ export default function SearchParty({ party_id, party_name, party_image_url }: S
           </div>
         ) : (
           <PartyLogoReplacement partyName={party_name} circle />
-        )}
-        <p className="text-lg font-semibold">{party_name}</p>
-      </div>
-      <Link href={`/party/${party_id}`}>
-        <EnterButton />
-      </Link>
-    </div>
-  );
-}
+        )

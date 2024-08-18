@@ -6,6 +6,7 @@ import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
+import { IconCheck, IconPlus } from '@/public/svgs';
 import { usePatchPartyFollow } from '../../apis';
 
 export default function FollowBoard({
@@ -75,7 +76,8 @@ export default function FollowBoard({
       <Button
         radius="full"
         onClick={onClickFollow}
-        className={`w-full h-12 text-lg font-medium bg-${isFollowed ? 'gray-1' : 'primary-3'} text-${isFollowed ? 'gray-3' : 'white'}`}>
+        endContent={isFollowed ? <IconCheck /> : <IconPlus />}
+        className={`w-full h-12 text-lg font-medium flex justify-between px-6 ${isFollowed ? 'bg-gray-1 text-gray-3' : 'bg-primary-3 text-white dark:bg-gray-4 dark:text-gray-2'} `}>
         {isFollowed ? '팔로우 취소' : '팔로우'}
       </Button>
     </section>

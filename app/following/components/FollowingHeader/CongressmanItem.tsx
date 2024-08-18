@@ -21,15 +21,20 @@ export default function CongressmanItem({
   const isDark = theme === 'dark';
 
   return (
-    <Link href={`/congressman/${congressman_id}`} className="flex items-center lg:flex-row lg:justify-between">
+    <Link
+      href={`/congressman/${congressman_id}`}
+      className="flex flex-col items-center gap-2 lg:flex-row lg:justify-between">
       <Avatar
         src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
         className={`w-14 h-14 border ${party_name}`}
       />
 
-      <p className="text-xs font-semibold lg:text-xl shrink-0">
-        {congressman_name} <span className="font-normal lg:text-lg lg:dark:text-gray-1">의원</span>
-      </p>
+      <div className="flex flex-col items-center shrink-0 lg:items-start">
+        <p className="text-xs font-semibold lg:text-xl">
+          {congressman_name} <span className="font-normal lg:text-lg lg:dark:text-gray-1">의원</span>
+        </p>
+        <p className="text-gray-2 text-[10px] font-medium lg:text-sm">{party_name}</p>
+      </div>
 
       <Button
         className="hidden bg-tranparent lg:block"

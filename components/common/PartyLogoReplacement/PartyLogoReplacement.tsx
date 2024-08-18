@@ -4,6 +4,6 @@ export default function PartyLogoReplacement({ partyName, circle }: { partyName:
       {partyName}
     </div>
   ) : (
-    <div className="text-xl font-semibold text-center text-gray-3">{partyName}</div>
+    <div className="text-lg font-semibold text-center text-gray-3">{partyName}</div>
   );
 }
