@@ -66,7 +66,7 @@ export default function BillBookmarked({
                   key={party_id}
                   size="md"
                   classNames={{
-                    base: [`bg-white p-1 border ${party_name}`],
+                    base: [`bg-white dark:bg-dark-l p-1 border ${party_name}`],
                     img: ['object-contain'],
                   }}
                 />

@@ -67,6 +67,10 @@
   border-color: #797c85;
 }
 
+.다수 {
+  border-color: #2e2e2e;
+}
+
 .ERROR {
   background-color: rgb(239 68 68 / 95%);
 }

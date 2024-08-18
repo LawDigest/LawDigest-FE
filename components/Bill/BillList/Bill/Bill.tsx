@@ -328,7 +328,7 @@ export default function Bill({
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
                     }}
                     classNames={{
-                      base: [`bg-white p-1 border ${party_name}`],
+                      base: [`bg-white dark:bg-dark-pb p-1 border ${party_name}`],
                       img: ['object-contain'],
                     }}
                   />
