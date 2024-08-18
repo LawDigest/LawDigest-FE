@@ -1,13 +1,11 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Card } from '@nextui-org/card';
 import { Avatar } from '@nextui-org/avatar';
-import Image from 'next/image';
-import Link from 'next/link';
-import { PartyLogoReplacement } from '@/components';
 import { Chip, Divider, Button, Link as NextUILink, Accordion, AccordionItem } from '@nextui-org/react';
 import { IconWeb } from '@/public/svgs';
 import FollowBoard from './FollowBoard';
 import { useGetCongressmanDetail } from '../../apis';
+import PartyLogo from './PartyLogo';
 
 export default async function CongressmanDetail({ congressmanId }: { congressmanId: string }) {
   const queryClient = useQueryClient();
@@ -39,19 +37,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
       className={`mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b lg:h-min lg:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
       shadow="md"
       radius="md">
-      <Link href={party_image_url !== null ? `/party/${party_id.toString()}` : ''} className="">
-        {party_image_url !== null ? (
-          <Image
-            src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
-            width={64}
-            height={30}
-            alt={`${party_name} 로고 이미지`}
-            className="object-contain w-[64px] h-[30px]"
-          />
-        ) : (
-          <PartyLogoReplacement partyName={party_name} circle={false} />
-        )}
-      </Link>
+      <PartyLogo party_id={party_id} party_name={party_name} party_image_url={party_image_url} />
 
       <div className="flex justify-between w-full">
         <Avatar

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 import {
   Card,
   CardHeader,
@@ -55,6 +56,8 @@ export default function Bill({
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
   const setSnackbar = useSetRecoilState(snackbarState);
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   const onClickToggleMore = useCallback(() => {
     setToggleMore(!toggleMore);
@@ -302,7 +305,7 @@ export default function Bill({
                 }}>
                 {representative_proposer_dto_list[0].party_image_url !== null ? (
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].party_image_url}`}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
                     width={100}
                     height={45}
                     alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
@@ -316,7 +319,7 @@ export default function Bill({
               <AvatarGroup>
                 {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                   <Avatar
-                    src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
                     key={party_id}
                     size="md"
                     onClick={(e) => {
@@ -325,7 +328,7 @@ export default function Bill({
                       if (party_image_url !== null) router.push(`/party/${party_id}`);
                     }}
                     classNames={{
-                      base: [`bg-white p-1 border ${party_name}`],
+                      base: [`bg-white dark:bg-dark-pb p-1 border ${party_name}`],
                       img: ['object-contain'],
                     }}
                   />

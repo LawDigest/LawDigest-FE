@@ -15,7 +15,7 @@ export default function SearchCongressman({
         <Avatar
           src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
           size="lg"
-          className="border dark:border-dark-l"
+          className={`border ${party_name}`}
         />
         <div className="flex flex-col ">
           <p className="text-lg font-semibold">{congressman_name}</p>

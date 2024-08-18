@@ -23,7 +23,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={onSubmitSearch}
-      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] lg:w-[600px] mx-auto lg:my-5">
+      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] lg:w-[600px] mx-auto my-5">
       <Input
         value={value}
         onValueChange={setValue}

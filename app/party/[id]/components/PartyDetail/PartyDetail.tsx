@@ -1,6 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '@nextui-org/button';
-import Image from 'next/image';
 import { Link as NextUILink } from '@nextui-org/link';
 import { Card } from '@nextui-org/card';
 import { Divider } from '@nextui-org/react';
@@ -15,6 +14,7 @@ import {
 } from '@/constants/party';
 import { useGetPartyDetail } from '../../apis';
 import FollowBoard from './FollowBoard';
+import PartyLogo from './PartyLogo';
 
 export default async function PartyDetail({ partyId }: { partyId: number }) {
   const queryClient = useQueryClient();
@@ -36,16 +36,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
   return (
     <section className="flex flex-col items-center mx-5 mt-5 gap-7 lg:w-[320px]">
       <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
-        <div
-          className={`shadow-lg rounded-full w-[130px] h-[130px] flex justify-center items-center border dark:bg-white ${party_name}`}>
-          <Image
-            src={process.env.NEXT_PUBLIC_IMAGE_URL + party_img_url}
-            width={200}
-            height={90}
-            alt={`${party_name} 로고 이미지`}
-            className="w-[100px] h-[45px] object-contain bg-white"
-          />
-        </div>
+        <PartyLogo party_name={party_name} party_img_url={party_img_url} />
 
         <div className="flex flex-col items-center gap-1">
           <h2 className="text-2xl font-semibold">{party_name}</h2>

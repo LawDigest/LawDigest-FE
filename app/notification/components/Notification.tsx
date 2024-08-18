@@ -1,3 +1,6 @@
+'use client';
+
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import Image from 'next/image';
 import getTimeRemaining from '@/utils/getTimeRemaining';
@@ -10,11 +13,14 @@ export default function Notification({
   notification_image_url,
   target,
 }: NotificationProps) {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   return (
     <Link href={`bill/${target}`} className="flex items-center gap-4">
       <div className="w-[52px] h-[52px] rounded-full border flex items-center justify-center overflow-hidden shrink-0	dark:border-dark-l">
         <Image
-          src={process.env.NEXT_PUBLIC_IMAGE_URL + notification_image_url}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? notification_image_url.replace('wide', 'dark') : notification_image_url}`}
           width={50}
           height={20}
           alt="정당 로고 이미지"

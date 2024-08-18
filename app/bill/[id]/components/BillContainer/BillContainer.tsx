@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { Bill } from '@/components/Bill';
 import { Divider, Spinner } from '@nextui-org/react';
 import { useGetBillDetail } from '../../apis';
-import { SectionContainer, ProposerList, ProgressStage, AnotherBill } from '..';
+import { SectionContainer, ProposerList, ProgressStage } from '..';
+import AnotherBillList from '../AnotherBill/AnotherBillList';
 
 const billSample = {
   bill_info_dto: {
@@ -39,7 +40,22 @@ const billSample = {
     },
   ],
   is_book_mark: false,
-  similar_bills: [],
+  similar_bills: [
+    {
+      billBriefSummary: '',
+      billId: '',
+      billName: '',
+      billProposers: '',
+      billStage: '',
+      party: [
+        {
+          party_id: 0,
+          party_image_url: '',
+          party_name: '',
+        },
+      ],
+    },
+  ],
 };
 
 export default function BillContainer({ id, viewCount }: { id: string; viewCount: number }) {
@@ -78,7 +94,7 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
             <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
             <SectionContainer title="다른 개정안 보기">
-              <AnotherBill similarBills={bill.similar_bills} />
+              <AnotherBillList {...bill} />
             </SectionContainer>
           </section>
         </Bill>

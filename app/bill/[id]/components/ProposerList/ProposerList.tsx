@@ -1,5 +1,6 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
@@ -29,6 +30,8 @@ export default function ProposerList({
   const representativeProposerLength = representativeProposerList.length;
   const publicProposerLength = publicProposerList.length;
   const proposerListByParty = sortByParty({ representativeProposerList, publicProposerList });
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <Card classNames={{ base: ['lg:shadow-none dark:lg:bg-dark-pb'] }}>
@@ -47,15 +50,15 @@ export default function ProposerList({
           {/* eslint-disable-next-line react/no-unused-prop-types */}
           {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[][] }) => (
             <div key={party} className="flex items-center gap-10">
-              <Badge content={proposers.length - 1} color="danger">
+              <Badge content={proposers.length - 1} color="danger" size="sm">
                 <Link
                   href={`/party/${proposers[0][0]}`}
-                  className="flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 dark:bg-white">
+                  className={`flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 border-1.5 ${party}`}>
                   {party === '무소속' ? (
                     <div className="text-xs font-medium text-black">무소속</div>
                   ) : (
                     <Image
-                      src={process.env.NEXT_PUBLIC_IMAGE_URL + proposers[0][1]}
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? proposers[0][1].replace('wide', 'dark') : proposers[0][1]}`}
                       width={30}
                       height={30}
                       alt={`${party} 로고 이미지`}

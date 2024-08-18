@@ -1,3 +1,6 @@
+'use client';
+
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { Card, CardFooter, CardBody, Chip, AvatarGroup, Avatar } from '@nextui-org/react';
@@ -11,13 +14,15 @@ export default function BillBookmarked({
 }: BillProps) {
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <Link href={`/bill/${bill_id}`}>
-      <Card className={`border-1.5 lg:flex-row lg:py-6 ${partyName}`} radius="md">
-        <CardBody className="flex flex-row justify-between gap-2 lg:flex-col lg:items-start">
+      <Card className={`border-1.5 flex-row lg:py-6 ${partyName}`} radius="md">
+        <CardBody className="flex justify-between gap-2 ">
           <p className="text-sm font-bold lg:text-lg">{brief_summary}</p>
-          <div className="flex flex-col lg:flex-row items-end w-[100px] lg:w-full lg:items-center gap-2 shrink-0">
+          <div className="flex items-center w-full gap-2 ">
             <Chip
               className="text-xs bg-transparent lg:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
               size="sm"
@@ -25,7 +30,7 @@ export default function BillBookmarked({
               radius="sm">
               {bill_stage}
             </Chip>
-            <h4 className="text-xs font-semibold lg:text-sm text-gray-2">
+            <h4 className="text-xs font-semibold lg:text-sm text-gray-2 shrink-0">
               {isRepresentativeSolo
                 ? `${
                     representative_proposer_dto_list[0].representative_proposer_name
@@ -36,16 +41,16 @@ export default function BillBookmarked({
             </h4>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center pt-0 lg:basis-1/4">
+        <CardFooter className="flex justify-center pt-0 basis-1/4 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
             representative_proposer_dto_list[0].party_image_url !== null ? (
               <Image
-                src={process.env.NEXT_PUBLIC_IMAGE_URL + representative_proposer_dto_list[0].party_image_url}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
                 width={40}
                 height={20}
                 alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
-                className="object-contain w-10 h-8 lg:w-[100px] lg:h-[25px]"
+                className="object-contain w-10 h-8 lg:w-[120px] lg:h-[30px]"
               />
             ) : (
               <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
@@ -54,11 +59,11 @@ export default function BillBookmarked({
             <AvatarGroup>
               {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                 <Avatar
-                  src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
                   key={party_id}
                   size="md"
                   classNames={{
-                    base: [`bg-white p-1 border ${party_name}`],
+                    base: [`bg-white dark:bg-dark-l p-1 border ${party_name}`],
                     img: ['object-contain'],
                   }}
                 />
