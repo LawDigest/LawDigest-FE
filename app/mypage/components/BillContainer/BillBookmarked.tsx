@@ -1,3 +1,6 @@
+'use client';
+
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { Card, CardFooter, CardBody, Chip, AvatarGroup, Avatar } from '@nextui-org/react';
@@ -11,6 +14,8 @@ export default function BillBookmarked({
 }: BillProps) {
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <Link href={`/bill/${bill_id}`}>
@@ -41,7 +46,7 @@ export default function BillBookmarked({
           {isRepresentativeSolo ? (
             representative_proposer_dto_list[0].party_image_url !== null ? (
               <Image
-                src={process.env.NEXT_PUBLIC_IMAGE_URL + representative_proposer_dto_list[0].party_image_url}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
                 width={40}
                 height={20}
                 alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
@@ -54,7 +59,7 @@ export default function BillBookmarked({
             <AvatarGroup>
               {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
                 <Avatar
-                  src={process.env.NEXT_PUBLIC_IMAGE_URL + party_image_url}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
                   key={party_id}
                   size="md"
                   classNames={{
