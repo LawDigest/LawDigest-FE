@@ -96,7 +96,7 @@ export default function Bill({
       setIsLiked(is_book_mark);
       setLikeCount(bill_like_count);
 
-      const summaryElement = document.getElementById('summary');
+      const summaryElement = document.getElementById(bill_id);
 
       if (summaryElement !== null && summaryElement?.innerHTML !== null) {
         const markedGptSummary = gpt_summary
@@ -148,7 +148,7 @@ export default function Bill({
           <div className={!detail ? 'lg:w-[490px]' : ''}>
             <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm lg:text-base'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
-              <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore} id="summary">
+              <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore} id={bill_id}>
                 {gpt_summary && gpt_summary}
                 {!gpt_summary && summary}
               </p>
