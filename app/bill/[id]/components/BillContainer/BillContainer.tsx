@@ -77,7 +77,7 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
       )}
       {Object.keys(bill).length !== 0 && !isFetching && (
         <Bill {...bill} detail viewCount={viewCount}>
-          <section className="lg:w-[490px] lg:float-right h-full">
+          <section className="lg:w-[490px] lg:float-right">
             <SectionContainer title="발의자 명단">
               <ProposerList
                 representativeProposerList={bill.representative_proposer_dto_list}
