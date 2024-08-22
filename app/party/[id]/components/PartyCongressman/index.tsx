@@ -1,3 +1,3 @@
-import PartyCongressman from './PartyCongressman';
+import PartyCongressmanList from './PartyCongressmanList';
 
-export { PartyCongressman };
+export { PartyCongressmanList };
