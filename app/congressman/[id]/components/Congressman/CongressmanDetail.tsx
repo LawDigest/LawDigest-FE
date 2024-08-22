@@ -28,7 +28,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
     age,
     gender,
     follow_count,
-    briefHistory,
+    brief_history,
     telephone,
   } = congressman;
 
@@ -109,9 +109,11 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
           <div className="flex flex-col h-full gap-5">
             <Divider className="bg-gray-1 dark:bg-dark-l" />
 
-            <div className="text-sm font-medium text-gray-3 dark:text-gray-2">
-              {briefHistory || '해당 의원의 약력이 존재하지 않습니다.'}
-            </div>
+            <p className="text-sm font-medium whitespace-pre-line text-gray-3 dark:text-gray-2">
+              {brief_history
+                ? brief_history.replaceAll('&middot;', '·').replaceAll('&nbsp;', '').replaceAll('&#39;', `'`)
+                : '해당 의원의 약력이 존재하지 않습니다.'}
+            </p>
 
             <Button
               as={NextUILink}

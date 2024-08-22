@@ -35,7 +35,8 @@ export const useGetBillBookmarked = () =>
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};
       const { last_page, page_number } = pagination_response || {};
-      return last_page ? undefined : page_number + 1;
+      // eslint-disable-next-line no-nested-ternary
+      return last_page ? (page_number === 0 ? 1 : undefined) : page_number + 1;
     },
   });
 

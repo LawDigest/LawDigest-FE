@@ -18,6 +18,6 @@ export interface CongressmanDetailResponse {
   age: number;
   gender: string;
   follow_count: number;
-  briefHistory: string;
+  brief_history: string;
   telephone: string;
 }

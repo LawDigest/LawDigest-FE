@@ -7,7 +7,7 @@ import { useGetBillDetail } from '../../apis';
 import { SectionContainer, ProposerList, ProgressStage } from '..';
 import AnotherBillList from '../AnotherBill/AnotherBillList';
 
-const billSample = {
+const initialData = {
   bill_info_dto: {
     bill_id: '',
     bill_name: '',
@@ -60,7 +60,7 @@ const billSample = {
 
 export default function BillContainer({ id, viewCount }: { id: string; viewCount: number }) {
   const { data, isFetching } = useGetBillDetail(id);
-  const [bill, setBill] = useState(data ? data.data : billSample);
+  const [bill, setBill] = useState(data ? data.data : initialData);
 
   useEffect(() => {
     if (data) {
@@ -69,7 +69,7 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
   }, [data]);
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col lg:mb-10">
       {isFetching && (
         <div className="flex justify-center w-full my-4">
           <Spinner color="default" />
