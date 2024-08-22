@@ -20,9 +20,9 @@ export default function BillBookmarked({
   return (
     <Link href={`/bill/${bill_id}`}>
       <Card className={`border-1.5 flex-row lg:py-6 ${partyName}`} radius="md">
-        <CardBody className="flex justify-between gap-2 ">
+        <CardBody className="flex justify-between gap-2">
           <p className="text-sm font-bold lg:text-lg">{brief_summary}</p>
-          <div className="flex items-center w-full gap-2 ">
+          <div className="flex flex-wrap items-center w-full gap-2 overflow-visible">
             <Chip
               className="text-xs bg-transparent lg:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
               size="sm"
@@ -41,7 +41,7 @@ export default function BillBookmarked({
             </h4>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center pt-0 basis-1/4 shrink-0">
+        <CardFooter className="flex justify-center pt-0 pl-0 overflow-visible basis-1/4 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
             representative_proposer_dto_list[0].party_image_url !== null ? (
