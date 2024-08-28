@@ -41,7 +41,7 @@ export default function SearchBar() {
             'pt-2.5',
           ],
         }}
-        placeholder="궁금한 입법현황을 검색해 보세요."
+        placeholder="법안, 의원, 정당명으로 검색"
         endContent={
           <Button size="sm" isIconOnly className="bg-transparent" onClick={onSubmitSearch}>
             <IconSearchbar />

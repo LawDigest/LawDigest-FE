@@ -54,21 +54,11 @@ export default function FollowBoard({
           <p className="text-sm font-medium text-gray-2 dark:text-gray-3">팔로워</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          {representative_bill_count ? (
-            <p className="text-2xl font-semibold">{representative_bill_count}</p>
-          ) : (
-            <p className="text-2xl font-semibold"> {representative_bill_count}</p>
-          )}
+          <p className="text-2xl font-semibold"> {representative_bill_count}</p>
           <p className="text-sm font-medium text-gray-2 dark:text-gray-3">대표발의법안</p>
         </div>
         <div className="flex flex-col items-center gap-[10px]">
-          {public_bill_count ? (
-            <p className="text-2xl font-semibold">
-              <p className="text-2xl font-semibold">{public_bill_count}</p>
-            </p>
-          ) : (
-            <p className="text-2xl font-semibold"> {public_bill_count}</p>
-          )}
+          <p className="text-2xl font-semibold"> {public_bill_count}</p>
           <p className="text-sm font-medium text-gray-2 dark:text-gray-3">공동발의법안</p>
         </div>
       </div>

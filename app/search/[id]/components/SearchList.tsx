@@ -1,18 +1,8 @@
 import { SearchCongressmanPartyProps } from '@/types';
-import { RefObject } from 'react';
-import { Spinner } from '@nextui-org/spinner';
 import SearchParty from './SearchParty';
 import SearchCongressman from './SearchCongressman';
 
-export default function SearchList({
-  searchResults,
-  isFetching,
-  fetchRef,
-}: {
-  searchResults: SearchCongressmanPartyProps[];
-  isFetching: boolean;
-  fetchRef: RefObject<HTMLDivElement>;
-}) {
+export default function SearchList({ searchResults }: { searchResults: SearchCongressmanPartyProps[] }) {
   return (
     <section className="mx-5 my-8">
       <div className={`flex flex-col gap-5 ${searchResults.length ? 'lg:grid lg:grid-cols-2' : ''} lg:gap-y-5 `}>
@@ -24,12 +14,6 @@ export default function SearchList({
           ),
         )}
       </div>
-      {isFetching && (
-        <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
-        </div>
-      )}
-      <div ref={fetchRef} />
     </section>
   );
 }
