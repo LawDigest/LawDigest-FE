@@ -251,7 +251,7 @@ export default function Bill({
       </Card>
 
       <div
-        className={`flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
+        className={`w-full lg:w-auto flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
         <section className="h-full mx-5">{children}</section>
 
         <Link
@@ -296,7 +296,7 @@ export default function Bill({
 
             {isRepresentativeSolo ? (
               <Button
-                className="bg-tranparent"
+                className="p-0 bg-tranparent"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();

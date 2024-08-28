@@ -9,14 +9,48 @@ import { Loading, Snackbar } from '@/components';
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: siteConfig.title,
+    template: `%s - ${siteConfig.title}`,
   },
   description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
+  metadataBase: new URL(siteConfig.url),
   icons: {
     icon: '/images/favicon.ico',
     shortcut: '/images/favicon-16x16.png',
     apple: '/images/apple-icon-180x180.png',
+  },
+  verification: {
+    google: siteConfig.verification.google,
+    other: {
+      'naver-site-verification': siteConfig.verification.naver,
+    },
+  },
+  openGraph: {
+    siteName: siteConfig.title,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    type: siteConfig.type,
+    locale: 'ko_KR',
+    url: siteConfig.url,
+    images: {
+      url: siteConfig.ogImage,
+      alt: `${siteConfig.title} 로고`,
+      type: 'image/png',
+      width: '1200',
+      height: '630',
+    },
+  },
+  twitter: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: {
+      url: siteConfig.ogImage,
+      alt: `${siteConfig.title} 로고`,
+      type: 'image/png',
+      width: '1200',
+      height: '630',
+    },
   },
 };
 
