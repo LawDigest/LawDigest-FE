@@ -8,13 +8,13 @@ import { QueryClientProvider, NextUIProvider, NextThemesProvider, RecoilRootProv
 import { Loading, Snackbar } from '@/components';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: `%s - ${siteConfig.title}`,
+    template: `%s | ${siteConfig.title}`,
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
-  metadataBase: new URL(siteConfig.url),
   icons: {
     icon: '/images/favicon.ico',
     shortcut: '/images/favicon-16x16.png',
