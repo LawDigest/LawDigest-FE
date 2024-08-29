@@ -1,8 +1,22 @@
+import { Metadata } from 'next';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { SubHeader } from '@/components';
 import getQueryClient from '@/lib/getQueryClient';
+import { getMetadata } from '@/utils';
 import { BillContainer } from './components';
-import { prefetchGetBillDetail, usePatchViewCount } from './apis';
+import { prefetchGetBillDetail, useGetBillDetailForMetadata, usePatchViewCount } from './apis';
+
+export const generateMetadata = async ({ params: { id } }: { params: { id: string } }): Promise<Metadata> => {
+  const queryClient = getQueryClient();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { data } = await useGetBillDetailForMetadata(id, queryClient);
+
+  return getMetadata({
+    title: data.bill_info_dto.bill_name,
+    description: data.bill_info_dto.brief_summary,
+    asPath: `/bill/${id}`,
+  });
+};
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();

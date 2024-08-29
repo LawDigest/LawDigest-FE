@@ -10,6 +10,12 @@ export const useGetBillDetail = (billId: string) =>
     placeholderData: (previousData) => previousData,
   });
 
+export const useGetBillDetailForMetadata = (billId: string, queryClient: QueryClient) =>
+  queryClient.fetchQuery({
+    queryKey: ['/bill/detail', billId],
+    queryFn: () => getBillDetail(billId),
+  });
+
 export const usePatchViewCount = async (billId: string) => {
   const response = await patchViewCount(billId);
 
