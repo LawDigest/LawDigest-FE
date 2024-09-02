@@ -6,7 +6,7 @@ export const siteConfig = {
   title: '모두의입법',
   description: '자연어 처리 기술을 이용한 법률 개정안 요약 플랫폼',
   url: 'https://www.lawdigest.net/',
-  ogImage: '/images/opengraph-image',
+  ogImage: '/images/opengraph-image.png',
   links: {
     github: 'https://github.com/LawDigest',
   },

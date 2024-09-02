@@ -1,6 +1,6 @@
 'use client';
 
-import { QueryClient, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { QueryClient, useSuspenseInfiniteQuery, useQuery } from '@tanstack/react-query';
 import {
   getUserInfo,
   getFollowingParty,
@@ -40,8 +40,8 @@ export const useGetBillBookmarked = () =>
     },
   });
 
-export const useGetBillBookmarkedCount = (queryClinet: QueryClient) =>
-  queryClinet.fetchQuery({
+export const useGetBillBookmarkedCount = () =>
+  useQuery({
     queryKey: ['/user/bookmarking/bill/count'],
     queryFn: () => getBillBookmarkedCount(),
   });

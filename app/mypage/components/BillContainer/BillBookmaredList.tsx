@@ -14,8 +14,8 @@ export default function BillBookmarkedList({
 }) {
   return (
     <ul className="flex flex-col gap-4 mx-[30px] lg:mx-0">
-      {bills.map((bill) => (
-        <BillBookmarked {...bill} key={bill.bill_info_dto.bill_id} />
+      {bills.map((bill, index) => (
+        <BillBookmarked {...bill} key={`${bill.bill_info_dto.bill_id + index}`} />
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">
