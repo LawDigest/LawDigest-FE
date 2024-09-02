@@ -44,16 +44,16 @@ export default function BillBookmarked({
             <h4 className="text-xs font-semibold lg:text-sm text-gray-2 shrink-0">{billProposers}</h4>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center pt-0 basis-1/4 shrink-0">
+        <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
             party[0].party_image_url !== null ? (
               <Image
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party[0].party_image_url.replace('wide', 'dark') : party[0].party_image_url}`}
-                width={40}
-                height={20}
+                width={60}
+                height={30}
                 alt={`${party[0].party_name} 이미지`}
-                className="object-contain w-10 h-8 lg:w-[120px] lg:h-[30px]"
+                className="object-contain w-[60px] h-[30px] lg:w-[120px] lg:h-[30px]"
               />
             ) : (
               <PartyLogoReplacement partyName={party[0].party_name} circle={false} />
