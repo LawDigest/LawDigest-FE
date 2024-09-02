@@ -110,7 +110,7 @@ export default function Bill({
   }, [isLoaded]);
 
   return (
-    <section className={`flex flex-col lg:gap-5 ${detail ? 'lg:flex-row items-start' : ''}`}>
+    <section className={`flex flex-col md:gap-5 ${detail ? 'md:flex-row items-start' : ''}`}>
       <Card
         key={bill_id}
         className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
@@ -225,7 +225,7 @@ export default function Bill({
 
         {detail && (
           <div className="flex flex-col gap-[34px]">
-            <Divider className="bg-gray-0.5 dark:bg-dark-l lg:hidden" />
+            <Divider className="bg-gray-0.5 dark:bg-dark-l md:hidden" />
 
             <GPTSummary />
 
@@ -245,13 +245,13 @@ export default function Bill({
               </Link>
             </div>
 
-            <Divider className="bg-gray-0.5 dark:bg-dark-l lg:hidden" />
+            <Divider className="bg-gray-0.5 dark:bg-dark-l md:hidden" />
           </div>
         )}
       </Card>
 
       <div
-        className={`w-full md:w-auto flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
+        className={`w-full md:w-auto flex flex-col pt-4 pb-6 md:flex-col-reverse ${detail ? 'md:border-l-[1px] md:dark:border-dark-l' : ''}`}>
         <section className="h-full mx-5">{children}</section>
 
         <Link
@@ -263,7 +263,7 @@ export default function Bill({
             if (!isRepresentativeSolo) e.preventDefault();
           }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] lg:w-[490px] md:float-right ${partyName}`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] ${detail ? 'md:w-[360px]' : ''} lg:max-w-full lg:w-[490px] md:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
