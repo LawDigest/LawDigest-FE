@@ -117,7 +117,7 @@ export default function Bill({
         radius="none"
         shadow="none">
         <CardHeader
-          className={`flex flex-col items-start gap-2 p-0  ${!detail ? 'lg:w-[270px] lg:left-0 lg:absolute' : ''}`}>
+          className={`flex flex-col items-start gap-2 p-0  ${!detail ? 'md:w-[270px] md:left-0 md:absolute' : ''}`}>
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
@@ -143,10 +143,10 @@ export default function Bill({
           )}
         </CardHeader>
 
-        <section className={!detail ? 'lg:flex lg:justify-between lg:gap-10' : ''}>
-          <div className={!detail ? 'hidden lg:block lg:w-[270px]' : ''} />
-          <div className={!detail ? 'lg:w-[490px]' : ''}>
-            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm lg:text-base'}`}>
+        <section className={!detail ? 'md:flex md:justify-between md:gap-10' : ''}>
+          <div className={!detail ? 'hidden md:block md:w-[270px]' : ''} />
+          <div className={!detail ? 'md:w-[440px] lg:w-[490px]' : ''}>
+            <CardBody className={`p-0 leading-normal whitespace-pre-wrap ${detail ? '' : 'text-sm md:text-base'}`}>
               {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions, no-nested-ternary */}
               <p className={detail ? '' : toggleMore ? '' : 'line-clamp-[8]'} onClick={onClickToggleMore} id={bill_id}>
                 {gpt_summary && gpt_summary}
@@ -251,7 +251,7 @@ export default function Bill({
       </Card>
 
       <div
-        className={`w-full lg:w-auto flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
+        className={`w-full md:w-auto flex flex-col pt-4 pb-6 lg:flex-col-reverse ${detail ? 'lg:border-l-[1px] lg:dark:border-dark-l' : ''}`}>
         <section className="h-full mx-5">{children}</section>
 
         <Link
@@ -263,7 +263,7 @@ export default function Bill({
             if (!isRepresentativeSolo) e.preventDefault();
           }}>
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 lg:w-[490px] lg:float-right ${partyName}`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] lg:w-[490px] md:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
