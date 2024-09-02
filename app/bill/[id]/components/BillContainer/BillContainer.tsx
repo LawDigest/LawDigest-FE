@@ -69,7 +69,7 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
   }, [data]);
 
   return (
-    <section className="flex flex-col lg:mb-10">
+    <section className="flex flex-col md:mb-10">
       {isFetching && (
         <div className="flex justify-center w-full my-4">
           <Spinner color="default" />
@@ -77,7 +77,7 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
       )}
       {Object.keys(bill).length !== 0 && !isFetching && (
         <Bill {...bill} detail viewCount={viewCount}>
-          <section className="lg:w-[490px] lg:float-right">
+          <section className="md:w-[360px] lg:w-[490px] md:float-right">
             <SectionContainer title="발의자 명단">
               <ProposerList
                 representativeProposerList={bill.representative_proposer_dto_list}
@@ -85,13 +85,13 @@ export default function BillContainer({ id, viewCount }: { id: string; viewCount
               />
             </SectionContainer>
 
-            <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+            <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
             <SectionContainer title="심사 진행 단계">
               <ProgressStage billStage={bill.bill_info_dto.bill_stage} />
             </SectionContainer>
 
-            <Divider className="hidden lg:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+            <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
             <SectionContainer title="다른 개정안 보기">
               <AnotherBillList {...bill} />

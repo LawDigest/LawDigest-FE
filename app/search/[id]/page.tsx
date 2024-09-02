@@ -46,29 +46,29 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
     <>
       <SearchBar />
       <section className="lg:w-[840px] mx-auto">
-        <p className="my-4 text-sm font-medium text-center text-gray-2">{`'${decodeURI(id)}'에 대한 검색 결과입니다.`}</p>
+        <p className="my-4 text-sm font-medium text-center md:text-base text-gray-2">{`'${decodeURI(id)}'에 대한 검색 결과입니다.`}</p>
         <div className="mb-10">
           <div>
-            <h2 className="mx-5 text-lg font-semibold lg:text-xl">의원 · 정당</h2>
+            <h2 className="mx-5 text-lg font-semibold md:text-xl">의원 · 정당</h2>
             <div className="flex justify-center mx-5">
               <Divider className="my-2 bg-gray-1 dark:bg-dark-l" />
             </div>
             {searchResultsCP.length ? (
               <SearchList searchResults={searchResultsCP} />
             ) : (
-              <p className="my-8 text-sm text-center lg:text-base text-gray-2">검색 결과가 존재하지 않습니다.</p>
+              <p className="my-8 text-sm text-center md:text-base text-gray-2">검색 결과가 존재하지 않습니다.</p>
             )}
           </div>
 
           <div>
-            <h2 className="mx-5 text-lg font-semibold lg:text-xl">법안</h2>
+            <h2 className="mx-5 text-lg font-semibold md:text-xl">법안</h2>
             <div className="flex justify-center mx-5">
               <Divider className="mx-5 mt-2 bg-gray-1 dark:bg-dark-l" />
             </div>
             {searchResultsBill.length ? (
               <BillList bills={searchResultsBill} isFetching={isFetchingBill} fetchRef={fetchRefBill} detail={false} />
             ) : (
-              <p className="my-8 text-sm text-center lg:text-base text-gray-2">검색 결과가 존재하지 않습니다.</p>
+              <p className="my-8 text-sm text-center md:text-base text-gray-2">검색 결과가 존재하지 않습니다.</p>
             )}
           </div>
         </div>
