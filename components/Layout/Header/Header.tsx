@@ -58,6 +58,14 @@ export default function Header({
           </NavbarBrand>
         )}
 
+        {goBack && (
+          <NavbarContent justify="start" className="lg:hidden">
+            <NavbarItem>
+              <GoBackButton />
+            </NavbarItem>
+          </NavbarContent>
+        )}
+
         <NavbarContent justify="center" className="hidden mx-auto md:block">
           <ul className="flex justify-between md:min-w-[430px] w-full gap-2 px-10 lg:gap-20">
             {navItems.map(({ label, href }) => {
@@ -78,14 +86,6 @@ export default function Header({
             })}
           </ul>
         </NavbarContent>
-
-        {goBack && (
-          <NavbarContent justify="start" className="lg:hidden">
-            <NavbarItem>
-              <GoBackButton />
-            </NavbarItem>
-          </NavbarContent>
-        )}
 
         {title && (
           <NavbarContent justify="center" className="lg:hidden">

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout nav theme>
+    <Layout nav theme goBack>
       {children}
     </Layout>
   );
