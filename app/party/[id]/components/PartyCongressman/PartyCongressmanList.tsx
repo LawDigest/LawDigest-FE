@@ -16,7 +16,7 @@ export default function PartyCongressmanList({ id }: { id: number }) {
 
   return (
     <section className="flex flex-col gap-5 mx-5 my-10">
-      <div className="grid w-full grid-cols-4 justify-items-center gap-y-3 ">
+      <div className="grid w-full grid-cols-4 md:grid-cols-8 lg:grid-cols-4 justify-items-center gap-y-3 ">
         {isOpened
           ? data?.data.party_congressman.map((congressman, index) => (
               <PartyCongressmanItem key={`${congressman.congressman_id + index}`} {...congressman} />

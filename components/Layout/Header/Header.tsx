@@ -88,7 +88,7 @@ export default function Header({
         </NavbarContent>
 
         {title && (
-          <NavbarContent justify="center" className="lg:hidden">
+          <NavbarContent justify="center" className="md:hidden">
             <NavbarItem className="font-medium">{title}</NavbarItem>
           </NavbarContent>
         )}
