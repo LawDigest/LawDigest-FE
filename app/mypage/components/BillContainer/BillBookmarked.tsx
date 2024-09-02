@@ -19,18 +19,18 @@ export default function BillBookmarked({
 
   return (
     <Link href={`/bill/${bill_id}`}>
-      <Card className={`border-1.5 flex-row lg:py-6 ${partyName}`} radius="md">
+      <Card className={`border-1.5 flex-row md:py-3 lg:py-6 ${partyName}`} radius="md">
         <CardBody className="flex justify-between gap-2">
-          <p className="text-sm font-bold lg:text-lg">{brief_summary}</p>
+          <p className="text-sm font-bold md:text-base lg:text-lg">{brief_summary}</p>
           <div className="flex flex-wrap items-center w-full gap-2 overflow-visible">
             <Chip
-              className="text-xs bg-transparent lg:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
+              className="text-xs bg-transparent md:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
               size="sm"
               variant="bordered"
               radius="sm">
               {bill_stage}
             </Chip>
-            <h4 className="text-xs font-semibold lg:text-sm text-gray-2 shrink-0">
+            <h4 className="text-xs font-semibold md:text-sm text-gray-2 shrink-0">
               {isRepresentativeSolo
                 ? `${
                     representative_proposer_dto_list[0].representative_proposer_name
@@ -41,7 +41,7 @@ export default function BillBookmarked({
             </h4>
           </div>
         </CardBody>
-        <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 shrink-0">
+        <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 md:basis-1/5 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
             representative_proposer_dto_list[0].party_image_url !== null ? (
@@ -50,7 +50,7 @@ export default function BillBookmarked({
                 width={60}
                 height={30}
                 alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
-                className="object-contain w-[60px] h-[30px] lg:w-[120px] lg:h-[60px]"
+                className="object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
               />
             ) : (
               <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
