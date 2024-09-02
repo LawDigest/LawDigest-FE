@@ -43,15 +43,23 @@ export default function Header({
 
   return (
     <section className="w-full">
-      <Navbar position="static" isBordered className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md lg:h-[98px] ">
+      <Navbar position="static" isBordered className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md md:h-[98px] ">
         <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
           <Link href="/">
             <Logo width={106} height={18} />
           </Link>
         </NavbarBrand>
 
-        <NavbarContent justify="center" className="hidden mx-auto lg:flex">
-          <ul className="flex justify-between w-full gap-2 px-10 lg:gap-20">
+        {logo && (
+          <NavbarBrand className="lg:hidden">
+            <Link href="/">
+              <Logo width={106} height={18} />
+            </Link>
+          </NavbarBrand>
+        )}
+
+        <NavbarContent justify="center" className="hidden mx-auto md:block">
+          <ul className="flex justify-between md:min-w-[430px] w-full gap-2 px-10 lg:gap-20">
             {navItems.map(({ label, href }) => {
               const isActive = pathname === '/' ? pathname?.endsWith(href) : href !== '/' && pathname?.startsWith(href);
 
@@ -61,7 +69,7 @@ export default function Header({
                     <IconNavBorder />
                   </div>
                   <Link
-                    className={`${isActive ? 'text-white lg:text-black lg:dark:text-white lg:font-semibold lg:bg-transparent' : 'text-gray-2'} flex flex-col items-center justify-center text-xs lg:text-base lg:font-medium font-bold lg:px-5 lg:py-3 lg:bg-white dark:lg:bg-dark-pb lg:w-[110px] lg:h-[60px] leading-[60px]`}
+                    className={`${isActive ? 'text-black dark:text-white font-semibold bg-transparent' : 'text-gray-2'} flex flex-col items-center justify-center text-sm lg:text-base font-medium lg:px-5 lg:py-3 bg-white lg:dark:bg-dark-pb dark:bg-dark-b w-[110px] h-[60px] leading-[60px]`}
                     href={href}>
                     {label}
                   </Link>
@@ -70,14 +78,6 @@ export default function Header({
             })}
           </ul>
         </NavbarContent>
-
-        {logo && (
-          <NavbarBrand className="lg:hidden">
-            <Link href="/">
-              <Logo width={106} height={18} />
-            </Link>
-          </NavbarBrand>
-        )}
 
         {goBack && (
           <NavbarContent justify="start" className="lg:hidden">
