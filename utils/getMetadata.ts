@@ -34,7 +34,7 @@ export const getMetadata = (metadataProps?: getMetadataProps) => {
       },
     },
     openGraph: {
-      siteName: TITLE,
+      siteName: siteConfig.title,
       title: TITLE,
       description: DESCRIPTION,
       type: siteConfig.type,
