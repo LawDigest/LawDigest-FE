@@ -4,12 +4,12 @@ import { SubHeader } from '@/components';
 import getQueryClient from '@/lib/getQueryClient';
 import { getMetadata } from '@/utils';
 import { BillContainer } from './components';
-import { prefetchGetBillDetail, useGetBillDetailForMetadata, usePatchViewCount } from './apis';
+import { useGetBillDetail, usePatchViewCount } from './apis';
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }): Promise<Metadata> => {
   const queryClient = getQueryClient();
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data } = await useGetBillDetailForMetadata(id, queryClient);
+  const { data } = await useGetBillDetail(id, queryClient);
 
   return getMetadata({
     title: data.bill_info_dto.bill_name,
@@ -20,7 +20,6 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
   const queryClient = getQueryClient();
-  await prefetchGetBillDetail(id, queryClient);
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
 
   return (

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import {
   Card,
@@ -80,7 +80,7 @@ export default function Bill({
     } else {
       setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
-  }, [isLiked, likeCount, setSnackbar, is_book_mark, bill_like_count]);
+  }, [isLiked, likeCount, setSnackbar]);
 
   const handleCopyClipBoard = useCallback(() => {
     copyClipBoard(`${process.env.NEXT_PUBLIC_DOMAIN}/bill/${bill_id}`);
@@ -89,13 +89,8 @@ export default function Bill({
 
   useEffect(() => {
     setIsLoaded(true);
-  }, []);
 
-  useLayoutEffect(() => {
     if (isLoaded) {
-      setIsLiked(is_book_mark);
-      setLikeCount(bill_like_count);
-
       const summaryElement = document.getElementById(bill_id);
 
       if (summaryElement !== null && summaryElement?.innerHTML !== null) {
@@ -203,10 +198,10 @@ export default function Bill({
                 <div className="flex gap-4">
                   <div className="flex items-center text-sm text-gray-2">
                     <Button isIconOnly size="sm" className="p-0 bg-transparent" onClick={onClickScrab}>
-                      <IconScrabSmall isActive={isLiked === false ? is_book_mark : isLiked} />
+                      <IconScrabSmall isActive={isLiked} />
                     </Button>
                     <h4 className="mr-2">스크랩</h4>
-                    <h4>{likeCount === 0 ? bill_like_count : likeCount}</h4>
+                    <h4>{likeCount}</h4>
                   </div>
                   <div className="flex items-center text-sm text-gray-2">
                     <h4 className="mr-2">조회수</h4>

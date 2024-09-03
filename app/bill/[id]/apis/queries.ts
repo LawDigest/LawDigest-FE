@@ -1,16 +1,9 @@
 'use clinet';
 
-import { useMutation, useQueryClient, QueryClient, useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient, QueryClient } from '@tanstack/react-query';
 import { getBillDetail, patchViewCount, postBookmark } from './apis';
 
-export const useGetBillDetail = (billId: string) =>
-  useQuery({
-    queryKey: ['/bill/detail', billId],
-    queryFn: () => getBillDetail(billId),
-    placeholderData: (previousData) => previousData,
-  });
-
-export const useGetBillDetailForMetadata = (billId: string, queryClient: QueryClient) =>
+export const useGetBillDetail = (billId: string, queryClient: QueryClient) =>
   queryClient.fetchQuery({
     queryKey: ['/bill/detail', billId],
     queryFn: () => getBillDetail(billId),
@@ -21,12 +14,6 @@ export const usePatchViewCount = async (billId: string) => {
 
   return response;
 };
-
-export const prefetchGetBillDetail = (billId: string, queryClient: QueryClient) =>
-  queryClient.prefetchQuery({
-    queryKey: ['prefetch/bill/detail', billId],
-    queryFn: () => getBillDetail(billId),
-  });
 
 export const usePatchBookmark = (billId: string) => {
   const queryClient = useQueryClient();

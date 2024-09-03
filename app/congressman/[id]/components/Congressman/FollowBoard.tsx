@@ -44,7 +44,7 @@ export default function FollowBoard({
     } else {
       setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
-  }, [isFollowed, likeChecked, setSnackbar, followCount]);
+  }, [isFollowed, setSnackbar, followCount]);
 
   return (
     <div className="flex flex-col w-full gap-5">
