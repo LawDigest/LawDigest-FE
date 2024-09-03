@@ -1,3 +1,4 @@
 import AnotherBill from './AnotherBill';
+import AnotherBillList from './AnotherBillList';
 
-export { AnotherBill };
+export { AnotherBill, AnotherBillList };
