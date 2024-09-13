@@ -23,21 +23,21 @@ export default function CongressmanItem({
   return (
     <Link
       href={`/congressman/${congressman_id}`}
-      className="flex flex-col items-center gap-2 lg:flex-row lg:justify-between">
+      className="flex flex-col items-center gap-2 xl:flex-row xl:justify-between">
       <Avatar
         src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
         className={`w-14 h-14 border ${party_name}`}
       />
 
-      <div className="flex flex-col items-center shrink-0 lg:items-start">
-        <p className="text-xs font-semibold lg:text-xl">
-          {congressman_name} <span className="font-normal lg:text-lg lg:dark:text-gray-1">의원</span>
+      <div className="flex flex-col items-center shrink-0 xl:items-start">
+        <p className="text-xs font-semibold xl:text-xl">
+          {congressman_name} <span className="font-normal xl:text-lg xl:dark:text-gray-1">의원</span>
         </p>
-        <p className="text-gray-2 text-[10px] font-medium lg:text-sm">{party_name}</p>
+        <p className="text-gray-2 text-[10px] font-medium xl:text-sm">{party_name}</p>
       </div>
 
       <Button
-        className="hidden bg-tranparent lg:block"
+        className="hidden bg-tranparent xl:block"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
