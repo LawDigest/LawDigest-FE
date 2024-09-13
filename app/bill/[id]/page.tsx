@@ -12,7 +12,7 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
   const { data } = await useGetBillDetail(id, queryClient);
 
   return getMetadata({
-    title: data.bill_info_dto.bill_name,
+    title: data.bill_info_dto.brief_summary,
     description: data.bill_info_dto.brief_summary,
     asPath: `/bill/${id}`,
   });
