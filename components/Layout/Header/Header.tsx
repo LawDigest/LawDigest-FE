@@ -44,7 +44,7 @@ export default function Header({
   return (
     <section className="w-full">
       <Navbar position="static" isBordered className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md md:h-[98px] ">
-        <NavbarBrand className="lg:absolute lg:left-[-100px] hidden lg:block">
+        <NavbarBrand className="hidden xl:absolute xl:left-[-100px] lg:block">
           <Link href="/">
             <Logo width={106} height={18} />
           </Link>
@@ -94,7 +94,7 @@ export default function Header({
         )}
 
         {setting && (
-          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
+          <NavbarContent justify="end" className="xl:absolute xl:right-[-100px]">
             <NavbarItem>
               <ThemeSwitchButton />
             </NavbarItem>
@@ -105,7 +105,7 @@ export default function Header({
         )}
 
         {search && (
-          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
+          <NavbarContent justify="end" className="xl:absolute xl:right-[-100px]">
             <NavbarItem>
               <SearchButton onClick={onClickSearch} />
             </NavbarItem>
@@ -116,7 +116,7 @@ export default function Header({
         )}
 
         {notification && (
-          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
+          <NavbarContent justify="end" className="xl:absolute xl:right-[-100px]">
             <NavbarItem>
               <ThemeSwitchButton />
             </NavbarItem>
@@ -127,7 +127,7 @@ export default function Header({
         )}
 
         {theme && (
-          <NavbarContent justify="end" className="lg:absolute lg:right-[-100px]">
+          <NavbarContent justify="end" className="xl:absolute xl:right-[-100px]">
             <NavbarItem>
               <ThemeSwitchButton />
             </NavbarItem>

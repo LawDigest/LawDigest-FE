@@ -26,7 +26,7 @@ export default function Following() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section className="flex flex-col mx-auto lg:flex-row">
+      <section className="flex flex-col mx-auto lg:flex-row lg:justify-center xl:justify-start">
         <FollowingNav />
         <div>
           <BillContainer />
