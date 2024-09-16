@@ -13,7 +13,7 @@ export default async function CongressmanList({ queryClient }: { queryClient: Qu
         팔로우한 의원 &middot;<span className="text-[#555555] dark:text-gray-2"> {congressmanLength}</span>
       </p>
 
-      <div className="grid grid-cols-4 gap-y-[18px] lg:grid-cols-12 md:grid-cols-8">
+      <div className="grid grid-cols-4 gap-y-[18px] xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-8 xl:w-[900px] lg:w-[760px]">
         {congressmanList.map((congressman: FollowingCongressmanType) => (
           <CongressmanItem key={`${congressman.congressman_id}`} {...congressman} />
         ))}

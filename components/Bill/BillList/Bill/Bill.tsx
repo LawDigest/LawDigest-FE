@@ -13,6 +13,9 @@ import {
   Tooltip,
   Chip,
   AvatarGroup,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 } from '@nextui-org/react';
 import Link from 'next/link';
 import { BillProps } from '@/types';
@@ -20,12 +23,12 @@ import { IconClock, IconExport, IconScrabSmall } from '@/public/svgs';
 import { usePatchBookmark } from '@/app/bill/[id]/apis';
 import { getTimeRemaining, copyClipBoard } from '@/utils';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { PartyLogoReplacement } from '@/components/common';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
+import { ProposerList } from '@/app/bill/[id]/components';
 import GPTSummary from '../../GPTSummary';
 
 export default function Bill({
@@ -52,7 +55,6 @@ export default function Bill({
   const [isLoaded, setIsLoaded] = useState(false);
   const mutateBookmark = usePatchBookmark(bill_id);
   const [toggleMore, setToggleMore] = useState(false);
-  const router = useRouter();
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
   const setSnackbar = useSetRecoilState(snackbarState);
@@ -248,55 +250,86 @@ export default function Bill({
       <div
         className={`w-full md:w-auto flex flex-col pt-4 pb-6 md:flex-col-reverse ${detail ? 'md:border-l-[1px] md:dark:border-dark-l' : ''}`}>
         <section className="h-full mx-5">{children}</section>
-
-        <Link
-          href={
-            isRepresentativeSolo ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}` : {}
-          }
-          scroll={isRepresentativeSolo}
-          onClick={(e) => {
-            if (!isRepresentativeSolo) e.preventDefault();
-          }}>
+        <div>
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] ${detail ? 'md:w-[360px]' : ''} lg:max-w-full lg:w-[490px] md:float-right ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">
               {isRepresentativeSolo && (
-                <Avatar
-                  radius="full"
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].represent_proposer_img_url}`}
-                  className="border dark:border-dark-l"
-                />
+                <Link
+                  href={
+                    isRepresentativeSolo
+                      ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}`
+                      : {}
+                  }
+                  scroll={isRepresentativeSolo}
+                  onClick={(e) => {
+                    if (!isRepresentativeSolo) e.preventDefault();
+                  }}>
+                  <Avatar
+                    radius="full"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].represent_proposer_img_url}`}
+                    className="border dark:border-dark-l"
+                  />
+                </Link>
               )}
               <div className="flex flex-col gap-0.5">
-                <h3 className="font-medium">
-                  {isRepresentativeSolo
-                    ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원`
-                    : `${representative_proposer_dto_list.map(({ representative_proposer_name }) => representative_proposer_name).join('·')} 의원`}
-                </h3>
-                <h4 className="text-xs text-gray-2">
-                  {isRepresentativeSolo
-                    ? `${
-                        representative_proposer_dto_list[0].representative_proposer_name
-                      } 의원 등 ${public_proposer_dto_list.length + 1}인`
-                    : `${representative_proposer_dto_list
-                        .map(({ representative_proposer_name }) => representative_proposer_name)
-                        .join(
-                          '·',
-                        )} 의원 등 ${representative_proposer_dto_list.length + public_proposer_dto_list.length}인`}
-                </h4>
+                <Link
+                  href={
+                    isRepresentativeSolo
+                      ? `/congressman/${representative_proposer_dto_list[0].representative_proposer_id}`
+                      : {}
+                  }
+                  scroll={isRepresentativeSolo}
+                  onClick={(e) => {
+                    if (!isRepresentativeSolo) e.preventDefault();
+                  }}>
+                  <h3 className="font-medium">
+                    {isRepresentativeSolo
+                      ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원`
+                      : `${representative_proposer_dto_list.map(({ representative_proposer_name }) => representative_proposer_name).join('·')} 의원`}
+                  </h3>
+                </Link>
+
+                <Popover placement="bottom" showArrow>
+                  <PopoverTrigger>
+                    <Button className="p-0 m-0 bg-transparent h-min">
+                      <Tooltip showArrow content="발의자 명단 보기">
+                        <h4 className="text-xs text-gray-2">
+                          {isRepresentativeSolo
+                            ? `${
+                                representative_proposer_dto_list[0].representative_proposer_name
+                              } 의원 등 ${public_proposer_dto_list.length + 1}인`
+                            : `${representative_proposer_dto_list
+                                .map(({ representative_proposer_name }) => representative_proposer_name)
+                                .join(
+                                  '·',
+                                )} 의원 등 ${representative_proposer_dto_list.length + public_proposer_dto_list.length}인`}
+                        </h4>
+                      </Tooltip>
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <ProposerList
+                      representativeProposerList={representative_proposer_dto_list}
+                      publicProposerList={public_proposer_dto_list}
+                      popover
+                    />
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
 
             {isRepresentativeSolo ? (
-              <Button
-                className="p-0 bg-tranparent"
+              <Link
+                href={
+                  representative_proposer_dto_list[0].party_image_url !== null
+                    ? `/party/${representative_proposer_dto_list[0].party_id}`
+                    : {}
+                }
                 onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  if (representative_proposer_dto_list[0].party_image_url !== null)
-                    router.push(`/party/${representative_proposer_dto_list[0].party_id}`);
+                  if (representative_proposer_dto_list[0].party_image_url !== null) e.preventDefault();
                 }}>
                 {representative_proposer_dto_list[0].party_image_url !== null ? (
                   <Image
@@ -309,29 +342,25 @@ export default function Bill({
                 ) : (
                   <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
                 )}
-              </Button>
+              </Link>
             ) : (
               <AvatarGroup>
                 {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
-                  <Avatar
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-                    key={party_id}
-                    size="md"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (party_image_url !== null) router.push(`/party/${party_id}`);
-                    }}
-                    classNames={{
-                      base: [`bg-white dark:bg-dark-pb p-1 border ${party_name}`],
-                      img: ['object-contain'],
-                    }}
-                  />
+                  <Link href={party_image_url !== null ? `/party/${party_id}` : {}} key={party_id}>
+                    <Avatar
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
+                      size="md"
+                      classNames={{
+                        base: [`bg-white dark:bg-dark-pb p-1 border ${party_name}`],
+                        img: ['object-contain'],
+                      }}
+                    />
+                  </Link>
                 ))}
               </AvatarGroup>
             )}
           </Card>
-        </Link>
+        </div>
       </div>
 
       {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}

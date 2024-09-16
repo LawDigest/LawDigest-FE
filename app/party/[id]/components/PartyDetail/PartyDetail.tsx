@@ -22,6 +22,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
   const {
     party_name,
     party_img_url,
+    total_congressman_count,
     proportional_congressman_count,
     district_congressman_count,
     representative_bill_count,
@@ -31,7 +32,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
     followed,
   } = party;
   const whole_representative_count = proportional_congressman_count + district_congressman_count;
-  const seatRatio = ((100 * whole_representative_count) / 298).toFixed(2);
+  const seatRatio = ((100 * whole_representative_count) / total_congressman_count).toFixed(2);
 
   return (
     <section className="flex flex-col items-center mx-5 mt-5 gap-7 lg:w-[320px]">
@@ -45,7 +46,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
 
         <div className="text-sm">
           <p>
-            의석수: {whole_representative_count}석 / 298석{' '}
+            의석수: {whole_representative_count}석 / {total_congressman_count}석{' '}
             <span className="text-gray-2 dark:text-gray-3">{seatRatio}%</span>
           </p>
           <p>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { Card, CardFooter, CardBody, Chip, AvatarGroup, Avatar } from '@nextui-org/react';
@@ -16,6 +17,7 @@ export default function BillBookmarked({
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const router = useRouter();
 
   return (
     <Link href={`/bill/${bill_id}`}>
@@ -65,6 +67,11 @@ export default function BillBookmarked({
                   classNames={{
                     base: [`bg-white dark:bg-dark-l p-1 border ${party_name}`],
                     img: ['object-contain'],
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (party_image_url !== null) router.push(`/party/${party_id}`);
                   }}
                 />
               ))}

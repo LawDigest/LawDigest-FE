@@ -26,7 +26,7 @@ export default function MyPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex flex-col h-full gap-8 lg:flex-row md:items-center lg:items-start lg:justify-center lg:mt-10">
+      <div className="flex flex-col h-full gap-8 lg:flex-row md:items-center lg:items-start lg:justify-center lg:mt-10 lg:mx-auto lg:ml-10 xl:ml-0">
         <UserInfo queryClient={queryClient} />
         <div className="flex flex-col h-full gap-8">
           <PartyList qeuryClient={queryClient} />

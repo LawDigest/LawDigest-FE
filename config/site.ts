@@ -41,7 +41,7 @@ export const siteConfig = {
   ],
   feedTabs: [
     { label: '시간순', value: 'sortedByLatest' },
-    { label: '인기순', value: 'sortedByPopularity' },
+    { label: 'HOT', value: 'sortedByPopularity' },
   ],
   billTabs: [
     { label: '대표발의한 법안', value: 'representProposer' },
