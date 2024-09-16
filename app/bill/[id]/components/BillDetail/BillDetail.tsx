@@ -18,6 +18,7 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
           <ProposerList
             representativeProposerList={data.representative_proposer_dto_list}
             publicProposerList={data.public_proposer_dto_list}
+            popover={false}
           />
         </SectionContainer>
 

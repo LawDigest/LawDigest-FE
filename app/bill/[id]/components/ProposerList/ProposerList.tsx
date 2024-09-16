@@ -9,6 +9,7 @@ import { sortByParty } from '@/utils';
 export default function ProposerList({
   representativeProposerList,
   publicProposerList,
+  popover,
 }: {
   representativeProposerList: {
     representative_proposer_id: string;
@@ -26,6 +27,7 @@ export default function ProposerList({
     public_proposer_party_image_url: string;
     public_proposer_party_name: string;
   }[];
+  popover: boolean;
 }) {
   const representativeProposerLength = representativeProposerList.length;
   const publicProposerLength = publicProposerList.length;
@@ -34,7 +36,10 @@ export default function ProposerList({
   const isDark = theme === 'dark';
 
   return (
-    <Card classNames={{ base: ['lg:shadow-none dark:lg:bg-dark-pb'] }}>
+    <Card
+      classNames={{
+        base: [`lg:shadow-none dark:lg:bg-dark-pb ${popover ? 'shadow-none  dark:lg:bg-transparent' : ''}`],
+      }}>
       <CardHeader>
         <p className="font-medium">
           {representativeProposerLength === 1
