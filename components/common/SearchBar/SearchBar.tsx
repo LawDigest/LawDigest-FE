@@ -5,10 +5,13 @@ import { useState, useCallback } from 'react';
 import { Input } from '@nextui-org/input';
 import { IconSearchbar } from '@/public/svgs';
 import { Button } from '@nextui-org/react';
+import { useResetRecoilState } from 'recoil';
+import { searchModalState } from '@/store';
 
 export default function SearchBar() {
   const router = useRouter();
   const [value, setValue] = useState('');
+  const resetSearchModal = useResetRecoilState(searchModalState);
 
   const onSubmitSearch = useCallback(
     (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
@@ -16,6 +19,9 @@ export default function SearchBar() {
 
       if (value.trim() !== '') router.push(`/search/${value.trim()}`);
       else setValue('');
+
+      setValue('');
+      resetSearchModal();
     },
     [value],
   );
@@ -33,6 +39,7 @@ export default function SearchBar() {
         classNames={{
           input: ['bg-transparent', 'text-black/90', 'truncate'],
           inputWrapper: [
+            'bg-[#E0E0E0]',
             'h-[40px]',
             'w-full',
             'shadow-sm',

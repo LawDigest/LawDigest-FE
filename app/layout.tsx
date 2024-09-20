@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { Suspense } from 'react';
 import { QueryClientProvider, NextUIProvider, NextThemesProvider, RecoilRootProvider } from '@/lib/provider';
 import { Loading, Snackbar } from '@/components';
+import SearchModal from '@/components/common/SearchBar/SearchModal';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -71,6 +72,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                   <main className="flex items-center justify-center w-full h-full ">
                     <Suspense fallback={<Loading />}>
                       {children}
+                      <SearchModal />
                       <Snackbar />
                     </Suspense>
                   </main>

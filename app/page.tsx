@@ -1,5 +1,5 @@
 import getQueryClient from '@/lib/getQueryClient';
-import { Feed, SearchBar, Layout } from '@/components';
+import { Feed, Layout, SearchBarButton } from '@/components';
 import { getBill } from '@/components/Feed/Feed/apis';
 
 export default async function Home() {
@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <Layout nav logo notification>
       <section className="lg:w-[840px] mx-auto ">
-        <SearchBar />
+        <SearchBarButton />
         <Feed />
       </section>
     </Layout>

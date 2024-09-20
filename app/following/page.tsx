@@ -7,7 +7,7 @@ import { ACCESS_TOKEN } from '@/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
-import { SearchBar } from '@/components';
+import { SearchBarButton } from '@/components';
 import { FollowingNav, BillContainer } from './components';
 
 export default function Following() {
@@ -31,7 +31,7 @@ export default function Following() {
         <FollowingNav />
         <div>
           <div className="hidden mt-11 lg:block">
-            <SearchBar />
+            <SearchBarButton />
           </div>
           <BillContainer />
         </div>
