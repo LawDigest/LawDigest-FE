@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BillList, SearchBar } from '@/components';
+import { BillList, SearchBarButton } from '@/components';
 import { useIntersect } from '@/hooks';
 import { Divider } from '@nextui-org/react';
 import { useGetSearchCongressmanParty, useGetSearchBill } from '../apis';
@@ -44,7 +44,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
 
   return (
     <>
-      <SearchBar />
+      <SearchBarButton />
       <section className="lg:w-[840px] mx-auto">
         <p className="my-4 text-sm font-medium text-center md:text-base text-gray-2">{`'${decodeURI(id)}'에 대한 검색 결과입니다.`}</p>
         <div className="mb-10">

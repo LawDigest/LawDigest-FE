@@ -7,7 +7,7 @@ import { useCallback, useState } from 'react';
 import { siteConfig } from '@/config/site';
 import { IconNavBorder } from '@/public/svgs';
 import {
-  SearchBar,
+  SearchBarButton,
   GoBackButton,
   SettingButton,
   SearchButton,
@@ -135,7 +135,7 @@ export default function Header({
         )}
       </Navbar>
 
-      <div>{toggleSearch && <SearchBar />}</div>
+      <div>{toggleSearch && <SearchBarButton />}</div>
     </section>
   );
 }

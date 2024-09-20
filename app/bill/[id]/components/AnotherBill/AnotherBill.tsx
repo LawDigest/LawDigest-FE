@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { Card, CardFooter, CardBody, Chip, AvatarGroup, Avatar } from '@nextui-org/react';
@@ -27,6 +28,7 @@ export default function BillBookmarked({
   const partyName = isRepresentativeSolo ? party[0].party_name : '다수';
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const router = useRouter();
 
   return (
     <Link href={`/bill/${billId}`}>
@@ -47,17 +49,23 @@ export default function BillBookmarked({
         <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
-            party[0].party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party[0].party_image_url.replace('wide', 'dark') : party[0].party_image_url}`}
-                width={60}
-                height={30}
-                alt={`${party[0].party_name} 이미지`}
-                className="object-contain w-[60px] h-[30px] lg:w-[120px] lg:h-[30px]"
-              />
-            ) : (
-              <PartyLogoReplacement partyName={party[0].party_name} circle={false} />
-            )
+            <Link
+              href={party[0].party_image_url !== null ? `/party/${party[0].party_id}` : {}}
+              onClick={(e) => {
+                if (party[0].party_image_url === null) e.preventDefault();
+              }}>
+              {party[0].party_image_url !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party[0].party_image_url.replace('wide', 'dark') : party[0].party_image_url}`}
+                  width={60}
+                  height={30}
+                  alt={`${party[0].party_name} 이미지`}
+                  className="object-contain w-[60px] h-[30px] lg:w-[120px] lg:h-[30px]"
+                />
+              ) : (
+                <PartyLogoReplacement partyName={party[0].party_name} circle={false} />
+              )}
+            </Link>
           ) : (
             <AvatarGroup>
               {party.map(({ party_image_url, party_id, party_name }) => (
@@ -68,6 +76,11 @@ export default function BillBookmarked({
                   classNames={{
                     base: [`bg-white dark:bg-dark-l p-1 border ${party_name}`],
                     img: ['object-contain'],
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (party_image_url !== null) router.push(`/party/${party_id}`);
                   }}
                 />
               ))}

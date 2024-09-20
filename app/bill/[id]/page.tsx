@@ -13,7 +13,7 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
 
   return getMetadata({
     title: data.bill_info_dto.brief_summary,
-    description: data.bill_info_dto.brief_summary,
+    description: `${data.bill_info_dto.propose_date} 발의, 현재 ${data.bill_info_dto.bill_stage} 단계, '${data.bill_info_dto.bill_name}' 관련 발의안`,
     asPath: `/bill/${id}`,
   });
 };

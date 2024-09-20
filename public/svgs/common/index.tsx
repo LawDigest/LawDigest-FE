@@ -18,6 +18,7 @@ import IconCancel from './Cancel';
 import IconArrowDown from './ArrowDown';
 import IconArrowUp from './ArrowUp';
 import IconCheck from './Check';
+import IconX from './X';
 
 export {
   IconEmail,
@@ -40,4 +41,5 @@ export {
   IconArrowDown,
   IconArrowUp,
   IconCheck,
+  IconX,
 };
