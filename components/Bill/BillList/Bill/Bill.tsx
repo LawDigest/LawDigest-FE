@@ -329,7 +329,7 @@ export default function Bill({
                     : {}
                 }
                 onClick={(e) => {
-                  if (representative_proposer_dto_list[0].party_image_url !== null) e.preventDefault();
+                  if (representative_proposer_dto_list[0].party_image_url === null) e.preventDefault();
                 }}>
                 {representative_proposer_dto_list[0].party_image_url !== null ? (
                   <Image

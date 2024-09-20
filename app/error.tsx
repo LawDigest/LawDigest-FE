@@ -6,7 +6,7 @@ import { Layout } from '@/components';
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
 
-export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+export default function Error({ error }: { error: Error }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -28,10 +28,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
         <div className="flex flex-col md:flex-row gap-[10px]">
           <Button
             className="text-xl font-medium text-white rounded-none bg-primary-3 w-[261px] md:w-[227px] h-[56px] dark:bg-dark-pb lg:dark:bg-dark-b"
-            onClick={
-              // Attempt to recover by trying to re-render the segment
-              () => reset()
-            }>
+            onClick={() => router.refresh()}>
             새로고침
           </Button>
           <Button

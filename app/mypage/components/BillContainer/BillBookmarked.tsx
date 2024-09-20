@@ -46,17 +46,27 @@ export default function BillBookmarked({
         <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 md:basis-1/5 shrink-0">
           {/* eslint-disable-next-line no-nested-ternary */}
           {isRepresentativeSolo ? (
-            representative_proposer_dto_list[0].party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
-                width={60}
-                height={30}
-                alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
-                className="object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
-              />
-            ) : (
-              <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
-            )
+            <Link
+              href={
+                representative_proposer_dto_list[0].party_image_url !== null
+                  ? `/party/${representative_proposer_dto_list[0].party_id}`
+                  : {}
+              }
+              onClick={(e) => {
+                if (representative_proposer_dto_list[0].party_image_url === null) e.preventDefault();
+              }}>
+              {representative_proposer_dto_list[0].party_image_url !== null ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
+                  width={60}
+                  height={30}
+                  alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
+                  className="object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
+                />
+              ) : (
+                <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
+              )}
+            </Link>
           ) : (
             <AvatarGroup>
               {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
