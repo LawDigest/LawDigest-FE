@@ -24,7 +24,6 @@ export default function SearchBarButton() {
         classNames={{
           input: ['bg-transparent', 'text-black/90', 'truncate'],
           inputWrapper: [
-            'bg-[#E0E0E0]',
             'h-[40px]',
             'w-full',
             'shadow-sm',

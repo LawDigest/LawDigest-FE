@@ -1,13 +1,14 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { Layout } from '@/components';
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
 
-export default function Error({ error }: { error: Error }) {
+export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Log the error to an error reporting service
@@ -28,7 +29,10 @@ export default function Error({ error }: { error: Error }) {
         <div className="flex flex-col md:flex-row gap-[10px]">
           <Button
             className="text-xl font-medium text-white rounded-none bg-primary-3 w-[261px] md:w-[227px] h-[56px] dark:bg-dark-pb lg:dark:bg-dark-b"
-            onClick={() => router.refresh()}>
+            onClick={() => {
+              router.replace(pathname);
+              reset();
+            }}>
             새로고침
           </Button>
           <Button
