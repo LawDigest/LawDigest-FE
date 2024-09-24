@@ -12,28 +12,32 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
   const { data } = await useGetBillDetail(id, queryClient);
 
   return (
-    <Bill {...data} detail viewCount={viewCount}>
-      <section className="md:w-[360px] lg:w-[490px] md:float-right">
-        <SectionContainer title="발의자 명단">
-          <ProposerList
-            representativeProposerList={data.representative_proposer_dto_list}
-            publicProposerList={data.public_proposer_dto_list}
-            popover={false}
-          />
-        </SectionContainer>
+    <section>
+      <Bill {...data} detail viewCount={viewCount}>
+        <section className="md:w-[360px] lg:w-[490px] md:float-right flex flex-col gap-[34px] mt-[34px]">
+          <SectionContainer title="발의자 명단">
+            <ProposerList
+              representativeProposerList={data.representative_proposer_dto_list}
+              publicProposerList={data.public_proposer_dto_list}
+              popover={false}
+            />
+          </SectionContainer>
 
-        <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+          <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-        <SectionContainer title="심사 진행 단계">
-          <ProgressStage billStage={data.bill_info_dto.bill_stage} />
-        </SectionContainer>
+          <SectionContainer title="심사 진행 단계">
+            <ProgressStage billStage={data.bill_info_dto.bill_stage} />
+          </SectionContainer>
 
-        <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+          <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+        </section>
+      </Bill>
 
+      <div className="md:w-[calc(100%-400px)] lg:w-[calc(100%-530px)] border-r-[1px] md:dark:border-dark-l px-4 pt-[34px]">
         <SectionContainer title="다른 개정안 보기">
           <AnotherBillList {...data} />
         </SectionContainer>
-      </section>
-    </Bill>
+      </div>
+    </section>
   );
 }

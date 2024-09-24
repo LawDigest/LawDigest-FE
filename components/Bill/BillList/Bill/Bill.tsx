@@ -107,10 +107,10 @@ export default function Bill({
   }, [isLoaded]);
 
   return (
-    <section className={`flex flex-col md:gap-5 ${detail ? 'md:flex-row items-start' : ''}`}>
+    <section className={`flex flex-col  ${detail ? 'md:flex-row items-start' : 'md:mx-5'}`}>
       <Card
         key={bill_id}
-        className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
+        className={`flex flex-col gap-5 px-5 pt-6 dark:bg-dark-b dark:lg:bg-dark-pb ${detail ? 'md:border-r-[1px] md:dark:border-dark-l lg:border-r-0' : ''}`}
         radius="none"
         shadow="none">
         <CardHeader
@@ -248,9 +248,8 @@ export default function Bill({
       </Card>
 
       <div
-        className={`w-full md:w-auto flex flex-col pt-4 pb-6 md:flex-col-reverse ${detail ? 'md:border-l-[1px] md:dark:border-dark-l' : ''}`}>
-        <section className="h-full mx-5">{children}</section>
-        <div>
+        className={`flex flex-col w-full md:w-auto md:flex-col ${detail ? 'lg:border-l lg:dark:border-dark-l' : ''}`}>
+        <div className="pt-4 pb-6">
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] ${detail ? 'md:w-[360px]' : ''} lg:max-w-full lg:w-[490px] md:float-right ${partyName}`}
             radius="sm"
@@ -361,9 +360,11 @@ export default function Bill({
             )}
           </Card>
         </div>
+
+        <section className="h-full mx-5">{children}</section>
       </div>
 
-      {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
+      {!detail && <Divider className="h-[10px] md:h-[1px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
   );
 }

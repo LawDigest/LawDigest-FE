@@ -32,7 +32,7 @@ export default function BillBookmarked({
 
   return (
     <Link href={`/bill/${billId}`}>
-      <Card className={`border-1.5 flex-row lg:py-6 ${partyName}`} radius="md">
+      <Card className={`border-1.5 flex-row ${partyName}`} radius="md">
         <CardBody className="flex justify-between gap-2 ">
           <p className="text-sm font-bold lg:text-lg">{billBriefSummary}</p>
           <div className="flex items-center w-full gap-2 ">
