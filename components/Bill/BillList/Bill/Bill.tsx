@@ -107,7 +107,7 @@ export default function Bill({
   }, [isLoaded]);
 
   return (
-    <section className={`flex flex-col md:gap-5 ${detail ? 'md:flex-row items-start' : ''}`}>
+    <section className={`flex flex-col  ${detail ? 'md:flex-row items-start' : ''}`}>
       <Card
         key={bill_id}
         className="flex flex-col gap-5 mx-5 mt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
@@ -363,7 +363,7 @@ export default function Bill({
         </div>
       </div>
 
-      {!detail && <Divider className="h-[10px] bg-gray-0.5 dark:bg-gray-4" />}
+      {!detail && <Divider className="h-[10px] md:h-[1px] bg-gray-0.5 dark:bg-gray-4" />}
     </section>
   );
 }
