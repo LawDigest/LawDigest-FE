@@ -107,7 +107,7 @@ export default function Bill({
   }, [isLoaded]);
 
   return (
-    <section className={`flex flex-col  ${detail ? 'md:flex-row items-start' : ''}`}>
+    <section className={`flex flex-col  ${detail ? 'md:flex-row items-start' : 'md:mx-5'}`}>
       <Card
         key={bill_id}
         className={`flex flex-col gap-5 px-5 pt-6 dark:bg-dark-b dark:lg:bg-dark-pb ${detail ? 'md:border-r-[1px] md:dark:border-dark-l lg:border-r-0' : ''}`}
