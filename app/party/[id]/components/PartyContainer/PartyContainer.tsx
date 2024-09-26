@@ -6,7 +6,7 @@ import { BillContainer } from '../BillContainer';
 
 export default function PartyContainer({ id }: { id: string }) {
   return (
-    <div className="lg:flex lg:justify-center lg:gap-10">
+    <div className="xl:flex xl:justify-center xl:gap-10">
       <div>
         <PartyDetail partyId={Number(id)} />
         <PartyCongressmanList id={Number(id)} />

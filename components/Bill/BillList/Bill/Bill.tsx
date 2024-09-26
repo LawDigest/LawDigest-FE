@@ -114,7 +114,7 @@ export default function Bill({
         radius="none"
         shadow="none">
         <CardHeader
-          className={`flex flex-col items-start gap-2 p-0  ${!detail ? 'md:w-[270px] md:left-0 md:absolute' : ''}`}>
+          className={`flex  flex-col items-start gap-2 p-0  ${!detail ? 'md:w-[270px] auto md:left-0 md:absolute' : ''}`}>
           {detail && (
             <div className="flex items-center gap-1">
               <IconClock />
