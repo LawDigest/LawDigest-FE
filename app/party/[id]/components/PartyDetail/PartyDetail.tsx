@@ -35,7 +35,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
   const seatRatio = ((100 * whole_representative_count) / total_congressman_count).toFixed(2);
 
   return (
-    <section className="flex flex-col items-center mx-5 mt-5 gap-7 lg:w-[320px]">
+    <section className="flex flex-col items-center mx-5 xl:mx-0 mt-5 gap-7 xl:w-[320px]">
       <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
         <PartyLogo party_name={party_name} party_img_url={party_img_url} />
 

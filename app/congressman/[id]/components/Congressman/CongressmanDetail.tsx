@@ -34,7 +34,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
   return (
     <Card
-      className={`mx-5 md:mx-auto lg:mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b lg:h-min md:w-[430px] lg:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
+      className={`mx-5 md:mx-auto xl:mx-0 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b xl:h-min md:w-[430px] xl:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
       shadow="md"
       radius="md">
       <PartyLogo party_id={party_id} party_name={party_name} party_image_url={party_image_url} />
