@@ -34,7 +34,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
   return (
     <Card
-      className={`mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b lg:h-min md:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
+      className={`mx-5 md:mx-auto lg:mx-5 mt-5 py-4 px-7 border-1.5 flex flex-col items-center gap-5 mb-4 dark:bg-dark-b lg:h-min md:w-[430px] lg:w-[320px] shrink-0 lg:dark:bg-dark-pb ${party_name}`}
       shadow="md"
       radius="md">
       <PartyLogo party_id={party_id} party_name={party_name} party_image_url={party_image_url} />
@@ -67,7 +67,7 @@ export default async function CongressmanDetail({ congressmanId }: { congressman
 
       <Divider className="bg-gray-1 dark:bg-dark-l" />
 
-      <div className="flex flex-col w-full gap-2">
+      <div className="flex flex-col w-full gap-2 md:flex-row lg:flex-col">
         <Chip className="text-sm font-medium text-white bg-primary-3 dark:bg-gray-4 dark:text-gray-1 w-[78px] h-8">
           기본정보
         </Chip>
