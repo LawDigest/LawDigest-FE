@@ -27,9 +27,9 @@ export default function Following() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section className="flex flex-col mx-auto lg:flex-row lg:justify-center xl:justify-start">
+      <section className="flex flex-col mx-auto lg:flex-row lg:justify-center">
         <FollowingNav />
-        <div>
+        <div className="lg:border-l-1 lg:dark:border-dark-l">
           <div className="hidden mt-11 lg:block">
             <SearchBarButton />
           </div>

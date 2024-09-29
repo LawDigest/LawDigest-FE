@@ -1,14 +1,13 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Layout } from '@/components';
 import Image from 'next/image';
 import { Button } from '@nextui-org/react';
 
-export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+export default function Error({ error }: { error: Error }) {
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     // Log the error to an error reporting service
@@ -30,14 +29,17 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
           <Button
             className="text-xl font-medium text-white rounded-none bg-primary-3 w-[261px] md:w-[227px] h-[56px] dark:bg-dark-pb lg:dark:bg-dark-b"
             onClick={() => {
-              router.replace(pathname);
-              reset();
+              router.back();
+              router.refresh();
             }}>
-            새로고침
+            이전 페이지
           </Button>
           <Button
             className="text-xl font-medium bg-white border rounded-none border-primary-3 w-[261px] md:w-[227px] h-[56px] dark:text-black"
-            onClick={() => router.push('/')}>
+            onClick={() => {
+              router.push('/');
+              router.refresh();
+            }}>
             홈으로
           </Button>
         </div>
