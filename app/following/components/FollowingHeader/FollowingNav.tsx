@@ -10,11 +10,11 @@ export default async function FollowingNav() {
   return (
     <Card
       classNames={{ base: ['rounded-t-none'] }}
-      className="w-full pl-5 mx-auto lg:mx-0 bg-transparent md:mt-10 md:mb-6 md:h-[200px] md:w-[708px] md:pt-3 md:rounded-xl lg:my-0 lg:rounded-none lg:h-full lg:text-black lg:dark:text-white lg:bg-transparent lg:pt-8 lg:shadow-none dark:bg-primary-3 lg:dark:bg-transparent lg:w-[120px] xl:w-[312px]">
+      className=" w-full pl-5 mx-auto lg:mx-0 bg-transparent md:mt-10 md:mb-6 md:h-[200px] md:w-[708px] md:pt-3 md:rounded-xl lg:my-0 lg:rounded-none lg:h-full lg:text-black lg:dark:text-white lg:bg-transparent lg:pt-8 lg:shadow-none dark:bg-primary-3 lg:dark:bg-transparent lg:w-[120px] xl:w-[312px]">
       <CardHeader className="pt-2 pb-0 pl-0 lg:hidden">
         <h2 className="text-2xl font-bold md:text-3xl lg:mx-auto">팔로잉</h2>
       </CardHeader>
-      <CardBody className="flex flex-row items-center gap-4 pl-0 overflow-x-scroll lg:flex-col">
+      <CardBody className="flex flex-row items-center gap-4 pl-0 overflow-x-scroll lg:flex-col scrollbar-hide lg:scrollbar-default">
         <div className="flex flex-col items-center shrink-0 xl:flex-row xl:justify-start xl:w-full xl:gap-2">
           <p className="text-xs font-medium text-gray-2 md:text-sm xl:text-[26px] xl:text-black xl:font-semibold xl:dark:text-white">
             팔로우한 의원

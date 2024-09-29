@@ -21,24 +21,6 @@
     'Segoe UI Emoji',
     'Segoe UI Symbol',
     sans-serif;
-
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
-}
-
-::-webkit-scrollbar {
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-.scrollbar-none {
-  ::-webkit-scrollbar {
-    width: 0px;
-  }
 }
 
 .더불어민주당 {
