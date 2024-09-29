@@ -47,7 +47,7 @@ export default function SearchModal() {
 
   return (
     <section
-      className={`inset-0 w-full dark:bg-dark-b/80 bg-white/80 backdrop-blur-[10px] z-100 flex justify-center ${searchModal.show ? 'fixed' : 'hidden'}`}>
+      className={`inset-0 w-full dark:bg-dark-b/80 bg-white/80 backdrop-blur-[10px] z-10 flex justify-center ${searchModal.show ? 'fixed' : 'hidden'}`}>
       <div className="mx-5 mt-10 md:mt-20 w-full md:w-[600px]">
         <div className="flex flex-col gap-4 md:relative">
           <div className="-right-20 md:absolute top-[22px]">

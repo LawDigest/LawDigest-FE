@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { IconSearchbar } from '@/public/svgs';
 import { Button, Input } from '@nextui-org/react';
-import { useResetRecoilState } from 'recoil';
+import { useResetRecoilState, useRecoilValue } from 'recoil';
 import { searchModalState } from '@/store';
 import { getCookie, setCookie } from 'cookies-next';
 
@@ -15,6 +15,7 @@ export default function SearchBar({
 }) {
   const router = useRouter();
   const [value, setValue] = useState('');
+  const searchModal = useRecoilValue(searchModalState);
   const resetSearchModal = useResetRecoilState(searchModalState);
 
   const onSubmitSearch = useCallback(
@@ -59,6 +60,7 @@ export default function SearchBar({
       onSubmit={onSubmitSearch}
       className="w-full rounded-2xl flex justify-center items-center gap-[10px] md:w-[600px] mx-auto my-5">
       <Input
+        autoFocus={searchModal.show}
         value={value}
         onValueChange={setValue}
         onClear={() => router.push('/search')}
