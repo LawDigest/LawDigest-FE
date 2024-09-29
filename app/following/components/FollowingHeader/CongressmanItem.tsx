@@ -21,19 +21,21 @@ export default function CongressmanItem({
   const isDark = theme === 'dark';
 
   return (
-    <Link
-      href={`/congressman/${congressman_id}`}
-      className="flex flex-col items-center gap-2 xl:flex-row xl:justify-between">
-      <Avatar
-        src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-        className={`w-14 h-14 border ${party_name}`}
-      />
+    <div className="flex flex-col items-center gap-2 xl:flex-row xl:justify-between">
+      <div className="gap-5 xl:flex xl:flex-row">
+        <Link href={`/congressman/${congressman_id}`}>
+          <Avatar
+            src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
+            className={`w-14 h-14 border ${party_name}`}
+          />
+        </Link>
 
-      <div className="flex flex-col items-center shrink-0 xl:items-start">
-        <p className="text-xs font-semibold xl:text-xl">
-          {congressman_name} <span className="font-normal xl:text-lg xl:dark:text-gray-1">의원</span>
-        </p>
-        <p className="text-gray-2 text-[10px] font-medium xl:text-sm">{party_name}</p>
+        <div className="flex flex-col items-center shrink-0 xl:items-start">
+          <Link href={`/congressman/${congressman_id}`} className="text-xs font-semibold xl:text-xl">
+            {congressman_name} <span className="font-normal xl:text-lg xl:dark:text-gray-1">의원</span>
+          </Link>
+          <p className="text-gray-2 text-[10px] font-medium xl:text-sm">{party_name}</p>
+        </div>
       </div>
 
       <Button
@@ -56,6 +58,6 @@ export default function CongressmanItem({
           <PartyLogoReplacement partyName={party_name} circle={false} />
         )}
       </Button>
-    </Link>
+    </div>
   );
 }
