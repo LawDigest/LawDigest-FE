@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
           return handleSuccessReissueToken(error);
         })
         .catch(() => {
-          return handleFailReissueToken(error);
+          return handleFailReissueToken();
         });
     }
 

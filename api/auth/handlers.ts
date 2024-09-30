@@ -11,35 +11,17 @@ import _ from 'lodash';
 
 export const handleSuccessReissueToken = (error: AxiosError) => {
   const { response } = error;
+  const router = useRouter();
 
   const newConfig = _.cloneDeep(response!.config);
   const accessToken = getCookie(ACCESS_TOKEN)!;
   newConfig.headers.Authorization = `Bearer ${accessToken}`;
 
-  return axios(newConfig).catch(() => {
-    deleteCookie(ACCESS_TOKEN);
-    const router = useRouter();
-    router.push('/login');
-
-    return Promise.reject(error);
-  });
+  return axios(newConfig).then(() => router.refresh());
 };
 
-export const handleFailReissueToken = async (error: AxiosError) => {
-  try {
-    const { response } = error;
-
-    const newConfig = _.cloneDeep(response!.config);
-    const accessToken = getCookie(ACCESS_TOKEN)!;
-    newConfig.headers.Authorization = `Bearer ${accessToken}`;
-    const result = await axios(newConfig);
-
-    return result;
-  } catch (err) {
-    deleteCookie(ACCESS_TOKEN);
-    const router = useRouter();
-    router.push('/login');
-
-    return Promise.reject(err);
-  }
+export const handleFailReissueToken = () => {
+  deleteCookie(ACCESS_TOKEN);
+  const router = useRouter();
+  router.push('/login');
 };
