@@ -1,6 +1,7 @@
 import { getDateStatus } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
-import { Divider } from '@nextui-org/react';
+import { Divider, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
+import { IconKebab } from '@/public/svgs';
 import { getNotification } from '../apis';
 import Notification from './Notification';
 
@@ -65,9 +66,22 @@ export default function NotificationList() {
         {notificationLength === 0 ? (
           <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
         ) : (
-          <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
-            <span className="text-black dark:text-gray-2">{sample.length}개</span>의 읽지 않은 알림이 있습니다.
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
+              <span className="text-black dark:text-gray-2">{sample.length}개</span>의 읽지 않은 알림이 있습니다.
+            </p>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button isIconOnly size="sm" className="bg-transparent">
+                  <IconKebab isPassed />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem className="w-full text-center">모두 읽기</DropdownItem>
+                <DropdownItem className="w-full text-center">모두 삭제</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
         )}
       </div>
 
