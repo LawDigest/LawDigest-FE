@@ -1,4 +1,6 @@
+import { getDateStatus } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
+import { Divider } from '@nextui-org/react';
 import { getNotification } from '../apis';
 import Notification from './Notification';
 
@@ -47,14 +49,21 @@ const sample = [
 
 export default function NotificationList() {
   const { data: notifications } = useQuery({ queryKey: ['/notification'], queryFn: getNotification });
-
-  const notificationLength = sample && sample.length;
+  const notificationLength = notifications && sample.length;
+  const notificationListByDateStatus = Array.from(Array(3), (v, i) =>
+    // eslint-disable-next-line no-nested-ternary
+    i === 0
+      ? sample.filter((notification) => getDateStatus(notification.created_date) === '이번 주')
+      : i === 1
+        ? sample.filter((notification) => getDateStatus(notification.created_date) === '이번 달')
+        : sample.filter((notification) => getDateStatus(notification.created_date) === '이전 알림'),
+  );
 
   return (
     <section className="flex flex-col px-5 mt-6 mb-10">
       <div className="mb-[18px] ml-3">
         {notificationLength === 0 ? (
-          <p className="text-sm md:text-base text-gray-2">알림이 없습니다.</p>
+          <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
         ) : (
           <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
             <span className="text-black dark:text-gray-2">{sample.length}개</span>의 읽지 않은 알림이 있습니다.
@@ -62,14 +71,47 @@ export default function NotificationList() {
         )}
       </div>
 
-      <div className="flex flex-col gap-[18px]">
+      <section className="flex flex-col gap-[14px]">
+        <h2 className="text-xl font-semibold">이번 주</h2>
         <div className="flex flex-col gap-3 md:gap-4">
-          {sample &&
-            sample.map((notification) => (
-              <Notification key={notification.title + notification.target} {...notification} />
+          {notifications &&
+            (notificationListByDateStatus[0].length === 0 ? (
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 주 알림이 없습니다.</p>
+            ) : (
+              notificationListByDateStatus[0].map((notification) => (
+                <Notification key={notification.title + notification.target} {...notification} />
+              ))
             ))}
         </div>
-      </div>
+
+        <Divider className="my-6" />
+
+        <h2 className="text-xl font-semibold">이번 달</h2>
+        <div className="flex flex-col gap-3 md:gap-4">
+          {notifications &&
+            (notificationListByDateStatus[1].length === 0 ? (
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 달 알림이 없습니다.</p>
+            ) : (
+              notificationListByDateStatus[1].map((notification) => (
+                <Notification key={notification.title + notification.target} {...notification} />
+              ))
+            ))}
+        </div>
+
+        <Divider className="my-6" />
+
+        <h2 className="text-xl font-semibold">이전 알림</h2>
+        <div className="flex flex-col gap-3 md:gap-4">
+          {notifications &&
+            (notificationListByDateStatus[0].length === 0 ? (
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이전 알림이 없습니다.</p>
+            ) : (
+              notificationListByDateStatus[2].map((notification) => (
+                <Notification key={notification.title + notification.target} {...notification} />
+              ))
+            ))}
+        </div>
+      </section>
     </section>
   );
 }

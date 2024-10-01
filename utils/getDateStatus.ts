@@ -1,4 +1,4 @@
-export default function getDateStatus(date: Date) {
+export default function getDateStatus(date: string) {
   const today = new Date();
   const inputDate = new Date(date);
 
@@ -20,5 +20,5 @@ export default function getDateStatus(date: Date) {
   if (inputDate >= startOfMonth && inputDate <= endOfMonth) {
     return '이번 달';
   }
-  return '더 이전';
+  return '이전 알림';
 }
