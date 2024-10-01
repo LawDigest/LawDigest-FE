@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function NotificationLayout({ children }: { children: React.ReactNode }) {
   return (
-    <Layout goBack theme nav>
+    <Layout goBack theme nav title="알림">
       {children}
     </Layout>
   );

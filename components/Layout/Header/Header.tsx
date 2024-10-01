@@ -107,10 +107,10 @@ export default function Header({
         {search && (
           <NavbarContent justify="end" className="xl:absolute xl:right-[-100px]">
             <NavbarItem>
-              <SearchButton onClick={onClickSearch} />
+              <ThemeSwitchButton />
             </NavbarItem>
             <NavbarItem>
-              <NotificationButton />
+              <SearchButton onClick={onClickSearch} />
             </NavbarItem>
           </NavbarContent>
         )}
