@@ -7,7 +7,7 @@ type getMetadataProps = {
   asPath: string;
 };
 
-export const getMetadata = (metadataProps?: getMetadataProps) => {
+export default function getMetadata(metadataProps?: getMetadataProps) {
   const { title, description, asPath } = metadataProps || {};
 
   const TITLE = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
@@ -62,4 +62,4 @@ export const getMetadata = (metadataProps?: getMetadataProps) => {
   };
 
   return metadata;
-};
+}
