@@ -251,7 +251,7 @@ export default function Bill({
         className={`flex flex-col w-full md:w-auto md:flex-col ${detail ? 'lg:border-l lg:dark:border-dark-l' : ''}`}>
         <div className="pt-4 pb-6">
           <Card
-            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[440px] ${detail ? 'md:w-[360px]' : ''} lg:max-w-full lg:w-[490px] md:float-right ${partyName}`}
+            className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[410px] lg:max-w-full lg:w-[490px] md:float-right ${detail ? 'md:w-[360px] lg:float-left' : ''} ${partyName}`}
             radius="sm"
             shadow="sm">
             <div className="flex items-center gap-2">

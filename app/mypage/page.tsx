@@ -22,7 +22,8 @@ export default function MyPage() {
     }
   }, [setSnackbar]);
 
-  if (!accessToken) return <div className="flex items-center justify-center h-full">회원 정보가 없습니다.</div>;
+  if (!accessToken)
+    return <div className="flex items-center justify-center h-full [140px] md:mt-[180px]">회원 정보가 없습니다.</div>;
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

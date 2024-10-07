@@ -25,7 +25,7 @@ export default function Layout({
   children,
 }: LayoutProps) {
   return (
-    <section className="w-full h-screen flex flex-col items-center lg:w-full min-w-[360px]">
+    <section className="w-full h-full flex flex-col items-center lg:w-full min-w-[360px]">
       <Header
         logo={logo}
         goBack={goBack}

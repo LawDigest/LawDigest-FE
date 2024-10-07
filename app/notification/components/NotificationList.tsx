@@ -10,7 +10,7 @@ const sample = [
     title: '한국산업은행 재무 건전성 유지 노력 명시화를 위한 한국산업은행법 일부개정안',
     content: `심사 단계가 ‘위원회 심사'로 변동했어요!`,
     type: 'party',
-    target: '1',
+    target: 'PRC_Z2A4Y0Z6X2X8G1E6E0C8D3C4C0Y9W5',
     created_date: '2024-10-01 16:36:20',
     notification_image_url_list: ['/party/wide/1.png'],
   },
@@ -18,7 +18,7 @@ const sample = [
     title: '한국산업은행 재무 건전성 유지 노력 명시화를 위한 한국산업은행법 일부개정안',
     content: `심사 단계가 ‘위원회 심사'로 변동했어요!`,
     type: 'party',
-    target: '2',
+    target: 'PRC_Z2A4Y0Z6X2X8G1E6E0C8D3C4C0Y9W5',
     created_date: '2024-09-28 16:36:20',
     notification_image_url_list: ['/party/wide/1.png'],
   },
@@ -26,7 +26,7 @@ const sample = [
     title: '한국산업은행 재무 건전성 유지 노력 명시화를 위한 한국산업은행법 일부개정안',
     content: `심사 단계가 ‘위원회 심사'로 변동했어요!`,
     type: 'party',
-    target: '3',
+    target: 'PRC_Z2A4Y0Z6X2X8G1E6E0C8D3C4C0Y9W5',
     created_date: '2024-09-27 16:36:20',
     notification_image_url_list: ['/party/wide/1.png', '/party/wide/2.png'],
   },
@@ -34,15 +34,15 @@ const sample = [
     title: '한국산업은행 재무 건전성 유지 노력 명시화를 위한 한국산업은행법 일부개정안',
     content: `심사 단계가 ‘위원회 심사'로 변동했어요!`,
     type: 'party',
-    target: '4',
+    target: 'PRC_Z2A4Y0Z6X2X8G1E6E0C8D3C4C0Y9W5',
     created_date: '2024-09-20 16:36:20',
     notification_image_url_list: ['/party/wide/1.png', '/party/wide/2.png', '/party/wide/3.png'],
   },
   {
-    title: '한국산업은행 재무 건전성 유지 노력 명시화를 위한 한국산업은행법 일부개정안',
+    title: '홍길동',
     content: `심사 단계가 ‘위원회 심사'로 변동했어요!`,
-    type: 'congressman',
-    target: '5',
+    type: 'bill',
+    target: 'PRC_Z2A4Y0Z6X2X8G1E6E0C8D3C4C0Y9W5',
     created_date: '2024-08-10 16:36:20',
     notification_image_url_list: ['/congressman/21/4U29186R.jpg'],
   },
@@ -77,8 +77,8 @@ export default function NotificationList() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem className="w-full text-center">모두 읽기</DropdownItem>
-                <DropdownItem className="w-full text-center">모두 삭제</DropdownItem>
+                <DropdownItem>모두 읽기</DropdownItem>
+                <DropdownItem>모두 삭제</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
