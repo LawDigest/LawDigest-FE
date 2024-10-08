@@ -6,7 +6,7 @@ export default function Loading() {
   // Or a custom loading skeleton component
   return (
     <Layout nav logo notification>
-      <section className="flex flex-col items-center justify-center h-full">
+      <section className="flex flex-col items-center justify-center h-full mt-[140px] md:mt-[180px]">
         <Image
           src="/images/logo.svg"
           width={600}

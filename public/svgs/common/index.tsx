@@ -19,6 +19,7 @@ import IconArrowDown from './ArrowDown';
 import IconArrowUp from './ArrowUp';
 import IconCheck from './Check';
 import IconX from './X';
+import IconAlert from './Alert';
 
 export {
   IconEmail,
@@ -42,4 +43,5 @@ export {
   IconArrowUp,
   IconCheck,
   IconX,
+  IconAlert,
 };

@@ -1,20 +1,20 @@
 export interface NotificationProps {
   title: string;
+  notification_id: number;
   content: string;
   target: string;
   type: string;
+  extra: string;
   created_date: string;
-  notification_image_url: string;
+  notification_image_url_list: string[];
+  read: boolean;
 }
 
 export type NotificationResponse = NotificationProps[];
 
-export interface NotificationReadProps {
-  title: string;
-  content: string;
-  target: string;
-  type: string;
-  created_date: string;
-}
+export type NotificationReadResponse = NotificationProps[];
 
-export type NotificationReadResponse = NotificationReadProps[];
+export interface NotificationCountResponse {
+  user_id: number;
+  notification_count: number;
+}
