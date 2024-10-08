@@ -16,7 +16,6 @@ export default function Notification({
   type,
   notification_image_url_list,
   target,
-  extra,
   read,
   notification_id,
 }: NotificationProps) {
@@ -25,6 +24,8 @@ export default function Notification({
   const isRepresentativeSolo = notification_image_url_list.length === 1;
   const imageUrlList = notification_image_url_list.map((str) => str.split(':'));
   const mutateRead = usePutNotificationRead(notification_id);
+  // eslint-disable-next-line no-constant-condition
+  const linkUrl = `${type === 'congressman_party_update' ? 'congressman' : 'bill'}/${target}`;
 
   const onClickRead = useCallback(() => {
     mutateRead.mutate();
@@ -40,16 +41,16 @@ export default function Notification({
         {isRepresentativeSolo ? (
           <Avatar
             radius="full"
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? imageUrlList[0][1].replace('wide', 'dark') : imageUrlList[0][1]}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${!isDark ? imageUrlList[0][1] : imageUrlList[0][1].replace('wide', 'dark')}`}
             size="md"
             className="w-[50px] h-[50px]"
             classNames={{
               base: [
                 // eslint-disable-next-line no-constant-condition
-                `${extra === 'BILL_STAGE_UPDATE' || 'BILL_RESULT_UPDATE' ? 'bg-white dark:bg-dark-pb p-1' : ''} border ${imageUrlList[0][0]}`,
+                `${type === 'bill_stage_update' || type === 'bill_result_update' ? 'bg-white dark:bg-dark-pb p-1' : ''} border ${imageUrlList[0][0]}`,
               ],
               // eslint-disable-next-line no-constant-condition
-              img: [`${type === 'BILL_STAGE_UPDATE' || 'BILL_RESULT_UPDATE' ? 'object-contain' : ''}`],
+              img: [`${type === 'bill_stage_update' || type === 'bill_result_update' ? 'object-contain' : ''}`],
             }}
           />
         ) : (
@@ -57,7 +58,7 @@ export default function Notification({
             {imageUrlList.map((notification_image_url) => (
               <Avatar
                 key={notification_image_url[0]}
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? notification_image_url[1].replace('wide', 'dark') : notification_image_url[1]}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${!isDark ? notification_image_url[1] : notification_image_url[1].replace('wide', 'dark')}`}
                 size="sm"
                 classNames={{
                   base: [`shrink-0 bg-white dark:bg-dark-pb p-1 border ${notification_image_url[0]}`],
@@ -69,7 +70,7 @@ export default function Notification({
         )}
       </div>
       <div className="flex flex-col w-full gap-1">
-        <Link href={`bill/${target}`} onClick={onClickRead}>
+        <Link href={linkUrl} onClick={onClickRead}>
           <p className="text-xs font-bold md:text-base ">
             {title} &nbsp;
             <span className="text-[10px] md:text-sm font-medium text-gray-2 dark:text-gray-3">
