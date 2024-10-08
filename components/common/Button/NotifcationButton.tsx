@@ -1,10 +1,9 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { IconNotification } from '@/public/svgs';
 import { Badge } from '@nextui-org/badge';
-import { getNotification } from '@/app/notification/apis';
+import { useGetNotificationCount } from '@/app/notification/apis';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
 import { useSetRecoilState } from 'recoil';
@@ -26,11 +25,10 @@ export default function NotificationButton() {
       </Link>
     );
   }
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { data: notifications } = useQuery({ queryKey: ['/notification'], queryFn: getNotification });
+  const { data: notificationCount } = useGetNotificationCount();
 
-  if (notifications === undefined || notifications.data.length === 0) {
+  if (notificationCount && notificationCount.data.notification_count === 0) {
     return (
       <Link href="/notification">
         <IconNotification />
