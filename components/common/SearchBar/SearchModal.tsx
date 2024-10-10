@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useCallback, useState, useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { searchModalState } from '@/store';
@@ -9,6 +10,7 @@ import { getCookie, deleteCookie, setCookie } from 'cookies-next';
 import SearchBar from './SearchBar';
 
 export default function SearchModal() {
+  const router = useRouter();
   const searchModal = useRecoilValue(searchModalState);
   const resetSearchModal = useResetRecoilState(searchModalState);
   const [searchWords, setSearchWords] = useState(getCookie('searchWords') ? getCookie('searchWords')?.split('/') : []);
@@ -21,6 +23,11 @@ export default function SearchModal() {
     setSearchWords([]);
     deleteCookie('searchWords');
   }, [searchWords]);
+
+  const onClickChip = useCallback((searchWord: string) => {
+    router.push(`/search/${searchWord}`);
+    resetSearchModal();
+  }, []);
 
   const onClickRemoveSearchWord = useCallback(
     (searchWord: string) => {
@@ -74,10 +81,11 @@ export default function SearchModal() {
                     key={searchWord}
                     variant="bordered"
                     className="h-7 md:h-8 border-gray-2 border-1 text-gray-3 dark:text-gray-2 dark:border-gray-3"
+                    onClick={() => onClickChip(searchWord)}
                     onClose={() => {
                       onClickRemoveSearchWord(searchWord);
                     }}>
-                    {searchWord}
+                    <p className="cursor-pointer">{searchWord}</p>
                   </Chip>
                 ))
               ) : (
