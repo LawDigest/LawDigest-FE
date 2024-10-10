@@ -9,7 +9,9 @@ import { snackbarState } from '@/store';
 import {
   useGetNotificationCount,
   useGetNotification,
+  usePutNotificationRead,
   usePutNotificationReadAll,
+  useDeleteNotification,
   useDeleteNotificationAll,
 } from '../apis';
 import Notification from './Notification';
@@ -60,6 +62,8 @@ export default function NotificationList() {
   const { data: notificationCount } = useGetNotificationCount();
   const { data: notifications } = useGetNotification();
   const setSnackbar = useSetRecoilState(snackbarState);
+  const mutateRead = usePutNotificationRead();
+  const mutateDelete = useDeleteNotification();
   const mutateReadAll = usePutNotificationReadAll();
   const mutateDeleteAll = useDeleteNotificationAll();
   const [listByDateStatus, setListByDateStatus] = useState(() =>
@@ -90,6 +94,34 @@ export default function NotificationList() {
     }
   }, [notifications]);
 
+  const onClickRead = useCallback(
+    (notificationId: number, isClickByButton: boolean) => {
+      mutateRead.mutate(notificationId);
+      if (isClickByButton) {
+        setSnackbar({
+          show: true,
+          type: 'SUCCESS',
+          message: '해당 알림을 읽었습니다.',
+          duration: 3000,
+        });
+      }
+    },
+    [mutateRead],
+  );
+
+  const onClickDelete = useCallback(
+    (notificationId: number) => {
+      mutateDelete.mutate(notificationId);
+      setSnackbar({
+        show: true,
+        type: 'CANCEL',
+        message: '해당 알림을 삭제했습니다.',
+        duration: 3000,
+      });
+    },
+    [mutateDelete],
+  );
+
   const onClickReadAll = useCallback(() => {
     mutateReadAll.mutate();
     setSnackbar({
@@ -98,17 +130,17 @@ export default function NotificationList() {
       message: '알림을 모두 읽었습니다.',
       duration: 3000,
     });
-  }, []);
+  }, [mutateReadAll]);
 
   const onClickDeleteAll = useCallback(() => {
     mutateDeleteAll.mutate();
     setSnackbar({
       show: true,
-      type: 'SUCCESS',
+      type: 'CANCEL',
       message: '알림을 모두 삭제했습니다.',
       duration: 3000,
     });
-  }, []);
+  }, [mutateDeleteAll]);
 
   return (
     <section className="flex flex-col px-5 mt-6 mb-10">
@@ -144,7 +176,12 @@ export default function NotificationList() {
               <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 주 알림이 없습니다.</p>
             ) : (
               listByDateStatus[0].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>
@@ -159,7 +196,12 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[1].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>
@@ -174,7 +216,12 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[2].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>

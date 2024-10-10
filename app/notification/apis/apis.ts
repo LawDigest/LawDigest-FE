@@ -17,6 +17,12 @@ export const putNotificationRead = (notificationId: number) =>
     params: { notification_id: notificationId },
   });
 
+export const deleteNotification = (notificationId: number) =>
+  http.delete({
+    url: `/notification/user/delete`,
+    params: { notification_id: notificationId },
+  });
+
 export const putNotificationReadAll = () =>
   http.put<NotificationReadResponse>({
     url: `/notification/user/read/all`,

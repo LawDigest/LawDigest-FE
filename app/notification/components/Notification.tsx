@@ -1,13 +1,11 @@
 'use client';
 
-import { useCallback } from 'react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import getTimeRemaining from '@/utils/getTimeRemaining';
 import { NotificationProps } from '@/types';
-import { Avatar, AvatarGroup } from '@nextui-org/avatar';
-import { IconAlert } from '@/public/svgs';
-import { usePutNotificationRead } from '../apis';
+import { Avatar, AvatarGroup, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
+import { IconAlert, IconKebab } from '@/public/svgs';
 
 export default function Notification({
   title,
@@ -18,21 +16,21 @@ export default function Notification({
   target,
   read,
   notification_id,
-}: NotificationProps) {
+  onClickRead,
+  onClickDelete,
+}: NotificationProps & {
+  onClickRead: (notificationId: number, isClickByButton: boolean) => void;
+  onClickDelete: (notificationId: number) => void;
+}) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const isRepresentativeSolo = notification_image_url_list.length === 1;
   const imageUrlList = notification_image_url_list.map((str) => str.split(':'));
-  const mutateRead = usePutNotificationRead(notification_id);
   // eslint-disable-next-line no-constant-condition
   const linkUrl = `${type === 'congressman_party_update' ? 'congressman' : 'bill'}/${target}`;
 
-  const onClickRead = useCallback(() => {
-    mutateRead.mutate();
-  }, []);
-
   return (
-    <section className="flex items-center gap-4">
+    <section className="flex items-center gap-[10px] lg:gap-4">
       <div className="flex items-center gap-1">
         <div className={read ? 'invisible' : ''}>
           <IconAlert />
@@ -69,16 +67,31 @@ export default function Notification({
           </AvatarGroup>
         )}
       </div>
-      <div className="flex flex-col w-full gap-1">
-        <Link href={linkUrl} onClick={onClickRead}>
-          <p className="text-xs font-bold md:text-base ">
-            {title} &nbsp;
-            <span className="text-[10px] md:text-sm font-medium text-gray-2 dark:text-gray-3">
-              {getTimeRemaining(created_date)}
-            </span>
-          </p>
-        </Link>
-        <p className="text-gray-2 dark:text-gray-3 text-[10px] md:text-sm">{content}</p>
+
+      <div className="flex items-center justify-between w-full">
+        <div className="flex flex-col w-full gap-1">
+          <Link href={linkUrl} onClick={() => onClickRead(notification_id, false)}>
+            <p className="text-xs font-bold md:text-base ">
+              {title} &nbsp;
+              <span className="text-[10px] md:text-sm font-medium text-gray-2 dark:text-gray-3">
+                {getTimeRemaining(created_date)}
+              </span>
+            </p>
+          </Link>
+          <p className="text-gray-2 dark:text-gray-3 text-[10px] md:text-sm">{content}</p>
+        </div>
+
+        <Dropdown>
+          <DropdownTrigger>
+            <Button isIconOnly size="sm" className="bg-transparent">
+              <IconKebab isPassed />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu>
+            <DropdownItem onClick={() => onClickRead(notification_id, true)}>읽음 표시</DropdownItem>
+            <DropdownItem onClick={() => onClickDelete(notification_id)}>삭제</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
     </section>
   );
