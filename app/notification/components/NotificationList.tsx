@@ -113,27 +113,27 @@ export default function NotificationList() {
   return (
     <section className="flex flex-col px-5 mt-6 mb-10">
       <div className="mb-[18px] ml-3">
-        {notificationCount?.data.notification_count === 0 ? (
-          <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
-        ) : (
-          <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
+          {notificationCount?.data.notification_count === 0 ? (
+            <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
+          ) : (
             <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
               <span className="text-black dark:text-gray-2">{notificationCount?.data.notification_count}개</span>의 읽지
               않은 알림이 있습니다.
             </p>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" className="bg-transparent">
-                  <IconKebab isPassed />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem onClick={onClickReadAll}>모두 읽기</DropdownItem>
-                <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        )}
+          )}
+          <Dropdown>
+            <DropdownTrigger>
+              <Button isIconOnly size="sm" className="bg-transparent">
+                <IconKebab isPassed />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu>
+              <DropdownItem onClick={onClickReadAll}>모두 읽음 표시</DropdownItem>
+              <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
       </div>
 
       <section className="flex flex-col gap-[14px]">
