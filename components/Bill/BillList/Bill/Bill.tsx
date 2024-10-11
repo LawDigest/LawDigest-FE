@@ -110,7 +110,7 @@ export default function Bill({
     <section className={`flex flex-col  ${detail ? 'md:flex-row items-start' : 'md:mx-5'}`}>
       <Card
         key={bill_id}
-        className={`flex flex-col gap-5 px-5 pt-6 dark:bg-dark-b dark:lg:bg-dark-pb ${detail ? 'md:border-r-[1px] md:dark:border-dark-l lg:border-r-0' : ''}`}
+        className="flex flex-col gap-5 px-5 pt-6 dark:bg-dark-b dark:lg:bg-dark-pb"
         radius="none"
         shadow="none">
         <CardHeader
@@ -248,7 +248,7 @@ export default function Bill({
       </Card>
 
       <div
-        className={`flex flex-col w-full md:w-auto md:flex-col ${detail ? 'lg:border-l lg:dark:border-dark-l' : ''}`}>
+        className={`flex flex-col w-full md:w-auto md:flex-col ${detail ? 'md:border-l md:dark:border-dark-l' : ''}`}>
         <div className="pt-4 pb-6">
           <Card
             className={`flex flex-row h-[78px] mx-5 border-1.5 items-center justify-between px-[18px] dark:bg-gray-4 md:w-[410px] lg:max-w-full lg:w-[490px] md:float-right ${detail ? 'md:w-[360px] lg:float-left' : ''} ${partyName}`}

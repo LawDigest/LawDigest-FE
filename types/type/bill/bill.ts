@@ -50,7 +50,7 @@ export interface BillResponse {
         party_name: string;
         party_image_url: string;
       };
-      approval_count: number;
+      party_approval_count: number;
     }[];
   };
 }

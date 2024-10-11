@@ -6,6 +6,7 @@ import { ProposerList } from '../ProposerList';
 import { ProgressStage } from '../ProgressStage';
 import { AnotherBillList } from '../AnotherBill';
 import { useGetBillDetail } from '../../apis';
+import { ProcessResult } from '../ProcessResult';
 
 export default async function BillDetail({ id, viewCount }: { id: string; viewCount: number }) {
   const queryClient = useQueryClient();
@@ -31,7 +32,13 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
 
           <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
-          <SectionContainer title="법안 처리 결과">법안 처리 결과</SectionContainer>
+          <SectionContainer title="법안 처리 결과">
+            <ProcessResult
+              approval_count={data.vote_result_response.approval_count}
+              total_vote_count={data.vote_result_response.total_vote_count}
+              party_vote_list={data.vote_result_response.party_vote_list}
+            />
+          </SectionContainer>
         </section>
       </Bill>
 
