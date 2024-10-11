@@ -41,6 +41,18 @@ export interface BillResponse {
       party_name: string;
     }[];
   }[];
+  vote_result_response: {
+    approval_count: number;
+    total_vote_count: number;
+    party_vote_list: {
+      party_info: {
+        party_id: number;
+        party_name: string;
+        party_image_url: string;
+      };
+      party_approval_count: number;
+    }[];
+  };
 }
 
 export interface BillProps extends BillResponse {
