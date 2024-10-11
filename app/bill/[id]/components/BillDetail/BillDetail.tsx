@@ -30,6 +30,8 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
           </SectionContainer>
 
           <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+
+          <SectionContainer title="법안 처리 결과">법안 처리 결과</SectionContainer>
         </section>
       </Bill>
 
