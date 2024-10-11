@@ -46,7 +46,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
     <>
       <SearchBarButton />
       <section className="lg:w-[840px] mx-auto">
-        <p className="my-4 text-sm font-medium text-center md:text-base text-gray-2">{`'${decodeURI(id)}'에 대한 검색 결과입니다.`}</p>
+        <p className="mx-5 my-4 text-sm font-medium text-center md:text-base text-gray-2">{`'${decodeURI(id)}'에 대한 검색 결과입니다.`}</p>
         <div className="mb-10">
           <div>
             <h2 className="mx-5 text-lg font-semibold md:text-xl">의원 · 정당</h2>

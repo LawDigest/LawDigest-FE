@@ -1,49 +1,57 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useCallback, useState, useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { searchModalState } from '@/store';
 import { Button, Chip } from '@nextui-org/react';
 import { IconX } from '@/public/svgs';
-import { getCookie, deleteCookie, setCookie } from 'cookies-next';
 import SearchBar from './SearchBar';
 
 export default function SearchModal() {
+  const router = useRouter();
   const searchModal = useRecoilValue(searchModalState);
   const resetSearchModal = useResetRecoilState(searchModalState);
-  const [searchWords, setSearchWords] = useState(getCookie('searchWords') ? getCookie('searchWords')?.split('/') : []);
+  const [recentKeywords, setRecentKeywords] = useState(
+    typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('recentkeywords') || '[]') : [],
+  );
 
   const closeModal = useCallback(() => {
     resetSearchModal();
   }, []);
 
   const onClickRemoveAll = useCallback(() => {
-    setSearchWords([]);
-    deleteCookie('searchWords');
-  }, [searchWords]);
+    setRecentKeywords([]);
+    localStorage.setItem('recentKeywords', JSON.stringify([]));
+  }, [recentKeywords]);
 
-  const onClickRemoveSearchWord = useCallback(
-    (searchWord: string) => {
-      setSearchWords(searchWords?.filter((v) => v !== searchWord));
-      setCookie('searchWords', searchWords?.filter((v) => v !== searchWord).join('/'));
+  const onClickChip = useCallback((searchWord: string) => {
+    router.push(`/search/${searchWord}`);
+    resetSearchModal();
+  }, []);
 
-      if (searchWords?.filter((v) => v !== searchWord).length === 0) {
-        deleteCookie('searchWords');
-      }
+  const onClickRemoveRecentKeyword = useCallback(
+    (keyword: string) => {
+      const newRecentKeywords = recentKeywords.filter((v: string) => v !== keyword);
+      setRecentKeywords(newRecentKeywords);
+      localStorage.setItem('recentKeywords', JSON.stringify(newRecentKeywords));
     },
-    [searchWords],
+    [recentKeywords],
   );
 
   useEffect(() => {
-    setSearchWords(getCookie('searchWords') ? getCookie('searchWords')?.split('/') : []);
+    if (typeof window !== 'undefined') {
+      setRecentKeywords(JSON.parse(localStorage.getItem('recentKeywords') || '[]'));
+    }
   }, [searchModal]);
 
   useEffect(() => {
-    if (searchWords && searchWords.length > 10) {
-      setSearchWords(searchWords.slice(1));
-      setCookie('searchWords', searchWords.slice(1).join('/'));
+    if (recentKeywords.length > 10) {
+      const newRecentKeywords = recentKeywords.slice(1);
+      setRecentKeywords(newRecentKeywords);
+      localStorage.setItem('recentKeywords', JSON.stringify(newRecentKeywords));
     }
-  }, [searchWords]);
+  }, [recentKeywords]);
 
   return (
     <section
@@ -55,7 +63,7 @@ export default function SearchModal() {
               <IconX />
             </Button>
           </div>
-          <SearchBar setSearchWords={setSearchWords} />
+          <SearchBar setRecentKeywords={setRecentKeywords} />
 
           <section className="flex flex-col gap-7">
             <div className="flex items-center justify-between">
@@ -68,16 +76,17 @@ export default function SearchModal() {
               </Button>
             </div>
             <div className="flex gap-[10px] flex-wrap">
-              {searchWords && searchWords.length > 0 ? (
-                searchWords.map((searchWord) => (
+              {recentKeywords && recentKeywords.length > 0 ? (
+                recentKeywords.map((keyword: string) => (
                   <Chip
-                    key={searchWord}
+                    key={keyword}
                     variant="bordered"
                     className="h-7 md:h-8 border-gray-2 border-1 text-gray-3 dark:text-gray-2 dark:border-gray-3"
+                    onClick={() => onClickChip(keyword)}
                     onClose={() => {
-                      onClickRemoveSearchWord(searchWord);
+                      onClickRemoveRecentKeyword(keyword);
                     }}>
-                    {searchWord}
+                    <p className="cursor-pointer max-w-[280px] truncate">{keyword}</p>
                   </Chip>
                 ))
               ) : (

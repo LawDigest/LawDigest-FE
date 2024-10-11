@@ -6,6 +6,7 @@ import {
   getNotificationCount,
   putNotificationRead,
   putNotificationReadAll,
+  deleteNotification,
   deleteNotificationAll,
 } from './apis';
 
@@ -21,12 +22,23 @@ export const useGetNotificationCount = () =>
     queryFn: () => getNotificationCount(),
   });
 
-export const usePutNotificationRead = (notificationId: number) => {
+export const usePutNotificationRead = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ['/notification/user/read'],
-    mutationFn: () => putNotificationRead(notificationId),
+    mutationFn: (notificationId: number) => putNotificationRead(notificationId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/notification/user'] });
+      queryClient.invalidateQueries({ queryKey: ['/notification/user/count'] });
+    },
+  });
+};
+
+export const useDeleteNotification = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (notificationId: number) => deleteNotification(notificationId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/notification/user'] });
       queryClient.invalidateQueries({ queryKey: ['/notification/user/count'] });

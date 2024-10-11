@@ -34,7 +34,7 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
       </Bill>
 
       <div className="md:w-[calc(100%-400px)] lg:w-[calc(100%-530px)] border-r-[1px] md:dark:border-dark-l px-4 pt-[34px]">
-        <SectionContainer title="다른 개정안 보기">
+        <SectionContainer>
           <AnotherBillList {...data} />
         </SectionContainer>
       </div>

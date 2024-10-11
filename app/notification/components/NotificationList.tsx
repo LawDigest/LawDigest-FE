@@ -9,7 +9,9 @@ import { snackbarState } from '@/store';
 import {
   useGetNotificationCount,
   useGetNotification,
+  usePutNotificationRead,
   usePutNotificationReadAll,
+  useDeleteNotification,
   useDeleteNotificationAll,
 } from '../apis';
 import Notification from './Notification';
@@ -60,6 +62,8 @@ export default function NotificationList() {
   const { data: notificationCount } = useGetNotificationCount();
   const { data: notifications } = useGetNotification();
   const setSnackbar = useSetRecoilState(snackbarState);
+  const mutateRead = usePutNotificationRead();
+  const mutateDelete = useDeleteNotification();
   const mutateReadAll = usePutNotificationReadAll();
   const mutateDeleteAll = useDeleteNotificationAll();
   const [listByDateStatus, setListByDateStatus] = useState(() =>
@@ -90,6 +94,34 @@ export default function NotificationList() {
     }
   }, [notifications]);
 
+  const onClickRead = useCallback(
+    (notificationId: number, isClickByButton: boolean) => {
+      mutateRead.mutate(notificationId);
+      if (isClickByButton) {
+        setSnackbar({
+          show: true,
+          type: 'SUCCESS',
+          message: '해당 알림을 읽었습니다.',
+          duration: 3000,
+        });
+      }
+    },
+    [mutateRead],
+  );
+
+  const onClickDelete = useCallback(
+    (notificationId: number) => {
+      mutateDelete.mutate(notificationId);
+      setSnackbar({
+        show: true,
+        type: 'CANCEL',
+        message: '해당 알림을 삭제했습니다.',
+        duration: 3000,
+      });
+    },
+    [mutateDelete],
+  );
+
   const onClickReadAll = useCallback(() => {
     mutateReadAll.mutate();
     setSnackbar({
@@ -98,42 +130,42 @@ export default function NotificationList() {
       message: '알림을 모두 읽었습니다.',
       duration: 3000,
     });
-  }, []);
+  }, [mutateReadAll]);
 
   const onClickDeleteAll = useCallback(() => {
     mutateDeleteAll.mutate();
     setSnackbar({
       show: true,
-      type: 'SUCCESS',
+      type: 'CANCEL',
       message: '알림을 모두 삭제했습니다.',
       duration: 3000,
     });
-  }, []);
+  }, [mutateDeleteAll]);
 
   return (
     <section className="flex flex-col px-5 mt-6 mb-10">
       <div className="mb-[18px] ml-3">
-        {notificationCount?.data.notification_count === 0 ? (
-          <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
-        ) : (
-          <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between">
+          {notificationCount?.data.notification_count === 0 ? (
+            <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
+          ) : (
             <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
               <span className="text-black dark:text-gray-2">{notificationCount?.data.notification_count}개</span>의 읽지
               않은 알림이 있습니다.
             </p>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" className="bg-transparent">
-                  <IconKebab isPassed />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem onClick={onClickReadAll}>모두 읽기</DropdownItem>
-                <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        )}
+          )}
+          <Dropdown>
+            <DropdownTrigger>
+              <Button isIconOnly size="sm" className="bg-transparent">
+                <IconKebab isPassed />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu>
+              <DropdownItem onClick={onClickReadAll}>모두 읽음 표시</DropdownItem>
+              <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
       </div>
 
       <section className="flex flex-col gap-[14px]">
@@ -144,7 +176,12 @@ export default function NotificationList() {
               <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 주 알림이 없습니다.</p>
             ) : (
               listByDateStatus[0].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>
@@ -159,7 +196,12 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[1].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>
@@ -174,7 +216,12 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[2].map((notification) => (
-                <Notification key={notification.notification_id} {...notification} />
+                <Notification
+                  key={notification.notification_id}
+                  {...notification}
+                  onClickRead={onClickRead}
+                  onClickDelete={onClickDelete}
+                />
               ))
             ))}
         </div>

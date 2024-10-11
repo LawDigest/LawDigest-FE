@@ -18,7 +18,7 @@ export default function BillList({
   feedType?: ValueOf<typeof FEED_TAB>;
 }) {
   return (
-    <>
+    <section className="xl:w-[840px]">
       {bills.map((bill, index) => (
         <Bill key={`${bill.bill_info_dto.bill_id + index}`} {...bill} detail={detail} />
       ))}
@@ -28,6 +28,6 @@ export default function BillList({
         </div>
       )}
       <div ref={fetchRef} />
-    </>
+    </section>
   );
 }

@@ -6,12 +6,11 @@ import { IconSearchbar } from '@/public/svgs';
 import { Button, Input } from '@nextui-org/react';
 import { useResetRecoilState, useRecoilValue } from 'recoil';
 import { searchModalState } from '@/store';
-import { getCookie, setCookie } from 'cookies-next';
 
 export default function SearchBar({
-  setSearchWords,
+  setRecentKeywords,
 }: {
-  setSearchWords: Dispatch<SetStateAction<string[] | undefined>>;
+  setRecentKeywords: Dispatch<SetStateAction<string[] | undefined>>;
 }) {
   const router = useRouter();
   const [value, setValue] = useState('');
@@ -21,27 +20,19 @@ export default function SearchBar({
   const onSubmitSearch = useCallback(
     (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
+      const newKeyword = value.trim();
 
-      if (value.trim() !== '') {
-        const searchWords = getCookie('searchWords');
-        if (searchWords?.split('/').find((v) => v === value.trim())) {
-          setCookie(
-            'searchWords',
-            searchWords
-              ?.split('/')
-              .filter((v) => v !== value.trim())
-              .concat([value.trim()])
-              .join('/'),
-          );
-          setSearchWords(
-            searchWords
-              ?.split('/')
-              .filter((v) => v !== value.trim())
-              .concat([value.trim()]),
-          );
+      if (newKeyword !== '') {
+        const recentKeywords = JSON.parse(localStorage.getItem('recentKeywords') || '[]');
+
+        if (recentKeywords.find((v: string) => v === newKeyword)) {
+          const newRecentKeywords = [...recentKeywords.filter((v: string) => v !== newKeyword), newKeyword];
+          localStorage.setItem('recentKeywords', JSON.stringify(newRecentKeywords));
+          setRecentKeywords(newRecentKeywords);
         } else {
-          setCookie('searchWords', searchWords ? searchWords.concat(`/${value.trim()}`) : value.trim());
-          setSearchWords(searchWords?.split('/').concat([value.trim()]));
+          const newRecentKeywords = [...recentKeywords, newKeyword];
+          localStorage.setItem('recentKeywords', JSON.stringify(newRecentKeywords));
+          setRecentKeywords(newRecentKeywords);
         }
 
         router.push(`/search/${value.trim()}`);
