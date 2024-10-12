@@ -5,7 +5,7 @@ import { fontSans } from '@/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
 import { QueryClientProvider, NextUIProvider, NextThemesProvider, RecoilRootProvider } from '@/lib/provider';
-import { Loading, Snackbar } from '@/components';
+import { GoToTopButton, Loading, Snackbar } from '@/components';
 import SearchModal from '@/components/common/SearchBar/SearchModal';
 
 export const metadata: Metadata = {
@@ -74,6 +74,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                       {children}
                       <SearchModal />
                       <Snackbar />
+                      <GoToTopButton />
                     </Suspense>
                   </main>
                 </div>
