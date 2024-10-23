@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useIntersect } from '@/hooks';
 import { Spinner } from '@nextui-org/spinner';
+import { convertDateFormat } from '@/utils';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
 import CommitteeAuditList from './CommitteeAuditList';
@@ -26,10 +27,11 @@ export default function ListContainer() {
   }, [data]);
 
   return (
-    <section>
+    <section className="px-5 my-6">
       <div>
         {feed.map((day) => (
           <div key={day.date}>
+            <h2>{convertDateFormat(day.date).join('.')}</h2>
             <PlenaryList />
             <PromulgationList />
             <CommitteeAuditList />

@@ -1,5 +1,3 @@
-// 'use client';
-
 import { TimelineBoard, ListContainer } from './components';
 
 export default function Timeline() {
