@@ -20,6 +20,9 @@ import IconArrowUp from './ArrowUp';
 import IconCheck from './Check';
 import IconX from './X';
 import IconAlert from './Alert';
+import IconPrev from './Prev';
+import IconNext from './Next';
+import IconEnter from './Enter';
 
 export {
   IconEmail,
@@ -44,4 +47,7 @@ export {
   IconCheck,
   IconX,
   IconAlert,
+  IconPrev,
+  IconNext,
+  IconEnter,
 };

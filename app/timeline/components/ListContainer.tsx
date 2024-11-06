@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useIntersect } from '@/hooks';
 import { Spinner } from '@nextui-org/spinner';
 import { convertDateFormat } from '@/utils';
+import { Divider } from '@nextui-org/react';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
 import CommitteeAuditList from './CommitteeAuditList';
@@ -27,14 +28,28 @@ export default function ListContainer() {
   }, [data]);
 
   return (
-    <section className="px-5 my-6">
-      <div>
-        {feed.map((day) => (
-          <div key={day.date}>
-            <h2>{convertDateFormat(day.date).join('.')}</h2>
-            <PlenaryList />
-            <PromulgationList />
-            <CommitteeAuditList />
+    <section className="px-5 my-6 lg:w-[640px] mx-auto">
+      <div className="flex flex-col">
+        <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
+        {feed.map(({ date, plenary_list, promulgation_list, committee_audit_list }) => (
+          <div key={date} className="flex gap-6">
+            <Divider orientation="vertical" className="w-[2px] h-auto" />
+            <div className="w-full pb-10">
+              <div className="relative">
+                <div className="w-[25px] h-[25px] bg-gray-1 dark:bg-gray-3 absolute rounded-full border-black border top-5 -left-[38px]" />
+                <h2 className="flex items-baseline gap-2">
+                  <span className="text-[42px]">
+                    {convertDateFormat(date)[0]}.{convertDateFormat(date)[1]}
+                  </span>
+                  <span className="text-[22px]">{convertDateFormat(date)[2]}</span>
+                </h2>
+              </div>
+              <div className="flex flex-col gap-5">
+                <PlenaryList plenary_list={plenary_list} />
+                <PromulgationList promulgation_list={promulgation_list} />
+                <CommitteeAuditList committee_audit_list={committee_audit_list} />
+              </div>
+            </div>
           </div>
         ))}
       </div>
