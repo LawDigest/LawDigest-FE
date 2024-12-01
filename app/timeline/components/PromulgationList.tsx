@@ -24,7 +24,7 @@ export default function PromulgationList({
   }[];
 }) {
   // 법안공포
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -88,7 +88,7 @@ export default function PromulgationList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : promulgation_list.length - 1))}>
                   <IconPrev />
                 </Button>
                 <div className="flex flex-col gap-2">
@@ -108,7 +108,7 @@ export default function PromulgationList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev < promulgation_list.length - 1 ? prev + 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev < promulgation_list.length - 1 ? prev + 1 : 0))}>
                   <IconNext />
                 </Button>
               </div>
@@ -127,7 +127,7 @@ export default function PromulgationList({
           <div className="flex justify-center">
             <Pagination
               total={promulgation_list.length}
-              page={currentPage}
+              page={currentPage + 1}
               onChange={setCurrentPage}
               classNames={{
                 item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',

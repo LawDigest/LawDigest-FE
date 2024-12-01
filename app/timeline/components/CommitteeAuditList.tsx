@@ -28,7 +28,7 @@ export default function CommitteeAuditList({
   }[];
 }) {
   // 위원회심사
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const { isOpen: isOpenIndividual, onOpen: onOpenIndividual, onClose: onCloseIndividual } = useDisclosure();
   const { isOpen: isOpenAll, onOpen: onOpenAll, onClose: onCloseAll } = useDisclosure();
 
@@ -96,7 +96,7 @@ export default function CommitteeAuditList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : committee_audit_list.length - 1))}>
                   <IconPrev />
                 </Button>
                 <div className="flex flex-col gap-5">
@@ -163,7 +163,7 @@ export default function CommitteeAuditList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev < committee_audit_list.length - 1 ? prev + 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev < committee_audit_list.length - 1 ? prev + 1 : 0))}>
                   <IconNext />
                 </Button>
               </div>
@@ -182,7 +182,7 @@ export default function CommitteeAuditList({
           <div className="flex justify-center">
             <Pagination
               total={committee_audit_list.length}
-              page={currentPage}
+              page={currentPage + 1}
               onChange={setCurrentPage}
               classNames={{
                 item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',

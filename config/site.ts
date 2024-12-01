@@ -1,4 +1,4 @@
-import { IconFollowing, IconHome, IconMyPage } from '@/public/svgs';
+import { IconFollowing, IconHome, IconMyPage, IconTimeline } from '@/public/svgs';
 
 export type SiteConfig = typeof siteConfig;
 
@@ -21,6 +21,11 @@ export const siteConfig = {
       label: '피드',
       href: '/',
       IconComponent: IconHome,
+    },
+    {
+      label: '타임라인',
+      href: '/timeline',
+      IconComponent: IconTimeline,
     },
     {
       label: '팔로잉',
