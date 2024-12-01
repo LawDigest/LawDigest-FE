@@ -24,7 +24,7 @@ export default function PromulgationList({
   }[];
 }) {
   // 법안공포
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -129,9 +129,8 @@ export default function PromulgationList({
               total={promulgation_list.length}
               page={currentPage}
               onChange={setCurrentPage}
-              siblings={20}
               classNames={{
-                item: 'w-[6px] h-[6px] text-transparent bg-gray-1',
+                item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
                 cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
               }}
             />
