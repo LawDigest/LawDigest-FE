@@ -102,7 +102,7 @@ export default function PlenaryList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : plenary_list.length - 1))}>
                   <IconPrev />
                 </Button>
                 <div className="flex flex-col gap-2">
@@ -124,7 +124,7 @@ export default function PlenaryList({
                   isIconOnly
                   size="sm"
                   className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev < plenary_list.length - 1 ? prev + 1 : prev))}>
+                  onPress={() => setCurrentPage((prev) => (prev < plenary_list.length - 1 ? prev + 1 : 0))}>
                   <IconNext />
                 </Button>
               </div>
@@ -143,11 +143,10 @@ export default function PlenaryList({
           <div className="flex justify-center">
             <Pagination
               total={plenary_list.length}
-              color="secondary"
-              page={currentPage}
+              page={currentPage + 1}
               onChange={setCurrentPage}
               classNames={{
-                item: 'w-[6px] h-[6px]',
+                item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
                 cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
               }}
             />
