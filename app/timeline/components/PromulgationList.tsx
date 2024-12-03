@@ -56,7 +56,9 @@ export default function PromulgationList({
                         />
                       </Link>
                       <div className="flex flex-col gap-1">
-                        <p className="text-xs font-bold">{bill_brief_summary}</p>
+                        <Link href={`/bill/${promulgation_list[currentPage].bill_id}`}>
+                          <p className="text-xs font-bold">{bill_brief_summary}</p>
+                        </Link>
                         <p className="text-xs font-semibold text-gray-2">{bill_proposers}</p>
                       </div>
                     </div>
@@ -92,7 +94,9 @@ export default function PromulgationList({
                   <IconPrev />
                 </Button>
                 <div className="flex flex-col gap-2">
-                  <p className="text-sm font-bold">{promulgation_list[currentPage].bill_brief_summary}</p>
+                  <Link href={`/bill/${promulgation_list[currentPage].bill_id}`}>
+                    <p className="text-sm font-bold">{promulgation_list[currentPage].bill_brief_summary}</p>
+                  </Link>
                   <div className="flex items-center gap-[6px]">
                     <Chip
                       variant="bordered"
