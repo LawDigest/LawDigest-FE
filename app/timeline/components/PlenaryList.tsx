@@ -107,7 +107,7 @@ export default function PlenaryList({
                   onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : plenary_list.length - 1))}>
                   <IconPrev />
                 </Button>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col w-full gap-2">
                   <Link href={`/bill/${plenary_list[currentPage].bill_info.bill_id}`}>
                     <p className="text-sm font-bold">{plenary_list[currentPage].bill_info.bill_brief_summary}</p>
                   </Link>

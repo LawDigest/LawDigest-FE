@@ -93,7 +93,7 @@ export default function PromulgationList({
                   onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : promulgation_list.length - 1))}>
                   <IconPrev />
                 </Button>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col w-full gap-2">
                   <Link href={`/bill/${promulgation_list[currentPage].bill_id}`}>
                     <p className="text-sm font-bold">{promulgation_list[currentPage].bill_brief_summary}</p>
                   </Link>

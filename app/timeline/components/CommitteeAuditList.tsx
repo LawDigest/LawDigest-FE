@@ -99,7 +99,7 @@ export default function CommitteeAuditList({
                   onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : committee_audit_list.length - 1))}>
                   <IconPrev />
                 </Button>
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col w-full gap-5">
                   <div className="flex items-center">
                     <p className="text-xs font-medium text-gray-2">
                       심사한 법안 <span className="text-black">{committee_audit_list[currentPage].bill_count}개</span>
