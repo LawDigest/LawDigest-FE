@@ -158,11 +158,11 @@ export default function PlenaryList({
         )}
       </div>
 
-      {plenary_list.length !== 0 && plenary_list[0].party_vote_list && (
+      {plenary_list.length !== 0 && plenary_list[currentPage].party_vote_list && (
         <ProcessResult
-          approval_count={plenary_list[0].approval_vote_count}
-          total_vote_count={plenary_list[0].total_vote_count}
-          party_vote_list={plenary_list[0].party_vote_list}
+          approval_count={plenary_list[currentPage].approval_vote_count}
+          total_vote_count={plenary_list[currentPage].total_vote_count}
+          party_vote_list={plenary_list[currentPage].party_vote_list}
         />
       )}
     </div>
