@@ -32,7 +32,7 @@ export default function ProcessResult({
     <Card
       className="flex-row"
       classNames={{
-        base: [`lg:shadow-none dark:lg:bg-dark-pb`],
+        base: [`dark:lg:bg-dark-pb`],
       }}>
       <CardHeader className="flex flex-col justify-center gap-1 basis-1/2">
         <p className="lg:text-xl">원안가결</p>
