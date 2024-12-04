@@ -63,7 +63,10 @@ export default function ProcessResult({
               <Link href={`/party/${party_id}`}>
                 <p className="text-xs font-semibold lg:text-sm text-gray-2 dark:text-gray-1">{party_name}</p>
               </Link>
-              <p className="text-xs lg:text-sm font-medium w-[32px] lg:w-[40px]">{party_approval_count}표</p>
+              <p className="text-xs lg:text-sm font-medium w-[32px] lg:w-[40px]">
+                {party_approval_count}
+                <span className="font-light">표</span>
+              </p>
             </div>
           ))}
       </CardBody>
