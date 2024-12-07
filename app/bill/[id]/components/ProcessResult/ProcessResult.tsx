@@ -25,9 +25,7 @@ export default function ProcessResult({
   const isDark = theme === 'dark';
 
   return approval_count === null ? (
-    <p className="text-sm text-gray-2 md:h-[200px] lg:h-auto lg:text-base dark:text-gray-3">
-      아직 투표가 진행되지 않았습니다.
-    </p>
+    <p className="text-sm text-gray-2 md:h-[200px] lg:h-auto lg:text-base dark:text-gray-3">투표 정보가 없습니다.</p>
   ) : (
     <Card
       className="flex-row"
@@ -50,7 +48,7 @@ export default function ProcessResult({
                 href={`/party/${party_id}`}
                 className={`flex items-center justify-center w-8 h-8 rounded-full shadow-lg shrink-0 border-1.5 ${party_name}`}>
                 {party_name === '무소속' ? (
-                  <div className="text-xs font-medium text-black">무소속</div>
+                  <div className="text-xs font-medium text-black">무</div>
                 ) : (
                   <Image
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
