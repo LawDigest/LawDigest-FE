@@ -48,7 +48,7 @@ export default function ProcessResult({
                 href={`/party/${party_id}`}
                 className={`flex items-center justify-center w-8 h-8 rounded-full shadow-lg shrink-0 border-1.5 ${party_name}`}>
                 {party_name === '무소속' ? (
-                  <div className="text-xs font-medium text-black">무소속</div>
+                  <div className="text-xs font-medium text-black">무</div>
                 ) : (
                   <Image
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
