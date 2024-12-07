@@ -28,7 +28,7 @@ export default function ListContainer() {
   }, [data]);
 
   return (
-    <section className="px-5 my-6 lg:w-[640px] mx-auto">
+    <section className="px-5 my-6 md:w-[640px] lg:w-[720px] xl:w-[840px] mx-auto">
       <div className="flex flex-col">
         <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
         {feed.map(({ date, plenary_list, promulgation_list, committee_audit_list }) => (
@@ -45,9 +45,11 @@ export default function ListContainer() {
                 </h2>
               </div>
               <div className="flex flex-col gap-5">
-                <PlenaryList plenary_list={plenary_list} />
-                <PromulgationList promulgation_list={promulgation_list} />
-                <CommitteeAuditList committee_audit_list={committee_audit_list} />
+                {plenary_list.length !== 0 && <PlenaryList plenary_list={plenary_list} />}
+                {promulgation_list.length !== 0 && <PromulgationList promulgation_list={promulgation_list} />}
+                {committee_audit_list.length !== 0 && (
+                  <CommitteeAuditList committee_audit_list={committee_audit_list} />
+                )}
               </div>
             </div>
           </div>
