@@ -2,12 +2,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 import { Card, CardBody, Chip, Pagination, Button, useDisclosure } from '@nextui-org/react';
 import { ProcessResult } from '@/app/bill/[id]/components';
 import { useState } from 'react';
 import { IconEnter, IconNext, IconPrev } from '@/public/svgs';
 import TimelineModal from './TimelineModal';
-import { useTheme } from 'next-themes';
 
 export default function PlenaryList({
   plenary_list,

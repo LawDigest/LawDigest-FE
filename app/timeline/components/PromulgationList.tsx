@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 import { Card, CardBody, Chip, Pagination, Button, useDisclosure } from '@nextui-org/react';
 import { useState } from 'react';
 import { IconNext, IconPrev, IconEnter } from '@/public/svgs';
 import TimelineModal from './TimelineModal';
-import { useTheme } from 'next-themes';
 
 export default function PromulgationList({
   promulgation_list,
