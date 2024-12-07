@@ -15,7 +15,7 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
   return (
     <section>
       <Bill {...data} detail viewCount={viewCount}>
-        <section className="md:w-[360px] lg:w-[490px] md:float-right flex flex-col gap-[34px] mt-[34px]">
+        <section className="md:w-[300px] lg:w-[490px] md:float-right flex flex-col gap-[34px] mt-[34px]">
           <SectionContainer title="발의자 명단">
             <ProposerList
               representativeProposerList={data.representative_proposer_dto_list}
@@ -42,7 +42,7 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
         </section>
       </Bill>
 
-      <div className="md:w-[calc(100%-400px)] lg:w-[calc(100%-530px)] border-r-[1px] md:dark:border-dark-l px-4 pt-[34px]">
+      <div className="md:w-[calc(100%-340px)] lg:w-[calc(100%-530px)] border-r-[1px] md:dark:border-dark-l px-4 pt-[34px]">
         <SectionContainer>
           <AnotherBillList {...data} />
         </SectionContainer>
