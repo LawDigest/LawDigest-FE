@@ -28,7 +28,7 @@ export default function ListContainer() {
   }, [data]);
 
   return (
-    <section className="px-5 my-6 lg:w-[640px] mx-auto">
+    <section className="px-5 my-6 md:w-[640px] lg:w-[720px] xl:w-[840px] mx-auto">
       <div className="flex flex-col">
         <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
         {feed.map(({ date, plenary_list, promulgation_list, committee_audit_list }) => (

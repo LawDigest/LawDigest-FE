@@ -6,6 +6,7 @@ import { Card, CardBody, CardHeader, Pagination, Button, useDisclosure } from '@
 import { useState } from 'react';
 import { IconEnter, IconNext, IconPrev } from '@/public/svgs';
 import TimelineModal from './TimelineModal';
+import { useTheme } from 'next-themes';
 
 export default function CommitteeAuditList({
   committee_audit_list,
@@ -31,18 +32,20 @@ export default function CommitteeAuditList({
   const [currentPage, setCurrentPage] = useState(0);
   const { isOpen: isOpenIndividual, onOpen: onOpenIndividual, onClose: onCloseIndividual } = useDisclosure();
   const { isOpen: isOpenAll, onOpen: onOpenAll, onClose: onCloseAll } = useDisclosure();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <section className="flex flex-col gap-5">
       <div className="relative">
-        <div className="bg-gray-3 w-[10px] h-[10px] rounded-full border border-black absolute -left-[30px] top-4" />
+        <div className="bg-gray-3 dark:bg-gray-4 w-[10px] h-[10px] rounded-full border border-black absolute -left-[30px] top-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-[26px] font-extralight">위원회 심사</h3>
           {committee_audit_list.length !== 0 && (
             <div className="flex items-center">
-              <p className="text-sm font-medium text-gray-2">
+              <p className="text-sm font-medium text-gray-2 dark:text-gray-3">
                 심의한 법안{' '}
-                <span className="text-black">
+                <span className="text-black dark:text-white">
                   {committee_audit_list.reduce((pre, cur) => pre + cur.bill_outline_dto_list.length, 0)}개
                 </span>
               </p>
@@ -61,7 +64,7 @@ export default function CommitteeAuditList({
                               href={`/party/${party_info[0].party_id}`}
                               className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
                               <Image
-                                src={process.env.NEXT_PUBLIC_IMAGE_URL + party_info[0].party_image_url}
+                                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
                                 alt={`${party_info[0].party_name} 로고 이미지`}
                                 width={22}
                                 height={22}
@@ -69,7 +72,7 @@ export default function CommitteeAuditList({
                             </Link>
                             <div className="flex flex-col gap-1">
                               <p className="text-xs font-bold">{bill_brief_summary}</p>
-                              <p className="text-xs font-semibold text-gray-2">{bill_proposers}</p>
+                              <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
                             </div>
                           </div>
                         ))}
@@ -101,8 +104,11 @@ export default function CommitteeAuditList({
                 </Button>
                 <div className="flex flex-col w-full gap-5">
                   <div className="flex items-center">
-                    <p className="text-xs font-medium text-gray-2">
-                      심사한 법안 <span className="text-black">{committee_audit_list[currentPage].bill_count}개</span>
+                    <p className="text-xs font-medium text-gray-2 dark:text-gray-3">
+                      심사한 법안{' '}
+                      <span className="text-black dark:text-white">
+                        {committee_audit_list[currentPage].bill_count}개
+                      </span>
                     </p>
                     <Button
                       isIconOnly
@@ -120,7 +126,7 @@ export default function CommitteeAuditList({
                                 href={`/party/${party_info[0].party_id}`}
                                 className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
                                 <Image
-                                  src={process.env.NEXT_PUBLIC_IMAGE_URL + party_info[0].party_image_url}
+                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
                                   alt={`${party_info[0].party_name} 로고 이미지`}
                                   width={22}
                                   height={22}
@@ -130,7 +136,7 @@ export default function CommitteeAuditList({
                                 <Link href={`/bill/${bill_id}`}>
                                   <p className="text-xs font-bold">{bill_brief_summary}</p>
                                 </Link>
-                                <p className="text-xs font-semibold text-gray-2">{bill_proposers}</p>
+                                <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
                               </div>
                             </div>
                           ),
@@ -147,7 +153,7 @@ export default function CommitteeAuditList({
                             href={`/party/${party_info[0].party_id}`}
                             className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
                             <Image
-                              src={process.env.NEXT_PUBLIC_IMAGE_URL + party_info[0].party_image_url}
+                              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
                               alt={`${party_info[0].party_name} 로고 이미지`}
                               width={22}
                               height={22}
@@ -157,7 +163,7 @@ export default function CommitteeAuditList({
                             <Link href={`/bill/${bill_id}`}>
                               <p className="text-xs font-bold">{bill_brief_summary}</p>
                             </Link>
-                            <p className="text-xs font-semibold text-gray-2">{bill_proposers}</p>
+                            <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
                           </div>
                         </div>
                       ))}
