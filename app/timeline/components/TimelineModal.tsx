@@ -10,11 +10,7 @@ export default function TimelineModal({
   children: React.ReactNode;
 }) {
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      className="max-h-[70%]"
-      classNames={{ wrapper: ['items-center sm:w-screen w-[340px] mx-auto'] }}>
+    <Modal isOpen={isOpen} onClose={onClose} className="max-h-[70%]">
       <ModalContent>
         <ModalHeader>심사한 법안</ModalHeader>
         <ModalBody className="overflow-y-scroll">{children}</ModalBody>
