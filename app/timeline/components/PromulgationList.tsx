@@ -76,7 +76,7 @@ export default function PromulgationList({
         <Card className="z-10 overflow-visible">
           <CardBody className="py-3 overflow-visible">
             {promulgation_list.length !== 0 ? (
-              <div className="flex items-center justify-between ">
+              <div>
                 <Link
                   href={`/party/${promulgation_list[currentPage].party_info[0].party_id}`}
                   className={`absolute -left-[39px] flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${promulgation_list[currentPage].party_info[0].party_name}`}>
@@ -87,13 +87,6 @@ export default function PromulgationList({
                     height={22}
                   />
                 </Link>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : promulgation_list.length - 1))}>
-                  <IconPrev />
-                </Button>
                 <div className="flex flex-col w-full gap-2">
                   <Link href={`/bill/${promulgation_list[currentPage].bill_id}`}>
                     <p className="text-sm font-bold">{promulgation_list[currentPage].bill_brief_summary}</p>
@@ -111,13 +104,6 @@ export default function PromulgationList({
                     </p>
                   </div>
                 </div>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev < promulgation_list.length - 1 ? prev + 1 : 0))}>
-                  <IconNext />
-                </Button>
               </div>
             ) : (
               <p className="text-sm font-bold text-center">공포된 법안이 없습니다.</p>
@@ -131,7 +117,14 @@ export default function PromulgationList({
           <CardBody />
         </Card>
         {promulgation_list.length !== 0 && (
-          <div className="flex justify-center">
+          <div className="flex items-center justify-between">
+            <Button
+              isIconOnly
+              size="sm"
+              className="p-0 bg-transparent"
+              onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : promulgation_list.length - 1))}>
+              <IconPrev />
+            </Button>
             <Pagination
               total={promulgation_list.length}
               page={currentPage + 1}
@@ -141,6 +134,13 @@ export default function PromulgationList({
                 cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
               }}
             />
+            <Button
+              isIconOnly
+              size="sm"
+              className="p-0 bg-transparent"
+              onPress={() => setCurrentPage((prev) => (prev < promulgation_list.length - 1 ? prev + 1 : 0))}>
+              <IconNext />
+            </Button>
           </div>
         )}
       </div>

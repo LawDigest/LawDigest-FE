@@ -89,7 +89,7 @@ export default function PlenaryList({
         <Card className="z-10 overflow-visible">
           <CardBody className="py-3 overflow-visible">
             {plenary_list.length !== 0 ? (
-              <div className="flex items-center justify-between">
+              <div>
                 <Link
                   href={`/party/${plenary_list[currentPage].bill_info.party_info[0].party_id}`}
                   className={`absolute -left-[39px] flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${plenary_list[currentPage].bill_info.party_info[0].party_name}`}>
@@ -100,13 +100,6 @@ export default function PlenaryList({
                     height={22}
                   />
                 </Link>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : plenary_list.length - 1))}>
-                  <IconPrev />
-                </Button>
                 <div className="flex flex-col w-full gap-2">
                   <Link href={`/bill/${plenary_list[currentPage].bill_info.bill_id}`}>
                     <p className="text-sm font-bold">{plenary_list[currentPage].bill_info.bill_brief_summary}</p>
@@ -124,13 +117,6 @@ export default function PlenaryList({
                     </p>
                   </div>
                 </div>
-                <Button
-                  isIconOnly
-                  size="sm"
-                  className="p-0 bg-transparent"
-                  onPress={() => setCurrentPage((prev) => (prev < plenary_list.length - 1 ? prev + 1 : 0))}>
-                  <IconNext />
-                </Button>
               </div>
             ) : (
               <p className="text-sm font-bold text-center">심의한 법안이 없습니다.</p>
@@ -144,7 +130,14 @@ export default function PlenaryList({
           <CardBody />
         </Card>
         {plenary_list.length !== 0 && (
-          <div className="flex justify-center">
+          <div className="flex items-center justify-between">
+            <Button
+              isIconOnly
+              size="sm"
+              className="p-0 bg-transparent"
+              onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : plenary_list.length - 1))}>
+              <IconPrev />
+            </Button>
             <Pagination
               total={plenary_list.length}
               page={currentPage + 1}
@@ -154,6 +147,13 @@ export default function PlenaryList({
                 cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
               }}
             />
+            <Button
+              isIconOnly
+              size="sm"
+              className="p-0 bg-transparent"
+              onPress={() => setCurrentPage((prev) => (prev < plenary_list.length - 1 ? prev + 1 : 0))}>
+              <IconNext />
+            </Button>
           </div>
         )}
       </div>
