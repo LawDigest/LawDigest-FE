@@ -1,12 +1,12 @@
 import { BillProps } from '@/types';
 import { AnotherBill } from '.';
 
-export default function AnotherBillList({ similar_bills }: BillProps) {
+export default function AnotherBillList({ bill_info_dto, similar_bills }: BillProps) {
   return (
     <section className="flex flex-col gap-4 lg:gap-6">
       <div>
         <h3 className="mb-2 text-2xl font-semibold lg:mb-0">
-          <span className="text-gray-3 dark:text-gray-2">{similar_bills[0].billName}</span>의 다른 개정안 보기
+          <span className="text-gray-3 dark:text-gray-2">{bill_info_dto.bill_name}</span>의 다른 개정안 보기
         </h3>
       </div>
       {similar_bills.length === 0 && (

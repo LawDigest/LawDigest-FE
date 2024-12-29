@@ -7,7 +7,7 @@ export default function TimelineBoard() {
       classNames={{
         base: ['shadow-[0_4px_6px_-2px_rgba(0,_0,_0,_0.1)] md:shadow-[0_0_6px_rgba(0,_0,_0,_0.1)]'],
       }}
-      className="w-full md:border mx-auto bg-transparent md:mt-10 md:mb-6 md:w-[708px] md:pt-3 md:rounded-xl dark:bg-primary-3">
+      className="w-full border-b md:border dark:border-dark-l mx-auto bg-transparent md:dark:bg-primary-3 md:mt-10 md:mb-6 md:w-[708px] md:pt-3 md:rounded-xl ">
       <CardBody className="flex flex-col items-center gap-1">
         <h2 className="font-semibold text-[26px]">타임라인</h2>
         <div className="flex items-center gap-3">

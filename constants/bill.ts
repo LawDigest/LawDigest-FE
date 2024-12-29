@@ -36,7 +36,7 @@ export const PROGRESS_STAGE = {
 export const PROGRESS_STAGE_KO = {
   reception: '접수',
   committeeJudge: '위원회 심사',
-  districtJudge: '체계자구 심사',
+  districtJudge: '체계지구 심사',
   review: '본회의 심의',
   transfer: '정부 이송',
   promulgation: '공포',

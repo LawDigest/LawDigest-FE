@@ -14,7 +14,7 @@ export default async function CongressmanList({ queryClient }: { queryClient: Qu
       </p>
 
       <div className="grid grid-cols-4 gap-y-[18px] xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-8 xl:w-[900px] lg:w-[760px]">
-        {congressmanList.map((congressman: FollowingCongressmanType) => (
+        {congressmanList.slice(0, 12).map((congressman: FollowingCongressmanType) => (
           <CongressmanItem key={`${congressman.congressman_id}`} {...congressman} />
         ))}
       </div>
