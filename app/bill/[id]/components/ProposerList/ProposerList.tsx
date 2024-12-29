@@ -31,7 +31,7 @@ export default function ProposerList({
 }) {
   const representativeProposerLength = representativeProposerList.length;
   const publicProposerLength = publicProposerList.length;
-  const proposerListByParty = sortByParty({ representativeProposerList, publicProposerList });
+  const proposerListByParty = sortByParty({ publicProposerList });
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -47,7 +47,7 @@ export default function ProposerList({
             : representativeProposerList
                 .map(({ representative_proposer_name }) => representative_proposer_name)
                 .join('·')}{' '}
-          <span className="text-sm font-normal">{`등 ${representativeProposerLength + publicProposerLength}인`}</span>
+          <span className="text-sm font-normal">{`등 ${publicProposerLength}인`}</span>
         </p>
       </CardHeader>
       <CardBody>
