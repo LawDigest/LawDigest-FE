@@ -297,14 +297,10 @@ export default function Bill({
                       <Tooltip showArrow content="발의자 명단 보기">
                         <h4 className="text-xs text-gray-2">
                           {isRepresentativeSolo
-                            ? `${
-                                representative_proposer_dto_list[0].representative_proposer_name
-                              } 의원 등 ${public_proposer_dto_list.length + 1}인`
+                            ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원 등 ${public_proposer_dto_list.length}인`
                             : `${representative_proposer_dto_list
                                 .map(({ representative_proposer_name }) => representative_proposer_name)
-                                .join(
-                                  '·',
-                                )} 의원 등 ${representative_proposer_dto_list.length + public_proposer_dto_list.length}인`}
+                                .join('·')} 의원 등 ${public_proposer_dto_list.length}인`}
                         </h4>
                       </Tooltip>
                     </Button>

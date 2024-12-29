@@ -33,13 +33,13 @@ export default function ProcessResult({
         base: [`dark:lg:bg-dark-pb`],
       }}>
       <CardHeader className="flex flex-col justify-center gap-1 basis-1/2">
-        <p className="lg:text-xl">원안가결</p>
+        <p className="text-lg lg:text-xl">원안가결</p>
         <div>
-          <span className="text-xl font-semibold lg:text-2xl">{approval_count}</span>/
-          <span className="text-sm lg:text-base">{total_vote_count}</span>
+          <span className="text-xl font-bold lg:text-2xl">{approval_count}</span>
+          <span className="text-sm font-extralight text-gray-3 lg:text-sm">/{total_vote_count}</span>
         </div>
       </CardHeader>
-      <CardBody className="flex flex-col gap-3 py-5 pl-0 pr-6 basis-1/2">
+      <CardBody className="flex flex-col gap-3 py-5 pl-0 pr-6 overflow-visible basis-1/2">
         {party_vote_list
           .sort((a, b) => b.party_approval_count - a.party_approval_count)
           .map(({ party_info: { party_id, party_name, party_image_url }, party_approval_count }) => (

@@ -56,7 +56,7 @@ export default function CommitteeAuditList({
                 <div className="flex flex-col gap-4">
                   {committee_audit_list.map(({ committee_name, bill_outline_dto_list }) => (
                     <div key={committee_name} className="flex flex-col gap-2">
-                      <p className="text-sm font-bold">{committee_name}</p>
+                      <p className="text-lg font-bold">{committee_name}</p>
                       <div className="flex flex-col gap-3">
                         {bill_outline_dto_list.map(({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
                           <div key={bill_id} className="flex gap-[18px] items-center">
