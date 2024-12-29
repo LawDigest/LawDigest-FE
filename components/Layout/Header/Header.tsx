@@ -36,6 +36,7 @@ export default function Header({
   const pathname = usePathname();
   const { navItems } = siteConfig;
   const [toggleSearch, setToggleSearch] = useState(false);
+  const isTimelineOrFollowing = pathname.startsWith('/timeline') || pathname.startsWith('/following');
 
   const onClickSearch = useCallback(() => {
     setToggleSearch(!toggleSearch);
@@ -43,7 +44,9 @@ export default function Header({
 
   return (
     <section className="w-full">
-      <Navbar position="static" isBordered className=" dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md md:h-[98px] ">
+      <Navbar
+        position="static"
+        className={`dark:bg-dark-b dark:lg:bg-dark-pb lg:shadow-md md:h-[98px] ${isTimelineOrFollowing ? 'md:border' : 'border'}`}>
         <NavbarBrand className="hidden xl:absolute xl:left-[-100px] lg:block">
           <Link href="/">
             <Logo width={106} height={18} />

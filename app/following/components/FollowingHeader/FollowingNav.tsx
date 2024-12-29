@@ -9,8 +9,10 @@ export default async function FollowingNav() {
 
   return (
     <Card
-      classNames={{ base: ['rounded-t-none'] }}
-      className=" w-full pl-5 mx-auto lg:mx-0 bg-transparent md:mt-10 md:mb-6 md:h-[200px] md:w-[708px] md:pt-3 md:rounded-xl lg:my-0 lg:rounded-none lg:h-full lg:text-black lg:dark:text-white lg:bg-transparent lg:pt-8 lg:shadow-none dark:bg-primary-3 lg:dark:bg-transparent lg:w-[120px] xl:w-[312px]">
+      classNames={{
+        base: ['shadow-[0_4px_6px_-2px_rgba(0,_0,_0,_0.1)] md:shadow-[0_0_6px_rgba(0,_0,_0,_0.1)]'],
+      }}
+      className=" w-full pl-5 mx-auto lg:mx-0 bg-transparent md:mt-10 md:mb-6 md:h-[200px] md:w-[708px] md:pt-3 md:rounded-xl lg:my-0 lg:rounded-none lg:h-full lg:text-black lg:dark:text-white lg:bg-transparent lg:pt-8 lg:shadow-none dark:bg-primary-3 lg:dark:bg-transparent lg:w-[120px] xl:w-[312px] md:border lg:border-none">
       <CardHeader className="pt-2 pb-0 pl-0 lg:hidden">
         <h2 className="text-2xl font-bold md:text-3xl lg:mx-auto">팔로잉</h2>
       </CardHeader>
