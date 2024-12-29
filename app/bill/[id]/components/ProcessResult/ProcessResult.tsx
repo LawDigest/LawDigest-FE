@@ -39,7 +39,7 @@ export default function ProcessResult({
           <span className="text-sm font-extralight text-gray-3 lg:text-sm">/{total_vote_count}</span>
         </div>
       </CardHeader>
-      <CardBody className="flex flex-col gap-3 py-5 pl-0 pr-6 basis-1/2">
+      <CardBody className="flex flex-col gap-3 py-5 pl-0 pr-6 overflow-visible basis-1/2">
         {party_vote_list
           .sort((a, b) => b.party_approval_count - a.party_approval_count)
           .map(({ party_info: { party_id, party_name, party_image_url }, party_approval_count }) => (
