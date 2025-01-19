@@ -29,7 +29,7 @@ export default function StageDropdown({
         disallowEmptySelection
         selectionMode="single"
         selectedKeys={type}
-        onSelectionChange={clickHandler}>
+        onSelectionChange={(e) => clickHandler(e)}>
         {stageArray.concat(categoryValues).map(({ label, value }) => (
           <DropdownItem key={label} value={label}>
             {STAGE_TAB_KO[value as keyof typeof STAGE_TAB] || '전체'}
