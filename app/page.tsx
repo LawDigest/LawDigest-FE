@@ -1,13 +1,13 @@
 import getQueryClient from '@/lib/getQueryClient';
 import { Feed, Layout, SearchBarButton } from '@/components';
-import { getBill } from '@/components/Feed/Feed/apis';
+import { getBillByStage } from '@/components/Feed/Feed/apis';
 
 export default async function Home() {
   const queryClient = getQueryClient();
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['/bill/mainfeed'],
-    queryFn: ({ pageParam }: { pageParam: number }) => getBill(pageParam),
+    queryFn: ({ pageParam }: { pageParam: number }) => getBillByStage(pageParam, ''),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
       const { pagination_response } = data || {};
