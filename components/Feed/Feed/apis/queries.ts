@@ -10,7 +10,7 @@ export const useGetBillByStage = (
   stage: ValueOf<'전체' & typeof STAGE_TAB_KO> | Dispatch<SetStateAction<ValueOf<'전체' & typeof STAGE_TAB_KO>>>,
 ) =>
   useSuspenseInfiniteQuery({
-    queryKey: ['/bill/mainfeed/stage'],
+    queryKey: ['/bill/mainfeed'],
     queryFn: ({ pageParam }: { pageParam: number }) => getBillByStage(pageParam, stage),
     initialPageParam: 0,
     getNextPageParam: ({ data }) => {
