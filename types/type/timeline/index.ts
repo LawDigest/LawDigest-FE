@@ -54,3 +54,10 @@ export interface TimelineFeedResponse {
     }[];
   }[];
 }
+
+export interface TimelineBillState {
+  days_since_opening: number;
+  receipt_count: number;
+  treatment_count: number;
+  passed_count: number;
+}
