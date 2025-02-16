@@ -100,7 +100,7 @@ export default function IconTimeline({ isActive }: NavIconProps) {
       <path
         d="M8.86328 4.23523V9.2486"
         stroke="black"
-        stroke-opacity="0.2"
+        strokeOpacity="0.2"
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
