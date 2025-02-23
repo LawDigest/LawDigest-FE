@@ -21,8 +21,8 @@ export const useGetFollowingParty = (queryClient: QueryClient) =>
     queryFn: () => getFollowingParty(),
   });
 
-export const useGetFollowingCongressman = (queryClient: QueryClient) =>
-  queryClient.fetchQuery({
+export const useGetFollowingCongressman = () =>
+  useQuery({
     queryKey: ['/user/liking/congressman'],
     queryFn: () => getFollowingCongressman(),
   });
