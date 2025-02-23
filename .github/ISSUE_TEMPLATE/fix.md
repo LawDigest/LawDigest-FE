@@ -3,6 +3,7 @@ name: fix
 about: Create a report to help us improve
 title: "Fix/#[Issue number]/[Issue name]"
 labels: 'fix'
+type: 'bug'
 assignees: ''
 
 ---
