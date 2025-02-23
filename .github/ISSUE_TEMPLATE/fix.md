@@ -1,9 +1,9 @@
 ---
-name: bug(fix)
+name: fix
 about: Create a report to help us improve
-title: "[bug or fix] #[number] [name]"
-labels: ''
-assignees: ijaesin
+title: "Fix/#[Issue number]/[Issue name]"
+labels: 'fix'
+assignees: ''
 
 ---
 
