@@ -53,6 +53,18 @@ export interface TimelineFeedResponse {
       bill_brief_summary: string;
     }[];
   }[];
+  submitted_list: {
+    bill_brief_summary: string;
+    bill_id: string;
+    bill_name: string;
+    bill_proposers: string;
+    bill_stage: string;
+    party_info: {
+      party_id: number;
+      party_image_url: string;
+      party_name: string;
+    }[];
+  }[];
 }
 
 export interface TimelineBillState {
