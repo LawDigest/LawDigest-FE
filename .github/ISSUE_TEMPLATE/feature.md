@@ -1,8 +1,8 @@
 ---
 name: featrue
 about: Suggest an idea for this project
-title: 'feat #[issue number] [issue name]'
-labels: ''
+title: 'Feature/#[Issue number]/[Issue name]'
+labels: 'feature'
 assignees: ''
 
 ---
