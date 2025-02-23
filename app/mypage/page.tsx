@@ -32,7 +32,7 @@ export default function MyPage() {
         <div className="flex flex-col h-full gap-8">
           <PartyList qeuryClient={queryClient} />
           <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l lg:border-transparent dark:lg:border-transparent" />
-          <CongressmanList queryClient={queryClient} />
+          <CongressmanList />
           <hr className="mx-[30px] border-[#E0E0E0] dark:border-dark-l lg:border-transparent dark:lg:border-transparent" />
           <BillContainer />
         </div>
