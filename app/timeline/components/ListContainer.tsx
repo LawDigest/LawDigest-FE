@@ -5,14 +5,18 @@ import { useIntersect } from '@/hooks';
 import { Spinner } from '@nextui-org/spinner';
 import { convertDateFormat } from '@/utils';
 import { Divider } from '@nextui-org/react';
+import { TimelineFeedResponse } from '@/types';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
 import CommitteeAuditList from './CommitteeAuditList';
+import SubmittedList from './SubmittedList';
 import { useGetTimelineFeed } from '../apis/queries';
 
 export default function ListContainer() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetTimelineFeed();
-  const [feed, setFeed] = useState(data ? data.pages.flatMap(({ data: responses }) => responses) : []);
+  const [timeline, setTimeline] = useState<TimelineFeedResponse[]>(
+    data ? data.pages.flatMap(({ data: responses }) => responses) : [],
+  );
 
   const fetchRef = useIntersect(async (entry: any, observer: any) => {
     observer.unobserve(entry.target);
@@ -23,7 +27,7 @@ export default function ListContainer() {
 
   useEffect(() => {
     if (data) {
-      setFeed(() => [...data.pages.flatMap(({ data: responses }) => responses)]);
+      setTimeline(() => [...data.pages.flatMap(({ data: responses }) => responses)]);
     }
   }, [data]);
 
@@ -31,7 +35,7 @@ export default function ListContainer() {
     <section className="px-5 my-6 md:w-[640px] lg:w-[720px] xl:w-[840px] mx-auto">
       <div className="flex flex-col">
         <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
-        {feed.map(({ date, plenary_list, promulgation_list, committee_audit_list }) => (
+        {timeline.map(({ date, plenary_list, promulgation_list, committee_audit_list, submitted_list }) => (
           <div key={date} className="flex gap-6">
             <Divider orientation="vertical" className="w-[2px] h-auto" />
             <div className="w-full pb-10">
@@ -50,6 +54,7 @@ export default function ListContainer() {
                 {committee_audit_list.length !== 0 && (
                   <CommitteeAuditList committee_audit_list={committee_audit_list} />
                 )}
+                {submitted_list.length !== 0 && <SubmittedList submitted_list={submitted_list} />}
               </div>
             </div>
           </div>
