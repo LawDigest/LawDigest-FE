@@ -24,7 +24,7 @@ export default function ExpandableList({ items, initialCount }: ExpandableListPr
           {hasMoreItems ? (
             <button
               type="button"
-              onClick={() => setVisibleCount(visibleCount + initialCount)}
+              onClick={() => setVisibleCount(items.length)}
               className="flex items-center gap-2 px-4 py-2 text-sm font-semibold bg-gray-100 rounded-lg shadow dark:bg-gray-800">
               더 보기 <IconArrowDown />
             </button>

@@ -1,10 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Card, CardBody, CardHeader, Pagination, Button, useDisclosure } from '@nextui-org/react';
-import { useState } from 'react';
 import { IconEnter, IconNext, IconPrev } from '@/public/svgs';
 import TimelineModal from './TimelineModal';
 
@@ -30,10 +30,21 @@ export default function CommitteeAuditList({
 }) {
   // 위원회심사
   const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(1);
   const { isOpen: isOpenIndividual, onOpen: onOpenIndividual, onClose: onCloseIndividual } = useDisclosure();
   const { isOpen: isOpenAll, onOpen: onOpenAll, onClose: onCloseAll } = useDisclosure();
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(window.innerWidth >= 1024 ? 3 : 1);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section className="flex flex-col gap-5">
@@ -182,7 +193,7 @@ export default function CommitteeAuditList({
               <IconPrev />
             </Button>
             <Pagination
-              total={committee_audit_list.length}
+              total={Math.ceil(committee_audit_list.length / itemsPerPage)}
               page={currentPage + 1}
               onChange={setCurrentPage}
               classNames={{
