@@ -25,7 +25,9 @@ export default function ProcessResult({
   const isDark = theme === 'dark';
 
   return approval_count === null ? (
-    <p className="text-sm text-gray-2 md:h-[200px] lg:h-auto lg:text-base dark:text-gray-3">투표 정보가 없습니다.</p>
+    <p className="text-sm text-gray-2 md:h-[200px] lg:h-auto lg:text-base dark:text-gray-3 text-center">
+      투표 정보가 없습니다.
+    </p>
   ) : (
     <Card
       className="flex-row"
