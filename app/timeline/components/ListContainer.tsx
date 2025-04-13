@@ -32,7 +32,7 @@ export default function ListContainer() {
   }, [data]);
 
   return (
-    <section className="px-5 my-6 md:w-[640px] lg:w-[720px] xl:w-[840px] mx-auto">
+    <section className="px-5 my-6 md:w-[640px] lg:w-[840px] xl:w-[1200px] mx-auto">
       <div className="flex flex-col">
         <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
         {timeline.map(({ date, plenary_list, promulgation_list, committee_audit_list, submitted_list }) => (

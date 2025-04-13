@@ -46,6 +46,10 @@ export default function CommitteeAuditList({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = committee_audit_list.slice(startIndex, endIndex);
+
   return (
     <section className="flex flex-col gap-5">
       <div className="relative">
@@ -99,31 +103,59 @@ export default function CommitteeAuditList({
         </div>
       </div>
       <div>
-        <Card className="z-10 px-2">
-          {committee_audit_list.length !== 0 && (
-            <CardHeader>
-              <p className="text-[22px] font-bold">{committee_audit_list[currentPage].committee_name}</p>
-            </CardHeader>
-          )}
-          <CardBody>
-            {committee_audit_list.length !== 0 ? (
-              <div className="flex flex-col w-full gap-5">
-                <div className="flex items-center">
-                  <p className="text-xs font-medium text-gray-2 dark:text-gray-3">
-                    심사한 법안{' '}
-                    <span className="text-black dark:text-white">{committee_audit_list[currentPage].bill_count}개</span>
-                  </p>
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    className="w-4 h-4 p-0 bg-transparent"
-                    onClick={() => onOpenIndividual()}>
-                    <IconEnter />
-                  </Button>
-                  <TimelineModal isOpen={isOpenIndividual} onClose={onCloseIndividual}>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {currentItems.map((item) => (
+            <Card key={item.committee_name} className="z-10 px-2">
+              {committee_audit_list.length !== 0 && (
+                <CardHeader>
+                  <p className="text-[22px] font-bold">{item.committee_name}</p>
+                </CardHeader>
+              )}
+              <CardBody>
+                {committee_audit_list.length !== 0 ? (
+                  <div className="flex flex-col w-full gap-5">
+                    <div className="flex items-center">
+                      <p className="text-xs font-medium text-gray-2 dark:text-gray-3">
+                        심사한 법안 <span className="text-black dark:text-white">{item.bill_count}개</span>
+                      </p>
+                      <Button
+                        isIconOnly
+                        size="sm"
+                        className="w-4 h-4 p-0 bg-transparent"
+                        onClick={() => onOpenIndividual()}>
+                        <IconEnter />
+                      </Button>
+                      <TimelineModal isOpen={isOpenIndividual} onClose={onCloseIndividual}>
+                        <div className="flex flex-col gap-3">
+                          {item.bill_outline_dto_list.map(
+                            ({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
+                              <div key={bill_id} className="flex gap-[18px] items-center">
+                                <Link
+                                  href={`/party/${party_info[0].party_id}`}
+                                  className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
+                                  <Image
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
+                                    alt={`${party_info[0].party_name} 로고 이미지`}
+                                    width={22}
+                                    height={22}
+                                  />
+                                </Link>
+                                <div className="flex flex-col gap-1">
+                                  <Link href={`/bill/${bill_id}`}>
+                                    <p className="text-xs font-bold">{bill_brief_summary}</p>
+                                  </Link>
+                                  <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
+                                </div>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      </TimelineModal>
+                    </div>
                     <div className="flex flex-col gap-3">
-                      {committee_audit_list[currentPage].bill_outline_dto_list.map(
-                        ({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
+                      {item.bill_outline_dto_list
+                        .slice(0, 5)
+                        .map(({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
                           <div key={bill_id} className="flex gap-[18px] items-center">
                             <Link
                               href={`/party/${party_info[0].party_id}`}
@@ -142,45 +174,20 @@ export default function CommitteeAuditList({
                               <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
                             </div>
                           </div>
-                        ),
-                      )}
+                        ))}
                     </div>
-                  </TimelineModal>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {committee_audit_list[currentPage].bill_outline_dto_list
-                    .slice(0, 5)
-                    .map(({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
-                      <div key={bill_id} className="flex gap-[18px] items-center">
-                        <Link
-                          href={`/party/${party_info[0].party_id}`}
-                          className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
-                          <Image
-                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                            alt={`${party_info[0].party_name} 로고 이미지`}
-                            width={22}
-                            height={22}
-                          />
-                        </Link>
-                        <div className="flex flex-col gap-1">
-                          <Link href={`/bill/${bill_id}`}>
-                            <p className="text-xs font-bold">{bill_brief_summary}</p>
-                          </Link>
-                          <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
-            ) : (
-              <p className="text-sm font-bold text-center">심사한 법안이 없습니다.</p>
-            )}
-          </CardBody>
-        </Card>
-        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5]">
+                  </div>
+                ) : (
+                  <p className="text-sm font-bold text-center">심사한 법안이 없습니다.</p>
+                )}
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] lg:hidden">
           <CardBody />
         </Card>
-        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px]">
+        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] lg:hidden">
           <CardBody />
         </Card>
         {committee_audit_list.length !== 0 && (
@@ -189,23 +196,29 @@ export default function CommitteeAuditList({
               isIconOnly
               size="sm"
               className="p-0 bg-transparent"
-              onPress={() => setCurrentPage((prev) => (prev > 0 ? prev - 1 : committee_audit_list.length - 1))}>
+              onPress={() =>
+                setCurrentPage((prev) => (prev > 0 ? prev - 1 : committee_audit_list.length / itemsPerPage - 1))
+              }>
               <IconPrev />
             </Button>
             <Pagination
               total={Math.ceil(committee_audit_list.length / itemsPerPage)}
               page={currentPage + 1}
-              onChange={setCurrentPage}
+              onChange={(page) => setCurrentPage(page - 1)}
               classNames={{
-                item: 'bg-gray-1 dark:bg-gray-3 text-transparent border-none shadow-none w-[6px] h-[6px]',
-                cursor: 'bg-gray-3 dark:bg-gray-2 text-transparent w-[6px] h-[6px]',
+                item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
+                cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
               }}
             />
             <Button
               isIconOnly
               size="sm"
               className="p-0 bg-transparent"
-              onPress={() => setCurrentPage((prev) => (prev < committee_audit_list.length - 1 ? prev + 1 : 0))}>
+              onPress={() =>
+                setCurrentPage((prev) =>
+                  prev < Math.ceil(committee_audit_list.length / itemsPerPage) - 1 ? prev + 1 : 0,
+                )
+              }>
               <IconNext />
             </Button>
           </div>
