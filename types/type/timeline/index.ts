@@ -13,6 +13,7 @@ export interface TimelineFeedResponse {
       bill_stage: string;
       bill_proposers: string;
       bill_brief_summary: string;
+      bill_result: string;
     };
     approval_vote_count: number;
     total_vote_count: number;
