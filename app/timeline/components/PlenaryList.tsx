@@ -24,16 +24,7 @@ export default function PlenaryList({
       bill_stage: string;
       bill_proposers: string;
       bill_brief_summary: string;
-      bill_outline_dto_list: {
-        party_info: {
-          party_id: number;
-          party_name: string;
-          party_image_url: string;
-        }[];
-        bill_id: string;
-        bill_proposers: string;
-        bill_brief_summary: string;
-      }[];
+      bill_result: string;
     };
     approval_vote_count: number;
     total_vote_count: number;
@@ -88,28 +79,26 @@ export default function PlenaryList({
                     <div key={bill_info.bill_id} className="flex flex-col gap-2">
                       <p className="text-lg font-bold">{bill_info.bill_name}</p>
                       <div className="flex flex-col gap-3">
-                        {bill_info.bill_outline_dto_list?.map(
-                          ({ party_info, bill_id, bill_proposers, bill_brief_summary }) => (
-                            <div key={bill_id} className="flex gap-[18px] items-center">
-                              <Link
-                                href={`/party/${party_info[0].party_id}`}
-                                className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
-                                <Image
-                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                                  alt={`${party_info[0].party_name} 로고 이미지`}
-                                  width={22}
-                                  height={22}
-                                />
-                              </Link>
-                              <div className="flex flex-col gap-1">
-                                <Link href={`/bill/${bill_id}`}>
-                                  <p className="text-xs font-bold">{bill_brief_summary}</p>
-                                </Link>
-                                <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
-                              </div>
-                            </div>
-                          ),
-                        )}
+                        <div key={bill_info.bill_id} className="flex gap-[18px] items-center">
+                          <Link
+                            href={`/party/${bill_info.party_info[0].party_id}`}
+                            className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${bill_info.party_info[0].party_name}`}>
+                            <Image
+                              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? bill_info.party_info[0].party_image_url.replace('wide', 'dark') : bill_info.party_info[0].party_image_url}`}
+                              alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
+                              width={22}
+                              height={22}
+                            />
+                          </Link>
+                          <div className="flex flex-col gap-1">
+                            <Link href={`/bill/${bill_info.bill_id}`}>
+                              <p className="text-xs font-bold">{bill_info.bill_brief_summary}</p>
+                            </Link>
+                            <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">
+                              {bill_info.bill_proposers}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}
