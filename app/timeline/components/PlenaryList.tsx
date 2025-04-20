@@ -163,9 +163,10 @@ export default function PlenaryList({
         </Card>
       </div>
       {plenary_list.length !== 0 && (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {currentItems.map((item) => (
             <ProcessResult
+              bill_result={item.bill_info.bill_result}
               key={item.bill_info.bill_id}
               approval_count={item.approval_vote_count}
               total_vote_count={item.total_vote_count}
