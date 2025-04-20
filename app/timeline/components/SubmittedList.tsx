@@ -74,7 +74,7 @@ export default function SubmittedList({
                         />
                       </Link>
                       <div className="flex flex-col gap-1">
-                        <Link href={`/bill/${submitted_list[currentPage].bill_id}`}>
+                        <Link href={`/bill/${bill_id}`}>
                           <p className="text-xs font-bold">{bill_brief_summary}</p>
                         </Link>
                         <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
