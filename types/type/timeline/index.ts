@@ -1,4 +1,11 @@
-export interface TimelineFeedResponse {
+import { Pagination } from '../common/pagination';
+
+export interface TimelineResponse {
+  pagination_response: Pagination;
+  timeline_response_list: TimelineResponseList[];
+}
+
+export interface TimelineResponseList {
   date: string;
   bill_count: number;
   plenary_list: {

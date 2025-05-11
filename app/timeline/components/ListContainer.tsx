@@ -5,7 +5,7 @@ import { useIntersect } from '@/hooks';
 import { Spinner } from '@nextui-org/spinner';
 import { convertDateFormat } from '@/utils';
 import { Divider } from '@nextui-org/react';
-import { TimelineFeedResponse } from '@/types';
+import { TimelineResponseList } from '@/types';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
 import CommitteeAuditList from './CommitteeAuditList';
@@ -14,8 +14,8 @@ import { useGetTimelineFeed } from '../apis/queries';
 
 export default function ListContainer() {
   const { data, hasNextPage, isFetching, fetchNextPage } = useGetTimelineFeed();
-  const [timeline, setTimeline] = useState<TimelineFeedResponse[]>(
-    data ? data.pages.flatMap(({ data: responses }) => responses) : [],
+  const [timeline, setTimeline] = useState<TimelineResponseList[]>(
+    data ? data.pages.flatMap(({ data: { timeline_response_list: responses } }) => responses) : [],
   );
 
   const fetchRef = useIntersect(async (entry: any, observer: any) => {
@@ -27,7 +27,7 @@ export default function ListContainer() {
 
   useEffect(() => {
     if (data) {
-      setTimeline(() => [...data.pages.flatMap(({ data: responses }) => responses)]);
+      setTimeline(() => [...data.pages.flatMap(({ data: { timeline_response_list: responses } }) => responses)]);
     }
   }, [data]);
 
