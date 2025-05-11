@@ -116,9 +116,9 @@ export default function PlenaryList({
       </div>
       <div>
         {plenary_list.length !== 0 ? (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:gap-2 md:grid-cols-2 lg:grid-cols-3">
             {currentItems.map((item, index) => (
-              <Card key={item.bill_info.bill_id} className="z-10 overflow-visible">
+              <Card key={item.bill_info.bill_id} className="z-10 overflow-visible md:shadow-none md:border-1">
                 <CardBody className="py-3 overflow-visible">
                   <Link
                     href={`/party/${item.bill_info.party_info[0].party_id}`}
@@ -163,7 +163,7 @@ export default function PlenaryList({
         </Card>
       </div>
       {plenary_list.length !== 0 && (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:gap-2 md:grid-cols-2 lg:grid-cols-3">
           {currentItems.map((item) => (
             <ProcessResult
               bill_result={item.bill_info.bill_result}
