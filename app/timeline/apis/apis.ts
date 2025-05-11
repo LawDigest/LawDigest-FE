@@ -1,10 +1,10 @@
 import http from '@/api';
-import { TimelineFeedResponse, TimelineBillState } from '@/types';
+import { TimelineResponse, TimelineBillState } from '@/types';
 
-export const getTimelineFeed = (billProposeDate: string) =>
-  http.get<TimelineFeedResponse>({
-    url: `/time-line/feed`,
-    params: { billProposeDate },
+export const getTimelineFeed = (page: number) =>
+  http.get<TimelineResponse>({
+    url: `/time-line/feed/paging`,
+    params: { page, size: 3 },
   });
 
 export const getTimelineBillState = () =>

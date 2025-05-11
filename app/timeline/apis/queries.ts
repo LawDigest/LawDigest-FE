@@ -5,14 +5,13 @@ import { getTimelineFeed, getTimelineBillState } from './apis';
 
 export const useGetTimelineFeed = () =>
   useSuspenseInfiniteQuery({
-    queryKey: ['/time-line/feed'],
-    queryFn: ({ pageParam }: { pageParam: string }) => getTimelineFeed(pageParam),
-    initialPageParam: new Date().toISOString().split('T')[0],
+    queryKey: ['/time-line/feed/paging'],
+    queryFn: ({ pageParam }: { pageParam: number }) => getTimelineFeed(pageParam),
+    initialPageParam: 0,
     getNextPageParam: ({ data }) => {
-      const { date } = data || {};
-      const previousDate = new Date(date);
-      previousDate.setDate(previousDate.getDate() - 1);
-      return previousDate.toISOString().split('T')[0];
+      const { pagination_response } = data || {};
+      const { last_page, page_number } = pagination_response || {};
+      return last_page ? undefined : page_number + 1;
     },
   });
 

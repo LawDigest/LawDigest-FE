@@ -38,7 +38,13 @@ export default function CommitteeAuditList({
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth >= 1024 ? 3 : 1);
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
     };
 
     handleResize();
@@ -103,7 +109,7 @@ export default function CommitteeAuditList({
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {currentItems.map((item) => (
             <Card key={item.committee_name} className="z-10 px-2">
               {committee_audit_list.length !== 0 && (
@@ -184,10 +190,10 @@ export default function CommitteeAuditList({
             </Card>
           ))}
         </div>
-        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] lg:hidden">
+        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] md:hidden">
           <CardBody />
         </Card>
-        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] lg:hidden">
+        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] md:hidden">
           <CardBody />
         </Card>
         {committee_audit_list.length !== 0 && (

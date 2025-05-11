@@ -47,7 +47,13 @@ export default function PlenaryList({
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth >= 1024 ? 3 : 1);
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
     };
 
     handleResize();
@@ -110,13 +116,13 @@ export default function PlenaryList({
       </div>
       <div>
         {plenary_list.length !== 0 ? (
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {currentItems.map((item, index) => (
               <Card key={item.bill_info.bill_id} className="z-10 overflow-visible">
                 <CardBody className="py-3 overflow-visible">
                   <Link
                     href={`/party/${item.bill_info.party_info[0].party_id}`}
-                    className={`absolute -left-[39px] flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${item.bill_info.party_info[0].party_name}`}
+                    className={`absolute -left-[39px] flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b md:hidden ${item.bill_info.party_info[0].party_name}`}
                     style={index > 0 ? { top: `${index * 50}px` } : {}}>
                     <Image
                       src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.bill_info.party_info[0].party_image_url.replace('wide', 'dark') : item.bill_info.party_info[0].party_image_url}`}
@@ -125,7 +131,7 @@ export default function PlenaryList({
                       height={22}
                     />
                   </Link>
-                  <div className="flex flex-col w-full gap-2">
+                  <div className="flex flex-col w-full gap-2 md:h-full md:justify-between">
                     <Link href={`/bill/${item.bill_info.bill_id}`}>
                       <p className="text-sm font-bold">{item.bill_info.bill_brief_summary}</p>
                     </Link>
@@ -149,11 +155,18 @@ export default function PlenaryList({
         ) : (
           <p className="text-sm font-bold text-center">심사한 법안이 없습니다.</p>
         )}
+        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] md:hidden">
+          <CardBody />
+        </Card>
+        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] md:hidden">
+          <CardBody />
+        </Card>
       </div>
       {plenary_list.length !== 0 && (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {currentItems.map((item) => (
             <ProcessResult
+              bill_result={item.bill_info.bill_result}
               key={item.bill_info.bill_id}
               approval_count={item.approval_vote_count}
               total_vote_count={item.total_vote_count}

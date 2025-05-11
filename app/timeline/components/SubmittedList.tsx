@@ -33,7 +33,13 @@ export default function SubmittedList({
 
   useEffect(() => {
     const handleResize = () => {
-      setItemsPerPage(window.innerWidth >= 1024 ? 3 : 1);
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 768) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
     };
 
     handleResize();
@@ -74,7 +80,7 @@ export default function SubmittedList({
                         />
                       </Link>
                       <div className="flex flex-col gap-1">
-                        <Link href={`/bill/${submitted_list[currentPage].bill_id}`}>
+                        <Link href={`/bill/${bill_id}`}>
                           <p className="text-xs font-bold">{bill_brief_summary}</p>
                         </Link>
                         <p className="text-xs font-semibold text-gray-2 dark:text-gray-3">{bill_proposers}</p>
@@ -89,13 +95,13 @@ export default function SubmittedList({
       </div>
       <div>
         {submitted_list.length !== 0 ? (
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {currentItems.map((item, index) => (
               <Card key={item.bill_id} className="z-10 overflow-visible">
                 <CardBody className="py-3 overflow-visible">
                   <Link
                     href={`/party/${item.party_info[0].party_id}`}
-                    className={`absolute ${index === 0 ? '-left-[39px]' : 'left-0'} flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${item.party_info[0].party_name} lg:hidden`}>
+                    className={`absolute ${index === 0 ? '-left-[39px]' : 'left-0'} flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${item.party_info[0].party_name} md:hidden`}>
                     <Image
                       src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.party_info[0].party_image_url.replace('wide', 'dark') : item.party_info[0].party_image_url}`}
                       alt={`${item.party_info[0].party_name} 로고 이미지`}
@@ -103,7 +109,7 @@ export default function SubmittedList({
                       height={22}
                     />
                   </Link>
-                  <div className="flex flex-col w-full gap-2 lg:h-full lg:justify-between">
+                  <div className="flex flex-col w-full gap-2 md:h-full md:justify-between">
                     <Link href={`/bill/${item.bill_id}`}>
                       <p className="text-sm font-bold">{item.bill_brief_summary}</p>
                     </Link>
@@ -129,10 +135,10 @@ export default function SubmittedList({
             </CardBody>
           </Card>
         )}
-        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] lg:hidden">
+        <Card className="w-[calc(100%-20px)] mx-auto -top-[14px] z-[5] md:hidden">
           <CardBody />
         </Card>
-        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] lg:hidden">
+        <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] md:hidden">
           <CardBody />
         </Card>
         {submitted_list.length !== 0 && (
