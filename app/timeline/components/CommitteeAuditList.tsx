@@ -109,9 +109,9 @@ export default function CommitteeAuditList({
         </div>
       </div>
       <div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:gap-2 md:grid-cols-2 lg:grid-cols-3">
           {currentItems.map((item) => (
-            <Card key={item.committee_name} className="z-10 px-2">
+            <Card key={item.committee_name} className="z-10 px-2 md:shadow-none md:border-1">
               {committee_audit_list.length !== 0 && (
                 <CardHeader>
                   <p className="text-[22px] font-bold">{item.committee_name}</p>

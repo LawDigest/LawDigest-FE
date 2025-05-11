@@ -30,6 +30,7 @@ export default function ProcessResult({
     case '대안반영폐기':
       return (
         <Card
+          className="md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb py-10 px-6`],
           }}>
@@ -42,6 +43,7 @@ export default function ProcessResult({
     case '임기만료폐기':
       return (
         <Card
+          className="md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb py-10 px-6`],
           }}>
@@ -54,6 +56,7 @@ export default function ProcessResult({
     case '철회':
       return (
         <Card
+          className="md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb py-10 px-6`],
           }}>
@@ -68,7 +71,7 @@ export default function ProcessResult({
     case '부결':
       return (
         <Card
-          className="flex-row"
+          className="flex-row md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb`],
           }}>
