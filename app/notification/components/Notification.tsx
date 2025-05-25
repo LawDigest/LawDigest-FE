@@ -78,7 +78,7 @@ export default function Notification({
               </span>
             </p>
           </Link>
-          <p className="text-gray-2 dark:text-gray-3 text-[10px] md:text-sm">{content}</p>
+          <p className="text-gray-3 dark:text-gray-2 text-[10px] md:text-sm">{content}</p>
         </div>
 
         <Dropdown>
