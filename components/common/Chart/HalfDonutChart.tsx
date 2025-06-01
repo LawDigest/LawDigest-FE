@@ -240,7 +240,7 @@ export default function HalfDonutChart({
     const y = e.clientY - svgRect.top;
 
     setTooltip({
-      visible: true,
+      visible: false, // TODO: 툴팁 UI 수정 후 다시 활성화
       x,
       y,
       partyName: party.party_info.party_name,
@@ -293,7 +293,7 @@ export default function HalfDonutChart({
             onMouseEnter={(e) => handleMouseEnter(e, partyArc.party, partyArc.color, partyArc.percentage)}
             onMouseLeave={handleMouseLeave}
             onMouseMove={handleMouseMove}
-            style={{ cursor: 'pointer' }}
+            // style={{ cursor: 'pointer' }} // TODO: 툴팁 UI 수정 후 다시 활성화
             aria-label={`${partyArc.party.party_info.party_name}: ${partyArc.party.party_approval_count}`}
             role="graphics-symbol"
           />

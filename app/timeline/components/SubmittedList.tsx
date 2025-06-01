@@ -55,7 +55,7 @@ export default function SubmittedList({
     <div className="flex flex-col gap-5 ">
       <div className="relative">
         <div className="bg-gray-3 dark:bg-gray-4 w-[10px] h-[10px] rounded-full border border-black absolute -left-[30px] top-4" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between md:w-[280px]">
           <h3 className="text-[26px] font-extralight">법안 접수</h3>
           {submitted_list.length !== 0 && (
             <div className="flex items-center">
@@ -72,12 +72,16 @@ export default function SubmittedList({
                       <Link
                         href={`/party/${party_info[0].party_id}`}
                         className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
-                        <Image
-                          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                          alt={`${party_info[0].party_name} 로고 이미지`}
-                          width={22}
-                          height={22}
-                        />
+                        {party_info[0].party_name === '무소속' ? (
+                          <span className="text-xs font-bold text-black dark:text-white">무</span>
+                        ) : (
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
+                            alt={`${party_info[0].party_name} 로고 이미지`}
+                            width={22}
+                            height={22}
+                          />
+                        )}
                       </Link>
                       <div className="flex flex-col gap-1">
                         <Link href={`/bill/${bill_id}`}>
@@ -102,12 +106,16 @@ export default function SubmittedList({
                   <Link
                     href={`/party/${item.party_info[0].party_id}`}
                     className={`absolute ${index === 0 ? '-left-[39px]' : 'left-0'} flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${item.party_info[0].party_name} md:hidden`}>
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.party_info[0].party_image_url.replace('wide', 'dark') : item.party_info[0].party_image_url}`}
-                      alt={`${item.party_info[0].party_name} 로고 이미지`}
-                      width={22}
-                      height={22}
-                    />
+                    {item.party_info[0].party_name === '무소속' ? (
+                      <span className="text-xs font-bold text-black dark:text-white">무</span>
+                    ) : (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.party_info[0].party_image_url.replace('wide', 'dark') : item.party_info[0].party_image_url}`}
+                        alt={`${item.party_info[0].party_name} 로고 이미지`}
+                        width={22}
+                        height={22}
+                      />
+                    )}
                   </Link>
                   <div className="flex flex-col w-full gap-2 md:h-full md:justify-between">
                     <Link href={`/bill/${item.bill_id}`}>
@@ -141,38 +149,39 @@ export default function SubmittedList({
         <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] md:hidden">
           <CardBody />
         </Card>
-        {submitted_list.length !== 0 && (
-          <div className="flex items-center justify-between">
-            <Button
-              isIconOnly
-              size="sm"
-              className="p-0 bg-transparent"
-              onPress={() =>
-                setCurrentPage((prev) => (prev > 0 ? prev - 1 : Math.ceil(submitted_list.length / itemsPerPage) - 1))
-              }>
-              <IconPrev />
-            </Button>
-            <Pagination
-              total={Math.ceil(submitted_list.length / itemsPerPage)}
-              page={currentPage + 1}
-              onChange={(page) => setCurrentPage(page - 1)}
-              classNames={{
-                item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
-                cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
-              }}
-            />
-            <Button
-              isIconOnly
-              size="sm"
-              className="p-0 bg-transparent"
-              onPress={() =>
-                setCurrentPage((prev) => (prev < Math.ceil(submitted_list.length / itemsPerPage) - 1 ? prev + 1 : 0))
-              }>
-              <IconNext />
-            </Button>
-          </div>
-        )}
       </div>
+
+      {submitted_list.length !== 0 && (
+        <div className="flex items-center justify-between">
+          <Button
+            isIconOnly
+            size="sm"
+            className="p-0 bg-transparent"
+            onPress={() =>
+              setCurrentPage((prev) => (prev > 0 ? prev - 1 : Math.ceil(submitted_list.length / itemsPerPage) - 1))
+            }>
+            <IconPrev />
+          </Button>
+          <Pagination
+            total={Math.ceil(submitted_list.length / itemsPerPage)}
+            page={currentPage + 1}
+            onChange={(page) => setCurrentPage(page - 1)}
+            classNames={{
+              item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
+              cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
+            }}
+          />
+          <Button
+            isIconOnly
+            size="sm"
+            className="p-0 bg-transparent"
+            onPress={() =>
+              setCurrentPage((prev) => (prev < Math.ceil(submitted_list.length / itemsPerPage) - 1 ? prev + 1 : 0))
+            }>
+            <IconNext />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

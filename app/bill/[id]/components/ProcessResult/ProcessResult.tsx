@@ -67,7 +67,7 @@ export default function ProcessResult({
     case '부결':
       return (
         <Card
-          className="flex flex-col items-center p-4 md:shadow-none md:border-1"
+          className="flex flex-col items-center p-4 overflow-visible md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb`],
           }}>
