@@ -62,7 +62,6 @@ export default function HalfDonutChart({
 
   // 애니메이션을 위한 상태
   const [animatedValue, setAnimatedValue] = useState(0);
-  const [displayPercentage, setDisplayPercentage] = useState(0);
   const prevTotalValueRef = useRef(0);
 
   // 툴팁을 위한 상태
@@ -96,13 +95,11 @@ export default function HalfDonutChart({
 
       const currentValue = startValue + (approvalPercentage - startValue) * easeOutProgress;
       setAnimatedValue(currentValue);
-      setDisplayPercentage(Math.round(currentValue));
 
       if (progress < 1) {
         requestAnimationFrame(animateValue);
       } else {
         setAnimatedValue(approvalPercentage);
-        setDisplayPercentage(Math.round(approvalPercentage));
         prevTotalValueRef.current = approvalPercentage;
       }
     };
@@ -214,7 +211,7 @@ export default function HalfDonutChart({
         .outerRadius(subOuterRadius)
         .startAngle(adjustedStartAngle)
         .endAngle(finalEndAngle)
-        .cornerRadius(cornerRadius / 2)();
+        .cornerRadius(cornerRadius / 2)(null as any);
 
       return {
         party: item.party,
@@ -277,11 +274,11 @@ export default function HalfDonutChart({
       {/* SVG 차트 */}
       <svg width={width} height={height} ref={svgRef}>
         {/* 배경 반원 */}
-        <path d={arc() as string} fill="#e6e6e6" transform={`translate(${centerX}, ${centerY})`} />
+        <path d={arc(null as any) as string} fill="#e6e6e6" transform={`translate(${centerX}, ${centerY})`} />
 
         {/* 진행 상태를 표시하는 반원 */}
         <path
-          d={progressArc() as string}
+          d={progressArc(null as any) as string}
           fill={billResult === '부결' ? '#EB6969' : '#3CC692'}
           transform={`translate(${centerX}, ${centerY})`}
         />
