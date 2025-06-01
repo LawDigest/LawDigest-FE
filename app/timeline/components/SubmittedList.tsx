@@ -72,12 +72,16 @@ export default function SubmittedList({
                       <Link
                         href={`/party/${party_info[0].party_id}`}
                         className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${party_info[0].party_name}`}>
-                        <Image
-                          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                          alt={`${party_info[0].party_name} 로고 이미지`}
-                          width={22}
-                          height={22}
-                        />
+                        {party_info[0].party_name === '무소속' ? (
+                          <span className="text-xs font-bold text-black dark:text-white">무</span>
+                        ) : (
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
+                            alt={`${party_info[0].party_name} 로고 이미지`}
+                            width={22}
+                            height={22}
+                          />
+                        )}
                       </Link>
                       <div className="flex flex-col gap-1">
                         <Link href={`/bill/${bill_id}`}>
@@ -102,12 +106,16 @@ export default function SubmittedList({
                   <Link
                     href={`/party/${item.party_info[0].party_id}`}
                     className={`absolute ${index === 0 ? '-left-[39px]' : 'left-0'} flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b ${item.party_info[0].party_name} md:hidden`}>
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.party_info[0].party_image_url.replace('wide', 'dark') : item.party_info[0].party_image_url}`}
-                      alt={`${item.party_info[0].party_name} 로고 이미지`}
-                      width={22}
-                      height={22}
-                    />
+                    {item.party_info[0].party_name === '무소속' ? (
+                      <span className="text-xs font-bold text-black dark:text-white">무</span>
+                    ) : (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.party_info[0].party_image_url.replace('wide', 'dark') : item.party_info[0].party_image_url}`}
+                        alt={`${item.party_info[0].party_name} 로고 이미지`}
+                        width={22}
+                        height={22}
+                      />
+                    )}
                   </Link>
                   <div className="flex flex-col w-full gap-2 md:h-full md:justify-between">
                     <Link href={`/bill/${item.bill_id}`}>

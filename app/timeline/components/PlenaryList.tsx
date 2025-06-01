@@ -89,12 +89,16 @@ export default function PlenaryList({
                           <Link
                             href={`/party/${bill_info.party_info[0].party_id}`}
                             className={`flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 ${bill_info.party_info[0].party_name}`}>
-                            <Image
-                              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? bill_info.party_info[0].party_image_url.replace('wide', 'dark') : bill_info.party_info[0].party_image_url}`}
-                              alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
-                              width={22}
-                              height={22}
-                            />
+                            {bill_info.party_info[0].party_name === '무소속' ? (
+                              <span className="text-xs font-bold text-black dark:text-white">무</span>
+                            ) : (
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? bill_info.party_info[0].party_image_url.replace('wide', 'dark') : bill_info.party_info[0].party_image_url}`}
+                                alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
+                                width={22}
+                                height={22}
+                              />
+                            )}
                           </Link>
                           <div className="flex flex-col gap-1">
                             <Link href={`/bill/${bill_info.bill_id}`}>
@@ -124,12 +128,16 @@ export default function PlenaryList({
                     href={`/party/${item.bill_info.party_info[0].party_id}`}
                     className={`absolute -left-[39px] flex items-center justify-center w-7 h-7 rounded-full shadow-lg shrink-0 border-1.5 bg-white dark:bg-dark-b md:hidden ${item.bill_info.party_info[0].party_name}`}
                     style={index > 0 ? { top: `${index * 50}px` } : {}}>
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.bill_info.party_info[0].party_image_url.replace('wide', 'dark') : item.bill_info.party_info[0].party_image_url}`}
-                      alt={`${item.bill_info.party_info[0].party_name} 로고 이미지`}
-                      width={22}
-                      height={22}
-                    />
+                    {item.bill_info.party_info[0].party_name === '무소속' ? (
+                      <span className="text-xs font-bold text-black dark:text-white">무</span>
+                    ) : (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.bill_info.party_info[0].party_image_url.replace('wide', 'dark') : item.bill_info.party_info[0].party_image_url}`}
+                        alt={`${item.bill_info.party_info[0].party_name} 로고 이미지`}
+                        width={22}
+                        height={22}
+                      />
+                    )}
                   </Link>
                   <div className="flex flex-col w-full gap-2 md:h-full md:justify-between">
                     <Link href={`/bill/${item.bill_info.bill_id}`}>
