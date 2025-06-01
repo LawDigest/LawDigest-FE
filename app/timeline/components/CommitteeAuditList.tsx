@@ -60,7 +60,7 @@ export default function CommitteeAuditList({
     <section className="flex flex-col gap-5">
       <div className="relative">
         <div className="bg-gray-3 dark:bg-gray-4 w-[10px] h-[10px] rounded-full border border-black absolute -left-[30px] top-4" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between md:w-[280px]">
           <h3 className="text-[26px] font-extralight">위원회 심사</h3>
           {committee_audit_list.length !== 0 && (
             <div className="flex items-center">
