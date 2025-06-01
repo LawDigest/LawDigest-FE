@@ -149,38 +149,39 @@ export default function SubmittedList({
         <Card className="w-[calc(100%-40px)] mx-auto -top-[28px] md:hidden">
           <CardBody />
         </Card>
-        {submitted_list.length !== 0 && (
-          <div className="flex items-center justify-between">
-            <Button
-              isIconOnly
-              size="sm"
-              className="p-0 bg-transparent"
-              onPress={() =>
-                setCurrentPage((prev) => (prev > 0 ? prev - 1 : Math.ceil(submitted_list.length / itemsPerPage) - 1))
-              }>
-              <IconPrev />
-            </Button>
-            <Pagination
-              total={Math.ceil(submitted_list.length / itemsPerPage)}
-              page={currentPage + 1}
-              onChange={(page) => setCurrentPage(page - 1)}
-              classNames={{
-                item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
-                cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
-              }}
-            />
-            <Button
-              isIconOnly
-              size="sm"
-              className="p-0 bg-transparent"
-              onPress={() =>
-                setCurrentPage((prev) => (prev < Math.ceil(submitted_list.length / itemsPerPage) - 1 ? prev + 1 : 0))
-              }>
-              <IconNext />
-            </Button>
-          </div>
-        )}
       </div>
+
+      {submitted_list.length !== 0 && (
+        <div className="flex items-center justify-between">
+          <Button
+            isIconOnly
+            size="sm"
+            className="p-0 bg-transparent"
+            onPress={() =>
+              setCurrentPage((prev) => (prev > 0 ? prev - 1 : Math.ceil(submitted_list.length / itemsPerPage) - 1))
+            }>
+            <IconPrev />
+          </Button>
+          <Pagination
+            total={Math.ceil(submitted_list.length / itemsPerPage)}
+            page={currentPage + 1}
+            onChange={(page) => setCurrentPage(page - 1)}
+            classNames={{
+              item: 'bg-gray-1 text-transparent border-none shadow-none w-[6px] h-[6px]',
+              cursor: 'bg-gray-3 text-transparent w-[6px] h-[6px]',
+            }}
+          />
+          <Button
+            isIconOnly
+            size="sm"
+            className="p-0 bg-transparent"
+            onPress={() =>
+              setCurrentPage((prev) => (prev < Math.ceil(submitted_list.length / itemsPerPage) - 1 ? prev + 1 : 0))
+            }>
+            <IconNext />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
