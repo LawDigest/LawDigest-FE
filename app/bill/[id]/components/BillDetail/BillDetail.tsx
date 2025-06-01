@@ -37,6 +37,7 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
               approval_count={data.vote_result_response.approval_count}
               total_vote_count={data.vote_result_response.total_vote_count}
               party_vote_list={data.vote_result_response.party_vote_list}
+              bill_result={data.bill_info_dto.bill_result}
             />
           </SectionContainer>
         </section>
