@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTheme } from 'next-themes';
-import { Card, CardHeader, CardBody } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, Divider } from '@nextui-org/react';
+import HalfDonutChart from '@/components/common/Chart/HalfDonutChart';
+import VoteResultBoard from './VoteResultBoard';
 
 export default function ProcessResult({
   bill_result,
@@ -23,9 +22,6 @@ export default function ProcessResult({
     party_approval_count: number;
   }[];
 }) {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
   switch (bill_result) {
     case '대안반영폐기':
       return (
@@ -71,46 +67,18 @@ export default function ProcessResult({
     case '부결':
       return (
         <Card
-          className="flex-row md:shadow-none md:border-1"
+          className="flex flex-col items-center p-4 md:shadow-none md:border-1"
           classNames={{
             base: [`dark:lg:bg-dark-pb`],
           }}>
-          <CardHeader className="flex flex-col justify-center gap-1 basis-1/2">
-            <p className="text-lg lg:text-xl">{bill_result}</p>
-            <div>
-              <span className="text-xl font-bold lg:text-2xl">{approval_count}</span>
-              <span className="text-sm font-extralight text-gray-3 lg:text-sm">/{total_vote_count}</span>
-            </div>
-          </CardHeader>
-          <CardBody className="flex flex-col gap-3 py-5 pl-0 pr-6 overflow-visible basis-1/2">
-            {party_vote_list
-              .sort((a, b) => b.party_approval_count - a.party_approval_count)
-              .map(({ party_info: { party_id, party_name, party_image_url }, party_approval_count }) => (
-                <div key={party_id} className="flex items-center justify-between">
-                  <Link
-                    href={`/party/${party_id}`}
-                    className={`flex items-center justify-center w-8 h-8 rounded-full shadow-lg shrink-0 border-1.5 ${party_name}`}>
-                    {party_name === '무소속' ? (
-                      <div className="text-xs font-medium text-black">무</div>
-                    ) : (
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-                        width={24}
-                        height={24}
-                        alt={`${party_name} 로고 이미지`}
-                      />
-                    )}
-                  </Link>
-                  <Link href={`/party/${party_id}`}>
-                    <p className="text-xs font-semibold lg:text-sm text-gray-2 dark:text-gray-1">{party_name}</p>
-                  </Link>
-                  <p className="text-xs lg:text-sm font-medium w-[32px] lg:w-[40px]">
-                    {party_approval_count}
-                    <span className="font-light">표</span>
-                  </p>
-                </div>
-              ))}
-          </CardBody>
+          <HalfDonutChart
+            billResult={bill_result}
+            approvalCount={approval_count}
+            totalVoteCount={total_vote_count}
+            partyVoteList={party_vote_list}
+          />
+          <Divider className="my-4" />
+          <VoteResultBoard party_vote_list={party_vote_list} />
         </Card>
       );
     default:

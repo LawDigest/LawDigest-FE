@@ -11,6 +11,7 @@ export interface BillResponse {
     bill_like_count: number;
     bill_stage: string;
     brief_summary: string;
+    bill_result: string;
   };
   representative_proposer_dto_list: {
     representative_proposer_id: string;
