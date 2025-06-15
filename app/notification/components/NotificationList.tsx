@@ -71,10 +71,10 @@ export default function NotificationList() {
       ? Array.from(Array(3), (v, i) =>
           // eslint-disable-next-line no-nested-ternary
           i === 0
-            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이번 주')
+            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
             : i === 1
-              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이번 달')
-              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이전 알림'),
+              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
+              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
         )
       : initialData,
   );
@@ -85,10 +85,10 @@ export default function NotificationList() {
         Array.from(Array(3), (v, i) =>
           // eslint-disable-next-line no-nested-ternary
           i === 0
-            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이번 주')
+            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
             : i === 1
-              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이번 달')
-              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '이전 알림'),
+              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
+              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
         ),
       );
     }
@@ -169,11 +169,11 @@ export default function NotificationList() {
       </div>
 
       <section className="flex flex-col gap-[14px]">
-        <h2 className="text-xl font-semibold">이번 주</h2>
+        <h2 className="text-xl font-semibold">지난 한 주</h2>
         <div className="flex flex-col gap-3 md:gap-4">
           {notifications &&
             (listByDateStatus[0].length === 0 ? (
-              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 주 알림이 없습니다.</p>
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">지난 한 주 알림이 없습니다.</p>
             ) : (
               listByDateStatus[0].map((notification) => (
                 <Notification
@@ -188,11 +188,11 @@ export default function NotificationList() {
 
         <Divider className="my-6" />
 
-        <h2 className="text-xl font-semibold">이번 달</h2>
+        <h2 className="text-xl font-semibold">지난 한 달</h2>
         <div className="flex flex-col gap-3 md:gap-4">
           {notifications &&
             (listByDateStatus[1].length === 0 ? (
-              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이번 달 알림이 없습니다.</p>
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">지난 한 달 알림이 없습니다.</p>
             ) : (
               listByDateStatus &&
               listByDateStatus[1].map((notification) => (
@@ -208,11 +208,11 @@ export default function NotificationList() {
 
         <Divider className="my-6" />
 
-        <h2 className="text-xl font-semibold">이전 알림</h2>
+        <h2 className="text-xl font-semibold">지난 알림</h2>
         <div className="flex flex-col gap-3 md:gap-4">
           {notifications &&
             (listByDateStatus[2].length === 0 ? (
-              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">이전 알림이 없습니다.</p>
+              <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">지난 알림이 없습니다.</p>
             ) : (
               listByDateStatus &&
               listByDateStatus[2].map((notification) => (

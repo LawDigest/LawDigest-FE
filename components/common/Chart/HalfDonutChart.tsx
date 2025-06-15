@@ -54,11 +54,14 @@ export default function HalfDonutChart({
   width = 300,
   height = 140,
 }: HalfDonutChartProps) {
-  // 승인율 계산 (전체 투표 중 승인 비율)
-  const approvalPercentage = useMemo(
-    () => (totalVoteCount > 0 ? (approvalCount / totalVoteCount) * 100 : 0),
-    [approvalCount, totalVoteCount],
-  );
+  // ----- 하프 도넛 최대값(의석 수) 고정 -----
+  const MAX_COUNT = 300; // 전체 의석 수
+
+  // 승인율 계산 (MAX_COUNT 대비 승인 비율)
+  const approvalPercentage = useMemo(() => {
+    const percentage = (approvalCount / MAX_COUNT) * 100;
+    return Math.min(percentage, 100); // 100% 초과 방지
+  }, [approvalCount]);
 
   // 애니메이션을 위한 상태
   const [animatedValue, setAnimatedValue] = useState(0);
@@ -145,6 +148,27 @@ export default function HalfDonutChart({
     .endAngle((animatedValue / 100) * Math.PI - Math.PI / 2) // 애니메이션 값에 따른 각도
     .cornerRadius(cornerRadius); // 끝을 둥글게 처리
 
+  // ----- 임계값(50%) 관련 계산 -----
+  const thresholdValue = totalVoteCount * 0.5; // totalVoteCount의 50%
+  const progressColor = approvalCount >= thresholdValue ? '#3CC692' : '#EB6969'; // 임계값 초과 여부에 따른 색상
+
+  // 하프 도넛 스케일은 MAX_COUNT(300)를 100%로 보정하므로,
+  // 임계값(투표수 절반)을 MAX_COUNT 대비 비율로 변환
+  const thresholdFraction = thresholdValue / MAX_COUNT; // 0~0.5 범위
+
+  // 임계값 각도
+  const thresholdAngle = -Math.PI + thresholdFraction * Math.PI;
+
+  // 임계선 길이를 좀 더 길게(메인 아크 두께를 넘어) 표시하기 위한 확장값
+  const thresholdLineOuterExtension = 5; // 바깥 방향 확장(px)
+  const thresholdLineInnerExtension = 5; // 안쪽 방향 확장(px)
+
+  // 임계값 점선 좌표 (innerRadius - innerExtension) ~ (outerRadius + outerExtension)
+  const thresholdX1 = centerX + Math.cos(thresholdAngle) * (innerRadius - thresholdLineInnerExtension);
+  const thresholdY1 = centerY + Math.sin(thresholdAngle) * (innerRadius - thresholdLineInnerExtension);
+  const thresholdX2 = centerX + Math.cos(thresholdAngle) * (outerRadius + thresholdLineOuterExtension);
+  const thresholdY2 = centerY + Math.sin(thresholdAngle) * (outerRadius + thresholdLineOuterExtension);
+
   // 서브 아크를 위한 최소 각도 (라디안)
   const MIN_ARC_ANGLE = 0.08; // 약 4.58도
 
@@ -155,7 +179,7 @@ export default function HalfDonutChart({
 
     // 먼저 모든 정당의 실제 백분율 계산
     const partiesWithPercentage = partyVoteList.map((party) => {
-      const percentage = (party.party_approval_count / totalVoteCount) * 100;
+      const percentage = (party.party_approval_count / MAX_COUNT) * 100;
       return {
         party,
         percentage,
@@ -279,8 +303,20 @@ export default function HalfDonutChart({
         {/* 진행 상태를 표시하는 반원 */}
         <path
           d={progressArc(null as any) as string}
-          fill={billResult === '부결' ? '#EB6969' : '#3CC692'}
+          fill={progressColor}
           transform={`translate(${centerX}, ${centerY})`}
+        />
+
+        {/* 임계값(50%) 점선 */}
+        <line
+          x1={thresholdX1}
+          y1={thresholdY1}
+          x2={thresholdX2}
+          y2={thresholdY2}
+          stroke="#FEC13F"
+          strokeWidth={4}
+          strokeDasharray="5,6"
+          strokeLinecap="round"
         />
 
         {/* 정당별 서브 아크 */}
@@ -317,7 +353,7 @@ export default function HalfDonutChart({
           dominantBaseline="middle"
           className="flex items-end text-2xl font-medium">
           <tspan className="text-2xl font-bold">{approvalCount}</tspan>
-          <tspan className="text-sm font-normal"> / {totalVoteCount}</tspan>
+          <tspan className="text-sm font-normal"> / {MAX_COUNT}</tspan>
         </text>
       </svg>
 
