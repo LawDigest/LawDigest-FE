@@ -1,38 +1,32 @@
 export default function getDateStatus(date: string) {
+  /**
+   * 기준일: 오늘(00:00:00)
+   * - 지난 한 주: 오늘을 포함해 과거 6일 전까지 (총 7일)
+   * - 지난 한 달: 오늘을 포함해 과거 29일 전까지 (총 30일)
+   * 그 외: 지난 알림
+   */
+
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // 오늘 날짜의 시간을 0으로 설정
+  today.setHours(0, 0, 0, 0);
 
   const inputDate = new Date(date);
-  inputDate.setHours(0, 0, 0, 0); // 입력된 날짜의 시간을 0으로 설정
+  inputDate.setHours(0, 0, 0, 0);
 
-  // 이번 주의 시작일과 종료일 계산 (월요일 ~ 일요일)
-  const dayOfWeek = today.getDay(); // 0 (일요일) ~ 6 (토요일)
-  // dayOfWeek가 0 (일요일)이면 diffToMonday는 -6 (지난 주 월요일)
-  // dayOfWeek가 1 (월요일)이면 diffToMonday는 0 (오늘이 월요일)
-  // dayOfWeek가 6 (토요일)이면 diffToMonday는 -5 (이번 주 월요일)
-  const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  // 지난 한 주(최근 7일) 계산
+  const startOfLast7Days = new Date(today);
+  startOfLast7Days.setDate(today.getDate() - 6);
 
-  const startOfWeek = new Date(today);
-  startOfWeek.setDate(today.getDate() + diffToMonday);
-  // startOfWeek는 이미 setHours(0,0,0,0)이 적용된 today를 기반으로 하므로 별도 설정 필요 없음
+  // 지난 한 달(최근 30일) 계산
+  const startOfLast30Days = new Date(today);
+  startOfLast30Days.setDate(today.getDate() - 29);
 
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6);
-  // endOfWeek는 이미 setHours(0,0,0,0)이 적용된 startOfWeek를 기반으로 하므로 별도 설정 필요 없음
-
-  // 이번 달의 시작일과 종료일 계산
-  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
-  // startOfMonth는 new Date()로 생성 시 기본적으로 시간이 00:00:00으로 설정됨
-
-  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-  // endOfMonth는 new Date()로 생성 시 기본적으로 시간이 00:00:00으로 설정됨
-
-  // 날짜 상태 확인
-  if (inputDate >= startOfWeek && inputDate <= endOfWeek) {
-    return '이번 주';
+  if (inputDate >= startOfLast7Days && inputDate <= today) {
+    return '지난 한 주';
   }
-  if (inputDate >= startOfMonth && inputDate <= endOfMonth) {
-    return '이번 달';
+
+  if (inputDate >= startOfLast30Days && inputDate < startOfLast7Days) {
+    return '지난 한 달';
   }
-  return '이전 알림';
+
+  return '지난 알림';
 }
