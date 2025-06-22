@@ -3,11 +3,11 @@
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import getTimeRemaining from '@/utils/getTimeRemaining';
-import { NotificationProps } from '@/types';
+import type { Notification } from '@/types';
 import { Avatar, AvatarGroup, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
 import { IconAlert, IconKebab } from '@/public/svgs';
 
-export default function Notification({
+export default function NotificationItem({
   title,
   content,
   created_date,
@@ -18,7 +18,7 @@ export default function Notification({
   notification_id,
   onClickRead,
   onClickDelete,
-}: NotificationProps & {
+}: Notification & {
   onClickRead: (notificationId: number, isClickByButton: boolean) => void;
   onClickDelete: (notificationId: number) => void;
 }) {

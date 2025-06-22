@@ -28,7 +28,7 @@ export default function NotificationButton() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data: notificationCount } = useGetNotificationCount();
 
-  if (notificationCount && notificationCount.data.notification_count === 0) {
+  if (notificationCount && notificationCount.notification_count === 0) {
     return (
       <Link href="/notification">
         <IconNotification />

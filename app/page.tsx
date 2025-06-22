@@ -1,6 +1,7 @@
 import getQueryClient from '@/lib/getQueryClient';
 import { Feed, Layout, SearchBarButton } from '@/components';
 import { getBillByStage } from '@/components/Feed/Feed/apis';
+import { NotificationTopThree } from './notification/components';
 
 export default async function Home() {
   const queryClient = getQueryClient();
@@ -21,6 +22,7 @@ export default async function Home() {
     <Layout nav logo notification>
       <section className="lg:w-[880px] mx-auto ">
         <SearchBarButton />
+        <NotificationTopThree />
         <Feed />
       </section>
     </Layout>
