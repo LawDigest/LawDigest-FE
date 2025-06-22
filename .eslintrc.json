@@ -30,6 +30,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/naming-convention": "off",
     "react/require-default-props": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "no-console": "off"
   }
 }

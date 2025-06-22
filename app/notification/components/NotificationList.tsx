@@ -14,7 +14,7 @@ import {
   useDeleteNotification,
   useDeleteNotificationAll,
 } from '../apis';
-import Notification from './Notification';
+import NotificationItem from './NotificationItem';
 
 const initialData = [
   [
@@ -71,10 +71,10 @@ export default function NotificationList() {
       ? Array.from(Array(3), (v, i) =>
           // eslint-disable-next-line no-nested-ternary
           i === 0
-            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
+            ? notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
             : i === 1
-              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
-              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
+              ? notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
+              : notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
         )
       : initialData,
   );
@@ -85,10 +85,10 @@ export default function NotificationList() {
         Array.from(Array(3), (v, i) =>
           // eslint-disable-next-line no-nested-ternary
           i === 0
-            ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
+            ? notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 한 주')
             : i === 1
-              ? notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
-              : notifications.data.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
+              ? notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 한 달')
+              : notifications.filter((notification) => getDateStatus(notification.created_date) === '지난 알림'),
         ),
       );
     }
@@ -145,13 +145,13 @@ export default function NotificationList() {
   return (
     <section className="flex flex-col px-5 mt-6 mb-10">
       <div className="mb-[18px] ml-3">
-        <div className="flex items-center justify-between">
-          {notificationCount?.data.notification_count === 0 ? (
+        <div className="flex justify-between items-center">
+          {notificationCount?.notification_count === 0 ? (
             <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">알림이 없습니다.</p>
           ) : (
             <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">
-              <span className="text-black dark:text-gray-2">{notificationCount?.data.notification_count}개</span>의 읽지
-              않은 알림이 있습니다.
+              <span className="text-black dark:text-gray-2">{notificationCount?.notification_count}개</span>의 읽지 않은
+              알림이 있습니다.
             </p>
           )}
           <Dropdown>
@@ -176,7 +176,7 @@ export default function NotificationList() {
               <p className="text-sm md:text-base text-gray-2 dark:text-gray-3">지난 한 주 알림이 없습니다.</p>
             ) : (
               listByDateStatus[0].map((notification) => (
-                <Notification
+                <NotificationItem
                   key={notification.notification_id}
                   {...notification}
                   onClickRead={onClickRead}
@@ -196,7 +196,7 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[1].map((notification) => (
-                <Notification
+                <NotificationItem
                   key={notification.notification_id}
                   {...notification}
                   onClickRead={onClickRead}
@@ -216,7 +216,7 @@ export default function NotificationList() {
             ) : (
               listByDateStatus &&
               listByDateStatus[2].map((notification) => (
-                <Notification
+                <NotificationItem
                   key={notification.notification_id}
                   {...notification}
                   onClickRead={onClickRead}
