@@ -1,6 +1,3 @@
-'use client';
-
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -33,8 +30,6 @@ export default function ProposerList({
   const representativeProposerLength = representativeProposerList.length;
   const publicProposerLength = publicProposerList.length;
   const proposerListByParty = sortByParty({ publicProposerList });
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   return (
     <Card className={`lg:shadow-none dark:lg:bg-dark-pb ${popover ? 'shadow-none  dark:lg:bg-transparent' : ''}`}>
@@ -60,12 +55,22 @@ export default function ProposerList({
                   {party === '무소속' ? (
                     <div className="text-xs font-medium text-black">무소속</div>
                   ) : (
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? proposers[0][1].replace('wide', 'dark') : proposers[0][1]}`}
-                      width={30}
-                      height={30}
-                      alt={`${party} 로고 이미지`}
-                    />
+                    <>
+                      <Image
+                        className="dark:hidden"
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${proposers[0][1]}`}
+                        width={30}
+                        height={30}
+                        alt={`${party} 로고 이미지`}
+                      />
+                      <Image
+                        className="hidden dark:block"
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${proposers[0][1].replace('wide', 'dark')}`}
+                        width={30}
+                        height={30}
+                        alt={`${party} 로고 이미지`}
+                      />
+                    </>
                   )}
                 </Link>
                 <Badge variant="destructive" className="absolute -top-1 -right-2">

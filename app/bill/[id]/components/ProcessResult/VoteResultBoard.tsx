@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 
 interface VoteResultBoardProps {
   party_vote_list: {
@@ -14,9 +13,6 @@ interface VoteResultBoardProps {
 }
 
 export default function VoteResultBoard({ party_vote_list }: VoteResultBoardProps) {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
   return (
     <div className="grid w-full grid-cols-2 gap-y-4 gap-x-4">
       {party_vote_list
@@ -29,12 +25,22 @@ export default function VoteResultBoard({ party_vote_list }: VoteResultBoardProp
               {party_name === '무소속' ? (
                 <div className="text-xs font-medium text-black">무</div>
               ) : (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-                  width={20}
-                  height={20}
-                  alt={`${party_name} 로고 이미지`}
-                />
+                <>
+                  <Image
+                    className="dark:hidden"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                    width={20}
+                    height={20}
+                    alt={`${party_name} 로고 이미지`}
+                  />
+                  <Image
+                    className="hidden dark:block"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url.replace('wide', 'dark')}`}
+                    width={20}
+                    height={20}
+                    alt={`${party_name} 로고 이미지`}
+                  />
+                </>
               )}
             </Link>
             <Link href={`/party/${party_id}`}>

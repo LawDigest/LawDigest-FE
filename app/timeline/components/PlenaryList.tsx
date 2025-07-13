@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -44,8 +43,6 @@ export default function PlenaryList({
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,12 +91,22 @@ export default function PlenaryList({
                             {bill_info.party_info[0].party_name === '무소속' ? (
                               <span className="text-xs font-bold text-black dark:text-white">무</span>
                             ) : (
-                              <Image
-                                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? bill_info.party_info[0].party_image_url.replace('wide', 'dark') : bill_info.party_info[0].party_image_url}`}
-                                alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
-                                width={22}
-                                height={22}
-                              />
+                              <>
+                                <Image
+                                  className="dark:hidden"
+                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${bill_info.party_info[0].party_image_url}`}
+                                  alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
+                                  width={22}
+                                  height={22}
+                                />
+                                <Image
+                                  className="hidden dark:block"
+                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${bill_info.party_info[0].party_image_url.replace('wide', 'dark')}`}
+                                  alt={`${bill_info.party_info[0].party_name} 로고 이미지`}
+                                  width={22}
+                                  height={22}
+                                />
+                              </>
                             )}
                           </Link>
                           <div className="flex flex-col gap-1">
@@ -133,12 +140,22 @@ export default function PlenaryList({
                     {item.bill_info.party_info[0].party_name === '무소속' ? (
                       <span className="text-xs font-bold text-black dark:text-white">무</span>
                     ) : (
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? item.bill_info.party_info[0].party_image_url.replace('wide', 'dark') : item.bill_info.party_info[0].party_image_url}`}
-                        alt={`${item.bill_info.party_info[0].party_name} 로고 이미지`}
-                        width={22}
-                        height={22}
-                      />
+                      <>
+                        <Image
+                          className="dark:hidden"
+                          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item.bill_info.party_info[0].party_image_url}`}
+                          alt={`${item.bill_info.party_info[0].party_name} 로고 이미지`}
+                          width={22}
+                          height={22}
+                        />
+                        <Image
+                          className="hidden dark:block"
+                          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${item.bill_info.party_info[0].party_image_url.replace('wide', 'dark')}`}
+                          alt={`${item.bill_info.party_info[0].party_name} 로고 이미지`}
+                          width={22}
+                          height={22}
+                        />
+                      </>
                     )}
                   </Link>
                   <div className="flex flex-col gap-2 w-full md:h-full md:justify-between">

@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useTheme } from 'next-themes';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -18,8 +17,6 @@ export default function CongressmanItem({
   party_image_url,
 }: FollowingCongressmanType) {
   const router = useRouter();
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   return (
     <div className="flex flex-col gap-2 items-center xl:flex-row xl:justify-between">
@@ -50,12 +47,22 @@ export default function CongressmanItem({
           }
         }}>
         {party_image_url !== null ? (
-          <Image
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-            width={60}
-            height={20}
-            alt={`${party_name} 로고 이미지`}
-          />
+          <>
+            <Image
+              className="dark:hidden"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+              width={60}
+              height={20}
+              alt={`${party_name} 로고 이미지`}
+            />
+            <Image
+              className="hidden dark:block"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url.replace('wide', 'dark')}`}
+              width={60}
+              height={20}
+              alt={`${party_name} 로고 이미지`}
+            />
+          </>
         ) : (
           <PartyLogoReplacement partyName={party_name} circle={false} />
         )}

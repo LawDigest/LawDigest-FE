@@ -1,6 +1,5 @@
 'use client';
 
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { BillProps } from '@/types';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -20,8 +19,6 @@ export default function BillBookmarked({
 }: BillProps) {
   const isRepresentativeSolo = representative_proposer_dto_list.length === 1;
   const partyName = isRepresentativeSolo ? representative_proposer_dto_list[0].party_name : '다수';
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   return (
     <Card className={`border-1.5 flex-row md:py-2 ${partyName} rounded-md`}>
@@ -76,13 +73,25 @@ export default function BillBookmarked({
               if (representative_proposer_dto_list[0].party_image_url === null) e.preventDefault();
             }}>
             {representative_proposer_dto_list[0].party_image_url !== null ? (
-              <Image
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? representative_proposer_dto_list[0].party_image_url.replace('wide', 'dark') : representative_proposer_dto_list[0].party_image_url}`}
-                width={60}
-                height={30}
-                alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
-                className="object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
-              />
+              <>
+                <Image
+                  className="dark:hidden object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].party_image_url}`}
+                  width={60}
+                  height={30}
+                  alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
+                />
+                <Image
+                  className="hidden dark:block object-contain w-[60px] h-[30px] md:w-[90px] md:h-[45px]"
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${representative_proposer_dto_list[0].party_image_url.replace(
+                    'wide',
+                    'dark',
+                  )}`}
+                  width={60}
+                  height={30}
+                  alt={`${representative_proposer_dto_list[0].party_name} 이미지`}
+                />
+              </>
             ) : (
               <PartyLogoReplacement partyName={representative_proposer_dto_list[0].party_name} circle={false} />
             )}
@@ -92,10 +101,16 @@ export default function BillBookmarked({
             {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
               <Link href={`/party/${party_id}`} key={party_id}>
                 <Avatar className={`bg-white dark:bg-dark-l p-1 border ${party_name}`}>
-                  <AvatarImage
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-                    className="object-contain"
-                  />
+                  <>
+                    <AvatarImage
+                      className="dark:hidden object-contain"
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
+                    />
+                    <AvatarImage
+                      className="hidden dark:block object-contain"
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url.replace('wide', 'dark')}`}
+                    />
+                  </>
                   <AvatarFallback>{party_name[0]}</AvatarFallback>
                 </Avatar>
               </Link>

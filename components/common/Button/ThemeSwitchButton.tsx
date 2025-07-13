@@ -27,7 +27,8 @@ export default function ThemeSwitchButton() {
 
   return (
     <Button variant="ghost" size="icon" onClick={onClick}>
-      {theme === 'dark' ? <IconDarkMode /> : <IconLightMode />}
+      <IconLightMode className="dark:hidden" />
+      <IconDarkMode className="hidden dark:block" />
     </Button>
   );
 }

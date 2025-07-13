@@ -1,7 +1,4 @@
-'use client';
-
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 
 interface LogoProps {
   width: number;
@@ -9,14 +6,10 @@ interface LogoProps {
 }
 
 export default function Logo({ width, height }: LogoProps) {
-  const { theme } = useTheme();
-
   return (
-    <Image
-      src={theme === 'dark' ? '/images/logoDark.svg' : '/images/logo.svg'}
-      width={width}
-      height={height}
-      alt="로고이미지"
-    />
+    <>
+      <Image className="dark:hidden" src="/images/logo.svg" width={width} height={height} alt="로고이미지" />
+      <Image className="hidden dark:block" src="/images/logoDark.svg" width={width} height={height} alt="로고이미지" />
+    </>
   );
 }

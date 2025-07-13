@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTheme } from 'next-themes';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { IconEnter, IconNext, IconPrev } from '@/public/svgs';
@@ -34,8 +33,6 @@ export default function CommitteeAuditList({
   const [itemsPerPage, setItemsPerPage] = useState(1);
   const [isOpenIndividual, setIsOpenIndividual] = useState(false);
   const [isOpenAll, setIsOpenAll] = useState(false);
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,12 +85,22 @@ export default function CommitteeAuditList({
                               {party_info[0].party_name === '무소속' ? (
                                 <span className="text-xs font-bold text-black dark:text-white">무</span>
                               ) : (
-                                <Image
-                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                                  alt={`${party_info[0].party_name} 로고 이미지`}
-                                  width={22}
-                                  height={22}
-                                />
+                                <>
+                                  <Image
+                                    className="dark:hidden"
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url}`}
+                                    alt={`${party_info[0].party_name} 로고 이미지`}
+                                    width={22}
+                                    height={22}
+                                  />
+                                  <Image
+                                    className="hidden dark:block"
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url.replace('wide', 'dark')}`}
+                                    alt={`${party_info[0].party_name} 로고 이미지`}
+                                    width={22}
+                                    height={22}
+                                  />
+                                </>
                               )}
                             </Link>
                             <div className="flex flex-col gap-1">
@@ -147,12 +154,22 @@ export default function CommitteeAuditList({
                                   {party_info[0].party_name === '무소속' ? (
                                     <span className="text-xs font-bold text-black dark:text-white">무</span>
                                   ) : (
-                                    <Image
-                                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                                      alt={`${party_info[0].party_name} 로고 이미지`}
-                                      width={22}
-                                      height={22}
-                                    />
+                                    <>
+                                      <Image
+                                        className="dark:hidden"
+                                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url}`}
+                                        alt={`${party_info[0].party_name} 로고 이미지`}
+                                        width={22}
+                                        height={22}
+                                      />
+                                      <Image
+                                        className="hidden dark:block"
+                                        src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url.replace('wide', 'dark')}`}
+                                        alt={`${party_info[0].party_name} 로고 이미지`}
+                                        width={22}
+                                        height={22}
+                                      />
+                                    </>
                                   )}
                                 </Link>
                                 <div className="flex flex-col gap-1">
@@ -178,12 +195,22 @@ export default function CommitteeAuditList({
                               {party_info[0].party_name === '무소속' ? (
                                 <span className="text-xs font-bold text-black dark:text-white">무</span>
                               ) : (
-                                <Image
-                                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_info[0].party_image_url.replace('wide', 'dark') : party_info[0].party_image_url}`}
-                                  alt={`${party_info[0].party_name} 로고 이미지`}
-                                  width={22}
-                                  height={22}
-                                />
+                                <>
+                                  <Image
+                                    className="dark:hidden"
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url}`}
+                                    alt={`${party_info[0].party_name} 로고 이미지`}
+                                    width={22}
+                                    height={22}
+                                  />
+                                  <Image
+                                    className="hidden dark:block"
+                                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_info[0].party_image_url.replace('wide', 'dark')}`}
+                                    alt={`${party_info[0].party_name} 로고 이미지`}
+                                    width={22}
+                                    height={22}
+                                  />
+                                </>
                               )}
                             </Link>
                             <div className="flex flex-col gap-1">
