@@ -59,11 +59,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
-      <body
-        className={clsx(
-          'text-black bg-white dark:bg-dark-b dark:lg:bg-dark-pb dark:text-white font-sans antialiased',
-          fontSans.variable,
-        )}>
+      <body className={clsx('font-sans antialiased', fontSans.variable)}>
         <RecoilRootProvider>
           <QueryClientProvider>
             <NextThemesProvider>
