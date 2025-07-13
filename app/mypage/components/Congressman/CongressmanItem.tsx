@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Avatar } from '@nextui-org/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { FollowingCongressmanType } from '@/types';
 
 export default function CongressmanItem({
@@ -10,11 +10,10 @@ export default function CongressmanItem({
 }: FollowingCongressmanType) {
   return (
     <Link href={`/congressman/${congressman_id}`} className="flex flex-col items-center gap-1">
-      <Avatar
-        size="lg"
-        src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-        className={`border-1.5 ${party_name}`}
-      />
+      <Avatar className="w-16 h-16 border-1.5">
+        <AvatarImage src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url} />
+        <AvatarFallback>{congressman_name[0]}</AvatarFallback>
+      </Avatar>
       <div className="flex flex-col items-center">
         <p className="text-xs font-medium text-gray-2 dark:text-[#999999]">{party_name}</p>
         <p className="text-sm font-medium">{congressman_name}</p>

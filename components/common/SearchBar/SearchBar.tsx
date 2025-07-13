@@ -2,8 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useState, useCallback, Dispatch, SetStateAction } from 'react';
-import { IconSearchbar } from '@/public/svgs';
-import { Button, Input } from '@nextui-org/react';
+import { IconSearchbar, IconX } from '@/public/svgs';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { useResetRecoilState, useRecoilValue } from 'recoil';
 import { searchModalState } from '@/store';
 
@@ -43,37 +44,40 @@ export default function SearchBar({
       setValue('');
       resetSearchModal();
     },
-    [value],
+    [value, router, setRecentKeywords, resetSearchModal],
   );
+
+  const onClear = () => {
+    setValue('');
+    router.push('/search');
+  };
 
   return (
     <form
       onSubmit={onSubmitSearch}
       className="w-full rounded-2xl flex justify-center items-center gap-[10px] md:w-[600px] mx-auto my-5">
-      <Input
-        autoFocus={searchModal.show}
-        value={value}
-        onValueChange={setValue}
-        onClear={() => router.push('/search')}
-        isClearable
-        radius="lg"
-        classNames={{
-          input: ['bg-transparent', 'text-black/90', 'truncate'],
-          inputWrapper: [
-            'h-[40px]',
-            'w-full',
-            'shadow-sm',
-            'group-data-[focused=true]:bg-default-200/50',
-            '!cursor-text',
-          ],
-        }}
-        placeholder="법안, 의원, 정당명으로 검색"
-        endContent={
-          <Button size="sm" isIconOnly className="bg-transparent" onClick={onSubmitSearch}>
-            <IconSearchbar />
+      <div className="relative w-full">
+        <Input
+          autoFocus={searchModal.show}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="법안, 의원, 정당명으로 검색"
+          className="h-10 pr-10 truncate shadow-sm"
+        />
+        {value && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            onClick={onClear}
+            className="absolute right-10 top-1/2 -translate-y-1/2 w-6 h-6">
+            <IconX />
           </Button>
-        }
-      />
+        )}
+        <Button type="submit" variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8">
+          <IconSearchbar />
+        </Button>
+      </div>
     </form>
   );
 }

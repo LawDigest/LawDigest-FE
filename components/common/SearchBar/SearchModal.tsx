@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useState, useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { searchModalState } from '@/store';
-import { Button, Chip } from '@nextui-org/react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { IconX } from '@/public/svgs';
 import SearchBar from './SearchBar';
 
@@ -18,17 +19,20 @@ export default function SearchModal() {
 
   const closeModal = useCallback(() => {
     resetSearchModal();
-  }, []);
+  }, [resetSearchModal]);
 
   const onClickRemoveAll = useCallback(() => {
     setRecentKeywords([]);
     localStorage.setItem('recentKeywords', JSON.stringify([]));
-  }, [recentKeywords]);
-
-  const onClickChip = useCallback((searchWord: string) => {
-    router.push(`/search/${searchWord}`);
-    resetSearchModal();
   }, []);
+
+  const onClickChip = useCallback(
+    (searchWord: string) => {
+      router.push(`/search/${searchWord}`);
+      resetSearchModal();
+    },
+    [router, resetSearchModal],
+  );
 
   const onClickRemoveRecentKeyword = useCallback(
     (keyword: string) => {
@@ -59,35 +63,39 @@ export default function SearchModal() {
       <div className="mx-5 mt-10 md:mt-20 w-full md:w-[600px]">
         <div className="flex flex-col gap-4 md:relative">
           <div className="-right-20 md:absolute top-[22px]">
-            <Button onClick={closeModal} className="float-right p-0 bg-transparent" size="sm" isIconOnly>
+            <Button variant="ghost" size="icon" onClick={closeModal} className="float-right">
               <IconX />
             </Button>
           </div>
           <SearchBar setRecentKeywords={setRecentKeywords} />
 
           <section className="flex flex-col gap-7">
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between items-center">
               <h2 className="text-lg font-semibold md:text-xl">최근 검색어</h2>
-              <Button
-                size="sm"
-                className="p-0 text-xs font-medium bg-transparent text-gray-2 md:text-sm"
-                onClick={onClickRemoveAll}>
+              <Button variant="link" size="sm" className="text-gray-2" onClick={onClickRemoveAll}>
                 모두 지우기
               </Button>
             </div>
             <div className="flex gap-[10px] flex-wrap">
               {recentKeywords && recentKeywords.length > 0 ? (
                 recentKeywords.map((keyword: string) => (
-                  <Chip
+                  <Badge
                     key={keyword}
-                    variant="bordered"
-                    className="h-7 md:h-8 border-gray-2 border-1 text-gray-3 dark:text-gray-2 dark:border-gray-3"
-                    onClick={() => onClickChip(keyword)}
-                    onClose={() => {
-                      onClickRemoveRecentKeyword(keyword);
-                    }}>
-                    <p className="cursor-pointer max-w-[280px] truncate">{keyword}</p>
-                  </Chip>
+                    variant="outline"
+                    className="cursor-pointer"
+                    onClick={() => onClickChip(keyword)}>
+                    <span className="max-w-[240px] truncate">{keyword}</span>
+                    <button
+                      type="button"
+                      aria-label="Remove recent keyword"
+                      className="ml-2 rounded-full outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onClickRemoveRecentKeyword(keyword);
+                      }}>
+                      <IconX className="w-3 h-3 text-muted-foreground hover:text-foreground" />
+                    </button>
+                  </Badge>
                 ))
               ) : (
                 <p className="text-sm text-gray-3 dark:text-gray-2">최근 검색어가 존재하지 않습니다.</p>

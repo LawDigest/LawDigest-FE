@@ -1,4 +1,4 @@
-import { Modal, ModalContent, ModalHeader, ModalBody } from '@nextui-org/react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 export default function TimelineModal({
   isOpen,
@@ -10,11 +10,13 @@ export default function TimelineModal({
   children: React.ReactNode;
 }) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} className="min-h-[40%] max-h-[80%] ">
-      <ModalContent>
-        <ModalHeader>심사한 법안</ModalHeader>
-        <ModalBody className="overflow-y-scroll">{children}</ModalBody>
-      </ModalContent>
-    </Modal>
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="min-h-[40%] max-h-[80%] flex flex-col">
+        <DialogHeader>
+          <DialogTitle>심사한 법안</DialogTitle>
+        </DialogHeader>
+        <div className="overflow-y-scroll">{children}</div>
+      </DialogContent>
+    </Dialog>
   );
 }

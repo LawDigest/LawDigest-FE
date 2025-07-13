@@ -1,6 +1,6 @@
 import { BillResponse, ValueOf } from '@/types';
 import { RefObject } from 'react';
-import { Spinner } from '@nextui-org/spinner';
+import { Loader2 } from 'lucide-react';
 import { FEED_TAB } from '@/constants';
 import Bill from './Bill';
 
@@ -24,7 +24,7 @@ export default function BillList({
       ))}
       {feedType === 'sorted_by_latest' && isFetching && (
         <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
+          <Loader2 className="h-8 w-8 animate-spin" />
         </div>
       )}
       <div ref={fetchRef} />

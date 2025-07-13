@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useIntersect } from '@/hooks';
-import { Spinner } from '@nextui-org/spinner';
+import { Loader2 } from 'lucide-react';
 import { convertDateFormat } from '@/utils';
-import { Divider } from '@nextui-org/react';
+import { Separator } from '@/components/ui/separator';
 import { TimelineResponseList } from '@/types';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
@@ -37,7 +37,7 @@ export default function ListContainer() {
         <div className="absolute w-[2px] h-5 bg-white dark:bg-dark-b dark:lg:bg-dark-pb" />
         {timeline.map(({ date, plenary_list, promulgation_list, committee_audit_list, submitted_list }) => (
           <div key={date} className="flex gap-6">
-            <Divider orientation="vertical" className="w-[2px] h-auto" />
+            <Separator orientation="vertical" className="w-[2px] h-auto" />
             <div className="w-full pb-10">
               <div className="relative">
                 <div className="w-[25px] h-[25px] bg-gray-1 dark:bg-gray-3 absolute rounded-full border-black border top-5 -left-[38px]" />
@@ -62,7 +62,7 @@ export default function ListContainer() {
       </div>
       {isFetching && (
         <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
+          <Loader2 className="animate-spin" />
         </div>
       )}
       <div ref={fetchRef} />

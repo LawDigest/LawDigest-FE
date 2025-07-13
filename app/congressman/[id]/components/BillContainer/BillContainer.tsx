@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BillList, BillTab } from '@/components';
+import { BillList, BillTab } from '@/components/Bill';
 import { useIntersect, useTabType } from '@/hooks';
 import { BILL_TAB } from '@/constants';
 import { useGetBillByCongressman } from '../../apis';

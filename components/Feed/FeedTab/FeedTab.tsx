@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@nextui-org/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { siteConfig } from '@/config/site';
 import { FEED_TAB } from '@/constants';
 import { Key } from 'react';
@@ -15,23 +15,17 @@ export default function FeedTab({
 
   return (
     <section className="">
-      <Tabs
-        fullWidth
-        aria-label="Options"
-        variant="light"
-        classNames={{
-          cursor: ['rounded-full bg-black dark:bg-white'],
-          tabList: ['gap-0'],
-          tab: ['w-[74px] h-[36px] '],
-          tabContent:
-            'text-base font-medium group-data-[selected=true]:text-white group-data-[selected=true]:dark:text-black',
-        }}
-        selectedKey={type}
-        onSelectionChange={clickHandler}
-        className="w-full">
-        {values.map(({ label, value }) => (
-          <Tab key={FEED_TAB[value as keyof typeof FEED_TAB]} title={label} />
-        ))}
+      <Tabs value={type} onValueChange={clickHandler} className="w-full">
+        <TabsList className="grid w-full grid-cols-2 h-auto p-0 bg-transparent">
+          {values.map(({ label, value }) => (
+            <TabsTrigger
+              key={FEED_TAB[value as keyof typeof FEED_TAB]}
+              value={FEED_TAB[value as keyof typeof FEED_TAB]}
+              className="w-full h-[36px] text-base font-medium data-[state=active]:bg-black data-[state=active]:text-white dark:data-[state=active]:bg-white dark:data-[state=active]:text-black rounded-full">
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
       </Tabs>
     </section>
   );

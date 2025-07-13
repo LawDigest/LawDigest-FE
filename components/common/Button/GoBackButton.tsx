@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@nextui-org/button';
+import { Button } from '@/components/ui/button';
 import { IconArrowLeft } from '@/public/svgs';
 
 export default function GoBackButton() {
@@ -10,10 +10,10 @@ export default function GoBackButton() {
 
   const onClick = useCallback(() => {
     router.back();
-  }, []);
+  }, [router]);
 
   return (
-    <Button isIconOnly onClick={onClick} className="bg-transparent">
+    <Button variant="ghost" size="icon" onClick={onClick}>
       <IconArrowLeft />
     </Button>
   );

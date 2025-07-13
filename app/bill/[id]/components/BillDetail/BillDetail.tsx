@@ -1,6 +1,6 @@
-import { Bill } from '@/components';
-import { Divider } from '@nextui-org/react';
+import { Separator } from '@/components/ui/separator';
 import { useQueryClient } from '@tanstack/react-query';
+import { Bill } from '@/components/Bill';
 import { SectionContainer } from '../SectionContainer';
 import { ProposerList } from '../ProposerList';
 import { ProgressStage } from '../ProgressStage';
@@ -24,13 +24,13 @@ export default async function BillDetail({ id, viewCount }: { id: string; viewCo
             />
           </SectionContainer>
 
-          <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+          <Separator className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
           <SectionContainer title="심사 진행 단계">
             <ProgressStage billStage={data.bill_info_dto.bill_stage} />
           </SectionContainer>
 
-          <Divider className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
+          <Separator className="hidden md:block h-[1px] w-full border-gray-1 dark:border-dark-l" />
 
           <SectionContainer title="법안 처리 결과">
             <ProcessResult

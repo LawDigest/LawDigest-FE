@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useIntersect } from '@/hooks';
-import { Card } from '@nextui-org/card';
+import { Card } from '@/components/ui/card';
 import { useGetBillBookmarked } from '../../apis';
 import BillBookmarkedCount from './BillBookmarkedCount';
 import BillBookmarkedList from './BillBookmaredList';
@@ -30,7 +30,7 @@ export default function BillContainer() {
       <p className="text-xl font-semibold px-[30px] lg:px-0">
         스크랩한 법안 &middot; <BillBookmarkedCount />
       </p>
-      <Card className="mx-[30px] lg:mx-0 bg-primary-3 dark:lg:bg-dark-b rounded-lg px-6 py-5 flex-row gap-8 items-center">
+      <Card className="mx-[30px] lg:mx-0 bg-primary-3 dark:lg:bg-dark-b rounded-lg px-6 py-5 flex flex-row gap-8 items-center">
         <Image
           src="/images/scrab.png"
           width={64}

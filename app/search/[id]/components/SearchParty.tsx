@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { SearchCongressmanPartyProps } from '@/types';
-import { EnterButton, PartyLogoReplacement } from '@/components';
+import { EnterButton, PartyLogoReplacement } from '@/components/common';
 import Image from 'next/image';
 
 export default function SearchParty({ party_id, party_name, party_image_url }: SearchCongressmanPartyProps) {
@@ -11,8 +11,8 @@ export default function SearchParty({ party_id, party_name, party_image_url }: S
   const isDark = theme === 'dark';
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-6">
+    <div className="flex justify-between items-center">
+      <div className="flex gap-6 items-center">
         {party_image_url !== null ? (
           <div
             className={`flex justify-center items-center w-[54px] h-[54px] border overflow-hidden rounded-full ${party_name}`}>

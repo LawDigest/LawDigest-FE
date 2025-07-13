@@ -2,7 +2,9 @@
 
 import { useState, useCallback } from 'react';
 import { useGetPartyCongressman } from '@/app/party/[id]/apis';
-import { Spinner, Button, Divider } from '@nextui-org/react';
+import { Loader2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { IconArrowDown, IconArrowUp } from '@/public/svgs';
 import PartyCongressmanItem from './PartyCongressmanItem';
 
@@ -29,17 +31,17 @@ export default function PartyCongressmanList({ id }: { id: number }) {
       </div>
       {isFetching && (
         <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
+          <Loader2 className="animate-spin" />
         </div>
       )}
       <div
         className={`flex justify-center ${data?.data.party_congressman.length && data?.data.party_congressman.length <= 8 ? 'hidden' : ''}`}>
-        <Button isIconOnly onClick={onClickButton} className="p-0 bg-transparent" size="sm">
+        <Button variant="ghost" size="icon" onClick={onClickButton} className="p-0">
           {isOpened ? <IconArrowUp /> : <IconArrowDown />}
         </Button>
       </div>
 
-      <Divider className="dark:bg-dark-l lg:hidden" />
+      <Separator className="dark:bg-dark-l lg:hidden" />
     </section>
   );
 }

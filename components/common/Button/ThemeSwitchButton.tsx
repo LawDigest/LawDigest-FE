@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Button } from '@nextui-org/react';
+import { Button } from '@/components/ui/button';
 import { IconDarkMode, IconLightMode } from '@/public/svgs';
 
 export default function ThemeSwitchButton() {
@@ -26,13 +26,8 @@ export default function ThemeSwitchButton() {
   }
 
   return (
-    <Button
-      startContent={theme === 'dark' ? <IconDarkMode /> : <IconLightMode />}
-      color={theme === 'dark' ? 'warning' : 'primary'}
-      variant="light"
-      size="sm"
-      onClick={onClick}
-      isIconOnly
-    />
+    <Button variant="ghost" size="icon" onClick={onClick}>
+      {theme === 'dark' ? <IconDarkMode /> : <IconLightMode />}
+    </Button>
   );
 }

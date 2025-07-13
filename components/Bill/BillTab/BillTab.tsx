@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@nextui-org/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { siteConfig } from '@/config/site';
 import { BILL_TAB } from '@/constants';
 import { Key } from 'react';
@@ -15,22 +15,17 @@ export default function BillTab({
 
   return (
     <section className="w-full lg:min-w-[840px]">
-      <Tabs
-        fullWidth
-        aria-label="Options"
-        variant="underlined"
-        classNames={{
-          tabList: 'w-full p-0 border-b border-divider',
-          cursor: 'bg-black dark:bg-white',
-          tab: 'px-0 h-10',
-          tabContent: 'mx-2 group-data-[selected=true]:text-black group-data-[selected=true]:dark:text-white',
-        }}
-        selectedKey={type}
-        onSelectionChange={clickHandler}
-        className="w-full">
-        {values.map(({ label, value }) => (
-          <Tab key={BILL_TAB[value as keyof typeof BILL_TAB]} title={label} />
-        ))}
+      <Tabs value={type} onValueChange={clickHandler} className="w-full">
+        <TabsList className="w-full h-auto p-0 bg-transparent border-b rounded-none border-divider">
+          {values.map(({ label, value }) => (
+            <TabsTrigger
+              key={BILL_TAB[value as keyof typeof BILL_TAB]}
+              value={BILL_TAB[value as keyof typeof BILL_TAB]}
+              className="px-0 h-10 mx-2 text-base font-medium bg-transparent shadow-none rounded-none data-[state=active]:border-b-2 data-[state=active]:border-black dark:data-[state=active]:border-white data-[state=active]:text-black dark:data-[state=active]:text-white">
+              {label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
       </Tabs>
     </section>
   );

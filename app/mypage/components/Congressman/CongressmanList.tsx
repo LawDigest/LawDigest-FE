@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { FollowingCongressmanType, FollowingCongressmanResponse } from '@/types';
-import { ExpandableList } from '@/components';
+import { ExpandableList } from '@/components/common';
 import CongressmanItem from './CongressmanItem';
 import { useGetFollowingCongressman } from '../../apis';
 

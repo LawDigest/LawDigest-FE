@@ -3,7 +3,8 @@
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge, Card, CardHeader, CardBody } from '@nextui-org/react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { sortByParty } from '@/utils';
 
 export default function ProposerList({
@@ -36,10 +37,7 @@ export default function ProposerList({
   const isDark = theme === 'dark';
 
   return (
-    <Card
-      classNames={{
-        base: [`lg:shadow-none dark:lg:bg-dark-pb ${popover ? 'shadow-none  dark:lg:bg-transparent' : ''}`],
-      }}>
+    <Card className={`lg:shadow-none dark:lg:bg-dark-pb ${popover ? 'shadow-none  dark:lg:bg-transparent' : ''}`}>
       <CardHeader>
         <p className="font-medium">
           {representativeProposerLength === 1
@@ -50,12 +48,12 @@ export default function ProposerList({
           <span className="text-sm font-normal">{`등 ${publicProposerLength}인`}</span>
         </p>
       </CardHeader>
-      <CardBody>
+      <CardContent>
         <div className="flex flex-col gap-5 my-[18px]">
           {/* eslint-disable-next-line react/no-unused-prop-types */}
           {proposerListByParty.map(({ party, proposers }: { party: string; proposers: string[][] }) => (
             <div key={party} className="flex items-center gap-10">
-              <Badge content={proposers.length - 1} color="danger" size="sm">
+              <div className="relative">
                 <Link
                   href={`/party/${proposers[0][0]}`}
                   className={`flex items-center justify-center w-10 h-10 rounded-full shadow-lg shrink-0 border-1.5 ${party}`}>
@@ -70,7 +68,10 @@ export default function ProposerList({
                     />
                   )}
                 </Link>
-              </Badge>
+                <Badge variant="destructive" className="absolute -top-1 -right-2">
+                  {proposers.length - 1}
+                </Badge>
+              </div>
               <div className="grid grid-cols-5 text-sm gap-x-[10px] gap-y-1">
                 {proposers
                   .slice(1)
@@ -93,7 +94,7 @@ export default function ProposerList({
             </div>
           ))}
         </div>
-      </CardBody>
+      </CardContent>
     </Card>
   );
 }

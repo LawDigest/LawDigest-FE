@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { getDateStatus } from '@/utils';
-import { Divider, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
+import { Separator } from '@/components/ui/separator';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import { IconKebab } from '@/public/svgs';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/store';
@@ -154,17 +161,17 @@ export default function NotificationList() {
               알림이 있습니다.
             </p>
           )}
-          <Dropdown>
-            <DropdownTrigger>
-              <Button isIconOnly size="sm" className="bg-transparent">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
                 <IconKebab isPassed />
               </Button>
-            </DropdownTrigger>
-            <DropdownMenu>
-              <DropdownItem onClick={onClickReadAll}>모두 읽음 표시</DropdownItem>
-              <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={onClickReadAll}>모두 읽음 표시</DropdownMenuItem>
+              <DropdownMenuItem onClick={onClickDeleteAll}>모두 삭제</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -186,7 +193,7 @@ export default function NotificationList() {
             ))}
         </div>
 
-        <Divider className="my-6" />
+        <Separator className="my-6" />
 
         <h2 className="text-xl font-semibold">지난 한 달</h2>
         <div className="flex flex-col gap-3 md:gap-4">
@@ -206,7 +213,7 @@ export default function NotificationList() {
             ))}
         </div>
 
-        <Divider className="my-6" />
+        <Separator className="my-6" />
 
         <h2 className="text-xl font-semibold">지난 알림</h2>
         <div className="flex flex-col gap-3 md:gap-4">

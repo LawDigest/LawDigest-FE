@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { IconNotification } from '@/public/svgs';
-import { Badge } from '@nextui-org/badge';
 import { useGetNotificationCount } from '@/app/notification/apis';
 import { getCookie } from 'cookies-next';
 import { ACCESS_TOKEN } from '@/constants';
@@ -38,9 +37,10 @@ export default function NotificationButton() {
 
   return (
     <Link href="/notification">
-      <Badge shape="circle" content="" color="danger" size="sm">
+      <div className="relative">
         <IconNotification />
-      </Badge>
+        <div className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
+      </div>
     </Link>
   );
 }

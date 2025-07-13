@@ -1,4 +1,4 @@
-import { Avatar } from '@nextui-org/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { QueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useGetUserInfo } from '../../apis';
@@ -21,7 +21,10 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
             loader={({ src }) => `${src}`}
             className="absolute z-10"
           />
-          <Avatar src={`${user_image_url}`} className="w-[100px] h-[100px] mr-4 lg:mr-0" />
+          <Avatar className="w-[100px] h-[100px] mr-4 lg:mr-0">
+            <AvatarImage src={`${user_image_url}`} />
+            <AvatarFallback>{user_name[0]}</AvatarFallback>
+          </Avatar>
         </div>
 
         <div className="flex flex-col w-full gap-3 lg:items-center">

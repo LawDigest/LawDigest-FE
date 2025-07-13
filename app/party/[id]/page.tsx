@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { SubHeader } from '@/components';
+import { SubHeader } from '@/components/Layout';
 import getQueryClient from '@/lib/getQueryClient';
 import { getMetadata } from '@/utils';
 import { Metadata } from 'next';

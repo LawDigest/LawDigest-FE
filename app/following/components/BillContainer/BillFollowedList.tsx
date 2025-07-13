@@ -1,7 +1,7 @@
 import { BillResponse } from '@/types';
 import { RefObject } from 'react';
-import { Spinner } from '@nextui-org/spinner';
-import { Bill } from '@/components';
+import { Loader2 } from 'lucide-react';
+import { Bill } from '@/components/Bill';
 
 export default function BillFollowedList({
   bills,
@@ -18,8 +18,8 @@ export default function BillFollowedList({
         <Bill {...bill} key={bill.bill_info_dto.bill_id} />
       ))}
       {isFetching && (
-        <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
+        <div className="flex justify-center my-4 w-full">
+          <Loader2 className="animate-spin" />
         </div>
       )}
       <div ref={fetchRef} />

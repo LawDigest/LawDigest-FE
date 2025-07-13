@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { Input, Button } from '@nextui-org/react';
+import { Button } from '@/components/ui/button';
 import { searchModalState } from '@/store';
 import { IconSearchbar } from '@/public/svgs';
 
@@ -11,33 +11,19 @@ export default function SearchBarButton() {
 
   const onClickSearchBar = useCallback(() => {
     setSearchModal({ show: true });
-  }, []);
+  }, [setSearchModal]);
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-    <form
+    <div
       onClick={onClickSearchBar}
-      className="w-full px-5 rounded-2xl flex justify-center items-center gap-[10px] md:w-[600px] mx-auto my-5">
-      <Input
-        isReadOnly
-        radius="lg"
-        classNames={{
-          input: ['bg-transparent', 'text-black/90', 'truncate'],
-          inputWrapper: [
-            'h-[40px]',
-            'w-full',
-            'shadow-sm',
-            'group-data-[focused=true]:bg-default-200/50',
-            '!cursor-text',
-          ],
-        }}
-        placeholder="법안, 의원, 정당명으로 검색"
-        endContent={
-          <Button size="sm" isIconOnly className="bg-transparent">
-            <IconSearchbar />
-          </Button>
-        }
-      />
-    </form>
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClickSearchBar()}
+      role="button"
+      tabIndex={0}
+      className="w-full px-5 rounded-2xl flex justify-between items-center gap-[10px] md:w-[600px] mx-auto my-5 h-10 shadow-sm cursor-text border border-input bg-background hover:bg-accent hover:text-accent-foreground">
+      <p className="text-sm text-muted-foreground">법안, 의원, 정당명으로 검색</p>
+      <Button variant="ghost" size="icon" className="h-8 w-8">
+        <IconSearchbar />
+      </Button>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { SubHeader } from '@/components';
+import { SubHeader } from '@/components/Layout';
 import getQueryClient from '@/lib/getQueryClient';
 import { getMetadata } from '@/utils';
 import { BillContainer } from './components';

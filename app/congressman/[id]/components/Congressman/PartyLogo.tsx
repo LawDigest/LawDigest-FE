@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PartyLogoReplacement } from '@/components';
+import { PartyLogoReplacement } from '@/components/common';
 
 export default function PartyLogo({
   party_id,

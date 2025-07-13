@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Button } from '@nextui-org/button';
-import { Link as NextUILink } from '@nextui-org/link';
-import { Card } from '@nextui-org/card';
-import { Divider } from '@nextui-org/react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 import { IconWeb } from '@/public/svgs';
 import {
   PARTY_NAME_KO,
@@ -36,10 +36,10 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
 
   return (
     <section className="flex flex-col items-center mx-5 xl:mx-0 mt-5 gap-7 xl:w-[320px]">
-      <Card shadow="none" className="flex flex-col items-center w-full gap-5 pt-1 dark:bg-dark-b lg:dark:bg-dark-pb">
+      <Card className="flex flex-col gap-5 items-center pt-1 w-full bg-transparent border-none dark:bg-dark-b lg:dark:bg-dark-pb">
         <PartyLogo party_name={party_name} party_img_url={party_img_url} />
 
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col gap-1 items-center">
           <h2 className="text-2xl font-semibold">{party_name}</h2>
           <h3 className="text-gray-3 dark:text-gray-2">{PARTY_POSITION[party_name as keyof typeof PARTY_NAME_KO]}</h3>
         </div>
@@ -55,7 +55,7 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
         </div>
       </Card>
 
-      <Divider className="dark:bg-dark-l" />
+      <Separator className="dark:bg-dark-l" />
 
       <FollowBoard
         id={partyId}
@@ -65,9 +65,9 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
         public_bill_count={public_bill_count}
       />
 
-      <Divider className="dark:bg-dark-l" />
+      <Separator className="dark:bg-dark-l" />
 
-      <div className="grid w-full grid-cols-4 justify-items-center ">
+      <div className="grid grid-cols-4 justify-items-center w-full">
         <div className="flex flex-col items-center">
           <p className="text-sm text-gray-3 dark:text-gray-2">당대표</p>
           <p className="font-medium">{PARTY_LEADER[party_name as keyof typeof PARTY_NAME_KO] || '없음'}</p>
@@ -89,13 +89,13 @@ export default async function PartyDetail({ partyId }: { partyId: number }) {
       </div>
 
       <Button
-        as={NextUILink}
-        href={website_url}
-        endContent={<IconWeb />}
-        variant="bordered"
-        radius="full"
-        className="2-[135px] h-8 bg-transparent text-gray-2 border-gray-1 dark:border-gray-3">
-        웹사이트 방문
+        asChild
+        variant="outline"
+        className="w-[135px] h-8 bg-transparent text-gray-2 border-gray-1 dark:border-gray-3 rounded-full">
+        <Link href={website_url}>
+          웹사이트 방문
+          <IconWeb />
+        </Link>
       </Button>
     </section>
   );

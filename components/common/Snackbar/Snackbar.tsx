@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Fragment, useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { Transition } from '@headlessui/react';
-import { Button } from '@nextui-org/react';
+import { Button } from '@/components/ui/button';
 import { snackbarState } from '@/store';
 import { IconCancel } from '@/public/svgs';
 
@@ -52,11 +52,7 @@ export default function Snackbar() {
                 <p className="text-xs font-medium text-white underline lg:text-sm ">로그인 하기</p>
               </Link>
             )}
-            <Button
-              isIconOnly
-              size="sm"
-              className="flex flex-shrink-0 bg-transparent focus:outline-none"
-              onClick={resetSnackbar}>
+            <Button variant="ghost" size="icon" className="flex-shrink-0" onClick={resetSnackbar}>
               <IconCancel />
             </Button>
           </div>

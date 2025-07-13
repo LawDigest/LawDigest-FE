@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Layout } from '@/components';
+import { Layout } from '@/components/Layout';
 
 export const metadata: Metadata = {
   title: '회원가입 페이지',

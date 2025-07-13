@@ -1,6 +1,8 @@
 import getQueryClient from '@/lib/getQueryClient';
-import { Feed, Layout, SearchBarButton } from '@/components';
 import { getBillByStage } from '@/components/Feed/Feed/apis';
+import { Layout } from '@/components/Layout/Layout';
+import { SearchBarButton } from '@/components/common';
+import { Feed } from '@/components/Feed';
 import { NotificationTopThree } from './notification/components';
 
 export default async function Home() {

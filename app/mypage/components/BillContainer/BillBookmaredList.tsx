@@ -1,6 +1,6 @@
 import { BillResponse } from '@/types';
 import { RefObject } from 'react';
-import { Spinner } from '@nextui-org/spinner';
+import { Loader2 } from 'lucide-react';
 import BillBookmarked from './BillBookmarked';
 
 export default function BillBookmarkedList({
@@ -19,7 +19,7 @@ export default function BillBookmarkedList({
       ))}
       {isFetching && (
         <div className="flex justify-center w-full my-4">
-          <Spinner color="default" />
+          <Loader2 className="animate-spin" />
         </div>
       )}
       <div ref={fetchRef} />

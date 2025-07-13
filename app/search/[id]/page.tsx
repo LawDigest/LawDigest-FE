@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BillList, SearchBarButton } from '@/components';
+import { SearchBarButton } from '@/components/common';
+import { BillList } from '@/components/Bill';
 import { useIntersect } from '@/hooks';
-import { Divider } from '@nextui-org/react';
+import { Separator } from '@/components/ui/separator';
 import { useGetSearchCongressmanParty, useGetSearchBill } from '../apis';
 import { SearchList } from './components';
 
@@ -51,7 +52,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
           <div>
             <h2 className="mx-5 text-lg font-semibold md:text-xl">의원 · 정당</h2>
             <div className="flex justify-center mx-5">
-              <Divider className="my-2 bg-gray-1 dark:bg-dark-l" />
+              <Separator className="my-2 bg-gray-1 dark:bg-dark-l" />
             </div>
             {searchResultsCP.length ? (
               <SearchList searchResults={searchResultsCP} />
@@ -63,7 +64,7 @@ export default function SearchResult({ params: { id } }: { params: { id: string 
           <div>
             <h2 className="mx-5 text-lg font-semibold md:text-xl">법안</h2>
             <div className="flex justify-center mx-5">
-              <Divider className="mx-5 mt-2 bg-gray-1 dark:bg-dark-l" />
+              <Separator className="mx-5 mt-2 bg-gray-1 dark:bg-dark-l" />
             </div>
             {searchResultsBill.length ? (
               <BillList bills={searchResultsBill} isFetching={isFetchingBill} fetchRef={fetchRefBill} detail={false} />

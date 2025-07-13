@@ -2,10 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { Avatar, Button } from '@nextui-org/react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PartyLogoReplacement } from '@/components';
+import { PartyLogoReplacement } from '@/components/common';
 import { FollowingCongressmanType } from '@/types';
 
 export default function CongressmanItem({
@@ -21,13 +22,13 @@ export default function CongressmanItem({
   const isDark = theme === 'dark';
 
   return (
-    <div className="flex flex-col items-center gap-2 xl:flex-row xl:justify-between">
+    <div className="flex flex-col gap-2 items-center xl:flex-row xl:justify-between">
       <div className="gap-5 xl:flex xl:flex-row">
         <Link href={`/congressman/${congressman_id}`}>
-          <Avatar
-            src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url}
-            className={`w-14 h-14 border ${party_name}`}
-          />
+          <Avatar className="w-14 h-14">
+            <AvatarImage src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url} />
+            <AvatarFallback>{congressman_name[0]}</AvatarFallback>
+          </Avatar>
         </Link>
 
         <div className="flex flex-col items-center shrink-0 xl:items-start">
@@ -39,7 +40,8 @@ export default function CongressmanItem({
       </div>
 
       <Button
-        className="hidden bg-tranparent xl:block"
+        variant="ghost"
+        className="hidden xl:block"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

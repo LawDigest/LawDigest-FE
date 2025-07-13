@@ -1,6 +1,13 @@
 'use client';
 
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Selection } from '@nextui-org/react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import { IconControl } from '@/public/svgs';
 import { siteConfig } from '@/config/site';
 import { STAGE_TAB, STAGE_TAB_KO } from '@/constants';
@@ -11,31 +18,28 @@ export default function StageDropdown({
   clickHandler,
 }: {
   type: ValueOf<typeof STAGE_TAB_KO>;
-  clickHandler: (keys: Selection) => any;
+  clickHandler: (value: string) => any;
 }) {
   const stageArray = [{ label: '전체', value: 'all' }];
   const categoryValues = siteConfig.stageTabs;
 
   return (
-    <Dropdown>
-      <DropdownTrigger>
-        <Button endContent={<IconControl />} className="text-sm font-medium bg-transparent ">
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="text-sm font-medium">
           {type}
+          <IconControl />
         </Button>
-      </DropdownTrigger>
-      <DropdownMenu
-        aria-label="Static Actions"
-        variant="flat"
-        disallowEmptySelection
-        selectionMode="single"
-        selectedKeys={type}
-        onSelectionChange={(e) => clickHandler(e)}>
-        {stageArray.concat(categoryValues).map(({ label, value }) => (
-          <DropdownItem key={label} value={label}>
-            {STAGE_TAB_KO[value as keyof typeof STAGE_TAB] || '전체'}
-          </DropdownItem>
-        ))}
-      </DropdownMenu>
-    </Dropdown>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuRadioGroup value={type} onValueChange={clickHandler}>
+          {stageArray.concat(categoryValues).map(({ label, value }) => (
+            <DropdownMenuRadioItem key={label} value={label}>
+              {STAGE_TAB_KO[value as keyof typeof STAGE_TAB] || '전체'}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

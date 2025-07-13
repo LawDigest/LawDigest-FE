@@ -3,21 +3,14 @@
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { BillProps } from '@/types';
-import {
-  Card,
-  CardFooter,
-  CardBody,
-  Chip,
-  AvatarGroup,
-  Avatar,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Tooltip,
-  Button,
-} from '@nextui-org/react';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { PartyLogoReplacement } from '@/components';
+import { PartyLogoReplacement } from '@/components/common';
 import { ProposerList } from '@/app/bill/[id]/components';
 
 export default function BillBookmarked({
@@ -31,31 +24,34 @@ export default function BillBookmarked({
   const isDark = theme === 'dark';
 
   return (
-    <Card className={`border-1.5 flex-row md:py-2 ${partyName}`} radius="md">
-      <CardBody className="flex justify-between gap-2">
+    <Card className={`border-1.5 flex-row md:py-2 ${partyName} rounded-md`}>
+      <CardContent className="flex gap-2 justify-between">
         <Link href={`/bill/${bill_id}`}>
           <p className="text-sm font-bold md:text-base lg:text-lg">{brief_summary}</p>
         </Link>
-        <div className="flex flex-wrap items-center w-full gap-2 overflow-visible">
-          <Chip
-            className="text-xs bg-transparent md:text-sm text-gray-2 border-gray-1 dark:border-gray-3 dark:text-gray-3 border-1"
-            size="sm"
-            variant="bordered"
-            radius="sm">
+        <div className="flex overflow-visible flex-wrap gap-2 items-center w-full">
+          <Badge variant="outline" className="text-xs md:text-sm">
             {bill_stage}
-          </Chip>
-          <Popover placement="bottom" showArrow>
-            <PopoverTrigger>
-              <Button className="p-0 m-0 bg-transparent h-min">
-                <Tooltip showArrow content="발의자 명단 보기">
-                  <h4 className="text-xs font-semibold md:text-sm text-gray-2 shrink-0">
-                    {isRepresentativeSolo
-                      ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원 등 ${public_proposer_dto_list.length}인`
-                      : `${representative_proposer_dto_list
-                          .map(({ representative_proposer_name }) => representative_proposer_name)
-                          .join('·')} 의원 등 ${public_proposer_dto_list.length}인`}
-                  </h4>
-                </Tooltip>
+          </Badge>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="link" className="p-0 m-0 h-min">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <h4 className="text-xs font-semibold md:text-sm text-gray-2 shrink-0">
+                        {isRepresentativeSolo
+                          ? `${representative_proposer_dto_list[0].representative_proposer_name} 의원 등 ${public_proposer_dto_list.length}인`
+                          : `${representative_proposer_dto_list
+                              .map(({ representative_proposer_name }) => representative_proposer_name)
+                              .join('·')} 의원 등 ${public_proposer_dto_list.length}인`}
+                      </h4>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>발의자 명단 보기</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </Button>
             </PopoverTrigger>
             <PopoverContent>
@@ -67,15 +63,14 @@ export default function BillBookmarked({
             </PopoverContent>
           </Popover>
         </div>
-      </CardBody>
-      <CardFooter className="flex justify-center pl-0 overflow-visible basis-1/4 md:basis-1/5 shrink-0">
-        {/* eslint-disable-next-line no-nested-ternary */}
+      </CardContent>
+      <CardFooter className="flex overflow-visible justify-center pl-0 basis-1/4 md:basis-1/5 shrink-0">
         {isRepresentativeSolo ? (
           <Link
             href={
               representative_proposer_dto_list[0].party_image_url !== null
                 ? `/party/${representative_proposer_dto_list[0].party_id}`
-                : {}
+                : '#'
             }
             onClick={(e) => {
               if (representative_proposer_dto_list[0].party_image_url === null) e.preventDefault();
@@ -93,20 +88,19 @@ export default function BillBookmarked({
             )}
           </Link>
         ) : (
-          <AvatarGroup>
+          <div className="flex -space-x-4">
             {representative_proposer_dto_list.map(({ party_image_url, party_id, party_name }) => (
               <Link href={`/party/${party_id}`} key={party_id}>
-                <Avatar
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
-                  size="md"
-                  classNames={{
-                    base: [`bg-white dark:bg-dark-l p-1 border ${party_name}`],
-                    img: ['object-contain'],
-                  }}
-                />
+                <Avatar className={`bg-white dark:bg-dark-l p-1 border ${party_name}`}>
+                  <AvatarImage
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${isDark ? party_image_url.replace('wide', 'dark') : party_image_url}`}
+                    className="object-contain"
+                  />
+                  <AvatarFallback>{party_name[0]}</AvatarFallback>
+                </Avatar>
               </Link>
             ))}
-          </AvatarGroup>
+          </div>
         )}
       </CardFooter>
     </Card>
