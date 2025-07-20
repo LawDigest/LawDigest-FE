@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { SearchCongressmanPartyProps } from '@/types';
-import { EnterButton, PartyLogoReplacement } from '@/components/common';
 import Image from 'next/image';
+import { EnterButton } from '@/app/common/components/Button';
+import type { SearchCongressmanPartyProps } from '@/app/search/[id]/types';
+import PartyLogoReplacement from '@/app/party/[id]/components/PartyLogoReplacement';
 
 export default function SearchParty({ party_id, party_name, party_image_url }: SearchCongressmanPartyProps) {
   return (

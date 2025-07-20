@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { SearchCongressmanPartyProps } from '@/types';
-import { EnterButton } from '@/components/common';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
+import type { SearchCongressmanPartyProps } from '@/app/search/[id]/types';
+import { EnterButton } from '@/app/common/components/Button';
 
 export default function SearchCongressman({
   congressman_id,

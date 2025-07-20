@@ -1,12 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { SearchBarButton } from '@/components/common';
-import { BillList } from '@/components/Bill';
-import { useIntersect } from '@/hooks';
-import { Separator } from '@/components/ui/separator';
-import { useGetSearchCongressmanParty, useGetSearchBill } from '../apis';
-import { SearchList } from './components';
+import { useIntersect } from '@/app/common/hooks';
+import { Separator } from '@/app/common/components/ui/separator';
+import { SearchBarButton, SearchList } from '@/app/search/[id]/components';
+import { BillList } from '@/app/bill/[id]/components';
+import { useGetSearchCongressmanParty, useGetSearchBill } from './apis';
 
 export default function SearchResult({ params: { id } }: { params: { id: string } }) {
   const { data: dataCP, refetch: refetchCP } = useGetSearchCongressmanParty(decodeURI(id));
