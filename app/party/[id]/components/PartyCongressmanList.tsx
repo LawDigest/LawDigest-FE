@@ -3,8 +3,8 @@
 import { useState, useCallback } from 'react';
 import { useGetPartyCongressman } from '@/app/party/[id]/apis';
 import { Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+import { Button } from '@/app/common/components/ui/button';
+import { Separator } from '@/app/common/components/ui/separator';
 import { IconArrowDown, IconArrowUp } from '@/public/svgs';
 import PartyCongressmanItem from './PartyCongressmanItem';
 

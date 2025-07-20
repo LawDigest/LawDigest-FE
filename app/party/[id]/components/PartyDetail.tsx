@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 import Link from 'next/link';
-import { Card } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { Card } from '@/app/common/components/ui/card';
+import { Separator } from '@/app/common/components/ui/separator';
 import { IconWeb } from '@/public/svgs';
 import {
   PARTY_NAME_KO,
@@ -11,8 +11,8 @@ import {
   PARTY_FLOOR_LEADER,
   PARTY_SECRETARY_GENERAL,
   PARTY_POLISY_COMMITTEE_CHAIRMAN,
-} from '@/constants/party';
-import { useGetPartyDetail } from '../../apis';
+} from '@/app/party/[id]/constants';
+import { useGetPartyDetail } from '../apis';
 import FollowBoard from './FollowBoard';
 import PartyLogo from './PartyLogo';
 

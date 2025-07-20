@@ -1,14 +1,13 @@
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { SubHeader } from '@/components/Layout';
-import getQueryClient from '@/lib/getQueryClient';
-import { getMetadata } from '@/utils';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { SubHeader } from '@/app/common/components/Layout';
+import { getMetadata } from '@/app/common/utils';
 import { Metadata } from 'next';
-import { PARTY_POSITION, PARTY_NAME_KO } from '@/constants/party';
-import PartyContainer from './components';
+import { PARTY_POSITION, PARTY_NAME_KO } from '@/app/party/[id]/constants';
+import { PartyContainer } from './components';
 import { getPartyDetail } from './apis';
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }): Promise<Metadata> => {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
   const { data } = await queryClient.fetchQuery({
     queryKey: ['/party/detail', id],
     queryFn: () => getPartyDetail(Number(id)),
@@ -22,7 +21,7 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
 };
 
 export default async function Party({ params: { id } }: { params: { id: string } }) {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

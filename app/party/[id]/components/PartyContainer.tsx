@@ -1,8 +1,8 @@
 'use client';
 
-import { PartyDetail } from '../PartyDetail';
-import { PartyCongressmanList } from '../PartyCongressman';
-import { BillContainer } from '../BillContainer';
+import PartyDetail from './PartyDetail';
+import PartyCongressmanList from './PartyCongressmanList';
+import BillContainer from './BillContainer';
 
 export default function PartyContainer({ id }: { id: string }) {
   return (

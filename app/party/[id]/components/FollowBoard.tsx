@@ -1,13 +1,13 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 import { getCookie } from 'cookies-next';
-import { ACCESS_TOKEN } from '@/constants';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
+import { snackbarState } from '@/app/common/store';
 import { IconCheck, IconPlus } from '@/public/svgs';
-import { usePatchPartyFollow } from '../../apis';
+import { ACCESS_TOKEN, SNACKBAR_TYPE } from '@/app/common/constants';
+import { usePatchPartyFollow } from '../apis';
 
 export default function FollowBoard({
   id,
@@ -35,14 +35,14 @@ export default function FollowBoard({
       setFollowCount(isFollowed ? followCount - 1 : followCount + 1);
       setSnackbar({
         show: true,
-        type: isFollowed ? 'CANCEL' : 'SUCCESS',
+        type: isFollowed ? SNACKBAR_TYPE.CANCEL : SNACKBAR_TYPE.SUCCESS,
         message: isFollowed ? '해당 정당의 팔로우를 취소했습니다.' : '해당 정당을 팔로우했습니다.',
         duration: 3000,
       });
 
       mutationFollow.mutate(!isFollowed);
     } else {
-      setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
+      setSnackbar({ show: true, type: SNACKBAR_TYPE.ERROR, message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
   }, [isFollowed, followed, setSnackbar]);
 
