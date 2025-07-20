@@ -1,16 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import getTimeRemaining from '@/utils/getTimeRemaining';
-import type { Notification } from '@/types';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import getTimeRemaining from '@/app/common/utils/getTimeRemaining';
+import type { Notification } from '@/app/notification/types';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+} from '@/app/common/components/ui/dropdown-menu';
+import { Button } from '@/app/common/components/ui/button';
 import { IconAlert, IconKebab } from '@/public/svgs';
 
 export default function NotificationItem({
@@ -63,7 +63,7 @@ export default function NotificationItem({
         ) : (
           <div className={`flex -space-x-4 w-[50px] ${imageUrlList.length >= 3 ? 'gap-0' : ''}`}>
             {imageUrlList.slice(0, 3).map((notification_image_url) => (
-              <Avatar key={notification_image_url[0]} className="shrink-0 bg-white dark:bg-dark-pb p-1 border">
+              <Avatar key={notification_image_url[0]} className="p-1 bg-white border shrink-0 dark:bg-dark-pb">
                 <>
                   <AvatarImage
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${notification_image_url[1]}`}
@@ -71,7 +71,7 @@ export default function NotificationItem({
                   />
                   <AvatarImage
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${notification_image_url[1].replace('wide', 'dark')}`}
-                    className="object-contain hidden dark:block"
+                    className="hidden object-contain dark:block"
                   />
                 </>
                 <AvatarFallback>{notification_image_url[0][0]}</AvatarFallback>

@@ -2,10 +2,11 @@
 
 import React, { useCallback } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
+import { Button } from '@/app/common/components/ui/button';
+import { Separator } from '@/app/common/components/ui/separator';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
+import { snackbarState } from '@/app/common/store';
+import { SNACKBAR_TYPE } from '@/app/common/constants';
 import {
   useGetNotificationTopThree,
   usePutNotificationRead,
@@ -23,7 +24,7 @@ export default function NotificationTopThree() {
     onSuccess: () => {
       setSnackbar({
         show: true,
-        type: 'SUCCESS',
+        type: SNACKBAR_TYPE.SUCCESS,
         message: '해당 알림을 읽었습니다.',
         duration: 3000,
       });
@@ -31,7 +32,7 @@ export default function NotificationTopThree() {
     onError: () => {
       setSnackbar({
         show: true,
-        type: 'ERROR',
+        type: SNACKBAR_TYPE.ERROR,
         message: '알림 읽기에 실패했습니다.',
         duration: 3000,
       });
@@ -42,7 +43,7 @@ export default function NotificationTopThree() {
     onSuccess: () => {
       setSnackbar({
         show: true,
-        type: 'CANCEL',
+        type: SNACKBAR_TYPE.CANCEL,
         message: '해당 알림을 삭제했습니다.',
         duration: 3000,
       });
@@ -50,7 +51,7 @@ export default function NotificationTopThree() {
     onError: () => {
       setSnackbar({
         show: true,
-        type: 'ERROR',
+        type: SNACKBAR_TYPE.ERROR,
         message: '알림 삭제에 실패했습니다.',
         duration: 3000,
       });

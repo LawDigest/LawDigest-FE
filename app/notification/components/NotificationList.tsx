@@ -1,18 +1,19 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { getDateStatus } from '@/utils';
-import { Separator } from '@/components/ui/separator';
+import { getDateStatus } from '@/app/common/utils';
+import { Separator } from '@/app/common/components/ui/separator';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
+} from '@/app/common/components/ui/dropdown-menu';
+import { Button } from '@/app/common/components/ui/button';
 import { IconKebab } from '@/public/svgs';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
+import { snackbarState } from '@/app/common/store';
+import { SNACKBAR_TYPE } from '@/app/common/constants';
 import {
   useGetNotificationCount,
   useGetNotification,
@@ -107,7 +108,7 @@ export default function NotificationList() {
       if (isClickByButton) {
         setSnackbar({
           show: true,
-          type: 'SUCCESS',
+          type: SNACKBAR_TYPE.SUCCESS,
           message: '해당 알림을 읽었습니다.',
           duration: 3000,
         });
@@ -121,7 +122,7 @@ export default function NotificationList() {
       mutateDelete.mutate(notificationId);
       setSnackbar({
         show: true,
-        type: 'CANCEL',
+        type: SNACKBAR_TYPE.CANCEL,
         message: '해당 알림을 삭제했습니다.',
         duration: 3000,
       });
@@ -133,7 +134,7 @@ export default function NotificationList() {
     mutateReadAll.mutate();
     setSnackbar({
       show: true,
-      type: 'SUCCESS',
+      type: SNACKBAR_TYPE.SUCCESS,
       message: '알림을 모두 읽었습니다.',
       duration: 3000,
     });
@@ -143,7 +144,7 @@ export default function NotificationList() {
     mutateDeleteAll.mutate();
     setSnackbar({
       show: true,
-      type: 'CANCEL',
+      type: SNACKBAR_TYPE.CANCEL,
       message: '알림을 모두 삭제했습니다.',
       duration: 3000,
     });
