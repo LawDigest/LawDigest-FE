@@ -21,9 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./components/*"],
-      "@/lib/utils": ["./lib/utils.ts"]
+      "@/*": ["./*"]
     },
     "types": ["prop-types"]
   },
