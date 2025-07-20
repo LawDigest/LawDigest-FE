@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { PartyLogoReplacement } from '@/components/common';
+import { PartyLogoReplacement } from '@/app/party/[id]/components';
 
 export default function PartyLogo({
   party_id,

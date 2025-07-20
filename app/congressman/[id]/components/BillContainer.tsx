@@ -1,17 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BillList, BillTab } from '@/components/Bill';
-import { useIntersect, useTabType } from '@/hooks';
-import { BILL_TAB } from '@/constants';
-import { useGetBillByCongressman } from '../../apis';
+import { BillList, BillTab } from '@/app/bill/[id]/components';
+import { useIntersect, useTabType } from '@/app/common/hooks';
+import { useGetBillByCongressman } from '@/app/congressman/[id]/apis';
+import { BILL_TAB } from '@/app/bill/[id]/constants/bill';
 
 export default function BillContainer({ id }: { id: string }) {
   const [billType, setBillType] = useTabType<typeof BILL_TAB>('represent_proposer');
   const { data, hasNextPage, isFetching, fetchNextPage, refetch } = useGetBillByCongressman(id, billType);
   const [bills, setBills] = useState(data ? data.pages.flatMap(({ data: { bill_list: responses } }) => responses) : []);
 
-  const fetchRef = useIntersect(async (entry: any, observer: any) => {
+  const fetchRef = useIntersect(async (entry: IntersectionObserverEntry, observer: IntersectionObserver) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isFetching) {
       fetchNextPage();
@@ -31,7 +31,7 @@ export default function BillContainer({ id }: { id: string }) {
 
   return (
     <section>
-      <BillTab type={billType as any} clickHandler={setBillType as any} />
+      <BillTab type={billType} clickHandler={setBillType} />
       <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
       {bills.length === 0 && !isFetching && (
         <p className="flex justify-center my-8 text-sm text-gray-2 dark:text-gray-3">

@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/
 import Link from 'next/link';
 import { PartyLogoReplacement } from '@/app/party/[id]/components';
 
-export default function BillBookmarked({
+export default function AnotherBill({
   billBriefSummary,
   billId,
   billProposers,

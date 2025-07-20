@@ -1,13 +1,13 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 import { getCookie } from 'cookies-next';
-import { ACCESS_TOKEN } from '@/constants';
+import { ACCESS_TOKEN, SNACKBAR_TYPE } from '@/app/common/constants';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
+import { snackbarState } from '@/app/common/store';
 import { IconCheck, IconPlus } from '@/public/svgs';
-import { usePatchCongressmanFollow } from '../../apis';
+import { usePatchCongressmanFollow } from '@/app/congressman/[id]/apis';
 
 export default function FollowBoard({
   id,
@@ -35,19 +35,19 @@ export default function FollowBoard({
       setFollowCount(isFollowed ? followCount - 1 : followCount + 1);
       setSnackbar({
         show: true,
-        type: isFollowed ? 'CANCEL' : 'SUCCESS',
+        type: isFollowed ? SNACKBAR_TYPE.CANCEL : SNACKBAR_TYPE.SUCCESS,
         message: isFollowed ? '해당 의원의 팔로우를 취소했습니다.' : '해당 의원을 팔로우했습니다.',
         duration: 3000,
       });
 
       mutationFollow.mutate(!isFollowed);
     } else {
-      setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
+      setSnackbar({ show: true, type: SNACKBAR_TYPE.ERROR, message: '로그인이 필요한 서비스입니다.', duration: 3000 });
     }
   }, [isFollowed, setSnackbar, followCount]);
 
   return (
-    <div className="flex flex-col w-full gap-5">
+    <div className="flex flex-col gap-5 w-full">
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-center basis-1/3">
           <p className="text-2xl font-semibold">{followCount}</p>

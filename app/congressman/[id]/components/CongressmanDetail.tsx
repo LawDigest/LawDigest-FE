@@ -1,14 +1,14 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { Card } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
+import { Card } from '@/app/common/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
+import { Badge } from '@/app/common/components/ui/badge';
+import { Separator } from '@/app/common/components/ui/separator';
 import Link from 'next/link';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/app/common/components/ui/accordion';
+import { Button } from '@/app/common/components/ui/button';
 import { IconWeb } from '@/public/svgs';
+import { useGetCongressmanDetail } from '@/app/congressman/[id]/apis';
 import FollowBoard from './FollowBoard';
-import { useGetCongressmanDetail } from '../../apis';
 import PartyLogo from './PartyLogo';
 
 export default async function CongressmanDetail({ congressmanId }: { congressmanId: string }) {

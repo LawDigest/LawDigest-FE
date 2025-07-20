@@ -1,7 +1,7 @@
 'use client';
 
-import CongressmanDetail from '../Congressman/CongressmanDetail';
-import BillContainer from '../BillContainer';
+import CongressmanDetail from './CongressmanDetail';
+import BillContainer from './BillContainer';
 
 export default function CongressmanContainer({ id }: { id: string }) {
   return (
