@@ -8,7 +8,7 @@ import { ThemeProvider } from 'next-themes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 import { GoToTopButton, Loading, Snackbar } from '@/app/common/components';
-import { SearchModal } from '@/app/search/[id]/components/SearchBar';
+import { SearchModal } from '@/app/search/[id]/components';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

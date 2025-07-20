@@ -1,9 +1,9 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import Logo from '@/components/Layout/Header/Logo';
+import Logo from '@/app/common/components/Layout/Header/Logo';
 
 export default function Login() {
   return (

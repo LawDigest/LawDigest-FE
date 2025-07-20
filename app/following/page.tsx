@@ -7,7 +7,7 @@ import { ACCESS_TOKEN, SNACKBAR_TYPE } from '@/app/common/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
 import { snackbarState } from '@/app/common/store';
-import { SearchBarButton } from '@/app/search/[id]/components/SearchBar';
+import { SearchBarButton } from '@/app/search/[id]/components';
 import { FollowingNav, BillContainer } from './components';
 
 export default function Following() {
