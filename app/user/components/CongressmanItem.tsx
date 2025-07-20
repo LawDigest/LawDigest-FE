@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { FollowingCongressmanType } from '@/types';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
+import { FollowingCongressmanType } from '@/app/user/types';
 
 export default function CongressmanItem({
   congressman_id,
@@ -9,7 +9,7 @@ export default function CongressmanItem({
   party_name,
 }: FollowingCongressmanType) {
   return (
-    <Link href={`/congressman/${congressman_id}`} className="flex flex-col items-center gap-1">
+    <Link href={`/congressman/${congressman_id}`} className="flex flex-col gap-1 items-center">
       <Avatar className="w-16 h-16 border-1.5">
         <AvatarImage src={process.env.NEXT_PUBLIC_IMAGE_URL + congressman_image_url} />
         <AvatarFallback>{congressman_name[0]}</AvatarFallback>

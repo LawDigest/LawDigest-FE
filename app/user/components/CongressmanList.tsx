@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FollowingCongressmanType, FollowingCongressmanResponse } from '@/types';
-import { ExpandableList } from '@/components/common';
+import { useGetFollowingCongressman } from '@/app/user/apis';
+import { FollowingCongressmanType, FollowingCongressmanResponse } from '@/app/user/types';
+import { ExpandableList } from '@/app/common/components';
 import CongressmanItem from './CongressmanItem';
-import { useGetFollowingCongressman } from '../../apis';
 
 export default function CongressmanList() {
   const { data } = useGetFollowingCongressman();

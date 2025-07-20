@@ -1,15 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { BillProps } from '@/types';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
-import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { Button } from '@/components/ui/button';
+import { BillProps } from '@/app/bill/[id]/types';
+import { Card, CardContent, CardFooter } from '@/app/common/components/ui/card';
+import { Badge } from '@/app/common/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
+import { Popover, PopoverTrigger, PopoverContent } from '@/app/common/components/ui/popover';
+import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/app/common/components/ui/tooltip';
+import { Button } from '@/app/common/components/ui/button';
 import Link from 'next/link';
-import { PartyLogoReplacement } from '@/components/common';
+import { PartyLogoReplacement } from '@/app/party/[id]/components';
 import { ProposerList } from '@/app/bill/[id]/components';
 
 export default function BillBookmarked({
@@ -103,11 +103,11 @@ export default function BillBookmarked({
                 <Avatar className={`bg-white dark:bg-dark-l p-1 border ${party_name}`}>
                   <>
                     <AvatarImage
-                      className="dark:hidden object-contain"
+                      className="object-contain dark:hidden"
                       src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
                     />
                     <AvatarImage
-                      className="hidden dark:block object-contain"
+                      className="hidden object-contain dark:block"
                       src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url.replace('wide', 'dark')}`}
                     />
                   </>

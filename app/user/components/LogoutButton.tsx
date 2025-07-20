@@ -1,11 +1,11 @@
 import { deleteCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
-import { ACCESS_TOKEN } from '@/constants';
 import { useCallback } from 'react';
-import { Button } from '@/components/ui/button';
+import { ACCESS_TOKEN, SNACKBAR_TYPE } from '@/app/common/constants';
+import { Button } from '@/app/common/components/ui/button';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
-import { postLogout } from '../../apis';
+import { snackbarState } from '@/app/common/store';
+import { postLogout } from '@/app/user/apis';
 
 export default function LogoutButton() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function LogoutButton() {
   const onClickLogout = useCallback(async () => {
     postLogout();
     deleteCookie(ACCESS_TOKEN);
-    setSnackbar({ show: true, type: 'SUCCESS', message: '로그아웃을 성공했습니다.', duration: 3000 });
+    setSnackbar({ show: true, type: SNACKBAR_TYPE.SUCCESS, message: '로그아웃을 성공했습니다.', duration: 3000 });
 
     router.push('/login');
   }, [router, setSnackbar]);

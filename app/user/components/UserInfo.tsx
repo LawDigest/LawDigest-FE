@@ -1,7 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
 import { QueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useGetUserInfo } from '../../apis';
+import { useGetUserInfo } from '@/app/user/apis';
 import LogoutButton from './LogoutButton';
 
 export default async function UserInfo({ queryClient }: { queryClient: QueryClient }) {
@@ -27,8 +27,8 @@ export default async function UserInfo({ queryClient }: { queryClient: QueryClie
           </Avatar>
         </div>
 
-        <div className="flex flex-col w-full gap-3 lg:items-center">
-          <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 w-full lg:items-center">
+          <div className="flex justify-between items-center">
             <p className="text-3xl font-semibold">{user_name}</p>
             <div className="lg:absolute lg:-bottom-[50px]">
               <LogoutButton />

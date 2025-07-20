@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useGetBillBookmarkedCount } from '../../apis';
+import { useGetBillBookmarkedCount } from '@/app/user/apis';
 
 export default function BillBookmarkedCount() {
   const { data } = useGetBillBookmarkedCount();

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FollowingPartyType } from '@/types';
+import { FollowingPartyType } from '@/app/user/types';
 
 export default function PartyItem({ party_id, party_name, party_image_url }: FollowingPartyType) {
   return (

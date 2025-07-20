@@ -1,6 +1,6 @@
-import { BillResponse } from '@/types';
 import { RefObject } from 'react';
 import { Loader2 } from 'lucide-react';
+import { BillResponse } from '@/app/bill/[id]/types';
 import BillBookmarked from './BillBookmarked';
 
 export default function BillBookmarkedList({
@@ -18,7 +18,7 @@ export default function BillBookmarkedList({
         <BillBookmarked {...bill} key={`${bill.bill_info_dto.bill_id + index}`} />
       ))}
       {isFetching && (
-        <div className="flex justify-center w-full my-4">
+        <div className="flex justify-center my-4 w-full">
           <Loader2 className="animate-spin" />
         </div>
       )}

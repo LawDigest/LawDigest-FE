@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useIntersect } from '@/hooks';
-import { Card } from '@/components/ui/card';
-import { useGetBillBookmarked } from '../../apis';
+import { useIntersect } from '@/app/common/hooks';
+import { Card } from '@/app/common/components/ui/card';
+import { useGetBillBookmarked } from '@/app/user/apis';
 import BillBookmarkedCount from './BillBookmarkedCount';
 import BillBookmarkedList from './BillBookmaredList';
 

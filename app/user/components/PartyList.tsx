@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
-import { FollowingPartyType } from '@/types';
+import { FollowingPartyType } from '@/app/user/types';
+import { useGetFollowingParty } from '@/app/user/apis';
 import PartyItem from './PartyItem';
-import { useGetFollowingParty } from '../../apis';
 
 export default async function PartyList({ qeuryClient }: { qeuryClient: QueryClient }) {
   const { data: partyList } = await useGetFollowingParty(qeuryClient);
