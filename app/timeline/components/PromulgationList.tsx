@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/app/common/components/ui/card';
+import { Badge } from '@/app/common/components/ui/badge';
+import { Button } from '@/app/common/components/ui/button';
 import { useState, useEffect } from 'react';
 import { IconNext, IconPrev, IconEnter } from '@/public/svgs';
 import TimelineModal from './TimelineModal';

@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useIntersect } from '@/hooks';
+import { useIntersect } from '@/app/common/hooks';
 import { Loader2 } from 'lucide-react';
-import { convertDateFormat } from '@/utils';
-import { Separator } from '@/components/ui/separator';
-import { TimelineResponseList } from '@/types';
+import { convertDateFormat } from '@/app/common/utils';
+import { Separator } from '@/app/common/components/ui/separator';
+import type { TimelineResponseList } from '@/app/timeline/types';
 import PlenaryList from './PlenaryList';
 import PromulgationList from './PromulgationList';
 import CommitteeAuditList from './CommitteeAuditList';
@@ -38,10 +38,10 @@ export default function ListContainer() {
         {timeline.map(({ date, plenary_list, promulgation_list, committee_audit_list, submitted_list }) => (
           <div key={date} className="flex gap-6">
             <Separator orientation="vertical" className="w-[2px] h-auto" />
-            <div className="w-full pb-10">
+            <div className="pb-10 w-full">
               <div className="relative">
                 <div className="w-[25px] h-[25px] bg-gray-1 dark:bg-gray-3 absolute rounded-full border-black border top-5 -left-[38px]" />
-                <h2 className="flex items-baseline gap-2">
+                <h2 className="flex gap-2 items-baseline">
                   <span className="text-[42px]">
                     {convertDateFormat(date)[0]}.{convertDateFormat(date)[1]}
                   </span>
@@ -61,7 +61,7 @@ export default function ListContainer() {
         ))}
       </div>
       {isFetching && (
-        <div className="flex justify-center w-full my-4">
+        <div className="flex justify-center my-4 w-full">
           <Loader2 className="animate-spin" />
         </div>
       )}

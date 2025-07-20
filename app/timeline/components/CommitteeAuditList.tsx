@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/app/common/components/ui/card';
+import { Button } from '@/app/common/components/ui/button';
 import { IconEnter, IconNext, IconPrev } from '@/public/svgs';
 import TimelineModal from './TimelineModal';
 
