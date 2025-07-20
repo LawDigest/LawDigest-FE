@@ -1,12 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
+import { Button } from '@/app/common/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { PartyLogoReplacement } from '@/components/common';
-import { FollowingCongressmanType } from '@/types';
+import { PartyLogoReplacement } from '@/app/party/[id]/components';
+import type { FollowingCongressmanType } from '../types';
 
 export default function CongressmanItem({
   congressman_id,

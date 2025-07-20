@@ -1,7 +1,7 @@
-import { BillResponse } from '@/types';
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 import { Loader2 } from 'lucide-react';
-import { Bill } from '@/components/Bill';
+import { Bill } from '@/app/bill/[id]/components';
+import type { BillResponse } from '@/app/bill/[id]/types';
 
 export default function BillFollowedList({
   bills,

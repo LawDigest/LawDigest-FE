@@ -1,7 +1,7 @@
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardContent } from '@/app/common/components/ui/card';
 import { useQueryClient } from '@tanstack/react-query';
 import CongressmanList from './CongressmanList';
-import { useGetFollowingCongressman } from '../../apis';
+import { useGetFollowingCongressman } from '../apis';
 
 export default async function FollowingNav() {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export default async function FollowingNav() {
       <CardHeader className="pt-2 pb-0 pl-0 lg:hidden">
         <h2 className="text-2xl font-bold md:text-3xl lg:mx-auto">팔로잉</h2>
       </CardHeader>
-      <CardContent className="flex flex-row items-center gap-4 pl-0 overflow-x-scroll lg:flex-col scrollbar-hide lg:scrollbar-default">
+      <CardContent className="flex overflow-x-scroll flex-row gap-4 items-center pl-0 lg:flex-col scrollbar-hide lg:scrollbar-default">
         <div className="flex flex-col items-center shrink-0 xl:flex-row xl:justify-start xl:w-full xl:gap-2">
           <p className="text-xs font-medium text-gray-2 md:text-sm xl:text-[26px] xl:text-black xl:font-semibold xl:dark:text-white">
             팔로우한 의원

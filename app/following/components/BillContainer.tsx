@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useIntersect } from '@/hooks';
-import { useGetFollowingBill } from '../../apis';
+import { useIntersect } from '@/app/common/hooks';
+import { useGetFollowingBill } from '../apis';
 import BillFollowedList from './BillFollowedList';
 
 export default function BillContainer() {

@@ -3,11 +3,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getCookie } from 'cookies-next';
-import { ACCESS_TOKEN } from '@/constants';
+import { ACCESS_TOKEN, SNACKBAR_TYPE } from '@/app/common/constants';
 import { dehydrate, HydrationBoundary, useQueryClient } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
-import { SearchBarButton } from '@/components/common';
+import { snackbarState } from '@/app/common/store';
+import { SearchBarButton } from '@/app/search/[id]/components/SearchBar';
 import { FollowingNav, BillContainer } from './components';
 
 export default function Following() {
@@ -18,7 +18,7 @@ export default function Following() {
 
   useEffect(() => {
     if (!accessToken) {
-      setSnackbar({ show: true, type: 'ERROR', message: '로그인이 필요한 서비스입니다.', duration: 3000 });
+      setSnackbar({ show: true, type: SNACKBAR_TYPE.ERROR, message: '로그인이 필요한 서비스입니다.', duration: 3000 });
       router.push('/login');
     }
   }, [setSnackbar]);
