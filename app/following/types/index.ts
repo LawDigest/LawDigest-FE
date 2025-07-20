@@ -1,3 +1,1 @@
-import type { FollowingCongressmanType } from './followingCongressman';
-
-export type { FollowingCongressmanType };
+export * from './followingCongressman';

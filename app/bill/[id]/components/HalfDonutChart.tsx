@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 import { COLOR } from '@/app/common/constants/theme';
@@ -294,7 +296,7 @@ export default function HalfDonutChart({
   };
 
   return (
-    <div className="relative flex flex-col items-center">
+    <div className="flex relative flex-col items-center">
       {/* SVG 차트 */}
       <svg width={width} height={height} ref={svgRef}>
         {/* 배경 반원 */}
@@ -360,14 +362,14 @@ export default function HalfDonutChart({
       {/* 툴팁 - 정당별 투표 결과 */}
       {tooltip.visible && (
         <div
-          className="absolute z-10 p-3 border rounded-md shadow-lg pointer-events-none bg-popover min-w-32 text-popover-foreground"
+          className="absolute z-10 p-3 rounded-md border shadow-lg pointer-events-none bg-popover min-w-32 text-popover-foreground"
           style={{
             left: `${tooltip.x + 15}px`,
             top: `${tooltip.y + 15}px`,
             transform: 'translate(-50%, -100%)',
           }}>
           <div className="flex items-center mb-2">
-            <div className="w-3 h-3 mr-2 rounded-full" style={{ backgroundColor: tooltip.color }} />
+            <div className="mr-2 w-3 h-3 rounded-full" style={{ backgroundColor: tooltip.color }} />
             <span className="font-medium">{tooltip.partyName}</span>
           </div>
           <div className="flex justify-between">
@@ -385,7 +387,7 @@ export default function HalfDonutChart({
 
           {/* 툴팁 삼각형 화살표 */}
           <div
-            className="absolute w-0 h-0 border-t-8 border-l-8 border-r-8 border-l-transparent border-r-transparent border-t-popover"
+            className="absolute w-0 h-0 border-t-8 border-r-8 border-l-8 border-l-transparent border-r-transparent border-t-popover"
             style={{
               bottom: '-8px',
               left: '50%',

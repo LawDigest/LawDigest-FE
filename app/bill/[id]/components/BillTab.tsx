@@ -9,7 +9,7 @@ export default function BillTab({
   clickHandler,
 }: {
   type: ValueOf<typeof BILL_TAB>;
-  clickHandler: (key: Key) => any;
+  clickHandler: (key: Key) => void;
 }) {
   const values = siteConfig.billTabs;
 

@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/app/common/components/ui/dropdown-menu';
 import { Button } from '@/app/common/components/ui/button';
-import { WithdrawModal } from '@/app/user/components';
+import { WithdrawModal } from '@/app/auth/components';
 
 export default function SettingButton() {
   const [isOpen, setIsOpen] = useState(false);

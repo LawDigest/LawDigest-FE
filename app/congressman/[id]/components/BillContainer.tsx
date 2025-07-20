@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Key } from 'react';
 import { BillList, BillTab } from '@/app/bill/[id]/components';
 import { useIntersect, useTabType } from '@/app/common/hooks';
 import { useGetBillByCongressman } from '@/app/congressman/[id]/apis';
 import { BILL_TAB } from '@/app/bill/[id]/constants/bill';
+import { ValueOf } from '@/app/common/types';
 
 export default function BillContainer({ id }: { id: string }) {
   const [billType, setBillType] = useTabType<typeof BILL_TAB>('represent_proposer');
@@ -31,7 +32,7 @@ export default function BillContainer({ id }: { id: string }) {
 
   return (
     <section>
-      <BillTab type={billType} clickHandler={setBillType} />
+      <BillTab type={billType as ValueOf<typeof BILL_TAB>} clickHandler={setBillType as (key: Key) => void} />
       <BillList bills={bills} isFetching={isFetching} fetchRef={fetchRef} />
       {bills.length === 0 && !isFetching && (
         <p className="flex justify-center my-8 text-sm text-gray-2 dark:text-gray-3">

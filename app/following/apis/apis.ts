@@ -1,13 +1,8 @@
-import http from '@/api';
-import { FeedResponse, FollowingCongressmanResponse } from '@/types';
+import { apiClient } from '@/app/common/lib';
+import type { FeedResponse } from '@/app/bill/[id]/types';
+import type { FollowingCongressmanType } from '@/app/following/types';
 
-export const getFollowingCongressman = () =>
-  http.get<FollowingCongressmanResponse>({
-    url: '/following-tab/congressman',
-  });
+export const getFollowingCongressman = () => apiClient.get<FollowingCongressmanType[]>('/following-tab/congressman');
 
-export const getFollowingBill = async (page: number) =>
-  http.get<FeedResponse>({
-    url: '/following-tab/bill',
-    params: { page, size: 3 },
-  });
+export const getFollowingBill = (page: number) =>
+  apiClient.get<FeedResponse>('/following-tab/bill', { params: { page, size: 3 } });
