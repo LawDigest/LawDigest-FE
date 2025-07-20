@@ -1,12 +1,14 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
-import { fontSans } from '@/config/fonts';
+import { siteConfig } from '@/app/common/config/site';
+import { fontSans } from '@/app/common/config/fonts';
 import clsx from 'clsx';
 import { Suspense } from 'react';
-import { QueryClientProvider, NextThemesProvider, RecoilRootProvider } from '@/lib/provider';
-import { GoToTopButton, Loading, Snackbar } from '@/components/common';
-import SearchModal from '@/components/common/SearchBar/SearchModal';
+import { ThemeProvider } from 'next-themes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RecoilRoot } from 'recoil';
+import { GoToTopButton, Loading, Snackbar } from '@/app/common/components';
+import { SearchModal } from '@/app/search/[id]/components/SearchBar';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -52,6 +54,14 @@ export const metadata: Metadata = {
   },
 };
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+    },
+  },
+});
+
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko" suppressHydrationWarning>
@@ -60,9 +70,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
       <body className={clsx('font-sans antialiased', fontSans.variable)}>
-        <RecoilRootProvider>
-          <QueryClientProvider>
-            <NextThemesProvider>
+        <RecoilRoot>
+          <QueryClientProvider client={queryClient}>
+            <ThemeProvider attribute="class" defaultTheme="light">
               <div className="relative flex flex-col h-auto min-h-[100dvh] min-w-[360px]">
                 <main className="flex justify-center items-center w-full h-full">
                   <Suspense fallback={<Loading />}>
@@ -73,9 +83,9 @@ function RootLayout({ children }: { children: React.ReactNode }) {
                   </Suspense>
                 </main>
               </div>
-            </NextThemesProvider>
+            </ThemeProvider>
           </QueryClientProvider>
-        </RecoilRootProvider>
+        </RecoilRoot>
       </body>
     </html>
   );

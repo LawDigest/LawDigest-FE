@@ -1,4 +1,4 @@
-import { Layout } from '@/components/Layout';
+import { Layout } from '@/app/common/components/Layout';
 import { Loader2 } from 'lucide-react';
 import Image from 'next/image';
 

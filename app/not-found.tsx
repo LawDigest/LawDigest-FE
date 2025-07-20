@@ -1,9 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Layout } from '@/components/Layout/Layout';
+import { Layout } from '@/app/common/components/Layout/Layout';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 
 export default function NotFound() {
   const router = useRouter();

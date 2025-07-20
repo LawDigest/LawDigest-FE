@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Layout } from '@/components/Layout/Layout';
+import { Layout } from '@/app/common/components/Layout/Layout';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/common/components/ui/button';
 
 export default function Error({ error }: { error: Error }) {
   const router = useRouter();

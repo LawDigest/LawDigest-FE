@@ -1,12 +1,12 @@
-import getQueryClient from '@/lib/getQueryClient';
-import { getBillByStage } from '@/components/Feed/Feed/apis';
-import { Layout } from '@/components/Layout/Layout';
-import { SearchBarButton } from '@/components/common';
-import { Feed } from '@/components/Feed';
+import { getBillByStage } from '@/app/bill/[id]/apis';
+import { QueryClient } from '@tanstack/react-query';
+import { Layout } from '@/app/common/components/Layout/Layout';
+import { Feed } from '@/app/bill/[id]/components';
+import { SearchBarButton } from '@/app/search/[id]/components/SearchBar';
 import { NotificationTopThree } from './notification/components';
 
 export default async function Home() {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['/bill/mainfeed'],
