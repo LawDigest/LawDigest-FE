@@ -2,11 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent, CardFooter } from '@/app/common/components/ui/card';
+import { Badge } from '@/app/common/components/ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/common/components/ui/avatar';
 import Link from 'next/link';
-import { PartyLogoReplacement } from '@/components/common';
+import { PartyLogoReplacement } from '@/app/party/[id]/components';
 
 export default function BillBookmarked({
   billBriefSummary,
@@ -83,11 +83,11 @@ export default function BillBookmarked({
                 }}>
                 <>
                   <AvatarImage
-                    className="dark:hidden object-contain"
+                    className="object-contain dark:hidden"
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url}`}
                   />
                   <AvatarImage
-                    className="hidden dark:block object-contain"
+                    className="hidden object-contain dark:block"
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${party_image_url.replace('wide', 'dark')}`}
                   />
                 </>

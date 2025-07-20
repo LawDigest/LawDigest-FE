@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
-import { SubHeader } from '@/components/Layout';
-import getQueryClient from '@/lib/getQueryClient';
-import { getMetadata } from '@/utils';
+import { HydrationBoundary, dehydrate, QueryClient } from '@tanstack/react-query';
+import { SubHeader } from '@/app/common/components/Layout';
+import { getMetadata } from '@/app/common/utils';
 import { BillContainer } from './components';
 import { useGetBillDetail, usePatchViewCount } from './apis';
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }): Promise<Metadata> => {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { data } = await useGetBillDetail(id, queryClient);
 
@@ -19,7 +18,7 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
 };
 
 export default async function BillDetail({ params: { id } }: { params: { id: string } }) {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
   const viewCount = await usePatchViewCount(id).then((res) => res.data.view_count);
 
   return (

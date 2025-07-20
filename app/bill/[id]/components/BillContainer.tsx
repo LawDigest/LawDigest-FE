@@ -1,6 +1,6 @@
 'use client';
 
-import { BillDetail } from '..';
+import BillDetail from './BillDetail';
 
 export default function BillContainer({ id, viewCount }: { id: string; viewCount: number }) {
   return (

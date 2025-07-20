@@ -1,8 +1,8 @@
 'use client';
 
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import HalfDonutChart from '@/components/common/Chart/HalfDonutChart';
+import { Card, CardHeader, CardContent } from '@/app/common/components/ui/card';
+import { Separator } from '@/app/common/components/ui/separator';
+import HalfDonutChart from './HalfDonutChart';
 import VoteResultBoard from './VoteResultBoard';
 
 export default function ProcessResult({
@@ -26,7 +26,7 @@ export default function ProcessResult({
   switch (bill_result) {
     case '대안반영폐기':
       return (
-        <Card className="md:shadow-none md:border dark:lg:bg-dark-pb py-10 px-6">
+        <Card className="px-6 py-10 md:shadow-none md:border dark:lg:bg-dark-pb">
           <CardHeader className="flex justify-center">
             <p className="text-lg font-semibold lg:text-xl">{bill_result}</p>
           </CardHeader>
@@ -35,7 +35,7 @@ export default function ProcessResult({
       );
     case '임기만료폐기':
       return (
-        <Card className="md:shadow-none md:border dark:lg:bg-dark-pb py-10 px-6">
+        <Card className="px-6 py-10 md:shadow-none md:border dark:lg:bg-dark-pb">
           <CardHeader className="flex justify-center">
             <p className="text-lg font-semibold lg:text-xl">{bill_result}</p>
           </CardHeader>
@@ -44,7 +44,7 @@ export default function ProcessResult({
       );
     case '철회':
       return (
-        <Card className="md:shadow-none md:border dark:lg:bg-dark-pb py-10 px-6">
+        <Card className="px-6 py-10 md:shadow-none md:border dark:lg:bg-dark-pb">
           <CardHeader className="flex justify-center">
             <p className="text-lg font-semibold lg:text-xl">{bill_result}</p>
           </CardHeader>
@@ -55,7 +55,7 @@ export default function ProcessResult({
     case '수정가결':
     case '부결':
       return (
-        <Card className="flex flex-col items-center p-4 overflow-visible md:shadow-none md:border dark:lg:bg-dark-pb">
+        <Card className="flex overflow-visible flex-col items-center p-4 md:shadow-none md:border dark:lg:bg-dark-pb">
           <HalfDonutChart
             billResult={bill_result}
             approvalCount={approval_count}

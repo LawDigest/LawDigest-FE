@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { sortByParty } from '@/utils';
+import { Card, CardContent, CardHeader } from '@/app/common/components/ui/card';
+import { Badge } from '@/app/common/components/ui/badge';
+import { sortByParty } from '@/app/common/utils';
 
 export default function ProposerList({
   representativeProposerList,

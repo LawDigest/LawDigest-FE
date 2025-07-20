@@ -1,12 +1,12 @@
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@/app/common/components/ui/separator';
 import { useQueryClient } from '@tanstack/react-query';
-import { Bill } from '@/components/Bill';
-import { SectionContainer } from '../SectionContainer';
-import { ProposerList } from '../ProposerList';
-import { ProgressStage } from '../ProgressStage';
-import { AnotherBillList } from '../AnotherBill';
-import { useGetBillDetail } from '../../apis';
-import { ProcessResult } from '../ProcessResult';
+import { useGetBillDetail } from '@/app/bill/[id]/apis';
+import Bill from './Bill';
+import SectionContainer from './SectionContainer';
+import ProposerList from './ProposerList';
+import ProgressStage from './ProgressStage';
+import AnotherBillList from './AnotherBillList';
+import ProcessResult from './ProcessResult';
 
 export default async function BillDetail({ id, viewCount }: { id: string; viewCount: number }) {
   const queryClient = useQueryClient();

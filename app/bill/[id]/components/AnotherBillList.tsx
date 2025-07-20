@@ -1,5 +1,5 @@
-import { BillProps } from '@/types';
-import { AnotherBill } from '.';
+import type { BillProps } from '@/app/bill/[id]/types';
+import AnotherBill from './AnotherBill';
 
 export default function AnotherBillList({ bill_info_dto, similar_bills }: BillProps) {
   return (
