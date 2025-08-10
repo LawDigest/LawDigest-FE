@@ -13,10 +13,9 @@
   },
   "ignorePatterns": ["node_modules/", "*.config.js"],
   "extends": [
+    "next/core-web-vitals",
     "airbnb",
     "airbnb-typescript",
-    "airbnb/hooks",
-    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "prettier"
