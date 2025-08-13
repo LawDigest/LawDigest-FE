@@ -1,32 +1,30 @@
 import { Dispatch, SetStateAction } from 'react';
-import http from '@/api';
-import { FeedResponse, PartyDetailResponse, ValueOf, PartyCongressmanResponse, PartyFollowResponse } from '@/types';
-import { BILL_TAB } from '@/constants';
+import { apiClient } from '@/app/common/lib/api';
+import type { PartyDetailResponse, PartyCongressmanResponse, PartyFollowResponse } from '@/app/party/[id]/types';
+import type { FeedResponse } from '@/app/bill/[id]/types';
+import type { ValueOf } from '@/app/common/types';
+import { BILL_TAB } from '@/app/bill/[id]/constants';
 
 export const getBillByParty = async (
   partyId: number,
   type: ValueOf<typeof BILL_TAB> | Dispatch<SetStateAction<ValueOf<typeof BILL_TAB>>>,
   page: number,
 ) =>
-  http.get<FeedResponse>({
-    url: `/party/bill`,
+  apiClient.get<FeedResponse>('/party/bill', {
     params: { party_id: partyId, type, page, size: 3 },
   });
 
 export const getPartyDetail = (partyId: number) =>
-  http.get<PartyDetailResponse>({
-    url: `/party/detail`,
+  apiClient.get<PartyDetailResponse>('/party/detail', {
     params: { party_id: partyId },
   });
 
 export const getPartyCongressman = async (partyId: number) =>
-  http.get<PartyCongressmanResponse>({
-    url: `/party/congressman`,
+  apiClient.get<PartyCongressmanResponse>('/party/congressman', {
     params: { party_id: partyId },
   });
 
 export const patchPartyFollow = (partyId: number, followChecked: boolean) =>
-  http.patch<PartyFollowResponse>({
-    url: `/party/user/follow`,
+  apiClient.patch<PartyFollowResponse>('/party/user/follow', {
     params: { party_id: partyId, follow_checked: followChecked },
   });

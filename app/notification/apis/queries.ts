@@ -7,7 +7,7 @@ import {
   type UseQueryOptions,
   type UseMutationOptions,
 } from '@tanstack/react-query';
-import { Notification } from '@/types';
+import type { Notification } from '@/app/notification/types';
 import {
   getNotification,
   getNotificationCount,

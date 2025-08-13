@@ -1,13 +1,12 @@
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { SubHeader } from '@/components';
-import { getMetadata } from '@/utils';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import { SubHeader } from '@/app/common/components/Layout';
+import { getMetadata } from '@/app/common/utils';
 import { Metadata } from 'next';
-import getQueryClient from '@/lib/getQueryClient';
 import { CongressmanContainer } from './components';
 import { getCongressmanDetail } from './apis';
 
 export const generateMetadata = async ({ params: { id } }: { params: { id: string } }): Promise<Metadata> => {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
   const { data } = await queryClient.fetchQuery({
     queryKey: ['/congressman/detail', id],
     queryFn: () => getCongressmanDetail(id),
@@ -21,7 +20,7 @@ export const generateMetadata = async ({ params: { id } }: { params: { id: strin
 };
 
 export default async function Congressman({ params: { id } }: { params: { id: string } }) {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

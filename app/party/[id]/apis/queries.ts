@@ -2,8 +2,8 @@
 
 import { useSuspenseInfiniteQuery, QueryClient, useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { Dispatch, SetStateAction } from 'react';
-import { BILL_TAB } from '@/constants';
-import { ValueOf } from '@/types';
+import { BILL_TAB } from '@/app/bill/[id]/constants';
+import type { ValueOf } from '@/app/common/types';
 import { getBillByParty, getPartyDetail, getPartyCongressman, patchPartyFollow } from './api';
 
 export const useGetBillByParty = (

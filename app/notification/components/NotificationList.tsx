@@ -1,11 +1,19 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { getDateStatus } from '@/utils';
-import { Divider, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from '@nextui-org/react';
+import { getDateStatus } from '@/app/common/utils';
+import { Separator } from '@/app/common/components/ui/separator';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/app/common/components/ui/dropdown-menu';
+import { Button } from '@/app/common/components/ui/button';
 import { IconKebab } from '@/public/svgs';
 import { useSetRecoilState } from 'recoil';
-import { snackbarState } from '@/store';
+import { snackbarState } from '@/app/common/store';
+import { SNACKBAR_TYPE } from '@/app/common/constants';
 import {
   useGetNotificationCount,
   useGetNotification,
@@ -100,7 +108,7 @@ export default function NotificationList() {
       if (isClickByButton) {
         setSnackbar({
           show: true,
-          type: 'SUCCESS',
+          type: SNACKBAR_TYPE.SUCCESS,
           message: '해당 알림을 읽었습니다.',
           duration: 3000,
         });
@@ -114,7 +122,7 @@ export default function NotificationList() {
       mutateDelete.mutate(notificationId);
       setSnackbar({
         show: true,
-        type: 'CANCEL',
+        type: SNACKBAR_TYPE.CANCEL,
         message: '해당 알림을 삭제했습니다.',
         duration: 3000,
       });
@@ -126,7 +134,7 @@ export default function NotificationList() {
     mutateReadAll.mutate();
     setSnackbar({
       show: true,
-      type: 'SUCCESS',
+      type: SNACKBAR_TYPE.SUCCESS,
       message: '알림을 모두 읽었습니다.',
       duration: 3000,
     });
@@ -136,7 +144,7 @@ export default function NotificationList() {
     mutateDeleteAll.mutate();
     setSnackbar({
       show: true,
-      type: 'CANCEL',
+      type: SNACKBAR_TYPE.CANCEL,
       message: '알림을 모두 삭제했습니다.',
       duration: 3000,
     });
@@ -154,17 +162,17 @@ export default function NotificationList() {
               알림이 있습니다.
             </p>
           )}
-          <Dropdown>
-            <DropdownTrigger>
-              <Button isIconOnly size="sm" className="bg-transparent">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
                 <IconKebab isPassed />
               </Button>
-            </DropdownTrigger>
-            <DropdownMenu>
-              <DropdownItem onClick={onClickReadAll}>모두 읽음 표시</DropdownItem>
-              <DropdownItem onClick={onClickDeleteAll}>모두 삭제</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={onClickReadAll}>모두 읽음 표시</DropdownMenuItem>
+              <DropdownMenuItem onClick={onClickDeleteAll}>모두 삭제</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
@@ -186,7 +194,7 @@ export default function NotificationList() {
             ))}
         </div>
 
-        <Divider className="my-6" />
+        <Separator className="my-6" />
 
         <h2 className="text-xl font-semibold">지난 한 달</h2>
         <div className="flex flex-col gap-3 md:gap-4">
@@ -206,7 +214,7 @@ export default function NotificationList() {
             ))}
         </div>
 
-        <Divider className="my-6" />
+        <Separator className="my-6" />
 
         <h2 className="text-xl font-semibold">지난 알림</h2>
         <div className="flex flex-col gap-3 md:gap-4">
