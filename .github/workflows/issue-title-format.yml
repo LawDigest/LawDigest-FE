@@ -50,8 +50,13 @@ jobs:
             }
 
             const issueTypeRaw = extractType();
-            // 대문자/표기 스타일 원하는 대로 조정 가능
-            const issueType = sanitize(issueTypeRaw);
+
+            // 첫 글자만 대문자로, 나머지는 소문자로 변환
+            function capitalizeFirst(str) {
+              return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+            }
+            
+            const issueType = sanitize(capitalizeFirst(issueTypeRaw));
 
             const formattedPrefix = `[${issueType}]/#${number}/`;
 
