@@ -1,8 +1,8 @@
 'use client';
 
 import { QueryClient, useMutation, useSuspenseInfiniteQuery, useQueryClient } from '@tanstack/react-query';
-import { BILL_TAB } from '@/constants';
-import { ValueOf } from '@/types';
+import { BILL_TAB } from '@/app/bill/[id]/constants/bill';
+import type { ValueOf } from '@/app/common/types';
 import { Dispatch, SetStateAction } from 'react';
 import { getBillByCongressmanId, getCongressmanDetail, patchCongressmanFollow } from './apis';
 

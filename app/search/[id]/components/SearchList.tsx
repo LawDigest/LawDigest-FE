@@ -1,4 +1,4 @@
-import { SearchCongressmanPartyProps } from '@/types';
+import type { SearchCongressmanPartyProps } from '@/app/search/[id]/types';
 import SearchParty from './SearchParty';
 import SearchCongressman from './SearchCongressman';
 

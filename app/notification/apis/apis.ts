@@ -1,11 +1,9 @@
-import http from '@/api';
-import { Notification } from '@/types';
+import { apiClient } from '@/app/common/lib/api';
+import type { Notification } from '@/app/notification/types';
 
 export const getNotification = async () => {
   try {
-    const response = await http.get<Notification[]>({
-      url: '/notification/user',
-    });
+    const response = await apiClient.get<Notification[]>('/notification/user');
     return response.data;
   } catch (error) {
     console.error('getNotification error:', error);
@@ -15,12 +13,10 @@ export const getNotification = async () => {
 
 export const getNotificationCount = async () => {
   try {
-    const response = await http.get<{
+    const response = await apiClient.get<{
       user_id: number;
       notification_count: number;
-    }>({
-      url: '/notification/user/count',
-    });
+    }>('/notification/user/count');
     return response.data;
   } catch (error) {
     console.error('getNotificationCount error:', error);
@@ -30,9 +26,7 @@ export const getNotificationCount = async () => {
 
 export const getNotificationTopThree = async () => {
   try {
-    const response = await http.get<Notification[]>({
-      url: '/notification/user/top3-unread',
-    });
+    const response = await apiClient.get<Notification[]>('/notification/user/top3-unread');
     return response.data;
   } catch (error) {
     console.error('getNotificationTopThree error:', error);
@@ -42,8 +36,7 @@ export const getNotificationTopThree = async () => {
 
 export const putNotificationRead = async (notificationId: number) => {
   try {
-    const response = await http.put<Notification[]>({
-      url: '/notification/user/read',
+    const response = await apiClient.put<Notification[]>('/notification/user/read', {
       params: { notification_id: notificationId },
     });
     return response.data;
@@ -55,8 +48,7 @@ export const putNotificationRead = async (notificationId: number) => {
 
 export const deleteNotification = async (notificationId: number) => {
   try {
-    const response = await http.delete<Notification[]>({
-      url: '/notification/user/delete',
+    const response = await apiClient.delete<Notification[]>('/notification/user/delete', {
       params: { notification_id: notificationId },
     });
     return response.data;
@@ -68,9 +60,7 @@ export const deleteNotification = async (notificationId: number) => {
 
 export const putNotificationReadAll = async () => {
   try {
-    const response = await http.put<Notification[]>({
-      url: '/notification/user/read/all',
-    });
+    const response = await apiClient.put<Notification[]>('/notification/user/read/all');
     return response.data;
   } catch (error) {
     console.error('putNotificationReadAll error:', error);
@@ -80,9 +70,7 @@ export const putNotificationReadAll = async () => {
 
 export const deleteNotificationAll = async () => {
   try {
-    const response = await http.delete<Notification[]>({
-      url: '/notification/user/delete/all',
-    });
+    const response = await apiClient.delete<Notification[]>('/notification/user/delete/all');
     return response.data;
   } catch (error) {
     console.error('deleteNotificationAll error:', error);

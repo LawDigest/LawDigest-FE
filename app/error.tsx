@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Layout } from '@/components';
+import { Layout } from '@/app/common/components/Layout/Layout';
 import Image from 'next/image';
-import { Button } from '@nextui-org/react';
+import { Button } from '@/app/common/components/ui/button';
 
 export default function Error({ error }: { error: Error }) {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Error({ error }: { error: Error }) {
 
   return (
     <Layout nav logo notification>
-      <section className="flex flex-col items-center justify-center h-full mt-20 md:mt-28">
+      <section className="flex flex-col justify-center items-center mt-20 h-full md:mt-28">
         <Image
           src="/images/500-error.svg"
           width={500}
@@ -35,7 +35,8 @@ export default function Error({ error }: { error: Error }) {
             이전 페이지
           </Button>
           <Button
-            className="text-xl font-medium bg-white border rounded-none border-primary-3 w-[261px] md:w-[227px] h-[56px] dark:text-black"
+            variant="outline"
+            className="text-xl font-medium rounded-none w-[261px] md:w-[227px] h-[56px] dark:text-black"
             onClick={() => {
               router.push('/');
               router.refresh();
