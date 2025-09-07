@@ -38,7 +38,7 @@ export const billKeys = {
 - 입력은 UI 친화적이며 제네릭 옵션을 통해 확장 가능
 - 반환 타입은 React Query 훅 반환 그대로 노출(일관성)
 
-### useQuery 기본 템플릿
+### useQuery 기본 템플릿 (항상 options 지원 + 콜백 전달)
 
 ```ts
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
@@ -85,7 +85,7 @@ export const useInfiniteBills = (stage?: string) =>
   });
 ```
 
-### useMutation 기본 템플릿 (옵티미스틱/무효화)
+### useMutation 기본 템플릿 (옵티미스틱/무효화, 항상 options 지원 + 콜백 전달)
 
 ```ts
 import { useMutation, useQueryClient, type UseMutationOptions } from '@tanstack/react-query';
@@ -107,6 +107,9 @@ export const useMutateBillBookmark = <TError = unknown, TContext = unknown>(
       queryClient.invalidateQueries({ queryKey: billKeys.detail(billId) });
       queryClient.invalidateQueries({ queryKey: billKeys.mainfeed() });
       options?.onSuccess?.(data, variables, context);
+    },
+    onError: (error, variables, context) => {
+      options?.onError?.(error, variables, context);
     },
     ...options,
   });
